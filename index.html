@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
-  <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
@@ -37,1598 +36,377 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html {
-      scroll-behavior: smooth;
-      background: #000;
-    }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--black);
-      background: var(--white);
-      overflow-x: hidden;
-      line-height: 1.6;
-      max-width: 100vw;
-    }
-
+    html { scroll-behavior: smooth; background: #000; }
+    body { font-family: var(--font-body); color: var(--black); background: var(--white); overflow-x: hidden; line-height: 1.6; max-width: 100vw; }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
 
-    .container {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 40px;
-      width: 100%;
-    }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; width: 100%; }
 
-    .section-label {
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .section-title {
-      font-family: var(--font-head);
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800;
-      line-height: 1.15;
-      color: var(--black);
-    }
-
+    .section-label { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; display: block; }
+    .section-title { font-family: var(--font-head); font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; color: var(--black); }
     .section-title.light { color: var(--white); }
-
-    .section-body {
-      font-size: 17px;
-      line-height: 1.75;
-      color: var(--mid);
-      max-width: 620px;
-    }
-
+    .section-body { font-size: 17px; line-height: 1.75; color: var(--mid); max-width: 620px; }
     .section-body.light { color: rgba(255,255,255,0.72); }
 
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      border-radius: 4px;
-      transition: var(--transition);
-      cursor: pointer;
-      border: none;
-      white-space: nowrap;
-    }
-
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--font-head); font-size: 14px; font-weight: 700; border-radius: 4px; transition: var(--transition); cursor: pointer; border: none; white-space: nowrap; }
     .btn-primary { background: var(--orange); color: var(--white); }
     .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
-
     .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.45); }
     .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
-
     .btn-dark { background: var(--black); color: var(--white); }
     .btn-dark:hover { background: var(--black-4); }
 
     /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 0 40px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(0,0,0,0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: var(--transition);
-    }
-
-    .navbar.scrolled {
-      background: #000;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.5);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .nav-logo img {
-      height: 56px;
-      width: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    .nav-logo-fallback {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-logo-text {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 1px;
-      line-height: 1;
-    }
-
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 40px; height: 80px; display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); transition: var(--transition); }
+    .navbar.scrolled { background: #000; box-shadow: 0 4px 32px rgba(0,0,0,0.5); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-logo img { height: 56px; width: auto; object-fit: contain; display: block; }
+    .nav-logo-text { font-family: var(--font-head); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 1px; line-height: 1; }
     .nav-logo-text span { color: var(--orange); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      padding: 8px 14px;
-      border-radius: 4px;
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--white);
-      background: rgba(255,255,255,0.07);
-    }
-
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); padding: 8px 14px; border-radius: 4px; transition: var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.07); }
     .nav-right { display: flex; align-items: center; gap: 12px; }
-
-    .nav-partner-btn {
-      background: var(--orange);
-      color: var(--white);
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 11px 22px;
-      border-radius: 4px;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
+    .nav-partner-btn { background: var(--orange); color: var(--white); font-family: var(--font-head); font-size: 13px; font-weight: 700; padding: 11px 22px; border-radius: 4px; transition: var(--transition); white-space: nowrap; }
     .nav-partner-btn:hover { background: var(--orange-dark); }
-
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-
-    .nav-hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: var(--transition);
-    }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
 
     /* SIDEBAR */
-    .sidebar-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 1100;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1100; opacity: 0; transition: opacity 0.3s ease; }
     .sidebar-overlay.active { display: block; opacity: 1; }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -320px;
-      width: 300px;
-      height: 100vh;
-      background: #000;
-      z-index: 1200;
-      transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      border-left: 1px solid rgba(255,255,255,0.06);
-    }
-
+    .sidebar { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: #000; z-index: 1200; transition: right 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.06); }
     .sidebar.open { right: 0; }
-
-    .sidebar-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      min-height: 80px;
-    }
-
-    .sidebar-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .sidebar-logo-wrap img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .sidebar-logo-text {
-      font-family: var(--font-head);
-      font-size: 15px;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 0.5px;
-    }
-
+    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); min-height: 80px; }
+    .sidebar-logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .sidebar-logo-wrap img { height: 40px; width: auto; object-fit: contain; }
+    .sidebar-logo-text { font-family: var(--font-head); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 0.5px; }
     .sidebar-logo-text span { color: var(--orange); }
-
-    .sidebar-close {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: rgba(255,255,255,0.65);
-      font-size: 26px;
-      line-height: 1;
-      padding: 4px;
-      transition: color var(--transition);
-    }
-
+    .sidebar-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.65); font-size: 26px; line-height: 1; padding: 4px; transition: color var(--transition); }
     .sidebar-close:hover { color: var(--white); }
-
-    .sidebar-nav {
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
-    }
-
-    .sidebar-nav a {
-      font-family: var(--font-head);
-      font-size: 16px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      padding: 14px 16px;
-      border-radius: 6px;
-      transition: var(--transition);
-      display: block;
-    }
-
-    .sidebar-nav a:hover {
-      color: var(--white);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .sidebar-partner {
-      margin: 8px 16px 32px;
-      display: block;
-      background: var(--orange);
-      color: var(--white);
-      font-family: var(--font-head);
-      font-size: 15px;
-      font-weight: 700;
-      padding: 14px 20px;
-      border-radius: 6px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
+    .sidebar-nav { padding: 24px 16px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .sidebar-nav a { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.75); padding: 14px 16px; border-radius: 6px; transition: var(--transition); display: block; }
+    .sidebar-nav a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .sidebar-partner { margin: 8px 16px 32px; display: block; background: var(--orange); color: var(--white); font-family: var(--font-head); font-size: 15px; font-weight: 700; padding: 14px 20px; border-radius: 6px; text-align: center; transition: var(--transition); }
     .sidebar-partner:hover { background: var(--orange-dark); }
-
-    .sidebar-socials {
-      padding: 20px 24px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .sidebar-socials a {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-
+    .sidebar-socials { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; gap: 10px; flex-wrap: wrap; }
+    .sidebar-socials a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
     .sidebar-socials a:hover { border-color: var(--orange); background: rgba(255,130,0,0.1); }
     .sidebar-socials svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.65); }
     .sidebar-socials a:hover svg { fill: var(--orange); }
 
     /* HERO */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center top;
-      background-color: #000;
-      opacity: 1;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(0,0,0,0.88) 0%,
-        rgba(0,0,0,0.65) 55%,
-        rgba(255,130,0,0.15) 100%
-      );
-    }
-
-    /* Soft fade at the bottom of the hero into the next section */
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 160px;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 120px 40px 80px;
-      width: 100%;
-    }
-
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,130,0,0.12);
-      border: 1px solid rgba(255,130,0,0.3);
-      padding: 8px 16px;
-      border-radius: 40px;
-      margin-bottom: 32px;
-    }
-
-    .hero-label-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--orange);
-      animation: pulse 2s infinite;
-    }
-
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: #000; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center top; background-repeat: no-repeat; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.65) 55%, rgba(255,130,0,0.15) 100%); }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%); pointer-events: none; z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; padding: 120px 40px 80px; width: 100%; }
+    .hero-label { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,130,0,0.12); border: 1px solid rgba(255,130,0,0.3); padding: 8px 16px; border-radius: 40px; margin-bottom: 32px; }
+    .hero-label-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
-
-    .hero-label span {
-      font-family: var(--font-head);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--orange);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .hero-title {
-      font-family: var(--font-head);
-      font-size: clamp(44px, 7vw, 90px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.04;
-      margin-bottom: 12px;
-      max-width: 900px;
-    }
-
+    .hero-label span { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; }
+    .hero-title { font-family: var(--font-head); font-size: clamp(44px, 7vw, 90px); font-weight: 900; color: var(--white); line-height: 1.04; margin-bottom: 12px; max-width: 900px; }
     .hero-title .accent { color: var(--orange); }
-
-    .hero-subtitle {
-      font-family: var(--font-head);
-      font-size: clamp(18px, 2.5vw, 26px);
-      font-weight: 400;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 28px;
-      max-width: 680px;
-    }
-
-    .hero-divider {
-      width: 60px;
-      height: 3px;
-      background: var(--orange);
-      margin-bottom: 28px;
-      border-radius: 2px;
-    }
-
-    .hero-body {
-      font-size: 18px;
-      color: rgba(255,255,255,0.65);
-      max-width: 600px;
-      line-height: 1.8;
-      margin-bottom: 40px;
-    }
-
+    .hero-subtitle { font-family: var(--font-head); font-size: clamp(18px, 2.5vw, 26px); font-weight: 400; color: rgba(255,255,255,0.55); margin-bottom: 28px; max-width: 680px; }
+    .hero-divider { width: 60px; height: 3px; background: var(--orange); margin-bottom: 28px; border-radius: 2px; }
+    .hero-body { font-size: 18px; color: rgba(255,255,255,0.65); max-width: 600px; line-height: 1.8; margin-bottom: 40px; }
     .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-
-    .hero-stats {
-      display: flex;
-      gap: 48px;
-      margin-top: 72px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      flex-wrap: wrap;
-    }
-
-    .hero-stat-num {
-      font-family: var(--font-head);
-      font-size: 34px;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-    }
-
+    .hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+    .hero-stat-num { font-family: var(--font-head); font-size: 34px; font-weight: 900; color: var(--white); line-height: 1; }
     .hero-stat-num span { color: var(--orange); }
-
-    .hero-stat-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.45);
-      margin-top: 5px;
-      font-weight: 500;
-    }
+    .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 5px; font-weight: 500; }
 
     /* MISSION STRIP */
     .mission-strip { background: var(--orange); padding: 28px 0; }
-
-    .mission-strip .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mission-strip-text {
-      font-family: var(--font-head);
-      font-size: clamp(15px, 2vw, 19px);
-      font-weight: 700;
-      color: var(--white);
-      text-align: center;
-    }
-
+    .mission-strip .container { display: flex; align-items: center; justify-content: center; }
+    .mission-strip-text { font-family: var(--font-head); font-size: clamp(15px, 2vw, 19px); font-weight: 700; color: var(--white); text-align: center; }
     .mission-strip-text em { font-style: normal; opacity: 0.82; font-weight: 500; }
 
     /* NARRATIVE */
-    .narrative {
-      padding: var(--section-pad);
-      background: #000;
-      position: relative;
-      overflow: hidden;
-    }
+    .narrative { padding: var(--section-pad); background: #000; position: relative; overflow: hidden; }
+    .narrative::before { content: ''; position: absolute; bottom: -120px; left: -80px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.06) 0%, transparent 70%); pointer-events: none; }
+    .narrative-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .narrative-eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .narrative-eyebrow-line { width: 32px; height: 2px; background: var(--orange); border-radius: 2px; }
+    .narrative-text .section-title { font-size: clamp(32px, 4vw, 48px); color: var(--white); margin-bottom: 24px; }
+    .narrative-body-text { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.58); margin-bottom: 16px; }
+    .narrative-highlight { background: rgba(255,130,0,0.08); border-left: 3px solid var(--orange); padding: 20px 24px; border-radius: 0 8px 8px 0; margin-top: 32px; }
+    .narrative-highlight p { font-family: var(--font-head); font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.65; }
 
-    .narrative::before {
-      content: '';
-      position: absolute;
-      bottom: -120px;
-      left: -80px;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,130,0,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    /* Brand benefits grid */
+    .brand-benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .brand-benefit-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 24px 20px; transition: var(--transition); }
+    .brand-benefit-card:hover { background: rgba(255,130,0,0.06); border-color: rgba(255,130,0,0.2); transform: translateY(-2px); }
+    .brand-benefit-icon { width: 40px; height: 40px; background: rgba(255,130,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .brand-benefit-icon svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .brand-benefit-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
+    .brand-benefit-body { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
 
-    .narrative-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    /* LEFT: TEXT */
-    .narrative-text {}
-
-    .narrative-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .narrative-eyebrow-line {
-      width: 32px;
-      height: 2px;
-      background: var(--orange);
-      border-radius: 2px;
-    }
-
-    .narrative-text .section-title {
-      font-size: clamp(32px, 4vw, 48px);
-      color: var(--white);
-      margin-bottom: 24px;
-    }
-
-    .narrative-body-text {
-      font-size: 16px;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.58);
-      margin-bottom: 16px;
-    }
-
-    .narrative-highlight {
-      background: rgba(255,130,0,0.08);
-      border-left: 3px solid var(--orange);
-      padding: 20px 24px;
-      border-radius: 0 8px 8px 0;
-      margin-top: 32px;
-    }
-
-    .narrative-highlight p {
-      font-family: var(--font-head);
-      font-size: 15px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.65;
-    }
-
-    .narrative-proof-row {
-      display: flex;
-      gap: 40px;
-      margin-top: 36px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .narrative-proof-item {}
-
-    .narrative-proof-num {
-      font-family: var(--font-head);
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--orange);
-      line-height: 1;
-    }
-
-    .narrative-proof-label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    /* RIGHT: VISUALS */
-    .narrative-visuals {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .narrative-card-wrap {
-      position: relative;
-    }
-
-    /* Label sits INSIDE the image at the top */
-    .narrative-card-label {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      z-index: 10;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-family: var(--font-head);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      backdrop-filter: blur(8px);
-    }
-
-    .narrative-card-label.noise-label {
-      background: rgba(0,0,0,0.65);
-      color: rgba(255,255,255,0.75);
-    }
-
-    .narrative-card-label.reality-label {
-      background: rgba(255,130,0,0.85);
-      color: var(--white);
-    }
-
-    .narrative-card-label-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-      flex-shrink: 0;
-    }
-
-    .narrative-card {
-      position: relative;
-      border-radius: 8px;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .narrative-card img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      height: 280px;
-    }
-
-    .narrative-card.noise {
-      filter: grayscale(1) contrast(1.05) brightness(0.85);
-    }
-
-    .narrative-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px 0;
-    }
-
-    .narrative-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
-
-    .narrative-divider-badge {
-      font-family: var(--font-head);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--orange);
-      background: rgba(255,130,0,0.1);
-      border: 1px solid rgba(255,130,0,0.2);
-      padding: 6px 14px;
-      border-radius: 40px;
-      white-space: nowrap;
-    }
+    /* MANIFESTO */
+    .manifesto { background: #000; padding: var(--section-pad); position: relative; overflow: hidden; }
+    .manifesto::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.05) 0%, transparent 65%); pointer-events: none; }
+    .manifesto-declaration { text-align: center; max-width: 860px; margin: 0 auto 80px; position: relative; z-index: 1; }
+    .manifesto-declaration .section-label { margin-bottom: 24px; }
+    .manifesto-eyebrow-line { width: 48px; height: 3px; background: var(--orange); border-radius: 2px; margin: 0 auto 32px; }
+    .manifesto-headline { font-family: var(--font-head); font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 28px; }
+    .manifesto-headline .accent { color: var(--orange); }
+    .manifesto-statement { font-size: 18px; color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 680px; margin: 0 auto; }
+    .manifesto-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; position: relative; z-index: 1; }
+    .manifesto-pillar { background: #0d0d0d; padding: 52px 40px; position: relative; overflow: hidden; transition: background var(--transition); }
+    .manifesto-pillar:hover { background: #111; }
+    .manifesto-pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .manifesto-pillar:hover::before { transform: scaleX(1); }
+    .manifesto-pillar-bg-num { position: absolute; bottom: -20px; right: -10px; font-family: var(--font-head); font-size: 160px; font-weight: 900; color: rgba(255,255,255,0.02); line-height: 1; pointer-events: none; user-select: none; }
+    .manifesto-pillar-tag { font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .manifesto-pillar-tag::after { content: ''; flex: 1; height: 1px; background: rgba(255,130,0,0.2); }
+    .manifesto-pillar-title { font-family: var(--font-head); font-size: clamp(28px, 3vw, 40px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 20px; }
+    .manifesto-pillar-body { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 32px; }
+    .manifesto-pillar-proof { display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .manifesto-pillar-proof-num { font-family: var(--font-head); font-size: 28px; font-weight: 900; color: var(--orange); line-height: 1; white-space: nowrap; }
+    .manifesto-pillar-proof-label { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 500; line-height: 1.4; }
 
     /* STORIES */
     .stories { padding: var(--section-pad); background: var(--light); }
-
-    .stories-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 48px;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .stories-view-all {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--orange);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap var(--transition);
-      white-space: nowrap;
-    }
-
+    .stories-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; gap: 24px; flex-wrap: wrap; }
+    .stories-view-all { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--orange); display: flex; align-items: center; gap: 6px; transition: gap var(--transition); white-space: nowrap; }
     .stories-view-all:hover { gap: 10px; }
-
-    .stories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .story-card {
-      background: var(--white);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: block;
-    }
-
-    .story-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.13);
-    }
-
-    .story-card-image {
-      position: relative;
-      aspect-ratio: 16/10;
-      overflow: hidden;
-    }
-
-    .story-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
+    .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .story-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.07); transition: transform var(--transition), box-shadow var(--transition); display: block; }
+    .story-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.13); }
+    .story-card-image { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+    .story-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
     .story-card:hover .story-card-image img { transform: scale(1.04); }
-
-    .story-tag {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: var(--orange);
-      color: var(--white);
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 3px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
+    .story-tag { position: absolute; top: 14px; left: 14px; background: var(--orange); color: var(--white); font-family: var(--font-head); font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 3px; letter-spacing: 0.5px; text-transform: uppercase; }
     .story-card-body { padding: 24px; }
-
-    .story-card-title {
-      font-family: var(--font-head);
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--black);
-      line-height: 1.35;
-      margin-bottom: 10px;
-    }
-
-    .story-card-excerpt {
-      font-size: 14px;
-      color: var(--mid);
-      line-height: 1.65;
-      margin-bottom: 20px;
-    }
-
-    .story-card-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #888;
-      font-weight: 500;
-    }
-
+    .story-card-title { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--black); line-height: 1.35; margin-bottom: 10px; }
+    .story-card-excerpt { font-size: 14px; color: var(--mid); line-height: 1.65; margin-bottom: 20px; }
+    .story-card-meta { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #888; font-weight: 500; }
     .story-card-author { font-weight: 600; color: var(--mid); }
     .stories-loading { text-align: center; padding: 60px 0; font-family: var(--font-head); font-size: 15px; color: var(--mid); }
     .stories-cta { text-align: center; margin-top: 48px; }
 
     /* PILLARS */
     .pillars { padding: var(--section-pad); background: var(--white); }
-
-    .pillars-header {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 56px;
-    }
-
+    .pillars-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
     .pillars-header .section-title { margin-bottom: 16px; }
-
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
-    }
-
-    .pillar-card {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      cursor: pointer;
-      display: block;
-    }
-
-    .pillar-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
+    .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.12); }
+    .pillar-card { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; display: block; }
+    .pillar-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .pillar-card:hover img { transform: scale(1.05); }
-
-    .pillar-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
-      transition: var(--transition);
-    }
-
-    .pillar-card:hover .pillar-overlay {
-      background: linear-gradient(0deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.55) 65%, rgba(255,130,0,0.08) 100%);
-    }
-
-    .pillar-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 28px;
-    }
-
-    .pillar-tag {
-      font-family: var(--font-head);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .pillar-title {
-      font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .pillar-desc {
-      font-size: 14px;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.6;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
+    .pillar-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 55%, transparent 100%); transition: var(--transition); }
+    .pillar-card:hover .pillar-overlay { background: linear-gradient(0deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.55) 65%, rgba(255,130,0,0.08) 100%); }
+    .pillar-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+    .pillar-tag { font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; display: block; }
+    .pillar-title { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .pillar-desc { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
     .pillar-card:hover .pillar-desc { max-height: 80px; }
 
     /* HOW IT WORKS */
     .how-it-works { padding: var(--section-pad); background: #000; }
-
-    .how-it-works-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
-    }
-
+    .how-it-works-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
     .how-it-works-header .section-title { margin-bottom: 16px; }
-
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-
-    .step-card {
-      background: #111;
-      padding: 48px 36px;
-      transition: background var(--transition);
-    }
-
+    .step-card { background: #111; padding: 48px 36px; transition: background var(--transition); }
     .step-card:hover { background: #1a1a1a; }
-
-    .step-number {
-      font-family: var(--font-head);
-      font-size: 72px;
-      font-weight: 900;
-      color: rgba(255,130,0,0.1);
-      line-height: 1;
-      margin-bottom: 20px;
-      transition: color var(--transition);
-    }
-
+    .step-number { font-family: var(--font-head); font-size: 72px; font-weight: 900; color: rgba(255,130,0,0.1); line-height: 1; margin-bottom: 20px; transition: color var(--transition); }
     .step-card:hover .step-number { color: rgba(255,130,0,0.2); }
-
-    .step-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(255,130,0,0.12);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
+    .step-icon { width: 48px; height: 48px; background: rgba(255,130,0,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
     .step-icon svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; stroke-width: 2; }
-
-    .step-title {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
+    .step-title { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
     .step-body { font-size: 15px; color: rgba(255,255,255,0.58); line-height: 1.75; }
 
     /* ECOSYSTEM */
     .ecosystem { padding: var(--section-pad); background: var(--white); }
-
-    .ecosystem-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 64px;
-    }
-
+    .ecosystem-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
     .ecosystem-header .section-title { margin-bottom: 16px; }
-
-    .ecosystem-diagram {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      align-items: center;
-      max-width: 100%;
-      margin: 0 auto;
-      gap: 0;
-    }
-
+    .ecosystem-diagram { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; max-width: 100%; margin: 0 auto; gap: 0; }
     .ecosystem-node { text-align: center; padding: 16px 8px; }
-
-    .eco-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--light);
-      border: 2px solid rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      transition: var(--transition);
-    }
-
+    .eco-circle { width: 120px; height: 120px; border-radius: 50%; background: var(--light); border: 2px solid rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; transition: var(--transition); }
     .eco-circle:hover { border-color: var(--orange); background: rgba(255,130,0,0.05); }
-
-    .eco-circle-text {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--black);
-      text-align: center;
-      padding: 0 12px;
-      line-height: 1.4;
-    }
-
+    .eco-circle-text { font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--black); text-align: center; padding: 0 12px; line-height: 1.4; }
     .eco-connector { display: flex; align-items: center; justify-content: center; }
-
-    .eco-connector-line {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.1), var(--orange), rgba(0,0,0,0.1));
-      position: relative;
-    }
-
-    .eco-connector-dot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--orange);
-      top: 50%;
-      transform: translateY(-50%);
-      animation: slide-dot 2.5s ease-in-out infinite;
-    }
-
+    .eco-connector-line { width: 60px; height: 2px; background: linear-gradient(90deg, rgba(0,0,0,0.1), var(--orange), rgba(0,0,0,0.1)); position: relative; }
+    .eco-connector-dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); top: 50%; transform: translateY(-50%); animation: slide-dot 2.5s ease-in-out infinite; }
     @keyframes slide-dot { 0% { left: 0; } 50% { left: calc(100% - 8px); } 100% { left: 0; } }
-
     .ecosystem-center { text-align: center; padding: 24px; }
-
-    .eco-center-circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: #000;
-      border: 3px solid var(--orange);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      position: relative;
-    }
-
-    .eco-center-circle::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255,130,0,0.3);
-    }
-
-    .eco-center-label {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--white);
-      text-align: center;
-      line-height: 1.3;
-      position: relative;
-      z-index: 1;
-    }
-
-    .eco-center-sub {
-      font-size: 10px;
-      color: var(--orange);
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-top: 6px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .eco-node-title {
-      font-family: var(--font-head);
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--black);
-      margin-bottom: 10px;
-    }
-
+    .eco-center-circle { width: 200px; height: 200px; border-radius: 50%; background: #000; border: 3px solid var(--orange); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 20px; position: relative; }
+    .eco-center-circle::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 1px dashed rgba(255,130,0,0.3); }
+    .eco-center-label { font-family: var(--font-head); font-size: 13px; font-weight: 800; color: var(--white); text-align: center; line-height: 1.3; position: relative; z-index: 1; }
+    .eco-center-sub { font-size: 10px; color: var(--orange); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; position: relative; z-index: 1; }
+    .eco-node-title { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
     .eco-node-body { font-size: 14px; color: var(--mid); line-height: 1.65; }
 
     /* STATS */
     .stats { background: #000; padding: 80px 0; }
-
-    .stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-
-    .stat-item {
-      text-align: center;
-      padding: 48px 24px;
-      background: #111;
-      position: relative;
-    }
-
-    .stat-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 3px;
-      background: var(--orange);
-      transition: width 0.4s ease;
-    }
-
+    .stats .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .stat-item { text-align: center; padding: 48px 24px; background: #111; position: relative; }
+    .stat-item::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--orange); transition: width 0.4s ease; }
     .stat-item:hover::after { width: 60%; }
-
-    .stat-num {
-      font-family: var(--font-head);
-      font-size: clamp(36px, 4vw, 56px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
+    .stat-num { font-family: var(--font-head); font-size: clamp(36px, 4vw, 56px); font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 8px; }
     .stat-num span { color: var(--orange); }
-
-    .stat-label {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.5px;
-    }
+    .stat-label { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
 
     /* PARTNER CTA */
-    .partner-cta {
-      padding: 0;
-      background: #000;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .partner-cta::after {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .partner-cta-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
+    .partner-cta { padding: 0; background: #000; position: relative; overflow: hidden; }
+    .partner-cta::after { content: ''; position: absolute; top: -100px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 65%); pointer-events: none; }
+    .partner-cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
     .partner-cta-left .section-title { color: var(--white); margin-bottom: 20px; }
-
-    .partner-cta-proof {
-      background: rgba(255,130,0,0.09);
-      border: 1px solid rgba(255,130,0,0.2);
-      border-radius: 8px;
-      padding: 24px;
-      margin: 24px 0 32px;
-    }
-
-    .partner-cta-proof p {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.65;
-    }
-
-    .partner-cta-proof-stat {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .partner-cta-proof-stat strong {
-      font-family: var(--font-head);
-      font-size: 36px;
-      font-weight: 900;
-      color: var(--orange);
-      line-height: 1;
-    }
-
-    .partner-cta-proof-stat span {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
-    }
-
+    .partner-cta-proof { background: rgba(255,130,0,0.09); border: 1px solid rgba(255,130,0,0.2); border-radius: 8px; padding: 24px; margin: 24px 0 32px; }
+    .partner-cta-proof p { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.82); line-height: 1.65; }
+    .partner-cta-proof-stat { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+    .partner-cta-proof-stat strong { font-family: var(--font-head); font-size: 36px; font-weight: 900; color: var(--orange); line-height: 1; }
+    .partner-cta-proof-stat span { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); }
     .partner-offerings { display: flex; flex-direction: column; gap: 0; }
-
-    .offering-item {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-bottom: none;
-      transition: var(--transition);
-      background: rgba(255,255,255,0.02);
-    }
-
+    .offering-item { display: flex; gap: 20px; align-items: flex-start; padding: 24px; border: 1px solid rgba(255,255,255,0.07); border-bottom: none; transition: var(--transition); background: rgba(255,255,255,0.02); }
     .offering-item:first-child { border-radius: 8px 8px 0 0; }
     .offering-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); border-radius: 0 0 8px 8px; }
-
-    .offering-item:hover {
-      background: rgba(255,130,0,0.06);
-      border-color: rgba(255,130,0,0.2);
-    }
-
-    .offering-num {
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--orange);
-      letter-spacing: 1px;
-      padding-top: 4px;
-      flex-shrink: 0;
-      min-width: 24px;
-    }
-
-    .offering-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(255,130,0,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
+    .offering-item:hover { background: rgba(255,130,0,0.06); border-color: rgba(255,130,0,0.2); }
+    .offering-num { font-family: var(--font-head); font-size: 11px; font-weight: 800; color: var(--orange); letter-spacing: 1px; padding-top: 4px; flex-shrink: 0; min-width: 24px; }
+    .offering-icon { width: 44px; height: 44px; background: rgba(255,130,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .offering-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 2; }
-
-    .offering-title {
-      font-family: var(--font-head);
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-
+    .offering-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
     .offering-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
 
-    /* PARTNERS */
-    .partners {
-      padding: 64px 0;
-      background: var(--light);
-      border-top: 1px solid rgba(0,0,0,0.08);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .partners-label {
-      text-align: center;
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 36px;
-    }
-
-    .partners-logos {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-
-    .partner-logo-item { filter: grayscale(1) opacity(0.5); transition: filter var(--transition); }
-    .partner-logo-item:hover { filter: grayscale(0) opacity(1); }
-    .partner-logo-item img { height: 40px; width: auto; }
+    /* PARTNERS CAROUSEL */
+    .partners { padding: 64px 0; background: var(--light); border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); overflow: hidden; }
+    .partners-label { text-align: center; font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-bottom: 36px; }
+    .partners-track-wrap { overflow: hidden; position: relative; }
+    .partners-track-wrap::before,
+    .partners-track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+    .partners-track-wrap::before { left: 0; background: linear-gradient(to right, var(--light), transparent); }
+    .partners-track-wrap::after { right: 0; background: linear-gradient(to left, var(--light), transparent); }
+    .partners-track { display: flex; gap: 60px; animation: partners-scroll 24s linear infinite; width: max-content; align-items: center; }
+    .partners-track:hover { animation-play-state: paused; }
+    @keyframes partners-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .partner-logo-item { flex-shrink: 0; }
+    .partner-logo-item img { height: 80px; width: auto; }
 
     /* NEWSLETTER */
     .newsletter { background: var(--orange); padding: 80px 0; }
-
-    .newsletter .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .newsletter-title {
-      font-family: var(--font-head);
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
+    .newsletter .container { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .newsletter-title { font-family: var(--font-head); font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
     .newsletter-body { font-size: 16px; color: rgba(255,255,255,0.82); line-height: 1.65; }
-
     .newsletter-form { display: flex; }
-
-    .newsletter-input {
-      flex: 1;
-      padding: 16px 20px;
-      font-family: var(--font-body);
-      font-size: 15px;
-      border: 2px solid rgba(255,255,255,0.25);
-      border-right: none;
-      background: rgba(255,255,255,0.12);
-      color: var(--white);
-      border-radius: 4px 0 0 4px;
-      outline: none;
-      transition: var(--transition);
-      min-width: 0;
-    }
-
+    .newsletter-input { flex: 1; padding: 16px 20px; font-family: var(--font-body); font-size: 15px; border: 2px solid rgba(255,255,255,0.25); border-right: none; background: rgba(255,255,255,0.12); color: var(--white); border-radius: 4px 0 0 4px; outline: none; transition: var(--transition); min-width: 0; }
     .newsletter-input::placeholder { color: rgba(255,255,255,0.55); }
     .newsletter-input:focus { border-color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.18); }
-
-    .newsletter-btn {
-      background: #000;
-      color: var(--white);
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      padding: 16px 28px;
-      border: none;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-      transition: background var(--transition);
-      white-space: nowrap;
-    }
-
+    .newsletter-btn { background: #000; color: var(--white); font-family: var(--font-head); font-size: 14px; font-weight: 700; padding: 16px 28px; border: none; border-radius: 0 4px 4px 0; cursor: pointer; transition: background var(--transition); white-space: nowrap; }
     .newsletter-btn:hover { background: #1a1a1a; }
 
     /* FOOTER */
     .footer { background: #000; padding: 80px 0 0; }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 60px;
-      padding-bottom: 64px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 60px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .footer-logo img { height: 48px; width: auto; object-fit: contain; }
-
-    .footer-logo-text {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 0.5px;
-    }
-
+    .footer-logo-text { font-family: var(--font-head); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 0.5px; }
     .footer-logo-text span { color: var(--orange); }
-
-    .footer-tagline {
-      font-size: 14px;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.7;
-      max-width: 300px;
-      margin-bottom: 28px;
-    }
-
+    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 300px; margin-bottom: 28px; }
     .footer-socials { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .footer-social-link {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-
+    .footer-social-link { width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
     .footer-social-link:hover { border-color: var(--orange); background: rgba(255,130,0,0.1); }
     .footer-social-link svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.55); }
     .footer-social-link:hover svg { fill: var(--orange); }
-
-    .footer-col-title {
-      font-family: var(--font-head);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
+    .footer-col-title { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
     .footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
-
     .footer-links a { font-size: 14px; color: rgba(255,255,255,0.45); transition: color var(--transition); }
     .footer-links a:hover { color: var(--white); }
-
     .footer-contact-item { display: flex; gap: 12px; margin-bottom: 16px; }
-
     .footer-contact-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
     .footer-contact-icon svg { width: 100%; height: 100%; stroke: var(--orange); fill: none; stroke-width: 2; }
-
     .footer-contact-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
     .footer-contact-text a { color: rgba(255,255,255,0.5); transition: color var(--transition); }
     .footer-contact-text a:hover { color: var(--orange); }
-
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 0;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 16px; flex-wrap: wrap; }
     .footer-copy { font-size: 13px; color: rgba(255,255,255,0.28); }
     .footer-copy a { color: rgba(255,255,255,0.45); transition: color var(--transition); }
     .footer-copy a:hover { color: var(--white); }
-
     .footer-bottom-links { display: flex; gap: 24px; list-style: none; }
     .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,0.28); transition: color var(--transition); }
     .footer-bottom-links a:hover { color: rgba(255,255,255,0.65); }
-
     .footer-orange-bar { height: 4px; background: linear-gradient(90deg, var(--orange), transparent); }
 
     /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      background: #000;
-      color: var(--white);
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 16px 24px;
-      border-radius: 6px;
-      border-left: 4px solid var(--orange);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      z-index: 9999;
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all 0.35s ease;
-    }
-
+    .toast { position: fixed; bottom: 32px; right: 32px; background: #000; color: var(--white); font-family: var(--font-head); font-size: 14px; font-weight: 600; padding: 16px 24px; border-radius: 6px; border-left: 4px solid var(--orange); box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 9999; transform: translateY(80px); opacity: 0; transition: all 0.35s ease; }
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast.error { border-left-color: #e53935; }
 
+    /* PAGE LOADER */
+    .page-loader { position: fixed; inset: 0; z-index: 9998; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; transition: opacity 0.6s ease, visibility 0.6s ease; }
+    .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .page-loader-logo { font-family: var(--font-head); font-size: 22px; font-weight: 900; color: var(--white); letter-spacing: 2px; text-transform: uppercase; }
+    .page-loader-logo span { color: var(--orange); }
+    .page-loader-tagline { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: -28px; }
+    .loader { position: relative; width: 85px; height: 50px; background-repeat: no-repeat; background-image: linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0); background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center; animation: rikSpikeRoll 0.65s linear infinite alternate; }
+    @keyframes rikSpikeRoll { 0% { background-size: 10px 3px; } 16% { background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px; } 33% { background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px; } 50% { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px; } 66% { background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px; } 83% { background-size: 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px; } 100% { background-size: 10px 3px, 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px; } }
+
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .stats .container { grid-template-columns: repeat(2, 1fr); }
+      .stats .container { grid-template-columns: repeat(3, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
-
     @media (max-width: 768px) {
       :root { --section-pad: 64px 0; }
-
       .navbar { padding: 0 20px; height: 72px; }
       .nav-links, .nav-partner-btn { display: none; }
       .nav-hamburger { display: flex; }
       .nav-logo img { height: 40px; }
       .nav-logo-text { font-size: 15px; }
-
       .container { padding: 0 20px; }
       .hero-content { padding: 100px 20px 64px; }
-
       .hero-stats { gap: 24px; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
-
       .narrative .container { grid-template-columns: 1fr; gap: 40px; }
-      .narrative-card { aspect-ratio: 16/9; }
-
       .stories-grid { grid-template-columns: 1fr; }
-
       .pillars-grid { grid-template-columns: 1fr; }
       .pillar-card { aspect-ratio: 16/9; }
       .pillar-desc { max-height: 80px; }
-
       .steps-grid { grid-template-columns: 1fr; gap: 2px; }
-
       .ecosystem-diagram { grid-template-columns: 1fr; }
       .eco-connector { transform: rotate(90deg); margin: 4px auto; }
-
       .stats .container { grid-template-columns: repeat(2, 1fr); }
-
       .partner-cta .container { grid-template-columns: 1fr; gap: 48px; }
-
       .newsletter .container { grid-template-columns: 1fr; gap: 32px; }
       .newsletter-form { flex-direction: column; }
       .newsletter-input { border-right: 2px solid rgba(255,255,255,0.25); border-radius: 4px; margin-bottom: 8px; }
       .newsletter-btn { border-radius: 4px; }
-
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
-
       .toast { left: 20px; right: 20px; bottom: 20px; }
-    }
-
-    @media (max-width: 480px) {
-      .partners-logos { gap: 32px; }
-    }
-
-    /* PAGE LOADER */
-    .page-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-
-    .page-loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .page-loader-logo {
-      font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .page-loader-logo span { color: var(--orange); }
-
-    .page-loader-tagline {
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      margin-top: -28px;
-    }
-
-    .loader {
-      position: relative;
-      width: 85px;
-      height: 50px;
-      background-repeat: no-repeat;
-      background-image:
-        linear-gradient(var(--orange) 50px, transparent 0),
-        linear-gradient(var(--orange) 50px, transparent 0),
-        linear-gradient(var(--orange) 50px, transparent 0),
-        linear-gradient(var(--orange) 50px, transparent 0),
-        linear-gradient(var(--orange) 50px, transparent 0),
-        linear-gradient(var(--orange) 50px, transparent 0);
-      background-position:
-        0px center, 15px center, 30px center,
-        45px center, 60px center, 75px center;
-      animation: rikSpikeRoll 0.65s linear infinite alternate;
-    }
-
-    @keyframes rikSpikeRoll {
-      0%   { background-size: 10px 3px; }
-      16%  { background-size: 10px 50px, 10px 3px,  10px 3px,  10px 3px,  10px 3px,  10px 3px; }
-      33%  { background-size: 10px 30px, 10px 50px, 10px 3px,  10px 3px,  10px 3px,  10px 3px; }
-      50%  { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px,  10px 3px,  10px 3px; }
-      66%  { background-size: 10px 3px,  10px 10px, 10px 30px, 10px 50px, 10px 3px,  10px 3px; }
-      83%  { background-size: 10px 3px,  10px 3px,  10px 10px, 10px 30px, 10px 50px, 10px 3px; }
-      100% { background-size: 10px 3px,  10px 3px,  10px 3px,  10px 10px, 10px 30px, 10px 50px; }
-    }
-
-    /* NARRATIVE RESPONSIVE */
-    @media (max-width: 768px) {
       .narrative-inner { grid-template-columns: 1fr; gap: 48px; }
-      .narrative-proof-row { gap: 24px; }
+      .brand-benefits-grid { grid-template-columns: 1fr; }
       .partner-cta-inner { grid-template-columns: 1fr; gap: 48px; }
+      .manifesto-pillars { grid-template-columns: 1fr; gap: 2px; }
+      .manifesto-pillar { padding: 40px 28px; }
+      .manifesto-pillar-bg-num { font-size: 100px; }
+    }
+    @media (max-width: 480px) {
+      .partners-track { gap: 32px; }
     }
   </style>
 </head>
 <body>
 
-<!-- PAGE LOADER -->
 <div class="page-loader" id="pageLoader">
   <div class="page-loader-logo">FERGUSON <span>MEDIA</span></div>
   <div class="page-loader-tagline">Shifting the Narrative</div>
   <span class="loader"></span>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
-
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="news.html">Good News</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="news.html">Good News</a></li>
     <li><a href="partner.html">Partner With Us</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-
   <div class="nav-right">
     <a href="partner.html" class="nav-partner-btn">Partner With Us</a>
     <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu">
@@ -1637,7 +415,6 @@
   </div>
 </nav>
 
-<!-- MOBILE SIDEBAR -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
@@ -1647,17 +424,14 @@
     </div>
     <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&#215;</button>
   </div>
-
   <nav class="sidebar-nav">
     <a href="index.html">Home</a>
-    <a href="news.html">Good News</a>
     <a href="about.html">About</a>
+    <a href="news.html">Good News</a>
     <a href="partner.html">Partner With Us</a>
     <a href="contact.html">Contact</a>
   </nav>
-
   <a href="partner.html" class="sidebar-partner">Partner With Us</a>
-
   <div class="sidebar-socials">
     <a href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     <a href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
@@ -1684,9 +458,9 @@
     <p class="hero-subtitle">Shifting the Narrative. Spotlighting Impact.</p>
     <div class="hero-divider"></div>
     <p class="hero-body">
-      South Africa does not have a progress deficit. It has a documentation deficit.
-      Ferguson Media discovers, documents, and amplifies the stories of resilience, innovation,
-      and community impact happening across the nation every single day.
+      South Africa does not have a progress problem. It has a storytelling gap.
+      Ferguson Media finds, records, and shares the stories of strength, new ideas,
+      and community action happening across the country every single day.
     </p>
     <div class="hero-ctas">
       <a href="news.html" class="btn btn-primary">Read the Good News</a>
@@ -1696,10 +470,6 @@
       <div class="hero-stat-item">
         <div class="hero-stat-num">50<span>K</span></div>
         <div class="hero-stat-label">Monthly Views</div>
-      </div>
-      <div class="hero-stat-item">
-        <div class="hero-stat-num">270<span>+</span></div>
-        <div class="hero-stat-label">Community Radio Stations</div>
       </div>
       <div class="hero-stat-item">
         <div class="hero-stat-num">8.5<span>M</span></div>
@@ -1717,82 +487,89 @@
 <div class="mission-strip">
   <div class="container">
     <p class="mission-strip-text">
-      Moving beyond feel-good. <em>We document what works. We show how to replicate it. We build a culture of success.</em>
+      More than feel-good stories. <em>We show what works. We show how to copy it. We help build a culture of success.</em>
     </p>
   </div>
 </div>
 
-<!-- NARRATIVE: WHY WE EXIST -->
+<!-- WHY GOOD NEWS WORKS FOR YOUR BRAND -->
 <section class="narrative">
   <div class="container" style="padding-top: 96px; padding-bottom: 96px;">
     <div class="narrative-inner">
 
-      <!-- LEFT: TEXT -->
       <div class="narrative-text">
         <div class="narrative-eyebrow">
           <div class="narrative-eyebrow-line"></div>
-          <span class="section-label" style="margin-bottom: 0;">Why We Exist</span>
+          <span class="section-label" style="margin-bottom: 0;">Why Good News Works</span>
         </div>
-        <h2 class="section-title">Progress Is Happening.<br />It Just Needs a Platform.</h2>
+        <h2 class="section-title">Good News Is the Best Brand Tool You Are Not Using.</h2>
         <p class="narrative-body-text" style="margin-top: 20px;">
-          Across South Africa, communities, entrepreneurs, and young leaders are building solutions,
-          creating jobs, and driving meaningful change every day. The mainstream media rarely covers it.
+          Brands that show up in stories of progress, not just campaigns, earn something no ad spend can buy: real trust. Communities remember who invested in them. They remember who showed up in the story.
         </p>
         <p class="narrative-body-text">
-          The opportunity lies in amplifying these successes, not just to inspire, but to document them
-          with enough rigour that other communities can learn from and replicate what works.
+          Ferguson Media connects your brand to real, documented outcomes. Not impressions. Not reach numbers. Proof that your money created something that actually happened.
         </p>
         <div class="narrative-highlight">
           <p>
-            Ferguson Media is the authoritative, verified documentation engine for South African social progress,
-            turning local triumphs into scalable national blueprints.
+            The brands that will lead South Africa in the next decade are the ones being written into its story today.
+            Ferguson Media is where that story is being written.
           </p>
         </div>
-        <div class="narrative-proof-row">
-          <div class="narrative-proof-item">
-            <div class="narrative-proof-num">4 in 10</div>
-            <div class="narrative-proof-label">People globally avoid the news</div>
-          </div>
-          <div class="narrative-proof-item">
-            <div class="narrative-proof-num">R13.1B</div>
-            <div class="narrative-proof-label">SA corporate CSI spent in 2025</div>
-          </div>
-          <div class="narrative-proof-item">
-            <div class="narrative-proof-num">270+</div>
-            <div class="narrative-proof-label">Community radio stations we reach</div>
-          </div>
+        <div style="margin-top: 28px;">
+          <a href="about.html#advantages" class="btn btn-primary">See the Full Advantages</a>
         </div>
       </div>
 
-      <!-- RIGHT: VISUALS -->
-      <div class="narrative-visuals">
-        <div class="narrative-card-wrap">
-          <div class="narrative-card-label noise-label">
-            <div class="narrative-card-label-dot"></div>
-            What dominates the headlines
+      <div class="brand-benefits-grid">
+
+        <div class="brand-benefit-card">
+          <div class="brand-benefit-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <div class="narrative-card noise">
-            <img src="images/the-noise.png" alt="Negative headlines dominating South African media"
-              onerror="this.src='https://placehold.co/680x360/333333/888888?text=The+Noise'" />
-          </div>
+          <div class="brand-benefit-title">Real Community Trust</div>
+          <p class="brand-benefit-body">Good news stories create a real connection between your brand and positive community outcomes, something no traditional ad can achieve.</p>
         </div>
 
-        <div class="narrative-divider">
-          <div class="narrative-divider-line"></div>
-          <span class="narrative-divider-badge">vs. What is actually happening</span>
-          <div class="narrative-divider-line"></div>
+        <div class="brand-benefit-card">
+          <div class="brand-benefit-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="brand-benefit-title">3x Higher Share Rate</div>
+          <p class="brand-benefit-body">Positive, solutions-focused content gets shared far more than negative content, spreading your brand naturally across communities.</p>
         </div>
 
-        <div class="narrative-card-wrap">
-          <div class="narrative-card-label reality-label">
-            <div class="narrative-card-label-dot"></div>
-            The reality Ferguson Media documents
+        <div class="brand-benefit-card">
+          <div class="brand-benefit-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <div class="narrative-card">
-            <img src="images/the-reality.png" alt="South Africans building community solutions"
-              onerror="this.src='https://placehold.co/680x360/1a1a1a/ff8200?text=The+Reality'" />
-          </div>
+          <div class="brand-benefit-title">Content That Lasts</div>
+          <p class="brand-benefit-body">Unlike campaign content that fades, documented impact stories live permanently on the portal and keep building brand trust long after the campaign ends.</p>
         </div>
+
+        <div class="brand-benefit-card">
+          <div class="brand-benefit-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="brand-benefit-title">Deep Community Access</div>
+          <p class="brand-benefit-body">Ferguson Media reaches township and rural audiences through community radio stations that digital campaigns simply cannot access.</p>
+        </div>
+
+        <div class="brand-benefit-card">
+          <div class="brand-benefit-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="brand-benefit-title">Verified Results</div>
+          <p class="brand-benefit-body">Every campaign produces documented social return on investment, giving your board and CSI team the proof they need to back every rand spent.</p>
+        </div>
+
+        <div class="brand-benefit-card">
+          <div class="brand-benefit-icon">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="brand-benefit-title">Your Brand Drives the Story</div>
+          <p class="brand-benefit-body">Your brand is named as the reason each story of progress happened, not just a logo in the corner, but the force that made it real.</p>
+        </div>
+
       </div>
 
     </div>
@@ -1828,8 +605,7 @@
       <span class="section-label">What We Cover</span>
       <h2 class="section-title">Four Pillars of Progress</h2>
       <p class="section-body" style="margin: 16px auto 0; text-align: center;">
-        Every story we publish serves one of four strategic categories, each addressing a critical
-        dimension of South Africa's development trajectory.
+        Every story we publish fits into one of four key areas, each one addressing a real part of South Africa's growth.
       </p>
     </div>
     <div class="pillars-grid">
@@ -1839,7 +615,7 @@
         <div class="pillar-content">
           <span class="pillar-tag">Pillar 01</span>
           <div class="pillar-title">Youth Excellence</div>
-          <p class="pillar-desc">Highlighting young changemakers, student innovators, and entrepreneurs who are building their futures and rewriting the narrative of dependency.</p>
+          <p class="pillar-desc">Shining a light on young people, student innovators, and entrepreneurs who are building their futures and changing the story of what young South Africans can do.</p>
         </div>
       </a>
       <a href="news.html?category=innovation-solutions" class="pillar-card">
@@ -1848,7 +624,7 @@
         <div class="pillar-content">
           <span class="pillar-tag">Pillar 02</span>
           <div class="pillar-title">Innovation and Solutions</div>
-          <p class="pillar-desc">Celebrating homegrown, contextualised innovation that addresses uniquely African challenges with African solutions.</p>
+          <p class="pillar-desc">Celebrating local ideas and inventions that solve real African problems with African answers.</p>
         </div>
       </a>
       <a href="news.html?category=social-cohesion" class="pillar-card">
@@ -1857,7 +633,7 @@
         <div class="pillar-content">
           <span class="pillar-tag">Pillar 03</span>
           <div class="pillar-title">Social Cohesion</div>
-          <p class="pillar-desc">Stories that bridge divides and celebrate shared South African identity, documenting inter-community collaboration that builds national unity.</p>
+          <p class="pillar-desc">Stories that bring people together and celebrate what South Africans share, showing communities working side by side to build something bigger.</p>
         </div>
       </a>
       <a href="news.html?category=economic-impact" class="pillar-card">
@@ -1866,7 +642,7 @@
         <div class="pillar-content">
           <span class="pillar-tag">Pillar 04</span>
           <div class="pillar-title">Economic Impact</div>
-          <p class="pillar-desc">Showcasing SMMEs and local entrepreneurs acting as job creators, proving organic economic growth is happening outside the formal sector.</p>
+          <p class="pillar-desc">Showcasing small businesses and local entrepreneurs who are creating jobs and proving that economic growth is happening every day, outside the formal sector.</p>
         </div>
       </a>
     </div>
@@ -1880,28 +656,27 @@
       <span class="section-label">Our Process</span>
       <h2 class="section-title light">From Source to Scale</h2>
       <p class="section-body light" style="margin: 16px auto 0; text-align: center;">
-        Every story that reaches you has gone through a rigorous, solutions-focused editorial process
-        designed to make it useful, not just inspirational.
+        Every story that reaches you goes through a clear, solutions-focused process built to make it useful, not just feel good.
       </p>
     </div>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-number">01</div>
         <div class="step-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
-        <div class="step-title">Story Sourcing</div>
-        <p class="step-body">Our team actively identifies powerful, real-life stories from everyday heroes, young leaders, and community innovators across townships, cities, and rural communities nationwide.</p>
+        <div class="step-title">Finding the Story</div>
+        <p class="step-body">Our team actively looks for powerful, real stories from everyday heroes, young leaders, and community builders across townships, cities, and rural areas nationwide.</p>
       </div>
       <div class="step-card">
         <div class="step-number">02</div>
         <div class="step-icon"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <div class="step-title">Content Creation</div>
-        <p class="step-body">Professional documentation using video production, photography, and compelling copywriting. Every story receives the journalistic rigour of the Solutions Journalism framework.</p>
+        <div class="step-title">Creating the Content</div>
+        <p class="step-body">Professional video, photography, and strong writing. Every story is treated with the same care as proper journalism using a solutions-focused approach.</p>
       </div>
       <div class="step-card">
         <div class="step-number">03</div>
         <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <div class="step-title">Amplification</div>
-        <p class="step-body">Strategic distribution across the Ferguson Media ecosystem ensures stories reach national audiences through the portal, community radio, digital platforms, and social media.</p>
+        <div class="step-title">Spreading the Word</div>
+        <p class="step-body">Smart distribution across the Ferguson Media network gets stories in front of national audiences through the portal, community radio, and social media.</p>
       </div>
     </div>
   </div>
@@ -1914,15 +689,14 @@
       <span class="section-label">Our Architecture</span>
       <h2 class="section-title">The Ferguson Media Ecosystem</h2>
       <p class="section-body" style="margin: 16px auto 0; text-align: center;">
-        Three interconnected pillars form a closed-loop content engine, ensuring stories reach both
-        urban corporate audiences and deep rural communities.
+        Three connected pillars form a complete content engine, making sure stories reach both urban business audiences and deep rural communities.
       </p>
     </div>
     <div class="ecosystem-diagram">
       <div class="ecosystem-node">
         <div class="eco-circle"><span class="eco-circle-text">Community<br />Media Hub</span></div>
         <div class="eco-node-title">Community Media Hub</div>
-        <p class="eco-node-body">Distribution via our network of 270 community radio stations including 919 FM. Trusted local voices carry stories into townships and rural areas where mainstream media does not reach.</p>
+        <p class="eco-node-body">Distribution through our network of community radio stations including 919 FM. Trusted local voices carry stories into townships and rural areas where mainstream media does not reach.</p>
       </div>
       <div class="eco-connector">
         <div class="eco-connector-line"><div class="eco-connector-dot"></div></div>
@@ -1933,7 +707,7 @@
           <span class="eco-center-sub">Digital Anchor</span>
         </div>
         <div class="eco-node-title" style="text-align: center;">Good News Portal</div>
-        <p class="eco-node-body" style="text-align: center; max-width: 260px; margin: 0 auto;">The centralised digital destination for long-form stories, video archives, verified success blueprints, and community submissions.</p>
+        <p class="eco-node-body" style="text-align: center; max-width: 260px; margin: 0 auto;">The central digital home for long-form stories, video archives, real success blueprints, and community submissions.</p>
       </div>
       <div class="eco-connector">
         <div class="eco-connector-line"><div class="eco-connector-dot" style="animation-delay: 1.25s;"></div></div>
@@ -1941,7 +715,7 @@
       <div class="ecosystem-node">
         <div class="eco-circle"><span class="eco-circle-text">Creative<br />Hub</span></div>
         <div class="eco-node-title">Creative Hub</div>
-        <p class="eco-node-body">Professional production of all portal assets using Ferguson Media's established creative services. High-quality video, photography, and storytelling that meets broadcast standards.</p>
+        <p class="eco-node-body">Professional production of all portal content using Ferguson Media's creative services. High-quality video, photography, and storytelling that meets broadcast standards.</p>
       </div>
     </div>
   </div>
@@ -1955,10 +729,6 @@
       <div class="stat-label">Monthly Views</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">270<span>+</span></div>
-      <div class="stat-label">Partner Radio Stations</div>
-    </div>
-    <div class="stat-item">
       <div class="stat-num">100<span>+</span></div>
       <div class="stat-label">Youth Creatives Supported</div>
     </div>
@@ -1969,24 +739,98 @@
   </div>
 </section>
 
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="container" style="padding-top: 96px; padding-bottom: 96px;">
+
+    <div class="manifesto-declaration">
+      <span class="section-label">Who We Are</span>
+      <div class="manifesto-eyebrow-line"></div>
+      <h2 class="manifesto-headline">
+        We Do Not Just Cover<br />
+        Good News.<br />
+        <span class="accent">We Create It.</span>
+      </h2>
+      <p class="manifesto-statement">
+        Ferguson Media exists where brand investment meets real change.
+        Every story we publish is a statement that progress happened here, that a brand
+        chose to be part of it, and that South Africa is being written into a better future
+        one documented truth at a time.
+      </p>
+    </div>
+
+    <div class="manifesto-pillars">
+
+      <div class="manifesto-pillar">
+        <div class="manifesto-pillar-bg-num">01</div>
+        <div class="manifesto-pillar-tag">The Spark</div>
+        <div class="manifesto-pillar-title">Campaigns<br />Start Here.</div>
+        <p class="manifesto-pillar-body">
+          A brand chooses to invest in South Africa's progress, not just in awareness,
+          but in real outcomes. Ferguson Media is where that decision becomes a story
+          with a name, a face, and a community attached to it.
+          The brand is not the background. The brand is the reason it happened.
+        </p>
+        <div class="manifesto-pillar-proof">
+          <div class="manifesto-pillar-proof-num">R13.1B</div>
+          <div class="manifesto-pillar-proof-label">in SA corporate social investment in 2025, most of it invisible</div>
+        </div>
+      </div>
+
+      <div class="manifesto-pillar">
+        <div class="manifesto-pillar-bg-num">02</div>
+        <div class="manifesto-pillar-tag">The Spread</div>
+        <div class="manifesto-pillar-title">Stories<br />Travel Far.</div>
+        <p class="manifesto-pillar-body">
+          We produce and share content across the most trusted, authentic media network
+          in South Africa, community radio stations, the Good News Portal,
+          and every digital platform your audience uses.
+          Not impressions. Not reach. Stories that communities carry with them.
+        </p>
+        <div class="manifesto-pillar-proof">
+          <div class="manifesto-pillar-proof-num">8.5M</div>
+          <div class="manifesto-pillar-proof-label">people reached through the Ferguson Media ecosystem</div>
+        </div>
+      </div>
+
+      <div class="manifesto-pillar">
+        <div class="manifesto-pillar-bg-num">03</div>
+        <div class="manifesto-pillar-tag">The Shift</div>
+        <div class="manifesto-pillar-title">Culture<br />Changes.</div>
+        <p class="manifesto-pillar-body">
+          When communities see themselves in stories of progress, things change.
+          Other groups copy what worked. Schools teach it. Leaders reference it.
+          The brand that funded it is permanently written into that shift,
+          not as a logo, but as the reason it started.
+        </p>
+        <div class="manifesto-pillar-proof">
+          <div class="manifesto-pillar-proof-num">45%</div>
+          <div class="manifesto-pillar-proof-label">average engagement rate, because people share what they believe in</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- FOR ORGANISATIONS -->
 <section class="partner-cta">
   <div class="container" style="padding-top: 96px; padding-bottom: 96px;">
     <div class="partner-cta-inner">
 
-      <!-- LEFT: TEXT -->
       <div class="partner-cta-left">
-        <span class="section-label">For Organisations</span>
-        <h2 class="section-title">Your CSI Budget Deserves Better Than a Press Release.</h2>
+        <span class="section-label">For Brands &amp; Campaigns</span>
+        <h2 class="section-title">Your Brand Deserves to Be Part of South Africa's Story.</h2>
 
         <div class="partner-cta-proof">
           <div class="partner-cta-proof-stat">
             <strong>R13.1B</strong>
-            <span>spent on CSI in South Africa in 2025</span>
+            <span>in CSI spent in South Africa in 2025</span>
           </div>
-          <p>Most of it produced sterile annual reports and vanity metrics that no one reads.
-          Ferguson Media offers SROI-backed impact documentation that proves your social investment is working,
-          distributed across the most trusted media network in the country.</p>
+          <p>Most brands fund good work but have no platform to show what it created.
+          Ferguson Media turns your investment into documented, shareable, credible proof
+          that reaches the communities your brand wants to serve and the boardrooms that need to see the results.</p>
         </div>
 
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
@@ -1995,7 +839,6 @@
         </div>
       </div>
 
-      <!-- RIGHT: OFFERINGS -->
       <div class="partner-offerings">
         <div class="offering-item">
           <div class="offering-num">01</div>
@@ -2004,7 +847,7 @@
           </div>
           <div>
             <div class="offering-title">Sponsored Solutions Journalism Series</div>
-            <p class="offering-desc">Underwrite an independent, deep-dive series aligned with your CSI objectives. Editorially independent, branded across the full Ferguson ecosystem.</p>
+            <p class="offering-desc">Your brand funds an independent, deep-dive series tied to your CSI focus area. The stories are yours to own. The trust it builds is priceless.</p>
           </div>
         </div>
         <div class="offering-item">
@@ -2013,8 +856,8 @@
             <svg viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
           </div>
           <div>
-            <div class="offering-title">Bespoke Impact Documentaries</div>
-            <p class="offering-desc">Premium cinematic mini-documentaries tracking your corporate-funded community projects, distributed across the full Ferguson Media network.</p>
+            <div class="offering-title">Impact Podcasts</div>
+            <p class="offering-desc">Short, professional podcasts that follow your campaign's real world impact from investment to outcome, shared across the full Ferguson Media network.</p>
           </div>
         </div>
         <div class="offering-item">
@@ -2023,8 +866,8 @@
             <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M14 9.5a2 2 0 0 1 0 3"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg>
           </div>
           <div>
-            <div class="offering-title">Syndicated Corporate Audio Campaigns</div>
-            <p class="offering-desc">Reach grassroots audiences across 270 community radio stations with campaigns translated into local vernacular languages for authentic reach.</p>
+            <div class="offering-title">Corporate Audio Campaigns</div>
+            <p class="offering-desc">Your brand's story reaches 8.5M people through community radio stations, delivered in local languages for real grassroots reach.</p>
           </div>
         </div>
       </div>
@@ -2033,16 +876,27 @@
   </div>
 </section>
 
-<!-- PARTNERS -->
+<!-- PARTNERS CAROUSEL -->
 <div class="partners">
   <div class="container" style="padding-top: 64px; padding-bottom: 64px;">
-    <p class="partners-label">Trusted Partners and Affiliates</p>
-    <div class="partners-logos">
-      <div class="partner-logo-item"><img src="images/partner-epf.png" alt="Empire Partner Foundation" /></div>
-      <div class="partner-logo-item"><img src="images/partner-mict.png" alt="MICT SETA" /></div>
-      <div class="partner-logo-item"><img src="images/partner-gmdp.png" alt="Gauteng Media Development Project" /></div>
-      <div class="partner-logo-item"><img src="images/partner-919.png" alt="919 FM Sandton" /></div>
-      <div class="partner-logo-item"><img src="images/partner-gibs.png" alt="Gordon Institute of Business Science" /></div>
+    <p class="partners-label">Trusted Partners, Affiliates and Clients</p>
+  </div>
+  <div class="partners-track-wrap">
+    <div class="partners-track">
+      <div class="partner-logo-item"><img src="images/epf.png" alt="Empire Partner Foundation" /></div>
+      <div class="partner-logo-item"><img src="images/nmf.png" alt="Nelson Mandela Foundation" /></div>
+      <div class="partner-logo-item"><img src="images/seta.png" alt="MICT SETA" /></div>
+      <div class="partner-logo-item"><img src="images/919.png" alt="919 FM Sandton" /></div>
+      <div class="partner-logo-item"><img src="images/wits.png" alt="Wits Enterprise" /></div>
+      <div class="partner-logo-item"><img src="images/breathwork.png" alt="Breathwork" /></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="partner-logo-item"><img src="images/epf.png" alt="Empire Partner Foundation" /></div>
+      <div class="partner-logo-item"><img src="images/nmf.png" alt="Nelson Mandela Foundation" /></div>
+      <div class="partner-logo-item"><img src="images/seta.png" alt="MICT SETA" /></div>
+      <div class="partner-logo-item"><img src="images/gibs.png" alt="GIBS" /></div>
+      <div class="partner-logo-item"><img src="images/919.png" alt="919 FM Sandton" /></div>
+      <div class="partner-logo-item"><img src="images/wits.png" alt="Wits Enterprise" /></div>
+      <div class="partner-logo-item"><img src="images/breathwork.png" alt="Breathwork" /></div>
     </div>
   </div>
 </div>
@@ -2057,8 +911,8 @@
           <span class="footer-logo-text" style="display:none;">FERGUSON <span>MEDIA</span></span>
         </div>
         <p class="footer-tagline">
-          South Africa's premier constructive media platform. We discover, document, and amplify
-          stories of resilience, innovation, and community impact from across the nation.
+          South Africa's premier good news media platform. We find, document, and share
+          stories of strength, new ideas, and community action from across the nation.
         </p>
         <div class="footer-socials">
           <a class="footer-social-link" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -2101,10 +955,6 @@
           <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
           <p class="footer-contact-text"><a href="tel:+27836722453">+27 83 672 2453</a></p>
         </div>
-        <div class="footer-contact-item">
-          <div class="footer-contact-icon"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-          <p class="footer-contact-text"><a href="/cdn-cgi/l/email-protection#462f2820290620233421333529282b23222f27682529683c27"><span class="__cf_email__" data-cfemail="d8b1b6beb798bebdaabfadabb7b6b5bdbcb1b9f6bbb7f6a2b9">[email&#160;protected]</span></a></p>
-        </div>
       </div>
     </div>
 
@@ -2122,34 +972,16 @@
   <div class="footer-orange-bar"></div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // PAGE LOADER
+<script>
   const pageLoader = document.getElementById('pageLoader');
-  window.addEventListener('load', () => {
-    setTimeout(() => pageLoader.classList.add('hidden'), 800);
-  });
+  window.addEventListener('load', () => { setTimeout(() => pageLoader.classList.add('hidden'), 800); });
   setTimeout(() => pageLoader.classList.add('hidden'), 3000);
 
-  // =============================================
-  // EMAILJS CONFIG
-  // Replace with your actual EmailJS credentials:
-  // Public Key    -> from EmailJS dashboard -> Account -> Public Key
-  // Service ID    -> from EmailJS dashboard -> Email Services
-  // Template ID   -> from EmailJS dashboard -> Email Templates
-  // =============================================
   const EMAILJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';
   const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
   const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-  // =============================================
-  // CONTENTFUL CONFIG
-  // Replace with your actual Contentful credentials:
-  // Space ID      -> Contentful dashboard -> Settings -> API Keys
-  // Access Token  -> Contentful dashboard -> Settings -> API Keys -> Content Delivery API
-  // Content Type  -> The content type ID you set in Contentful for stories
-  // =============================================
   const CONTENTFUL_SPACE_ID     = 'YOUR_SPACE_ID';
   const CONTENTFUL_ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN';
   const CONTENTFUL_ENV          = 'master';
@@ -2162,9 +994,6 @@
     economicImpact:      'Economic Impact'
   };
 
-  // =============================================
-  // TOAST HELPER
-  // =============================================
   function showToast(msg, isError = false) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -2173,16 +1002,10 @@
     setTimeout(() => t.classList.remove('show'), 4000);
   }
 
-  // =============================================
-  // NAVBAR
-  // =============================================
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // =============================================
-  // SIDEBAR
-  // =============================================
   const hamburgerBtn   = document.getElementById('hamburgerBtn');
   const sidebar        = document.getElementById('sidebar');
   const sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -2196,9 +1019,6 @@
   sidebarOverlay.addEventListener('click', closeSidebar);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
-  // =============================================
-  // CONTENTFUL HELPERS
-  // =============================================
   function getImageUrl(data, imageId) {
     if (!data.includes || !data.includes.Asset) return null;
     const asset = data.includes.Asset.find(a => a.sys.id === imageId);
@@ -2212,17 +1032,16 @@
   function buildStoryCard(story, data) {
     const f        = story.fields;
     const imageId  = f.heroImage && f.heroImage.sys ? f.heroImage.sys.id : null;
-    const imageUrl = imageId ? getImageUrl(data, imageId) : 'images/story-placeholder-1.png';
+    const imageUrl = imageId ? getImageUrl(data, imageId) : 'images/placeholder.jpg';
     const category = CATEGORY_LABELS[f.category] || 'Good News';
     const slug     = f.slug || story.sys.id;
     const date     = f.publishedDate ? formatDate(f.publishedDate) : formatDate(story.sys.createdAt);
     const author   = f.authorName || 'Ferguson Media';
     const excerpt  = f.excerpt || '';
-
     return `
       <a href="article.html?slug=${slug}" class="story-card">
         <div class="story-card-image">
-          <img src="${imageUrl || 'images/story-placeholder-1.png'}" alt="${f.title}" loading="lazy" />
+          <img src="${imageUrl || 'images/placeholder.jpg'}" alt="${f.title}" loading="lazy" />
           <span class="story-tag">${category}</span>
         </div>
         <div class="story-card-body">
@@ -2240,7 +1059,7 @@
     return [
       { title: 'Birthday Celebration Turns Into Book Launch', cat: 'Youth Excellence', img: 'images/placeholder.jpg', author: 'Ferguson Media', date: 'March 2026', excerpt: 'Young siblings Oyama and Prince launched their latest books on a milestone birthday, celebrating the power of youth creativity and storytelling.' },
       { title: 'Free Bus Travel Programme Helps Thousands of Jobseekers', cat: 'Economic Impact', img: 'images/placeholder.jpg', author: 'Thembinkosi Dlamini', date: 'February 2026', excerpt: 'A Cape Town initiative is removing transport barriers for thousands of job seekers, connecting communities to economic opportunity.' },
-      { title: 'Indoni Initiative Develops Skills of Young People', cat: 'Youth Excellence', img: 'images/placeholder.jpg', author: 'Ferguson Media', date: 'March 2026', excerpt: 'The Indoni initiative is equipping South African youth with critical creative and professional skills, building a generation of confident leaders.' }
+      { title: 'Indoni Initiative Develops Skills of Young People', cat: 'Youth Excellence', img: 'images/placeholder.jpg', author: 'Ferguson Media', date: 'March 2026', excerpt: 'The Indoni initiative is giving South African youth the creative and professional skills they need to lead with confidence.' }
     ].map(i => `
       <a href="news.html" class="story-card">
         <div class="story-card-image">
@@ -2261,25 +1080,17 @@
   async function initStories() {
     const grid    = document.getElementById('storiesGrid');
     const loading = document.getElementById('storiesLoading');
-
     if (CONTENTFUL_SPACE_ID === 'YOUR_SPACE_ID') {
       if (loading) loading.remove();
       grid.innerHTML = renderPlaceholders();
       return;
     }
-
     try {
       const url  = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENV}/entries?content_type=${CONTENT_TYPE}&order=-sys.createdAt&limit=3&include=1&access_token=${CONTENTFUL_ACCESS_TOKEN}`;
       const res  = await fetch(url);
       const data = await res.json();
-
       if (loading) loading.remove();
-
-      if (!data.items || data.items.length === 0) {
-        grid.innerHTML = renderPlaceholders();
-        return;
-      }
-
+      if (!data.items || data.items.length === 0) { grid.innerHTML = renderPlaceholders(); return; }
       grid.innerHTML = data.items.map(s => buildStoryCard(s, data)).join('');
     } catch (err) {
       console.error('Contentful error:', err);
@@ -2289,8 +1100,6 @@
   }
 
   initStories();
-
-
 </script>
 
 </body>
