@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Ferguson Media | Let's Start Something Powerful.</title>
+  <meta name="description" content="Get in touch with Ferguson Media. Partner with South Africa's premier good news platform, pitch a story, or explore how we can build something powerful together." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────────── */
+    :root {
+      --orange:    #FF7A00;
+      --orange-dk: #E06D00;
+      --orange-xdk:#C05E00;
+      --black:     #0A0A0A;
+      --black-2:   #111111;
+      --black-3:   #181818;
+      --white:     #FFFFFF;
+      --off:       #F6F4F1;
+      --mid:       #5A5A5A;
+      --border:    rgba(255,255,255,0.08);
+      --border-dk: rgba(0,0,0,0.08);
+      --fh:        'Poppins', sans-serif;
+      --fb:        'Public Sans', sans-serif;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out:  cubic-bezier(0.33, 1, 0.68, 1);
+      --max:       1320px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: #000; }
+    body { font-family: var(--fb); color: var(--black); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+    img  { display: block; max-width: 100%; height: auto; }
+    a    { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
+
+    /* ─────────────────────────────────────────────
+       SCROLL REVEALS
+    ───────────────────────────────────────────── */
+    .rv   { opacity: 0; transform: translateY(40px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+    .rv-l { opacity: 0; transform: translateX(-40px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+    .rv-r { opacity: 0; transform: translateX(40px); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+    .rv.on, .rv-l.on, .rv-r.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+    .d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+    /* ─────────────────────────────────────────────
+       LOADER
+    ───────────────────────────────────────────── */
+    .page-loader { position: fixed; inset: 0; z-index: 9000; background: var(--black); display: flex; align-items: center; justify-content: center; transition: opacity 0.7s var(--ease), visibility 0.7s; }
+    .page-loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-wordmark { font-family: var(--fh); font-size: 20px; font-weight: 900; color: var(--white); letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 28px; }
+    .loader-wordmark span { color: var(--orange); }
+    .loader-line-bg { width: 160px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto; overflow: hidden; }
+    .loader-line { height: 100%; background: var(--orange); animation: ll 1.6s var(--ease) forwards; }
+    @keyframes ll { from{width:0} to{width:100%} }
+
+    /* ─────────────────────────────────────────────
+       TOAST
+    ───────────────────────────────────────────── */
+    .toast { position: fixed; bottom: 36px; right: 36px; background: var(--black); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 600; padding: 18px 28px; border-left: 3px solid var(--orange); box-shadow: 0 16px 48px rgba(0,0,0,0.5); z-index: 9999; transform: translateY(80px); opacity: 0; transition: all 0.4s var(--ease); max-width: 320px; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.error { border-left-color: #e53935; }
+
+    /* ─────────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────────── */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; transition: all 0.4s var(--ease); }
+    .navbar.scrolled { background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-logo img { height: 52px; width: auto; object-fit: contain; }
+    .nav-logo-text { font-family: var(--fh); font-size: 17px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .nav-logo-text span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); padding: 8px 16px; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 12px 24px; letter-spacing: 0.5px; transition: all 0.25s; white-space: nowrap; }
+    .nav-cta-btn:hover { background: var(--orange-dk); }
+    .nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-ham span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+
+    /* ─────────────────────────────────────────────
+       SIDEBAR
+    ───────────────────────────────────────────── */
+    .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
+    .s-ov.open { display: block; opacity: 1; }
+    .sidebar { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: var(--black); z-index: 1200; transition: right 0.4s var(--ease); display: flex; flex-direction: column; border-left: 1px solid var(--border); }
+    .sidebar.open { right: 0; }
+    .sb-head { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 80px; border-bottom: 1px solid var(--border); }
+    .sb-logo { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .sb-logo span { color: var(--orange); }
+    .sb-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 28px; line-height: 1; padding: 4px; transition: color 0.2s; }
+    .sb-close:hover { color: var(--white); }
+    .sb-nav { padding: 28px 16px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .sb-nav a { font-family: var(--fh); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); padding: 14px 16px; transition: all 0.25s; display: block; }
+    .sb-nav a:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+    .sb-cta { margin: 8px 16px 32px; display: block; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 16px 20px; text-align: center; transition: background 0.25s; }
+    .sb-cta:hover { background: var(--orange-dk); }
+    .sb-soc { padding: 20px 24px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+    .sb-soc a { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .sb-soc a:hover { border-color: var(--orange); background: rgba(255,122,0,0.1); }
+    .sb-soc svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.4); }
+    .sb-soc a:hover svg { fill: var(--orange); }
+
+    /* ─────────────────────────────────────────────
+       EYEBROW
+    ───────────────────────────────────────────── */
+    .eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
+    .eyebrow.center { justify-content: center; }
+    .eyebrow.center::before { display: none; }
+
+    /* ─────────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────────── */
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; font-family: var(--fh); font-size: 13px; font-weight: 700; transition: all 0.3s var(--ease); border: none; cursor: pointer; white-space: nowrap; letter-spacing: 0.3px; }
+    .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s var(--ease); flex-shrink: 0; }
+    .btn:hover svg { transform: translateX(4px); }
+    .btn-or { background: var(--orange); color: var(--white); }
+    .btn-or:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(255,122,0,0.3); }
+    .btn-owh { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+    .btn-owh:hover { border-color: var(--white); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: var(--black); overflow: hidden; padding-top: 80px; }
+
+    /* Noise grain overlay */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+    }
+
+    /* Big radial glow */
+    .hero-glow-1 { position: absolute; top: -20%; right: -10%; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,0,0.12) 0%, rgba(255,122,0,0.04) 40%, transparent 70%); pointer-events: none; z-index: 0; animation: glowDrift 8s ease-in-out infinite alternate; }
+    .hero-glow-2 { position: absolute; bottom: -30%; left: -10%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,0,0.06) 0%, transparent 65%); pointer-events: none; z-index: 0; animation: glowDrift 12s ease-in-out infinite alternate-reverse; }
+    @keyframes glowDrift { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(40px,30px) scale(1.08)} }
+
+    /* Grid lines background */
+    .hero-grid { position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 80px 80px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%); }
+
+    .hero-content { position: relative; z-index: 2; padding: 80px 56px 100px; max-width: var(--max); margin: 0 auto; width: 100%; }
+
+    .hero-kicker { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 40px; opacity: 0; animation: hfIn 0.9s var(--ease) 0.3s forwards; }
+    .hk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: pulse 2.2s infinite; flex-shrink: 0; }
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+    .hk-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.15); }
+    .hk-txt { font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 4px; text-transform: uppercase; }
+
+    .hero-h1 { font-family: var(--fh); font-weight: 900; line-height: 1.08; letter-spacing: normal; margin-bottom: 44px; opacity: 0; animation: hfIn 1s var(--ease) 0.5s forwards; }
+    .hero-h1 .line-1 { display: block; font-size: clamp(72px, 10vw, 148px); color: var(--white); }
+    .hero-h1 .line-2 { display: block; font-size: clamp(72px, 10vw, 148px); color: var(--orange); }
+    .hero-h1 .line-3 { display: block; font-size: clamp(72px, 10vw, 148px); color: rgba(255,255,255,0.18); }
+
+    .hero-sub-row { display: flex; align-items: flex-start; gap: 52px; opacity: 0; animation: hfIn 0.9s var(--ease) 0.8s forwards; flex-wrap: wrap; }
+    .hero-vdivider { width: 1px; height: 64px; background: rgba(255,255,255,0.12); flex-shrink: 0; margin-top: 4px; }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.48); max-width: 480px; line-height: 1.8; }
+
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 48px; opacity: 0; animation: hfIn 0.9s var(--ease) 1.0s forwards; }
+
+    .hero-scroll { position: absolute; bottom: 48px; left: 56px; z-index: 3; display: flex; align-items: center; gap: 14px; opacity: 0; animation: hfIn 0.8s var(--ease) 1.5s forwards; }
+    .hs-track { width: 1px; height: 52px; background: rgba(255,255,255,0.08); overflow: hidden; position: relative; }
+    .hs-bar { position: absolute; top: 0; width: 100%; height: 40%; background: var(--orange); animation: sbar 2s ease-in-out infinite; }
+    @keyframes sbar{0%{top:-40%;opacity:0}30%{opacity:1}70%{opacity:1}100%{top:140%;opacity:0}}
+    .hs-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.28); writing-mode: vertical-rl; transform: rotate(180deg); }
+
+    /* Line counter decoration */
+    .hero-counter { position: absolute; right: 56px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 16px; z-index: 2; opacity: 0; animation: hfIn 0.8s var(--ease) 1.6s forwards; }
+    .hc-item { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.16); writing-mode: vertical-rl; }
+    .hc-item.active { color: rgba(255,122,0,0.6); }
+
+    @keyframes hfIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ══════════════════════════════════════════
+       CONTACT PATHS (CARDS)
+    ══════════════════════════════════════════ */
+    .paths { padding: 0 0 0; background: var(--black); position: relative; }
+
+    /* orange bar at top */
+    .paths-bar { height: 1px; background: linear-gradient(90deg, transparent, var(--orange) 30%, var(--orange) 70%, transparent); }
+
+    .paths-inner { padding: 96px 0; }
+
+    .paths-hd { text-align: center; margin-bottom: 72px; }
+    .paths-title { font-family: var(--fh); font-size: clamp(34px, 4vw, 54px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: normal; margin-bottom: 16px; }
+    .paths-title span { color: var(--orange); }
+    .paths-sub { font-size: 16px; color: rgba(255,255,255,0.42); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+
+    .paths-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+
+    .path-card { background: var(--black); padding: 48px 36px 40px; cursor: pointer; position: relative; overflow: hidden; transition: background 0.4s var(--ease); display: flex; flex-direction: column; }
+    .path-card::before { content: ''; position: absolute; inset: 0; background: var(--orange); opacity: 0; transition: opacity 0.4s var(--ease); pointer-events: none; }
+    .path-card.selected::before { opacity: 0.06; }
+    .path-card:hover::before { opacity: 0.04; }
+
+    .path-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease); }
+    .path-card.selected .path-card-accent, .path-card:hover .path-card-accent { transform: scaleX(1); }
+
+    .path-ic { width: 56px; height: 56px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; transition: all 0.35s var(--ease); position: relative; z-index: 1; }
+    .path-ic svg { width: 22px; height: 22px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 1.8; transition: all 0.35s; }
+    .path-card.selected .path-ic, .path-card:hover .path-ic { border-color: var(--orange); background: rgba(255,122,0,0.1); }
+    .path-card.selected .path-ic svg, .path-card:hover .path-ic svg { stroke: var(--orange); }
+
+    .path-num { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.2); margin-bottom: 10px; position: relative; z-index: 1; transition: color 0.3s; }
+    .path-card.selected .path-num, .path-card:hover .path-num { color: var(--orange); }
+
+    .path-name { font-family: var(--fh); font-size: 20px; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 12px; letter-spacing: normal; position: relative; z-index: 1; }
+    .path-desc { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.75; position: relative; z-index: 1; flex: 1; }
+
+    .path-arrow { display: flex; align-items: center; justify-content: space-between; margin-top: 32px; position: relative; z-index: 1; }
+    .path-arrow-label { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); transition: color 0.3s; }
+    .path-card.selected .path-arrow-label, .path-card:hover .path-arrow-label { color: var(--orange); }
+    .path-arrow-ic { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.3s var(--ease); }
+    .path-arrow-ic svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 2; transition: all 0.3s; }
+    .path-card.selected .path-arrow-ic, .path-card:hover .path-arrow-ic { background: var(--orange); border-color: var(--orange); }
+    .path-card.selected .path-arrow-ic svg, .path-card:hover .path-arrow-ic svg { stroke: var(--white); transform: rotate(-45deg); }
+
+    /* ══════════════════════════════════════════
+       FORM ZONE
+    ══════════════════════════════════════════ */
+    .form-zone { background: var(--black-2); overflow: hidden; max-height: 0; transition: max-height 0.8s var(--ease), opacity 0.5s var(--ease); opacity: 0; }
+    .form-zone.visible { max-height: 1000px; opacity: 1; }
+    .form-zone-inner { padding: 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+
+    .form-left-title { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: normal; margin-bottom: 20px; }
+    .form-left-title span { color: var(--orange); }
+    .form-left-body { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 380px; margin-bottom: 40px; }
+
+    .form-promise { display: flex; flex-direction: column; gap: 16px; }
+    .fp-item { display: flex; align-items: flex-start; gap: 14px; }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; margin-top: 6px; }
+    .fp-txt { font-size: 13px; color: rgba(255,255,255,0.42); line-height: 1.65; }
+    .fp-txt strong { color: rgba(255,255,255,0.75); font-weight: 600; }
+
+    /* Form fields */
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+
+    .field-group { position: relative; margin-bottom: 2px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+    .field-row .field-group { margin-bottom: 0; }
+
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%; background: rgba(255,255,255,0.04); border: none; border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 28px 20px 12px; font-family: var(--fb); font-size: 15px; color: var(--white); outline: none;
+      transition: all 0.3s var(--ease); resize: none; appearance: none; -webkit-appearance: none;
+    }
+    .field-group input::placeholder, .field-group textarea::placeholder { opacity: 0; }
+    .field-group select { cursor: pointer; }
+    .field-group select option { background: var(--black-3); color: var(--white); }
+
+    .field-group input:focus, .field-group textarea:focus, .field-group select:focus { background: rgba(255,122,0,0.04); border-bottom-color: var(--orange); }
+    .field-group textarea { min-height: 140px; }
+
+    .field-label { position: absolute; top: 20px; left: 20px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.28); transition: all 0.3s var(--ease); pointer-events: none; }
+
+    .field-group input:focus ~ .field-label,
+    .field-group input:not(:placeholder-shown) ~ .field-label,
+    .field-group textarea:focus ~ .field-label,
+    .field-group textarea:not(:placeholder-shown) ~ .field-label,
+    .field-group.has-value .field-label {
+      top: 10px; font-size: 9px; color: var(--orange); letter-spacing: 3px;
+    }
+
+    .field-line { position: absolute; bottom: 0; left: 0; height: 1px; background: var(--orange); width: 0; transition: width 0.4s var(--ease); }
+    .field-group input:focus ~ .field-line, .field-group textarea:focus ~ .field-line, .field-group select:focus ~ .field-line { width: 100%; }
+
+    .form-submit-row { padding: 28px 0 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .form-note { font-size: 12px; color: rgba(255,255,255,0.22); line-height: 1.6; max-width: 220px; }
+
+    .submit-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 18px 40px; border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.3s var(--ease); letter-spacing: 0.3px; position: relative; overflow: hidden; }
+    .submit-btn::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.12); transform: translateX(-110%); transition: transform 0.4s var(--ease); }
+    .submit-btn:hover::before { transform: translateX(0); }
+    .submit-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 20px 48px rgba(255,122,0,0.3); }
+    .submit-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s var(--ease); position: relative; z-index: 1; }
+    .submit-btn:hover svg { transform: translateX(4px); }
+    .submit-btn span { position: relative; z-index: 1; }
+    .submit-btn.loading { pointer-events: none; opacity: 0.7; }
+
+    /* ══════════════════════════════════════════
+       REACH SECTION
+    ══════════════════════════════════════════ */
+    .reach { padding: 96px 0; background: var(--off); position: relative; overflow: hidden; }
+    .reach::before { content: 'CONTACT'; position: absolute; bottom: -40px; right: -20px; font-family: var(--fh); font-size: clamp(160px, 18vw, 280px); font-weight: 900; color: rgba(0,0,0,0.04); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -4px; }
+
+    .reach-hd { margin-bottom: 72px; }
+    .reach-title { font-family: var(--fh); font-size: clamp(34px, 4vw, 52px); font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: normal; margin-bottom: 16px; }
+    .reach-title span { color: var(--orange); }
+    .reach-sub { font-size: 16px; color: var(--mid); max-width: 480px; line-height: 1.75; }
+
+    .reach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(0,0,0,0.07); position: relative; z-index: 1; }
+
+    .reach-card { background: var(--white); padding: 44px 32px; position: relative; overflow: hidden; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+    .reach-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); z-index: 2; }
+    .reach-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.45s var(--ease); }
+    .reach-card:hover::after { transform: scaleX(1); }
+
+    .rc-icon { width: 52px; height: 52px; border: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: all 0.3s; }
+    .rc-icon svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .reach-card:hover .rc-icon { border-color: var(--orange); background: rgba(255,122,0,0.06); }
+
+    .rc-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .rc-title { font-family: var(--fh); font-size: 17px; font-weight: 800; color: var(--black); margin-bottom: 10px; line-height: 1.2; }
+    .rc-body { font-size: 13px; color: var(--mid); line-height: 1.7; }
+    .rc-body a { color: var(--mid); transition: color 0.2s; }
+    .rc-body a:hover { color: var(--orange); }
+    .rc-action { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); transition: gap 0.3s; }
+    .rc-action:hover { gap: 12px; }
+    .rc-action svg { width: 12px; height: 12px; stroke: var(--orange); fill: none; stroke-width: 2.5; }
+
+    /* ══════════════════════════════════════════
+       SOCIAL WALL
+    ══════════════════════════════════════════ */
+    .social-wall { padding: 96px 0; background: var(--black); position: relative; overflow: hidden; }
+    .social-wall::after { content: ''; position: absolute; top: -200px; left: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,0,0.05) 0%, transparent 65%); pointer-events: none; }
+
+    .sw-hd { text-align: center; margin-bottom: 72px; position: relative; z-index: 1; }
+    .sw-title { font-family: var(--fh); font-size: clamp(32px, 3.5vw, 48px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: normal; margin-bottom: 16px; }
+    .sw-title span { color: var(--orange); }
+    .sw-sub { font-size: 15px; color: rgba(255,255,255,0.4); max-width: 440px; margin: 0 auto; line-height: 1.75; }
+
+    .sw-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.05); position: relative; z-index: 1; }
+
+    .sw-card { background: var(--black); padding: 44px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; transition: background 0.35s var(--ease); cursor: pointer; }
+    .sw-card:hover { background: rgba(255,255,255,0.025); }
+    .sw-card-ic { width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.35s var(--ease); }
+    .sw-card-ic svg { width: 22px; height: 22px; fill: rgba(255,255,255,0.3); transition: fill 0.3s; }
+
+    .sw-card:nth-child(1):hover .sw-card-ic { border-color: #E1306C; background: rgba(225,48,108,0.1); box-shadow: 0 0 0 4px rgba(225,48,108,0.06); }
+    .sw-card:nth-child(1):hover .sw-card-ic svg { fill: #E1306C; }
+    .sw-card:nth-child(2):hover .sw-card-ic { border-color: #FF0000; background: rgba(255,0,0,0.1); box-shadow: 0 0 0 4px rgba(255,0,0,0.06); }
+    .sw-card:nth-child(2):hover .sw-card-ic svg { fill: #FF0000; }
+    .sw-card:nth-child(3):hover .sw-card-ic { border-color: #1877F2; background: rgba(24,119,242,0.1); box-shadow: 0 0 0 4px rgba(24,119,242,0.06); }
+    .sw-card:nth-child(3):hover .sw-card-ic svg { fill: #1877F2; }
+    .sw-card:nth-child(4):hover .sw-card-ic { border-color: #0A66C2; background: rgba(10,102,194,0.1); box-shadow: 0 0 0 4px rgba(10,102,194,0.06); }
+    .sw-card:nth-child(4):hover .sw-card-ic svg { fill: #0A66C2; }
+    .sw-card:nth-child(5):hover .sw-card-ic { border-color: #fff; background: rgba(255,255,255,0.06); box-shadow: 0 0 0 4px rgba(255,255,255,0.04); }
+    .sw-card:nth-child(5):hover .sw-card-ic svg { fill: #fff; }
+
+    .sw-card-name { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); }
+    .sw-card-handle { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .sw-card-follow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-top: 4px; transition: color 0.3s; }
+    .sw-card:hover .sw-card-follow { color: var(--orange); }
+
+    /* ══════════════════════════════════════════
+       MANIFESTO STRIP
+    ══════════════════════════════════════════ */
+    .mstrip { background: var(--orange); overflow: hidden; }
+    .mstrip-inner { display: flex; align-items: stretch; }
+    .mstrip-tag { background: rgba(0,0,0,0.14); padding: 22px 40px; font-family: var(--fh); font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.8); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; }
+    .mstrip-text { padding: 22px 48px; display: flex; align-items: center; }
+    .mstrip-text p { font-family: var(--fh); font-size: clamp(13px, 1.6vw, 16px); font-weight: 600; color: var(--white); }
+    .mstrip-text em { font-style: normal; opacity: 0.78; font-weight: 400; }
+
+    /* ══════════════════════════════════════════
+       LOCATION MAP
+    ══════════════════════════════════════════ */
+    .location { padding: 96px 0; background: var(--black-3); }
+
+    .loc-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .loc-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .loc-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
+    .loc-title { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: normal; margin-bottom: 28px; }
+    .loc-title span { color: var(--orange); }
+
+    .loc-details { display: flex; flex-direction: column; gap: 20px; }
+    .loc-item { display: flex; align-items: flex-start; gap: 16px; }
+    .loc-ic { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .loc-ic svg { width: 16px; height: 16px; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .loc-txt { font-size: 14px; color: rgba(255,255,255,0.48); line-height: 1.7; }
+    .loc-txt a { color: rgba(255,255,255,0.48); transition: color 0.2s; }
+    .loc-txt a:hover { color: var(--orange); }
+    .loc-txt strong { display: block; font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; }
+
+    .loc-map { position: relative; aspect-ratio: 4/3; background: var(--black-2); overflow: hidden; }
+    .loc-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(1) invert(0.9) contrast(0.85); }
+    .loc-map-overlay { position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(255,122,0,0.2); }
+    .loc-map-corner { position: absolute; width: 16px; height: 16px; border-color: var(--orange); border-style: solid; }
+    .loc-map-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .loc-map-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .loc-map-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .loc-map-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+    .loc-map-tag { position: absolute; top: 20px; left: 20px; background: var(--black); color: var(--orange); font-family: var(--fh); font-size: 9px; font-weight: 700; padding: 8px 14px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid rgba(255,122,0,0.3); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .footer { background: var(--black); padding: 96px 0 0; }
+    .ft-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 56px; padding-bottom: 72px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .ft-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .ft-logo img { height: 44px; width: auto; object-fit: contain; }
+    .ft-logo-txt { font-family: var(--fh); font-size: 16px; font-weight: 900; color: var(--white); letter-spacing: 0.5px; }
+    .ft-logo-txt span { color: var(--orange); }
+    .ft-tag { font-size: 13px; color: rgba(255,255,255,0.32); line-height: 1.75; max-width: 280px; margin-bottom: 28px; }
+    .ft-soc { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ft-sl { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .ft-sl:hover { border-color: var(--orange); background: rgba(255,122,0,0.1); }
+    .ft-sl svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.35); }
+    .ft-sl:hover svg { fill: var(--orange); }
+    .ft-ct { font-family: var(--fh); font-size: 10px; font-weight: 700; color: var(--white); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 24px; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .ft-links a { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .ft-links a:hover { color: var(--white); }
+    .ft-ci { display: flex; gap: 12px; margin-bottom: 16px; }
+    .ft-cic { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; }
+    .ft-cic svg { width: 100%; height: 100%; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .ft-cit { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; }
+    .ft-cit a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .ft-cit a:hover { color: var(--orange); }
+    .ft-bot { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; gap: 16px; flex-wrap: wrap; }
+    .ft-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+    .ft-copy a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .ft-copy a:hover { color: var(--white); }
+    .ft-bl { display: flex; gap: 24px; list-style: none; }
+    .ft-bl a { font-size: 12px; color: rgba(255,255,255,0.2); transition: color 0.2s; }
+    .ft-bl a:hover { color: rgba(255,255,255,0.55); }
+    .footer-bar { height: 3px; background: linear-gradient(90deg, var(--orange) 0%, rgba(255,122,0,0.2) 60%, transparent 100%); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media(max-width:1100px) {
+      .paths-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-zone-inner { grid-template-columns: 1fr; gap: 48px; }
+      .field-row { grid-template-columns: 1fr; }
+      .reach-grid { grid-template-columns: repeat(2, 1fr); }
+      .sw-grid { grid-template-columns: repeat(3, 1fr); }
+      .loc-inner { grid-template-columns: 1fr; gap: 48px; }
+      .ft-top { grid-template-columns: 1fr 1fr; gap: 44px; }
+    }
+    @media(max-width:900px) {
+      .navbar { padding: 0 24px; }
+      .nav-links, .nav-cta-btn { display: none; }
+      .nav-ham { display: flex; }
+      .container { padding: 0 24px; }
+      .hero-content { padding: 60px 24px 80px; }
+      .hero-vdivider, .hero-scroll, .hero-counter { display: none; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .paths-grid { grid-template-columns: 1fr; }
+      .reach-grid { grid-template-columns: 1fr; }
+      .sw-grid { grid-template-columns: repeat(2, 1fr); }
+      .sw-card:last-child { display: none; }
+      .loc-inner { grid-template-columns: 1fr; }
+      .ft-top { grid-template-columns: 1fr; gap: 36px; }
+      .ft-bot { flex-direction: column; align-items: flex-start; }
+      .mstrip-tag { display: none; }
+      .toast { left: 20px; right: 20px; bottom: 20px; }
+    }
+    @media(max-width:600px) {
+      .hero-h1 .line-1, .hero-h1 .line-2, .hero-h1 .line-3 { letter-spacing: normal; }
+      .sw-grid { grid-template-columns: 1fr 1fr; }
+      .reach-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div>
+    <div class="loader-wordmark">Ferguson <span>Media</span></div>
+    <div class="loader-line-bg"><div class="loader-line"></div></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <span class="nav-logo-text" style="display:none">FERGUSON <span>MEDIA</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="news.html">Good News</a></li>
+    <li><a href="partner.html">Partner With Us</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="contact.html" class="nav-cta-btn">Contact Us</a>
+    <button class="nav-ham" id="hamBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="s-ov" id="sov"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
+    <button class="sb-close" id="sbClose">&#215;</button>
+  </div>
+  <nav class="sb-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="news.html">Good News</a><a href="partner.html">Partner With Us</a>
+    
+  </nav>
+  <a href="contact.html" class="sb-cta">Contact Us</a>
+  <div class="sb-soc">
+    <a href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+    <a href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.linkedin.com/company/ferguson-mediaza/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+  </div>
+</aside>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-kicker">
+      <div class="hk-dot"></div>
+      <div class="hk-sep"></div>
+      <span class="hk-txt">Contact Ferguson Media — Johannesburg</span>
+    </div>
+
+    <h1 class="hero-h1">
+      <span class="line-1">Let's Start</span>
+      <span class="line-2">Something</span>
+      <span class="line-3">Powerful.</span>
+    </h1>
+
+    <div class="hero-sub-row">
+      <div class="hero-vdivider"></div>
+      <p class="hero-sub">Whether you want to partner with us, pitch a story, talk about the press, or simply say hello — this is where the conversation starts. We respond within one business day.</p>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#paths" class="btn btn-or">Choose Your Path <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#reach" class="btn btn-owh">Quick Details</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hs-track"><div class="hs-bar"></div></div>
+    <div class="hs-label">Scroll</div>
+  </div>
+
+  <div class="hero-counter">
+    <span class="hc-item">Johannesburg</span>
+    <span class="hc-item active">South Africa</span>
+    <span class="hc-item">2196</span>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT PATHS ══════════ -->
+<section class="paths" id="paths">
+  <div class="paths-bar"></div>
+  <div class="paths-inner">
+    <div class="container">
+      <div class="paths-hd rv">
+        <span class="eyebrow center">How Can We Help</span>
+        <h2 class="paths-title">Choose Your <span>Path.</span></h2>
+        <p class="paths-sub">Select what best describes your reason for reaching out and we'll give you the right form and the right contact.</p>
+      </div>
+
+      <div class="paths-grid rv d2">
+
+        <div class="path-card" data-path="partnership" tabindex="0" role="button" aria-pressed="false">
+          <div class="path-card-accent"></div>
+          <div class="path-ic">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="path-num">01 — PARTNERSHIP</div>
+          <div class="path-name">Start a<br />Partnership</div>
+          <p class="path-desc">Brands, CSI departments, and organisations looking to fund impactful good news campaigns and create real, documented change.</p>
+          <div class="path-arrow">
+            <span class="path-arrow-label">Select</span>
+            <div class="path-arrow-ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+
+        <div class="path-card" data-path="story" tabindex="0" role="button" aria-pressed="false">
+          <div class="path-card-accent"></div>
+          <div class="path-ic">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="path-num">02 — STORY PITCH</div>
+          <div class="path-name">Pitch a<br />Story</div>
+          <p class="path-desc">Know someone doing extraordinary things? Seen a community solution that deserves to be documented? Tell us — we want to cover it.</p>
+          <div class="path-arrow">
+            <span class="path-arrow-label">Select</span>
+            <div class="path-arrow-ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+
+        <div class="path-card" data-path="media" tabindex="0" role="button" aria-pressed="false">
+          <div class="path-card-accent"></div>
+          <div class="path-ic">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="path-num">03 — MEDIA & PRESS</div>
+          <div class="path-name">Media &<br />Press</div>
+          <p class="path-desc">Journalists, researchers, or media organisations wanting to interview our team, request data, or collaborate on coverage of South Africa's progress.</p>
+          <div class="path-arrow">
+            <span class="path-arrow-label">Select</span>
+            <div class="path-arrow-ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+
+        <div class="path-card" data-path="general" tabindex="0" role="button" aria-pressed="false">
+          <div class="path-card-accent"></div>
+          <div class="path-ic">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="path-num">04 — GENERAL</div>
+          <div class="path-name">General<br />Enquiry</div>
+          <p class="path-desc">Everything else — questions about our work, feedback on our stories, career interest, or simply wanting to say something that matters to you.</p>
+          <div class="path-arrow">
+            <span class="path-arrow-label">Select</span>
+            <div class="path-arrow-ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM ZONE -->
+  <div class="form-zone" id="formZone">
+    <div class="container">
+      <div class="form-zone-inner">
+
+        <!-- Left: Context -->
+        <div id="formContext">
+          <h3 class="form-left-title" id="formTitle">Let's Start a <span>Partnership.</span></h3>
+          <p class="form-left-body" id="formBody">Tell us about your brand, your CSI goals, and the communities you want to serve. We'll come back to you with a proposal that turns your investment into a documented story.</p>
+          <div class="form-promise">
+            <div class="fp-item"><div class="fp-dot"></div><p class="fp-txt"><strong>Response within 1 business day.</strong> Every message is read by a real person on our team.</p></div>
+            <div class="fp-item"><div class="fp-dot"></div><p class="fp-txt"><strong>No spam, ever.</strong> Your details are used only to reply to your enquiry.</p></div>
+            <div class="fp-item"><div class="fp-dot"></div><p class="fp-txt"><strong>Based in Johannesburg.</strong> 35 Ferguson Road, Illovo, Sandton.</p></div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <input type="hidden" name="inquiry_type" id="inquiryType" value="Partnership" />
+
+          <div class="field-row">
+            <div class="field-group">
+              <input type="text" name="first_name" id="firstName" placeholder="First" required autocomplete="given-name" />
+              <label class="field-label" for="firstName">First Name</label>
+              <div class="field-line"></div>
+            </div>
+            <div class="field-group">
+              <input type="text" name="last_name" id="lastName" placeholder="Last" required autocomplete="family-name" />
+              <label class="field-label" for="lastName">Last Name</label>
+              <div class="field-line"></div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <input type="email" name="email" id="email" placeholder="email" required autocomplete="email" />
+            <label class="field-label" for="email">Email Address</label>
+            <div class="field-line"></div>
+          </div>
+
+          <div class="field-group">
+            <input type="text" name="organisation" id="organisation" placeholder="org" autocomplete="organization" />
+            <label class="field-label" for="organisation">Organisation / Company</label>
+            <div class="field-line"></div>
+          </div>
+
+          <div class="field-group">
+            <textarea name="message" id="message" placeholder="msg" required></textarea>
+            <label class="field-label" for="message">Your Message</label>
+            <div class="field-line"></div>
+          </div>
+
+          <div class="form-submit-row">
+            <p class="form-note">We respond to all enquiries within one South African business day.</p>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <span id="submitLabel">Send Message</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OTHER WAYS TO REACH US ══════════ -->
+<section class="reach" id="reach">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="reach-hd rv">
+      <span class="eyebrow">Other Ways to Reach Us</span>
+      <h2 class="reach-title">Every Door <span>Is Open.</span></h2>
+      <p class="reach-sub">If a form isn't your thing, here's every other way to get a message to us. We're not hard to find.</p>
+    </div>
+
+    <div class="reach-grid">
+
+      <div class="reach-card rv d1">
+        <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="rc-label">Email Us</div>
+        <div class="rc-title">Direct Line to the Team</div>
+        <p class="rc-body">For partnerships, media, or general questions — our inbox is always open.<br /><a href="/cdn-cgi/l/email-protection#81e8efe7eec1e7e4f3e6f4f2eeefece4e5e8e0afe2eeaffbe0"><span class="__cf_email__" data-cfemail="254c4b434a654340574250564a4b4840414c440b464a0b5f44">[email&#160;protected]</span></a></p>
+        <a href="/cdn-cgi/l/email-protection#d9b0b7bfb699bfbcabbeacaab6b7b4bcbdb0b8f7bab6f7a3b8" class="rc-action">Send Email <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="reach-card rv d2">
+        <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="rc-label">Call Us</div>
+        <div class="rc-title">Pick Up the Phone</div>
+        <p class="rc-body">Based in Sandton, Johannesburg. Available Monday to Friday, 8am – 5pm SAST.<br /><a href="tel:+27836722453">+27 83 672 2453</a></p>
+        <a href="tel:+27836722453" class="rc-action">Call Now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="reach-card rv d3">
+        <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="rc-label">Visit Us</div>
+        <div class="rc-title">Find Us in Illovo</div>
+        <p class="rc-body">35 Ferguson Road, Illovo, Sandton, Johannesburg, 2196. Meetings by appointment.</p>
+        <a href="https://maps.google.com/?q=35+Ferguson+Road+Illovo+Sandton+Johannesburg" target="_blank" rel="noopener" class="rc-action">Get Directions <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="reach-card rv d4">
+        <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/><path d="M2 12H22"/><path d="M12 2C9.33579 5.06349 7.8193 8.93178 7.75 13C7.8193 17.0682 9.33579 20.9365 12 24C14.6642 20.9365 16.1807 17.0682 16.25 13C16.1807 8.93178 14.6642 5.06349 12 2Z"/></svg></div>
+        <div class="rc-label">Online Presence</div>
+        <div class="rc-title">Follow the Story</div>
+        <p class="rc-body">Our latest stories, behind-the-scenes, and community moments live across all our social channels — updated daily.</p>
+        <a href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" class="rc-action">Instagram <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SOCIAL WALL ══════════ -->
+<section class="social-wall">
+  <div class="container">
+    <div class="sw-hd rv">
+      <span class="eyebrow center">Find Us Everywhere</span>
+      <h2 class="sw-title">We're Active <span>Across Every Platform.</span></h2>
+      <p class="sw-sub">Follow our work in real time. New stories, community moments, and behind-the-scenes content every single day.</p>
+    </div>
+
+    <div class="sw-grid rv d2">
+
+      <a href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" class="sw-card">
+        <div class="sw-card-ic">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="sw-card-name">Instagram</div>
+        <div class="sw-card-handle">@fergusonmediaza</div>
+        <div class="sw-card-follow">Follow ↗</div>
+      </a>
+
+      <a href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" class="sw-card">
+        <div class="sw-card-ic">
+          <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </div>
+        <div class="sw-card-name">YouTube</div>
+        <div class="sw-card-handle">@FergusonMediaZA</div>
+        <div class="sw-card-follow">Subscribe ↗</div>
+      </a>
+
+      <a href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" class="sw-card">
+        <div class="sw-card-ic">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <div class="sw-card-name">Facebook</div>
+        <div class="sw-card-handle">Ferguson Media</div>
+        <div class="sw-card-follow">Like ↗</div>
+      </a>
+
+      <a href="https://www.linkedin.com/company/ferguson-mediaza/posts/?feedView=all" target="_blank" rel="noopener" class="sw-card">
+        <div class="sw-card-ic">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="sw-card-name">LinkedIn</div>
+        <div class="sw-card-handle">Ferguson Media ZA</div>
+        <div class="sw-card-follow">Connect ↗</div>
+      </a>
+
+      <a href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" class="sw-card">
+        <div class="sw-card-ic">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </div>
+        <div class="sw-card-name">TikTok</div>
+        <div class="sw-card-handle">@35_media0</div>
+        <div class="sw-card-follow">Watch ↗</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MISSION STRIP ══════════ -->
+<div class="mstrip">
+  <div class="container">
+    <div class="mstrip-inner">
+      <div class="mstrip-tag">Our Promise</div>
+      <div class="mstrip-text">
+        <p>Every conversation starts here. <em>We respond fast, we listen carefully, and we only say yes to things we can do properly.</em></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ LOCATION ══════════ -->
+<section class="location">
+  <div class="container">
+    <div class="loc-inner">
+
+      <div class="rv rv-l">
+        <div class="loc-label">Find Us</div>
+        <h2 class="loc-title">We're Based in <span>Illovo,<br />Sandton.</span></h2>
+        <div class="loc-details">
+          <div class="loc-item">
+            <div class="loc-ic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="loc-txt"><strong>Address</strong>35 Ferguson Road, Illovo, Sandton, Johannesburg, 2196</div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div class="loc-txt"><strong>Phone</strong><a href="tel:+27836722453">+27 83 672 2453</a></div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="loc-txt"><strong>Email</strong><a href="/cdn-cgi/l/email-protection#335a5d555c735556415446405c5d5e56575a521d505c1d4952"><span class="__cf_email__" data-cfemail="fe97909891be989b8c998b8d9190939b9a979fd09d91d0849f">[email&#160;protected]</span></a></div>
+          </div>
+          <div class="loc-item">
+            <div class="loc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="loc-txt"><strong>Office Hours</strong>Monday – Friday, 08:00 – 17:00 SAST</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-r">
+        <div class="loc-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.2788540547127!2d28.048832!3d-26.133209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c24093a6171%3A0x7e5ea4a6e77b8b3a!2s35%20Ferguson%20Rd%2C%20Illovo%2C%20Sandton%2C%202196!5e0!3m2!1sen!2sza!4v1700000000000!5m2!1sen!2sza"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Ferguson Media Office Location">
+          </iframe>
+          <div class="loc-map-overlay">
+            <div class="loc-map-corner tl"></div>
+            <div class="loc-map-corner tr"></div>
+            <div class="loc-map-corner bl"></div>
+            <div class="loc-map-corner br"></div>
+          </div>
+          <div class="loc-map-tag">Ferguson Media HQ</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">
+          <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="ft-logo-txt" style="display:none">FERGUSON <span>MEDIA</span></span>
+        </div>
+        <p class="ft-tag">South Africa's premier good news media platform. We find, document, and share stories of strength, new ideas, and community action from across the nation.</p>
+        <div class="ft-soc">
+          <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a class="ft-sl" href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a class="ft-sl" href="https://www.linkedin.com/company/ferguson-mediaza/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="ft-ct">Navigate</h4>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="news.html">Good News Portal</a></li>
+          <li><a href="about.html">About Ferguson Media</a></li>
+          <li><a href="partner.html">Partner With Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-ct">Story Categories</h4>
+        <ul class="ft-links">
+          <li><a href="news.html?category=youth-excellence">Youth Excellence</a></li>
+          <li><a href="news.html?category=innovation-solutions">Innovation and Solutions</a></li>
+          <li><a href="news.html?category=social-cohesion">Social Cohesion</a></li>
+          <li><a href="news.html?category=economic-impact">Economic Impact</a></li>
+          <li><a href="news.html#submit">Submit a Story</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-ct">Get in Touch</h4>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27836722453">+27 83 672 2453</a></p></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">&copy; 2025 Ferguson Media (Pty) Ltd. All rights reserved. Site by <a href="https://fergusonmedia.co.za">Ferguson Media</a>.</p>
+      <ul class="ft-bl"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bar"></div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+   JAVASCRIPT
+══════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ─── LOADER ─── */
+  const ldr = document.getElementById('pageLoader');
+  window.addEventListener('load', () => setTimeout(() => ldr.classList.add('gone'), 800));
+  setTimeout(() => ldr.classList.add('gone'), 3200);
+
+  /* ─── NAVBAR ─── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ─── SIDEBAR ─── */
+  const sov = document.getElementById('sov');
+  const sb  = document.getElementById('sidebar');
+  const openSB  = () => { sb.classList.add('open'); sov.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const closeSB = () => { sb.classList.remove('open'); sov.classList.remove('open'); document.body.style.overflow = ''; };
+  document.getElementById('hamBtn').addEventListener('click', openSB);
+  document.getElementById('sbClose').addEventListener('click', closeSB);
+  sov.addEventListener('click', closeSB);
+  document.addEventListener('keydown', e => e.key === 'Escape' && closeSB());
+
+  /* ─── SCROLL REVEAL ─── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.rv, .rv-l, .rv-r').forEach(el => io.observe(el));
+
+  /* ─── TOAST ─── */
+  function showToast(msg, err = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (err ? ' error' : '');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4500);
+  }
+
+  /* ─── PATH CARD INTERACTION ─── */
+  const pathData = {
+    partnership: {
+      title: "Let's Start a <span>Partnership.</span>",
+      body:  "Tell us about your brand, your CSI goals, and the communities you want to serve. We'll come back to you with a proposal that turns your investment into a documented story.",
+      type:  "Partnership"
+    },
+    story: {
+      title: "Pitch Us a <span>Story.</span>",
+      body:  "Tell us who the story is about, where they are, and what they've done. Our editorial team reviews every pitch and follows up within 2 business days.",
+      type:  "Story Pitch"
+    },
+    media: {
+      title: "Media &amp; <span>Press Enquiry.</span>",
+      body:  "We're happy to speak with journalists and researchers about our work, our data, or solutions journalism in South Africa. Let us know what you need.",
+      type:  "Media & Press"
+    },
+    general: {
+      title: "Send Us a <span>Message.</span>",
+      body:  "Whatever's on your mind about Ferguson Media, our stories, our approach, or anything else — we read every message and reply to each one personally.",
+      type:  "General Enquiry"
+    }
+  };
+
+  let activeCard = null;
+
+  function activatePath(card) {
+    const key = card.dataset.path;
+
+    // Deselect previous
+    document.querySelectorAll('.path-card').forEach(c => {
+      c.classList.remove('selected');
+      c.setAttribute('aria-pressed', 'false');
+    });
+
+    if (activeCard === card) {
+      // Toggle off
+      activeCard = null;
+      document.getElementById('formZone').classList.remove('visible');
+      return;
+    }
+
+    card.classList.add('selected');
+    card.setAttribute('aria-pressed', 'true');
+    activeCard = card;
+
+    // Update form content
+    const d = pathData[key];
+    document.getElementById('formTitle').innerHTML = d.title;
+    document.getElementById('formBody').textContent = d.body;
+    document.getElementById('inquiryType').value = d.type;
+
+    // Show form
+    const zone = document.getElementById('formZone');
+    zone.classList.add('visible');
+
+    // Smooth scroll to form after animation starts
+    setTimeout(() => {
+      zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 120);
+  }
+
+  document.querySelectorAll('.path-card').forEach(card => {
+    card.addEventListener('click', () => activatePath(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activatePath(card); }
+    });
+  });
+
+  /* ─── FLOATING LABELS — detect filled inputs ─── */
+  document.querySelectorAll('.field-group input, .field-group textarea').forEach(inp => {
+    const update = () => {
+      inp.closest('.field-group').classList.toggle('has-value', inp.value.trim() !== '');
+    };
+    inp.addEventListener('input', update);
+    inp.addEventListener('change', update);
+  });
+
+  /* ─── EMAILJS SETUP ─── */
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  /* ─── FORM SUBMISSION ─── */
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn   = document.getElementById('submitBtn');
+    const label = document.getElementById('submitLabel');
+
+    // Basic validation
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const message   = document.getElementById('message').value.trim();
+
+    if (!firstName || !email || !message) {
+      showToast('Please fill in all required fields.', true);
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('Please enter a valid email address.', true);
+      return;
+    }
+
+    btn.classList.add('loading');
+    label.textContent = 'Sending…';
+
+    // If EmailJS is configured, use it; otherwise simulate
+    if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') {
+      await new Promise(r => setTimeout(r, 1800));
+      btn.classList.remove('loading');
+      label.textContent = 'Send Message';
+      showToast('Message received. We\'ll be in touch within one business day.');
+      this.reset();
+      document.querySelectorAll('.field-group').forEach(fg => fg.classList.remove('has-value'));
+    } else {
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          inquiry_type: document.getElementById('inquiryType').value,
+          first_name:   firstName,
+          last_name:    lastName,
+          email:        email,
+          organisation: document.getElementById('organisation').value.trim(),
+          message:      message
+        });
+        showToast('Message sent. We\'ll be in touch within one business day.');
+        this.reset();
+        document.querySelectorAll('.field-group').forEach(fg => fg.classList.remove('has-value'));
+      } catch (err) {
+        showToast('Something went wrong. Please email us directly at info@fergusonmedia.co.za', true);
+      } finally {
+        btn.classList.remove('loading');
+        label.textContent = 'Send Message';
+      }
+    }
+  });
+</script>
+</body>
+</html>
