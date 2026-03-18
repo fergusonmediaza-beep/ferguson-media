@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block article template (dynamic, slug-based — not useful to crawl directly)
+Disallow: /article/
+
+# Sitemap location
+Sitemap: https://fergusonmedia.co.za/sitemap.xml
