@@ -760,7 +760,7 @@
   function showToast(msg, err=false) { const t=document.getElementById('toast'); t.textContent=msg; t.className='toast'+(err?' error':''); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),4200); }
   const EMAILJS_PUBLIC_KEY='YOUR_EMAILJS_PUBLIC_KEY', EMAILJS_SERVICE_ID='YOUR_SERVICE_ID', EMAILJS_TEMPLATE_ID='YOUR_TEMPLATE_ID';
   emailjs.init({publicKey:EMAILJS_PUBLIC_KEY});
-  const CONTENTFUL_SPACE_ID='YOUR_SPACE_ID', CONTENTFUL_ACCESS_TOKEN='YOUR_ACCESS_TOKEN', CONTENTFUL_ENV='master', CONTENT_TYPE='goodNewsStory';
+const CONTENTFUL_SPACE_ID='xjj6th2dvsr4', CONTENTFUL_ACCESS_TOKEN='8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo', CONTENTFUL_ENV='master', CONTENT_TYPE='goodNewsStory';
   const CAT_LABELS={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation and Solutions',socialCohesion:'Social Cohesion',economicImpact:'Economic Impact'};
   function fmtDate(iso){return new Date(iso).toLocaleDateString('en-ZA',{year:'numeric',month:'long',day:'numeric'});}
   function getImg(data,id){if(!data.includes||!data.includes.Asset)return null;const a=data.includes.Asset.find(x=>x.sys.id===id);return a?'https:'+a.fields.file.url:null;}

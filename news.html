@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good News Portal — Ferguson Media | South Africa's Stories of Progress</title>
+  <meta name="description" content="Every story of strength, innovation, and community action happening across South Africa. Documented, verified, and shared." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <style>
+    :root {
+      --orange:    #FF7A00;
+      --orange-dk: #E06D00;
+      --black:     #0A0A0A;
+      --black-2:   #111111;
+      --black-3:   #181818;
+      --white:     #FFFFFF;
+      --off:       #F6F4F1;
+      --mid:       #5A5A5A;
+      --border:    rgba(255,255,255,0.08);
+      --fh:        'Poppins', sans-serif;
+      --fb:        'Public Sans', sans-serif;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --max:       1320px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: #000; }
+    body { font-family: var(--fb); color: var(--black); background: var(--white); overflow-x: hidden; line-height: 1.6; }
+    img  { display: block; max-width: 100%; height: auto; }
+    a    { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
+
+    /* SCROLL REVEALS */
+    .rv { opacity: 0; transform: translateY(32px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .rv.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+    .d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+    /* PAGE LOADER */
+    .page-loader { position: fixed; inset: 0; z-index: 9000; background: var(--black); display: flex; align-items: center; justify-content: center; transition: opacity 0.7s var(--ease), visibility 0.7s; }
+    .page-loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-wordmark { font-family: var(--fh); font-size: 20px; font-weight: 900; color: var(--white); letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 28px; }
+    .loader-wordmark span { color: var(--orange); }
+    .loader-line-bg { width: 160px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto; overflow: hidden; }
+    .loader-line { height: 100%; background: var(--orange); animation: ll 1.6s var(--ease) forwards; }
+    @keyframes ll { from{width:0} to{width:100%} }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; transition: all 0.4s var(--ease); }
+    .navbar.scrolled { background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-logo img { height: 52px; width: auto; object-fit: contain; }
+    .nav-logo-text { font-family: var(--fh); font-size: 17px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .nav-logo-text span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); padding: 8px 16px; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 12px 24px; letter-spacing: 0.5px; transition: all 0.25s; white-space: nowrap; }
+    .nav-cta-btn:hover { background: var(--orange-dk); }
+    .nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-ham span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+
+    /* SIDEBAR */
+    .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
+    .s-ov.open { display: block; opacity: 1; }
+    .sidebar { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: var(--black); z-index: 1200; transition: right 0.4s var(--ease); display: flex; flex-direction: column; border-left: 1px solid var(--border); }
+    .sidebar.open { right: 0; }
+    .sb-head { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 80px; border-bottom: 1px solid var(--border); }
+    .sb-logo { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .sb-logo span { color: var(--orange); }
+    .sb-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 28px; line-height: 1; padding: 4px; transition: color 0.2s; }
+    .sb-close:hover { color: var(--white); }
+    .sb-nav { padding: 28px 16px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .sb-nav a { font-family: var(--fh); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); padding: 14px 16px; transition: all 0.25s; display: block; }
+    .sb-nav a:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+    .sb-cta { margin: 8px 16px 32px; display: block; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 16px 20px; text-align: center; transition: background 0.25s; }
+    .sb-cta:hover { background: var(--orange-dk); }
+    .sb-soc { padding: 20px 24px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+    .sb-soc a { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .sb-soc a:hover { border-color: var(--orange); background: rgba(255,122,0,0.1); }
+    .sb-soc svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.4); }
+    .sb-soc a:hover svg { fill: var(--orange); }
+
+    /* HERO */
+/* HERO */
+.hero { position: relative; min-height: 30vh; display: flex; align-items: flex-end; background: var(--black); overflow: hidden; padding-top: 80px; }
+    .hero-bg { position: absolute; inset: 0; }
+   .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; opacity: 0.65; }
+.hero-grad { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.35) 50%, rgba(10,10,10,0.75) 100%); }
+    .hero-glow { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 75% 30%, rgba(255,122,0,0.08) 0%, transparent 65%); pointer-events: none; }
+.hero-content { position: relative; z-index: 2; padding: 28px 56px 32px; max-width: var(--max); margin: 0 auto; width: 100%; }
+
+    .hero-kicker { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .hk-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; flex-shrink: 0; }
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+    .hk-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.15); }
+    .hk-txt { font-family: var(--fh); font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 4px; text-transform: uppercase; }
+
+.hero-h1 { font-family: var(--fh); font-size: clamp(36px, 5vw, 72px); font-weight: 900; color: var(--white); line-height: 1.0; letter-spacing: -1px; margin-bottom: 20px; }
+    .hero-h1 .ac { color: var(--orange); }
+    
+
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.48); max-width: 520px; line-height: 1.8; margin-bottom: 40px; }
+
+    .hero-meta { display: flex; align-items: center; gap: 32px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+    .hero-meta-stat { display: flex; align-items: baseline; gap: 6px; }
+    .hero-meta-num { font-family: var(--fh); font-size: 24px; font-weight: 900; color: var(--white); line-height: 1; }
+    .hero-meta-num span { color: var(--orange); }
+    .hero-meta-label { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+    .hero-meta-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); }
+
+    /* ORANGE STRIP */
+    .strip { background: var(--orange); overflow: hidden; }
+    .strip-track { display: flex; animation: ticker 30s linear infinite; width: max-content; white-space: nowrap; }
+    .strip-track:hover { animation-play-state: paused; }
+    .strip-item { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); padding: 18px 36px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .strip-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 50%; flex-shrink: 0; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* FILTERS */
+    .filters-bar { background: var(--black); padding: 0; border-bottom: 1px solid rgba(255,255,255,0.06); position: sticky; top: 80px; z-index: 100; }
+.filters-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 56px; flex-wrap: nowrap; }
+.filters-tabs { display: flex; gap: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.filters-tabs::-webkit-scrollbar { display: none; }
+.filter-tab { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.32); background: none; border: none; border-bottom: 2px solid transparent; padding: 20px 14px 18px; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: color 0.2s, border-color 0.2s; position: relative; top: 1px; }
+    .filter-tab:hover { color: rgba(255,255,255,0.65); }
+    .filter-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    .filters-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .sort-select { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-family: var(--fh); font-size: 11px; font-weight: 600; padding: 8px 14px; cursor: pointer; outline: none; letter-spacing: 0.5px; }
+    .sort-select option { background: var(--black-3); }
+
+    .view-toggles { display: flex; gap: 2px; }
+    .view-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+    .view-btn svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 2; }
+    .view-btn.active { background: var(--orange); border-color: var(--orange); }
+    .view-btn.active svg { stroke: var(--white); }
+
+    /* STORY COUNT */
+    .story-count-bar { background: var(--off); padding: 16px 56px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .story-count-txt { font-family: var(--fh); font-size: 11px; font-weight: 600; color: var(--mid); letter-spacing: 1px; }
+    .story-count-txt span { color: var(--orange); }
+
+    /* MAIN GRID */
+    .portal-main { background: var(--off); min-height: 60vh; }
+    .portal-inner { padding: 56px 56px 96px; max-width: var(--max); margin: 0 auto; }
+
+    /* ═══ HERO FEATURED STORY ═══ */
+    .hero-feature { position: relative; height: 580px; display: block; overflow: hidden; margin-bottom: 2px; }
+    .hero-feature img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); display: block; }
+    .hero-feature:hover img { transform: scale(1.03); }
+    .hero-feature-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.1) 100%); }
+    .hero-feature-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
+    .hero-feature-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 48px 56px; z-index: 2; }
+    .hero-feature-cat { display: inline-block; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 9px; font-weight: 700; padding: 5px 14px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 16px; }
+    .hero-feature-title { font-family: var(--fh); font-size: clamp(26px, 3.5vw, 48px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 14px; max-width: 780px; }
+    .hero-feature-exc { font-size: 15px; color: rgba(255,255,255,0.68); max-width: 620px; line-height: 1.7; margin-bottom: 24px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .hero-feature-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .hero-feature-meta { display: flex; align-items: center; gap: 16px; }
+    .hero-feature-author { font-family: var(--fh); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); }
+    .hero-feature-date { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .hero-feature-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.2); }
+    .hero-feature-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 28px; background: var(--white); color: var(--black); font-family: var(--fh); font-size: 12px; font-weight: 700; letter-spacing: 0.5px; transition: all 0.25s var(--ease); }
+    .hero-feature-btn:hover { background: var(--orange); color: var(--white); transform: translateY(-2px); }
+    .hero-feature-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.25s; }
+    .hero-feature-btn:hover svg { transform: translateX(3px); }
+
+    /* ═══ SECONDARY STORIES (2 medium cards) ═══ */
+    .secondary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+    .sec-card { position: relative; height: 320px; display: block; overflow: hidden; }
+    .sec-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); display: block; }
+    .sec-card:hover img { transform: scale(1.05); }
+    .sec-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
+    .sec-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 32px; }
+    .sec-card-cat { display: inline-block; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 9px; font-weight: 700; padding: 4px 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .sec-card-title { font-family: var(--fh); font-size: clamp(15px, 1.8vw, 20px); font-weight: 800; color: var(--white); line-height: 1.25; margin-bottom: 8px; }
+    .sec-card-exc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .sec-card-arrow { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .sec-card-arrow svg { width: 14px; height: 14px; stroke: var(--white); fill: none; stroke-width: 2; }
+    .sec-card:hover .sec-card-arrow { background: var(--orange); }
+
+    /* ═══ STORY GRID (3 col) ═══ */
+    .portal-grid-label { padding: 40px 0 24px; display: flex; align-items: center; gap: 16px; }
+    .portal-grid-label-line { flex: 1; height: 1px; background: rgba(0,0,0,0.1); }
+    .portal-grid-label-text { font-family: var(--fh); font-size: 10px; font-weight: 700; color: var(--mid); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; }
+
+    .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .stories-grid.view-list { grid-template-columns: 1fr; gap: 2px; }
+
+    /* STORY CARD */
+    .story-card { background: var(--white); display: block; overflow: hidden; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease); position: relative; border: 1px solid rgba(0,0,0,0.07); }
+    .story-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.12); z-index: 2; border-color: transparent; }
+    .sc-img { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+    .sc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease); display: block; }
+    .story-card:hover .sc-img img { transform: scale(1.05); }
+    .sc-cat { position: absolute; top: 16px; left: 16px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 9px; font-weight: 700; padding: 4px 10px; letter-spacing: 2px; text-transform: uppercase; }
+    .sc-body { padding: 24px 24px 20px; }
+    .sc-title { font-family: var(--fh); font-size: 15px; font-weight: 800; color: var(--black); line-height: 1.35; margin-bottom: 10px; }
+    .sc-exc { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 18px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .sc-meta { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #aaa; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06); }
+    .sc-author { font-weight: 600; color: #888; }
+    .sc-arrow { width: 28px; height: 28px; background: rgba(255,122,0,0.1); display: flex; align-items: center; justify-content: center; transition: all 0.25s; flex-shrink: 0; }
+    .sc-arrow svg { width: 12px; height: 12px; stroke: var(--orange); fill: none; stroke-width: 2.5; }
+    .story-card:hover .sc-arrow { background: var(--orange); }
+    .story-card:hover .sc-arrow svg { stroke: var(--white); }
+
+    /* LIST VIEW */
+    .view-list .story-card { display: grid; grid-template-columns: 240px 1fr; border: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .view-list .sc-img { aspect-ratio: unset; height: 100%; min-height: 160px; }
+    .view-list .sc-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; }
+
+    /* LOAD MORE */
+    .load-more-wrap { text-align: center; margin-top: 56px; }
+    .load-more-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 40px; font-family: var(--fh); font-size: 13px; font-weight: 700; background: var(--black); color: var(--white); border: none; cursor: pointer; transition: all 0.3s var(--ease); letter-spacing: 0.3px; }
+    .load-more-btn:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(255,122,0,0.3); }
+    .load-more-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .load-more-btn:hover svg { transform: translateY(3px); }
+    .load-more-btn:disabled { opacity: 0.5; pointer-events: none; }
+
+    /* SKELETON LOADER */
+    .skeleton { background: rgba(0,0,0,0.06); animation: shimmer 1.5s ease-in-out infinite; position: relative; overflow: hidden; }
+    .skeleton::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%); animation: sweep 1.5s ease-in-out infinite; }
+    @keyframes shimmer { 0%,100%{opacity:1} 50%{opacity:0.7} }
+    @keyframes sweep { from{transform:translateX(-100%)} to{transform:translateX(100%)} }
+
+    .skel-card { background: var(--white); overflow: hidden; }
+    .skel-img { aspect-ratio: 4/3; }
+    .skel-body { padding: 28px 24px; }
+    .skel-line { height: 12px; border-radius: 4px; margin-bottom: 10px; }
+    .skel-line.w80 { width: 80%; }
+    .skel-line.w60 { width: 60%; }
+    .skel-line.w40 { width: 40%; }
+
+    /* EMPTY STATE */
+    .empty-state { grid-column: 1/-1; text-align: center; padding: 96px 0; }
+    .empty-icon { width: 64px; height: 64px; background: rgba(255,122,0,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+    .empty-icon svg { width: 28px; height: 28px; stroke: var(--orange); fill: none; stroke-width: 1.5; }
+    .empty-title { font-family: var(--fh); font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+    .empty-body { font-size: 14px; color: var(--mid); }
+
+    /* ERROR BANNER */
+    .error-banner { background: rgba(229,57,53,0.08); border: 1px solid rgba(229,57,53,0.2); padding: 16px 24px; margin-bottom: 32px; display: none; }
+    .error-banner.show { display: flex; align-items: center; gap: 12px; }
+    .error-banner svg { width: 16px; height: 16px; stroke: #e53935; fill: none; stroke-width: 2; flex-shrink: 0; }
+    .error-banner p { font-size: 13px; color: #c62828; }
+    .error-banner a { color: #e53935; text-decoration: underline; }
+
+    /* SUBMIT STORY CTA */
+    .submit-cta { background: var(--black); }
+    .submit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .submit-left { padding: 96px 72px; }
+    .submit-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .submit-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
+    .submit-title { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 46px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 20px; }
+    .submit-title span { color: var(--orange); }
+    .submit-body { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.8; margin-bottom: 36px; max-width: 460px; }
+    .submit-btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; transition: all 0.3s var(--ease); letter-spacing: 0.3px; }
+    .submit-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(255,122,0,0.3); }
+    .submit-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .submit-btn:hover svg { transform: translateX(4px); }
+    .submit-right { background: rgba(255,122,0,0.06); border-left: 1px solid rgba(255,122,0,0.12); padding: 96px 72px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+    .submit-step { display: flex; gap: 20px; align-items: flex-start; }
+    .submit-step-num { font-family: var(--fh); font-size: 10px; font-weight: 800; color: var(--orange); letter-spacing: 2px; padding-top: 2px; flex-shrink: 0; min-width: 24px; }
+    .submit-step-title { font-family: var(--fh); font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .submit-step-body { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.65; }
+
+    /* FOOTER */
+    .footer { background: var(--black); padding: 96px 0 0; }
+    .ft-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 56px; padding-bottom: 72px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .ft-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .ft-logo img { height: 44px; width: auto; object-fit: contain; }
+    .ft-logo-txt { font-family: var(--fh); font-size: 16px; font-weight: 900; color: var(--white); letter-spacing: 0.5px; }
+    .ft-logo-txt span { color: var(--orange); }
+    .ft-tag { font-size: 13px; color: rgba(255,255,255,0.32); line-height: 1.75; max-width: 280px; margin-bottom: 28px; }
+    .ft-soc { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ft-sl { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .ft-sl:hover { border-color: var(--orange); background: rgba(255,122,0,0.1); }
+    .ft-sl svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.35); }
+    .ft-sl:hover svg { fill: var(--orange); }
+    .ft-ct { font-family: var(--fh); font-size: 10px; font-weight: 700; color: var(--white); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 24px; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .ft-links a { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .ft-links a:hover { color: var(--white); }
+    .ft-ci { display: flex; gap: 12px; margin-bottom: 16px; }
+    .ft-cic { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; }
+    .ft-cic svg { width: 100%; height: 100%; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .ft-cit { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; }
+    .ft-cit a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .ft-cit a:hover { color: var(--orange); }
+    .ft-bot { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; gap: 16px; flex-wrap: wrap; }
+    .ft-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+    .ft-copy a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .ft-copy a:hover { color: var(--white); }
+    .ft-bl { display: flex; gap: 24px; list-style: none; }
+    .ft-bl a { font-size: 12px; color: rgba(255,255,255,0.2); transition: color 0.2s; }
+    .ft-bl a:hover { color: rgba(255,255,255,0.55); }
+    .footer-bar { height: 3px; background: linear-gradient(90deg, var(--orange) 0%, rgba(255,122,0,0.2) 60%, transparent 100%); }
+
+/* RESPONSIVE */
+@media(max-width:1100px) {
+  .secondary-row { grid-template-columns: 1fr 1fr; }
+  .stories-grid { grid-template-columns: repeat(2,1fr); }
+  .submit-inner { grid-template-columns: 1fr; }
+  .submit-right { border-left: none; border-top: 1px solid rgba(255,122,0,0.12); padding: 56px 72px; }
+  .ft-top { grid-template-columns: 1fr 1fr; gap: 44px; }
+}
+
+@media(max-width:900px) {
+  .navbar { padding: 0 24px; }
+  .nav-links, .nav-cta-btn { display: none; }
+  .nav-ham { display: flex; }
+  .container { padding: 0 24px; }
+  .hero-content { padding: 24px 24px 28px; }
+  .filters-inner { padding: 0 24px; }
+  .filters-right { display: none; }
+  .story-count-bar { padding: 14px 24px; }
+  .portal-inner { padding: 36px 24px 72px; }
+  .hero-feature { height: auto; min-height: unset; }
+  .hero-feature img { height: 220px; object-fit: cover; position: relative; opacity: 1; }
+  .hero-feature-overlay { display: none; }
+  .hero-feature-accent { display: none; }
+  .hero-feature-body { position: relative; background: var(--black); padding: 20px 20px 24px; }
+  .hero-feature-exc { display: none; }
+  .hero-feature-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-feature-btn { width: 100%; justify-content: center; }
+  .secondary-row { grid-template-columns: 1fr; }
+  .sec-card { height: 260px; }
+  .stories-grid { grid-template-columns: 1fr; gap: 16px; }
+  .submit-left, .submit-right { padding: 64px 32px; }
+  .ft-top { grid-template-columns: 1fr; gap: 36px; }
+  .ft-bot { flex-direction: column; align-items: flex-start; }
+}
+
+@media(max-width:640px) {
+  .hero-feature img { height: 180px; }
+  .hero-feature-title { font-size: 18px; }
+  .hero-feature-cat { font-size: 8px; }
+  .view-list .story-card { grid-template-columns: 1fr; }
+  .view-list .sc-img { height: 180px; }
+}
+
+/* MOBILE FILTER DROPDOWN */
+.filter-select-mobile {
+  display: none;
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: var(--fh);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 16px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FF7A00' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  outline: none;
+}
+.filter-select-mobile option { background: var(--black-3); }
+
+@media(max-width:900px) {
+  .filters-tabs { display: none; }
+  .filter-select-mobile { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div>
+    <div class="loader-wordmark">Ferguson <span>Media</span></div>
+    <div class="loader-line-bg"><div class="loader-line"></div></div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <span class="nav-logo-text" style="display:none">FERGUSON <span>MEDIA</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="news.html" class="active">Good News</a></li>
+    <li><a href="partner.html">Partner With Us</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="contact.html" class="nav-cta-btn">Contact Us</a>
+    <button class="nav-ham" id="hamBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="s-ov" id="sov"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
+    <button class="sb-close" id="sbClose">&#215;</button>
+  </div>
+  <nav class="sb-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="news.html">Good News</a><a href="partner.html">Partner With Us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="partner.html" class="sb-cta">Partner With Us</a>
+  <div class="sb-soc">
+    <a href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+    <a href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.linkedin.com/company/ferguson-mediaza/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+  </div>
+</aside>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="images/good-news.png" alt="" aria-hidden="true" />
+  </div>
+  <div class="hero-grad"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">
+      <div class="hk-dot"></div>
+      <div class="hk-sep"></div>
+      <span class="hk-txt">Good News Portal — Updated Daily</span>
+    </div>
+    <h1 class="hero-h1">South Africa's<br /><span class="ac">Progress.</span><br />Documented.</h1>
+    <!-- <p class="hero-sub">Every story of strength, innovation, community action, and unstoppable determination happening across South Africa. Verified, reported, and shared.</p> -->
+    <div class="hero-meta">
+      <div class="hero-meta-stat">
+        <div class="hero-meta-num" id="heroStoryCount">—</div>
+        <div class="hero-meta-label">Stories Published</div>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-stat">
+        <div class="hero-meta-num">4</div>
+        <div class="hero-meta-label">Story Categories</div>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-stat">
+        <div class="hero-meta-num">50<span>K</span></div>
+        <div class="hero-meta-label">Monthly Views</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <div class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Youth Excellence<div class="strip-dot"></div></span>
+    <span class="strip-item">Innovation and Solutions<div class="strip-dot"></div></span>
+    <span class="strip-item">Social Cohesion<div class="strip-dot"></div></span>
+    <span class="strip-item">Economic Impact<div class="strip-dot"></div></span>
+    <span class="strip-item">South Africa Is Winning<div class="strip-dot"></div></span>
+    <span class="strip-item">Solutions Journalism<div class="strip-dot"></div></span>
+    <span class="strip-item">Youth Excellence<div class="strip-dot"></div></span>
+    <span class="strip-item">Innovation and Solutions<div class="strip-dot"></div></span>
+    <span class="strip-item">Social Cohesion<div class="strip-dot"></div></span>
+    <span class="strip-item">Economic Impact<div class="strip-dot"></div></span>
+    <span class="strip-item">South Africa Is Winning<div class="strip-dot"></div></span>
+    <span class="strip-item">Solutions Journalism<div class="strip-dot"></div></span>
+    <span class="strip-item">Youth Excellence<div class="strip-dot"></div></span>
+    <span class="strip-item">Innovation and Solutions<div class="strip-dot"></div></span>
+    <span class="strip-item">Social Cohesion<div class="strip-dot"></div></span>
+    <span class="strip-item">Economic Impact<div class="strip-dot"></div></span>
+    <span class="strip-item">South Africa Is Winning<div class="strip-dot"></div></span>
+    <span class="strip-item">Solutions Journalism<div class="strip-dot"></div></span>
+  </div>
+</div> -->
+
+<!-- FILTER BAR -->
+<div class="filters-bar" id="filtersBar">
+  <div class="filters-inner">
+
+    <select class="filter-select-mobile" id="filterSelectMobile">
+      <option value="all">All Stories</option>
+      <option value="youthExcellence">Youth Excellence</option>
+      <option value="innovationSolutions">Innovation & Solutions</option>
+      <option value="socialCohesion">Social Cohesion</option>
+      <option value="economicImpact">Economic Impact</option>
+    </select>
+
+    <div class="filters-tabs" id="filterTabs">
+      <button class="filter-tab active" data-cat="all">All Stories</button>
+      <button class="filter-tab" data-cat="youthExcellence">Youth Excellence</button>
+      <button class="filter-tab" data-cat="innovationSolutions">Innovation & Solutions</button>
+      <button class="filter-tab" data-cat="socialCohesion">Social Cohesion</button>
+      <button class="filter-tab" data-cat="economicImpact">Economic Impact</button>
+    </div>
+
+    <div class="filters-right">
+      <select class="sort-select" id="sortSelect">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+      <div class="view-toggles">
+        <button class="view-btn active" id="viewGrid" title="Grid view">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="view-btn" id="viewList" title="List view">
+          <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- STORY COUNT -->
+<div class="story-count-bar">
+  <p class="story-count-txt" id="storyCountBar">Loading stories...</p>
+</div>
+
+<!-- MAIN PORTAL -->
+<section class="portal-main">
+  <div class="portal-inner" id="portalInner">
+
+    <!-- Error banner -->
+    <div class="error-banner" id="errorBanner">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Could not load stories from Contentful. <a href="#" onclick="location.reload()">Try again</a> or check your API keys.</p>
+    </div>
+
+    <!-- Featured story slot -->
+    <div id="featuredSlot"></div>
+
+    <!-- Secondary stories slot -->
+    <div id="secondarySlot"></div>
+
+
+    
+    <!-- Grid label -->
+<div id="gridLabelSlot"></div>
+
+<!-- Grid -->
+<div class="stories-grid" id="storiesGrid">
+
+
+      <!-- Skeleton loaders -->
+      <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-body"><div class="skel-line w80 skeleton"></div><div class="skel-line w60 skeleton"></div><div class="skel-line w40 skeleton"></div></div></div>
+      <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-body"><div class="skel-line w80 skeleton"></div><div class="skel-line w60 skeleton"></div><div class="skel-line w40 skeleton"></div></div></div>
+      <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-body"><div class="skel-line w80 skeleton"></div><div class="skel-line w60 skeleton"></div><div class="skel-line w40 skeleton"></div></div></div>
+    </div>
+
+    <!-- Load more -->
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+      <button class="load-more-btn" id="loadMoreBtn">
+        Load More Stories
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUBMIT A STORY CTA -->
+<section class="submit-cta" id="submit">
+  <div class="submit-inner">
+    <div class="submit-left">
+      <div class="submit-label">Got a Story?</div>
+      <h2 class="submit-title">Know Someone <span>Doing Something Extraordinary?</span></h2>
+      <p class="submit-body">If you know a young leader, a community hero, a business changing lives, or an innovation solving a real African problem — tell us. We want to document it and share it with the country.</p>
+      <a href="contact.html?path=story" class="submit-btn">Pitch Your Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="submit-right">
+      <div class="submit-step">
+        <div class="submit-step-num">01</div>
+        <div>
+          <div class="submit-step-title">Tell Us the Story</div>
+          <p class="submit-step-body">Give us the basics — who, what, where, and why it matters. A few sentences is enough to start.</p>
+        </div>
+      </div>
+      <div class="submit-step">
+        <div class="submit-step-num">02</div>
+        <div>
+          <div class="submit-step-title">We Verify and Produce</div>
+          <p class="submit-step-body">Our editorial team follows up, visits the story, and produces it to broadcast standard — video, photography, and written article.</p>
+        </div>
+      </div>
+      <div class="submit-step">
+        <div class="submit-step-num">03</div>
+        <div>
+          <div class="submit-step-title">We Share It With South Africa</div>
+          <p class="submit-step-body">The story goes live on the portal, gets shared across social media, and may be distributed through our community radio network.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">
+          <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+          <span class="ft-logo-txt" style="display:none">FERGUSON <span>MEDIA</span></span>
+        </div>
+        <p class="ft-tag">South Africa's premier good news media platform. We find, document, and share stories of strength, new ideas, and community action from across the nation.</p>
+        <div class="ft-soc">
+          <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a class="ft-sl" href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a class="ft-sl" href="https://www.linkedin.com/company/ferguson-mediaza/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="index.html">Home</a></li><li><a href="news.html">Good News Portal</a></li><li><a href="about.html">About Ferguson Media</a></li><li><a href="partner.html">Partner With Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4 class="ft-ct">Story Categories</h4><ul class="ft-links"><li><a href="news.html?category=youthExcellence">Youth Excellence</a></li><li><a href="news.html?category=innovationSolutions">Innovation and Solutions</a></li><li><a href="news.html?category=socialCohesion">Social Cohesion</a></li><li><a href="news.html?category=economicImpact">Economic Impact</a></li><li><a href="news.html#submit">Submit a Story</a></li></ul></div>
+      <div>
+        <h4 class="ft-ct">Get in Touch</h4>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27836722453">+27 83 672 2453</a></p></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">&copy; 2025 Ferguson Media (Pty) Ltd. All rights reserved.</p>
+      <ul class="ft-bl"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bar"></div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CONTENTFUL CONFIG
+   Replace these 3 values with your own from Contentful:
+   Settings → API Keys → Content Delivery API
+══════════════════════════════════════════════════════════════ */
+const SPACE_ID    = 'xjj6th2dvsr4';
+const ACCESS_TOKEN = '8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo';
+const ENV         = 'master';
+const CONTENT_TYPE = 'goodNewsStory';        // Must match your Content Type API ID
+
+/* ── Page size for "Load More" ── */
+const PAGE_SIZE = 6;
+
+/* ── Category labels ── */
+const CAT_LABELS = {
+  youthExcellence:      'Youth Excellence',
+  innovationSolutions:  'Innovation & Solutions',
+  socialCohesion:       'Social Cohesion',
+  economicImpact:       'Economic Impact'
+};
+
+/* ══════════════════════════════════════════════════════════════
+   PLACEHOLDER DATA (used when API keys not yet configured)
+══════════════════════════════════════════════════════════════ */
+const PLACEHOLDER_STORIES = [
+  { id:'1', fields:{ title:'Birthday Celebration Turns Into Surprise Book Launch', slug:'birthday-book-launch', category:'youthExcellence', excerpt:'Young siblings Oyama and Prince launched their latest books on a milestone birthday, celebrating the power of youth creativity and storytelling in their community.', authorName:'Ferguson Media', publishedDate:'2026-03-10T00:00:00Z', heroImage:{ sys:{ id:'img1' } } } },
+  { id:'2', fields:{ title:'Free Bus Travel Programme Helps Thousands of Jobseekers', slug:'free-bus-travel-jobseekers', category:'economicImpact', excerpt:'A Cape Town initiative is removing transport barriers for thousands of job seekers, connecting communities to economic opportunity one bus ride at a time.', authorName:'Thembinkosi Dlamini', publishedDate:'2026-02-28T00:00:00Z', heroImage:{ sys:{ id:'img2' } } } },
+  { id:'3', fields:{ title:'Indoni Initiative Develops Skills of Young People', slug:'indoni-youth-skills', category:'youthExcellence', excerpt:'The Indoni initiative is giving South African youth the creative and professional skills they need to lead with confidence in the modern economy.', authorName:'Pamela Morare', publishedDate:'2026-03-05T00:00:00Z', heroImage:{ sys:{ id:'img3' } } } },
+  { id:'4', fields:{ title:'Township Innovator Builds Solar-Powered Water Pump from Scrap', slug:'township-solar-pump', category:'innovationSolutions', excerpt:'A Soweto engineer has designed a low-cost solar water pump using reclaimed materials, now providing clean water to over 200 households.', authorName:'Sinethemba Zondi', publishedDate:'2026-02-14T00:00:00Z', heroImage:{ sys:{ id:'img4' } } } },
+  { id:'5', fields:{ title:'Community Garden Network Feeds 500 Families Across Gauteng', slug:'community-garden-network', category:'socialCohesion', excerpt:'A growing network of community gardens is proving that neighbours working together can solve food insecurity one harvest at a time.', authorName:'Ferguson Media', publishedDate:'2026-01-22T00:00:00Z', heroImage:{ sys:{ id:'img5' } } } },
+  { id:'6', fields:{ title:'Young Entrepreneur Turns Waste Plastic Into School Furniture', slug:'plastic-school-furniture', category:'innovationSolutions', excerpt:'A 24-year-old from Khayelitsha is converting plastic waste into durable school desks, supplying over 15 schools across the Western Cape.', authorName:'Thobani Madlala', publishedDate:'2026-03-01T00:00:00Z', heroImage:{ sys:{ id:'img6' } } } },
+  { id:'7', fields:{ title:'Rural Clinic Run Entirely by Local Youth Celebrates First Year', slug:'rural-clinic-youth', category:'socialCohesion', excerpt:'A community clinic in Limpopo, staffed by trained young volunteers, has completed its first full year of free primary healthcare services.', authorName:'Ferguson Media', publishedDate:'2026-02-18T00:00:00Z', heroImage:{ sys:{ id:'img7' } } } }
+];
+
+/* ══════════════════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════════════════ */
+let allStories   = [];      // all fetched stories
+let filtered     = [];      // after category filter
+let currentPage  = 1;
+let activeFilter = 'all';
+let activeSort   = 'newest';
+let isListView   = false;
+let usingPlaceholders = false;
+
+/* ══════════════════════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════════════════════ */
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString('en-ZA', { year:'numeric', month:'long', day:'numeric' });
+}
+
+function getImg(data, id) {
+  if (!data || !data.includes || !data.includes.Asset) return null;
+  const a = data.includes.Asset.find(x => x.sys.id === id);
+  return a ? 'https:' + a.fields.file.url : null;
+}
+
+function getStoryImg(story, data) {
+  const imgRef = story.fields.heroImage;
+  if (!imgRef || !imgRef.sys) return 'images/placeholder.jpg';
+  const url = getImg(data, imgRef.sys.id);
+  return url || 'images/placeholder.jpg';
+}
+
+function imgErr(el) {
+  el.onerror = null;
+  el.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23111'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23333' font-size='24' font-family='sans-serif'%3EFerguson Media%3C/text%3E%3C/svg%3E";
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FETCH FROM CONTENTFUL
+══════════════════════════════════════════════════════════════ */
+let contentfulData = null; // cache the full response for image lookup
+
+async function fetchStories() {
+  if (SPACE_ID === 'YOUR_SPACE_ID') {
+    // Use placeholders
+    usingPlaceholders = true;
+    contentfulData = { items: PLACEHOLDER_STORIES, includes: { Asset: [] } };
+    allStories = PLACEHOLDER_STORIES;
+    return;
+  }
+
+  try {
+    const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/${ENV}/entries`
+      + `?content_type=${CONTENT_TYPE}&include=1&limit=100&access_token=${ACCESS_TOKEN}`;
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    contentfulData = data;
+    allStories = data.items || [];
+    document.getElementById('heroStoryCount').textContent = allStories.length;
+  } catch (err) {
+    console.error('Contentful fetch error:', err);
+    document.getElementById('errorBanner').classList.add('show');
+    usingPlaceholders = true;
+    contentfulData = { items: PLACEHOLDER_STORIES, includes: { Asset: [] } };
+    allStories = PLACEHOLDER_STORIES;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FILTER + SORT
+══════════════════════════════════════════════════════════════ */
+function applyFilterSort() {
+  let result = [...allStories];
+
+  // Filter
+  if (activeFilter !== 'all') {
+    result = result.filter(s => s.fields.category === activeFilter);
+  }
+
+  // Sort
+  result.sort((a, b) => {
+    const da = new Date(a.fields.publishedDate || a.sys?.createdAt || 0);
+    const db = new Date(b.fields.publishedDate || b.sys?.createdAt || 0);
+    return activeSort === 'newest' ? db - da : da - db;
+  });
+
+  filtered = result;
+  currentPage = 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BUILD HERO FEATURED (story[0]) — full cinematic
+══════════════════════════════════════════════════════════════ */
+function buildHeroFeature(story) {
+  const f   = story.fields;
+  const img = usingPlaceholders ? 'images/placeholder.jpg' : getStoryImg(story, contentfulData);
+  const cat = CAT_LABELS[f.category] || 'Good News';
+  const slug = f.slug || story.id || story.sys?.id;
+  const date = f.publishedDate ? fmtDate(f.publishedDate) : '';
+  return `
+    <a href="article.html?slug=${slug}" class="hero-feature">
+      <img src="${img}" alt="${f.title}" loading="eager" onerror="imgErr(this)" />
+      <div class="hero-feature-overlay"></div>
+      <div class="hero-feature-accent"></div>
+      <div class="hero-feature-body">
+        <span class="hero-feature-cat">${cat}</span>
+        <h2 class="hero-feature-title">${f.title}</h2>
+        <p class="hero-feature-exc">${f.excerpt || ''}</p>
+        <div class="hero-feature-bottom">
+          <div class="hero-feature-meta">
+            <span class="hero-feature-author">${f.authorName || 'Ferguson Media'}</span>
+            ${date ? `<div class="hero-feature-sep"></div><span class="hero-feature-date">${date}</span>` : ''}
+          </div>
+          <span class="hero-feature-btn">Read Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+    </a>`;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BUILD SECONDARY CARD (stories[1] and [2])
+══════════════════════════════════════════════════════════════ */
+function buildSecCard(story) {
+  const f   = story.fields;
+  const img = usingPlaceholders ? 'images/placeholder.jpg' : getStoryImg(story, contentfulData);
+  const cat = CAT_LABELS[f.category] || 'Good News';
+  const slug = f.slug || story.id || story.sys?.id;
+  return `
+    <a href="article.html?slug=${slug}" class="sec-card">
+      <img src="${img}" alt="${f.title}" loading="lazy" onerror="imgErr(this)" />
+      <div class="sec-card-overlay"></div>
+      <div class="sec-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="sec-card-body">
+        <span class="sec-card-cat">${cat}</span>
+        <div class="sec-card-title">${f.title}</div>
+        <p class="sec-card-exc">${f.excerpt || ''}</p>
+      </div>
+    </a>`;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BUILD GRID CARD (stories[3+])
+══════════════════════════════════════════════════════════════ */
+function buildCard(story) {
+  const f   = story.fields;
+  const img = usingPlaceholders ? 'images/placeholder.jpg' : getStoryImg(story, contentfulData);
+  const cat = CAT_LABELS[f.category] || 'Good News';
+  const slug = f.slug || story.id || story.sys?.id;
+  return `
+    <a href="article.html?slug=${slug}" class="story-card rv">
+      <div class="sc-img">
+        <img src="${img}" alt="${f.title}" loading="lazy" onerror="imgErr(this)" />
+        <span class="sc-cat">${cat}</span>
+      </div>
+      <div class="sc-body">
+        <h3 class="sc-title">${f.title}</h3>
+        <p class="sc-exc">${f.excerpt || ''}</p>
+        <div class="sc-meta">
+          <span class="sc-author">${f.authorName || 'Ferguson Media'}</span>
+          <div class="sc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </a>`;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RENDER
+══════════════════════════════════════════════════════════════ */
+function render() {
+  const featuredSlot = document.getElementById('featuredSlot');
+  const grid         = document.getElementById('storiesGrid');
+  const loadMoreWrap = document.getElementById('loadMoreWrap');
+  const countBar     = document.getElementById('storyCountBar');
+  const heroCount    = document.getElementById('heroStoryCount');
+
+  heroCount.textContent = allStories.length > 0 ? allStories.length : '—';
+
+  const total   = filtered.length;
+  const catName = activeFilter === 'all' ? 'All Stories' : (CAT_LABELS[activeFilter] || activeFilter);
+  countBar.innerHTML = `Showing <span>${total}</span> ${total === 1 ? 'story' : 'stories'} in <span>${catName}</span>`;
+
+if (total === 0) {
+    featuredSlot.innerHTML = '';
+    document.getElementById('secondarySlot').innerHTML = ''; // ← add this
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="empty-title">No stories found</div><p class="empty-body">Try a different category or check back soon.</p></div>`;
+    loadMoreWrap.style.display = 'none';
+    return;
+}
+
+// Story[0] → Hero featured
+  featuredSlot.innerHTML = buildHeroFeature(filtered[0]);
+
+  // Stories[1-2] → Secondary row (only if they exist)
+  const secContainer = document.getElementById('secondarySlot');
+  if (filtered.length >= 2) {
+    const secStories = filtered.slice(1, 3);
+    secContainer.innerHTML = `<div class="secondary-row">${secStories.map(buildSecCard).join('')}</div>`;
+  } else {
+    secContainer.innerHTML = '';
+  }
+
+  // Stories[3+] → grid
+  const gridStories = filtered.slice(3);
+  const toShow = gridStories.slice(0, currentPage * PAGE_SIZE);
+
+  const labelSlot = document.getElementById('gridLabelSlot');
+  if (toShow.length > 0) {
+    labelSlot.innerHTML = `<div class="portal-grid-label"><div class="portal-grid-label-line"></div><span class="portal-grid-label-text">More Stories</span><div class="portal-grid-label-line"></div></div>`;
+    grid.className = `stories-grid${isListView ? ' view-list' : ''}`;
+    grid.innerHTML = toShow.map(buildCard).join('');
+  } else {
+    labelSlot.innerHTML = '';
+    grid.className = 'stories-grid';
+    grid.innerHTML = '';
+  }
+
+  const hasMore = toShow.length < gridStories.length;
+  loadMoreWrap.style.display = hasMore ? 'block' : 'none';
+
+  // Scroll reveal
+  document.querySelectorAll('.rv').forEach(el => rvObserver.observe(el));
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SCROLL REVEAL OBSERVER
+══════════════════════════════════════════════════════════════ */
+const rvObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); rvObserver.unobserve(e.target); } });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.rv').forEach(el => rvObserver.observe(el));
+
+/* ══════════════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════════════ */
+async function init() {
+  await fetchStories();
+  applyFilterSort();
+  render();
+
+  // Check for category param in URL e.g. news.html?category=youthExcellence
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get('category');
+  if (catParam && CAT_LABELS[catParam]) {
+    activeFilter = catParam;
+    document.querySelectorAll('.filter-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.cat === catParam);
+    });
+    applyFilterSort();
+    render();
+  }
+}
+
+init();
+
+/* ══════════════════════════════════════════════════════════════
+   FILTER TABS
+══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeFilter = tab.dataset.cat;
+    applyFilterSort();
+    render();
+  });
+});
+
+/* ── Sort ── */
+document.getElementById('sortSelect').addEventListener('change', function() {
+  activeSort = this.value;
+  applyFilterSort();
+  render();
+});
+
+/* ── Mobile filter dropdown ── */
+document.getElementById('filterSelectMobile').addEventListener('change', function() {
+  activeFilter = this.value;
+  applyFilterSort();
+  render();
+});
+
+/* ── View toggles ── */
+document.getElementById('viewGrid').addEventListener('click', () => {
+  isListView = false;
+  document.getElementById('viewGrid').classList.add('active');
+  document.getElementById('viewList').classList.remove('active');
+  document.getElementById('storiesGrid').classList.remove('view-list');
+});
+document.getElementById('viewList').addEventListener('click', () => {
+  isListView = true;
+  document.getElementById('viewList').classList.add('active');
+  document.getElementById('viewGrid').classList.remove('active');
+  document.getElementById('storiesGrid').classList.add('view-list');
+});
+
+/* ── Load more ── */
+document.getElementById('loadMoreBtn').addEventListener('click', () => {
+  currentPage++;
+  render();
+  // Scroll reveal re-init handled inside render()
+});
+
+/* ══════════════════════════════════════════════════════════════
+   NAVBAR / SIDEBAR / LOADER
+══════════════════════════════════════════════════════════════ */
+const ldr = document.getElementById('pageLoader');
+window.addEventListener('load', () => setTimeout(() => ldr.classList.add('gone'), 700));
+setTimeout(() => ldr.classList.add('gone'), 3000);
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+const sov = document.getElementById('sov'), sb = document.getElementById('sidebar');
+const openSB  = () => { sb.classList.add('open'); sov.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const closeSB = () => { sb.classList.remove('open'); sov.classList.remove('open'); document.body.style.overflow = ''; };
+document.getElementById('hamBtn').addEventListener('click', openSB);
+document.getElementById('sbClose').addEventListener('click', closeSB);
+sov.addEventListener('click', closeSB);
+document.addEventListener('keydown', e => e.key === 'Escape' && closeSB());
+</script>
+</body>
+</html>
