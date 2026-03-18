@@ -417,7 +417,7 @@
       animation: hf 0.85s var(--ease) 1.05s forwards;
     }
     .hero-divider-v {
-      width: 1px; height: 80px; background: rgba(255,255,255,0.14); flex-shrink: 0; margin-top: 4px;
+      width: 1px; height: 80px; background: rgba(255,255,255,0.30); flex-shrink: 0; margin-top: 4px;
     }
     .hero-sub-txt { font-size: 17px; color: rgba(255,255,255,0.5); max-width: 440px; line-height: 1.78; }
 
@@ -891,86 +891,90 @@
     .off-title { font-family: var(--fh); font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
     .off-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; }
 
-    /* ============================================================
-       PARTNERS GRID
-    ============================================================ */
-    .partners { padding: 96px 0; background: var(--black); position: relative; overflow: hidden; }
-    .partners::before {
-      content: 'NETWORK';
-      position: absolute; bottom: -24px; right: -10px;
-      font-family: var(--fh); font-size: clamp(120px,14vw,220px);
-      font-weight: 900; color: rgba(255,255,255,0.016); line-height: 1;
-      pointer-events: none; user-select: none; letter-spacing: -8px; white-space: nowrap;
-    }
-    .p-hd {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 56px; gap: 24px; flex-wrap: wrap; position: relative; z-index: 1;
-    }
-    .p-hd-label {
-      font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
-    }
-    .p-hd-label::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
-    .p-hd-title {
-      font-family: var(--fh); font-size: clamp(28px, 3vw, 42px);
-      font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.5px;
-    }
-    .p-hd-title span { color: var(--orange); }
-    .p-hd-count { font-family: var(--fh); font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 2px; text-transform: uppercase; padding-bottom: 4px; }
-    .p-grid {
-      display: grid; grid-template-columns: 1.7fr 1fr 1fr 1.4fr;
-      gap: 1px; background: rgba(255,255,255,0.1); position: relative; z-index: 1;
-    }
-    .p-cell {
-      background: #0f0f0f; position: relative; overflow: hidden;
-      padding: 40px 36px 36px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      min-height: 196px; text-decoration: none; cursor: pointer;
-      transition: background 0.4s var(--ease);
-    }
-    .p-cell:hover { background: #1a1a1a; }
-    /* Orange top bar reveal */
-    .p-cell::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--orange); transform: scaleX(0); transform-origin: left;
-      transition: transform 0.45s var(--ease);
-    }
-    .p-cell:hover::after { transform: scaleX(1); }
-    .p-cell-num {
-      font-family: var(--fh); font-size: clamp(88px, 10vw, 148px);
-      font-weight: 900; color: rgba(255,255,255,0.065); line-height: 1; letter-spacing: -6px;
-      position: absolute; bottom: -20px; right: 8px;
-      pointer-events: none; user-select: none; transition: color 0.4s;
-    }
-    .p-cell:hover .p-cell-num { color: rgba(255,122,0,0.14); }
-    .p-cell-top { position: relative; z-index: 1; }
-    .p-cell-name {
-      font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: rgba(255,255,255,0.52); margin-bottom: 3px;
-      transition: color 0.3s;
-    }
-    .p-cell:hover .p-cell-name { color: var(--orange); }
-    .p-cell-type { font-size: 11px; color: rgba(255,255,255,0.3); }
-    .p-cell-logo { position: relative; z-index: 1; }
-    .p-cell-logo img {
-      height: 56px; width: auto; max-width: 160px; object-fit: contain;
-      opacity: 0.82; display: block;
-      transition: opacity 0.35s, transform 0.4s var(--ease);
-    }
-    .p-cell:hover .p-cell-logo img { opacity: 1; transform: translateY(-3px); }
-    .p-cell-logo img.logo-white { filter: brightness(0) invert(1); }
-    .p-cell-arrow {
-      position: absolute; top: 20px; right: 20px;
-      width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.35s var(--ease); z-index: 1;
-    }
-    .p-cell-arrow svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.28); fill: none; stroke-width: 2; transition: all 0.3s; }
-    .p-cell:hover .p-cell-arrow { background: var(--orange); border-color: var(--orange); }
-    .p-cell:hover .p-cell-arrow svg { stroke: var(--white); }
-    .p-cell.tall { grid-row: span 2; min-height: 393px; }
-    @media(max-width:1000px) { .p-grid{grid-template-columns:1fr 1fr;} .p-cell.tall{grid-row:span 1;min-height:196px;} }
-    @media(max-width:600px)  { .p-grid{grid-template-columns:1fr;} }
+/* ============================================================
+   PARTNERS GRID
+============================================================ */
+.partners { padding: 96px 0; background: var(--white); position: relative; overflow: hidden; }
+.partners::before {
+  content: 'NETWORK';
+  position: absolute; bottom: -24px; right: -10px;
+  font-family: var(--fh); font-size: clamp(120px,14vw,220px);
+  font-weight: 900; color: rgba(0,0,0,0.04); line-height: 1;
+  pointer-events: none; user-select: none; letter-spacing: -8px; white-space: nowrap;
+}
+.p-hd {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 56px; gap: 24px; flex-wrap: wrap; position: relative; z-index: 1;
+}
+.p-hd-label {
+  font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.p-hd-label::before { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
+.p-hd-title {
+  font-family: var(--fh); font-size: clamp(28px, 3vw, 42px);
+  font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: -0.5px;
+}
+.p-hd-title span { color: var(--orange); }
+.p-hd-count { font-family: var(--fh); font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.28); letter-spacing: 2px; text-transform: uppercase; padding-bottom: 4px; }
+.p-grid {
+  display: grid; grid-template-columns: 1.7fr 1fr 1fr 1.4fr;
+  gap: 1px; background: rgba(0,0,0,0.09); position: relative; z-index: 1;
+}
+.p-cell {
+  background: var(--off); position: relative; overflow: hidden;
+  padding: 40px 36px 36px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 196px; text-decoration: none; cursor: pointer;
+  transition: background 0.4s var(--ease);
+}
+.p-cell:hover { background: #eceae7; }
+/* Orange top bar reveal */
+.p-cell::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--orange); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.p-cell:hover::after { transform: scaleX(1); }
+.p-cell-num {
+  font-family: var(--fh); font-size: clamp(88px, 10vw, 148px);
+  font-weight: 900; color: rgba(0,0,0,0.06); line-height: 1; letter-spacing: -6px;
+  position: absolute; bottom: -20px; right: 8px;
+  pointer-events: none; user-select: none; transition: color 0.4s;
+}
+.p-cell:hover .p-cell-num { color: rgba(255,122,0,0.13); }
+.p-cell-top { position: relative; z-index: 1; }
+.p-cell-name {
+  font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(0,0,0,0.48); margin-bottom: 3px;
+  transition: color 0.3s;
+}
+.p-cell:hover .p-cell-name { color: var(--orange); }
+.p-cell-type { font-size: 11px; color: rgba(0,0,0,0.38); }
+.p-cell-logo { position: relative; z-index: 1; }
+.p-cell-logo img {
+  height: 44px; /* down from 56px */
+  width: auto; 
+  max-width: 130px; /* down from 160px */
+  object-fit: contain;
+  opacity: 0.75; display: block;
+  transition: opacity 0.35s, transform 0.4s var(--ease);
+}
+.p-cell:hover .p-cell-logo img { opacity: 1; transform: translateY(-3px); }
+/* Logos that were white-inverted now go dark */
+.p-cell-logo img.logo-white { filter: brightness(0); }
+.p-cell-arrow {
+  position: absolute; top: 20px; right: 20px;
+  width: 32px; height: 32px; border: 1px solid rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.35s var(--ease); z-index: 1;
+}
+.p-cell-arrow svg { width: 14px; height: 14px; stroke: rgba(0,0,0,0.28); fill: none; stroke-width: 2; transition: all 0.3s; }
+.p-cell:hover .p-cell-arrow { background: var(--orange); border-color: var(--orange); }
+.p-cell:hover .p-cell-arrow svg { stroke: var(--white); }
+.p-cell.tall { grid-row: span 2; min-height: 393px; }
+@media(max-width:1000px) { .p-grid{grid-template-columns:1fr 1fr;} .p-cell.tall{grid-row:span 1;min-height:196px;} }
+@media(max-width:600px)  { .p-grid{grid-template-columns:1fr;} }
 
     /* ============================================================
        FOOTER
@@ -1133,11 +1137,7 @@
   <div class="hero-over"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-kicker">
-      <div class="hk-dot"></div>
-      <div class="hk-line"></div>
-      <span class="hk-txt">South Africa's Good News Platform</span>
-    </div>
+
     <h1 class="hero-h1">
       <span class="line">South Africa</span>
       <span class="line">Is Winning.</span>
@@ -1175,6 +1175,364 @@
   </div>
 </div>
 
+<!--
+  ============================================================
+  DROP-IN SECTION: FOR THE DECISION MAKER
+  Insert this block immediately after the .mission-bar div
+  and before the .why section in index.html.
+  Uses existing CSS variables and animation classes.
+  No new dependencies required.
+  ============================================================
+-->
+
+<style>
+  /* ── B2B Section Styles ── */
+  .b2b-decision {
+    background: var(--off);
+    padding: 96px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Large ghost text watermark */
+  .b2b-decision::before {
+    content: 'PROOF';
+    position: absolute;
+    bottom: -48px;
+    right: -24px;
+    font-family: var(--fh);
+    font-size: clamp(160px, 20vw, 300px);
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -10px;
+  }
+
+  .b2b-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Top header */
+  .b2b-header {
+    max-width: 760px;
+    margin-bottom: 64px;
+  }
+
+  .b2b-overline {
+    font-family: var(--fh);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .b2b-overline::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .b2b-headline {
+    font-family: var(--fh);
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1.08;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .b2b-headline span {
+    color: var(--orange);
+  }
+
+  .b2b-intro {
+    font-size: 17px;
+    color: var(--mid);
+    line-height: 1.82;
+    max-width: 640px;
+  }
+
+  /* Three pain-point cards */
+  .b2b-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.08);
+    margin-bottom: 56px;
+  }
+
+  .b2b-card {
+    background: var(--white);
+    padding: 44px 36px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+
+  /* Orange top bar reveal on hover */
+  .b2b-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+
+  .b2b-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  .b2b-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Ghost number behind each card */
+  .b2b-card-ghost {
+    position: absolute;
+    bottom: -24px;
+    right: -8px;
+    font-family: var(--fh);
+    font-size: 140px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -6px;
+    transition: color 0.4s;
+  }
+
+  .b2b-card:hover .b2b-card-ghost {
+    color: rgba(255, 122, 0, 0.07);
+  }
+
+  /* Quote mark — human touch */
+  .b2b-card-quote-mark {
+    font-family: Georgia, serif;
+    font-size: 64px;
+    color: rgba(255, 122, 0, 0.18);
+    line-height: 0.8;
+    margin-bottom: 20px;
+    display: block;
+    letter-spacing: -2px;
+  }
+
+  /* The "voice" — the real human pain point */
+  .b2b-card-voice {
+    font-family: var(--fh);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.45;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  /* Divider */
+  .b2b-card-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--orange);
+    margin-bottom: 20px;
+    transition: width 0.4s var(--ease);
+  }
+
+  .b2b-card:hover .b2b-card-divider {
+    width: 56px;
+  }
+
+  /* The answer */
+  .b2b-card-answer {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  /* Bottom CTA row */
+  .b2b-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding: 40px 48px;
+    background: var(--black);
+    position: relative;
+    z-index: 1;
+  }
+
+  .b2b-bottom-left {
+    max-width: 540px;
+  }
+
+  .b2b-bottom-label {
+    font-family: var(--fh);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .b2b-bottom-title {
+    font-family: var(--fh);
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .b2b-bottom-body {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.75;
+  }
+
+  .b2b-bottom-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  /* Reuse existing .btn classes from index.html */
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .b2b-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .b2b-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 36px 24px;
+    }
+
+    .b2b-bottom-ctas {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .b2b-bottom-ctas .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .b2b-card {
+      padding: 36px 24px 32px;
+    }
+  }
+</style>
+
+
+<section class="b2b-decision">
+  <div class="container b2b-inner">
+
+    <!-- Header -->
+    <div class="b2b-header rv">
+      <div class="b2b-overline">For Corporate Partners and CSI Teams</div>
+      <h2 class="b2b-headline">
+        You Are Doing the Work.<br />
+        Let Us Make Sure <span>Everyone Sees It.</span>
+      </h2>
+      <p class="b2b-intro">
+        Behind every CSI budget is a person who has to stand in a boardroom and explain what the money actually did. Ferguson Media was built for that moment. We turn your social investment into documented, shareable, credible proof that travels from the community all the way to your annual report.
+      </p>
+    </div>
+
+    <!-- Pain point cards -->
+    <div class="b2b-cards">
+
+      <!-- Card 1 -->
+      <div class="b2b-card rv d1">
+        <div class="b2b-card-ghost">01</div>
+        <span class="b2b-card-quote-mark">"</span>
+        <p class="b2b-card-voice">
+          We funded something real. But we have nothing to show the board except a spreadsheet and a thank you letter.
+        </p>
+        <div class="b2b-card-divider"></div>
+        <p class="b2b-card-answer">
+          Ferguson Media produces broadcast standard written stories, photography, and video that document exactly what your investment created. You walk into that boardroom with verified evidence, not a slide deck of promises. The story lives permanently on the Good News Portal so anyone can find it, long after the meeting ends.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="b2b-card rv d2">
+        <div class="b2b-card-ghost">02</div>
+        <span class="b2b-card-quote-mark">"</span>
+        <p class="b2b-card-voice">
+          Our CSI report shows we spent the money. It does not show what it meant to the people who received it.
+        </p>
+        <div class="b2b-card-divider"></div>
+        <p class="b2b-card-answer">
+          Numbers tell investors what happened. Stories tell communities that someone cared. Our solutions journalism approach puts real names, real places, and real outcomes into the record. When your stakeholders read it, they do not see a compliance document. They see the reason your brand showed up.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="b2b-card rv d3">
+        <div class="b2b-card-ghost">03</div>
+        <span class="b2b-card-quote-mark">"</span>
+        <p class="b2b-card-voice">
+          We want our brand to stand for something. But our marketing feels like it is talking to everyone and reaching no one.
+        </p>
+        <div class="b2b-card-divider"></div>
+        <p class="b2b-card-answer">
+          Being written into a real impact story is different from being placed next to one. Ferguson Media does not put your logo beside content. We build your brand into the story as the reason it happened. That is the kind of trust that television spots and sponsored posts have never been able to buy.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA bar -->
+    <div class="b2b-bottom rv">
+      <div class="b2b-bottom-left">
+        <div class="b2b-bottom-label">Ready When You Are</div>
+        <div class="b2b-bottom-title">
+          Let's turn your next CSI investment into a story worth telling.
+        </div>
+        <p class="b2b-bottom-body">
+          Start with a conversation. We will show you exactly how your brand's work gets documented, distributed, and remembered.
+        </p>
+      </div>
+      <div class="b2b-bottom-ctas">
+        <a href="partner.html" class="btn btn-or">
+          View Impact Packages
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn-owh">
+          Talk to the Team
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
 <!-- ============================================================
      WHY SECTION
 ============================================================ -->
