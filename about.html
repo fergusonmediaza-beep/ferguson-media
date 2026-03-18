@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
     :root {
       --orange:       #ff8200;
       --orange-dark:  #e07200;
@@ -26,133 +29,417 @@
       --border-dark:  rgba(0,0,0,0.1);
       --font-head:    'Poppins', sans-serif;
       --font-body:    'Public Sans', sans-serif;
+      --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
       --transition:   0.25s ease;
       --max:          1280px;
-      --section-pad:  96px 0;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: #000; }
-    body { font-family: var(--font-body); color: var(--black); background: var(--white); overflow-x: hidden; line-height: 1.6; max-width: 100vw; }
+    body {
+      font-family: var(--font-body);
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+      max-width: 100vw;
+      /* Page fade-in — coordinated with loader exit */
+      opacity: 0;
+      transition: opacity 0.55s var(--ease);
+    }
+    body.fm-ready { opacity: 1; }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
 
     .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; width: 100%; }
-    .section-label { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; display: block; }
+    .section-label {
+      font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 16px; display: block;
+    }
 
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: var(--font-head); font-size: 14px; font-weight: 700; border-radius: 4px; transition: var(--transition); cursor: pointer; border: none; white-space: nowrap; }
+    /* ============================================================
+       ANIMATION SYSTEM — same reusable classes as index.html
+    ============================================================ */
+
+    /* Fade Up */
+    .rv {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .rv.on { opacity: 1; transform: translateY(0); }
+
+    /* Fade Left */
+    .rv-l {
+      opacity: 0;
+      transform: translateX(-44px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .rv-l.on { opacity: 1; transform: translateX(0); }
+
+    /* Fade Right */
+    .rv-r {
+      opacity: 0;
+      transform: translateX(44px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .rv-r.on { opacity: 1; transform: translateX(0); }
+
+    /* Fade Only */
+    .rv-f {
+      opacity: 0;
+      transition: opacity 0.7s var(--ease-out);
+    }
+    .rv-f.on { opacity: 1; }
+
+    /* Stagger delays */
+    .d1 { transition-delay: 0.05s; }
+    .d2 { transition-delay: 0.12s; }
+    .d3 { transition-delay: 0.19s; }
+    .d4 { transition-delay: 0.26s; }
+    .d5 { transition-delay: 0.33s; }
+    .d6 { transition-delay: 0.40s; }
+    .d7 { transition-delay: 0.47s; }
+    .d8 { transition-delay: 0.54s; }
+
+    /* ============================================================
+       PAGE LOADER — standard spinner (same on all pages)
+    ============================================================ */
+    .page-loader {
+      position: fixed; inset: 0; z-index: 9998; background: #000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.7s var(--ease), visibility 0.7s;
+    }
+    .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-wordmark {
+      font-family: var(--font-head); font-size: 20px; font-weight: 900;
+      color: var(--white); letter-spacing: 4px; text-transform: uppercase;
+      text-align: center; margin-bottom: 28px;
+    }
+    .loader-wordmark span { color: var(--orange); }
+    .loader-line-bg {
+      width: 160px; height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto; overflow: hidden;
+    }
+    .loader-line {
+      height: 100%; background: var(--orange);
+      animation: ll 1.6s var(--ease) forwards;
+    }
+    @keyframes ll { from { width: 0; } to { width: 100%; } }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; font-family: var(--font-head); font-size: 14px; font-weight: 700;
+      border-radius: 4px; transition: all 0.3s var(--ease);
+      cursor: pointer; border: none; white-space: nowrap;
+    }
+    .btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s var(--ease); }
+    .btn:hover svg { transform: translateX(4px); }
     .btn-primary { background: var(--orange); color: var(--white); }
-    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.45); }
-    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,130,0,0.28); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.35); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 
-    /* NAVBAR */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 40px; height: 80px; display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); transition: var(--transition); }
-    .navbar.scrolled { background: #000; box-shadow: 0 4px 32px rgba(0,0,0,0.5); }
-    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-    .nav-logo img { height: 56px; width: auto; object-fit: contain; display: block; }
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 40px; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      /* Consistent entrance animation across all pages */
+      animation: navIn 0.7s var(--ease) 0.3s both;
+      transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease),
+                  height 0.4s var(--ease), border-color 0.4s var(--ease),
+                  backdrop-filter 0.4s var(--ease);
+    }
+    @keyframes navIn {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .navbar.scrolled {
+      background: rgba(10,10,10,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+      height: 68px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; transition: opacity 0.25s; }
+    .nav-logo:hover { opacity: 0.82; }
+    .nav-logo img { height: 56px; width: auto; object-fit: contain; display: block; transition: height 0.4s var(--ease); }
+    .navbar.scrolled .nav-logo img { height: 44px; }
     .nav-logo-text { font-family: var(--font-head); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 1px; line-height: 1; }
     .nav-logo-text span { color: var(--orange); }
     .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
-    .nav-links a { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); padding: 8px 14px; border-radius: 4px; transition: var(--transition); }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.07); }
+    .nav-links a {
+      font-family: var(--font-head); font-size: 14px; font-weight: 600;
+      color: rgba(255,255,255,0.65); padding: 8px 14px; border-radius: 4px;
+      position: relative; transition: color 0.25s;
+    }
+    /* Underline draw — same as index.html */
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px;
+      height: 1.5px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--white); }
+    .nav-links a.active::after { transform: scaleX(1); }
     .nav-right { display: flex; align-items: center; gap: 12px; }
-    .nav-partner-btn { background: var(--orange); color: var(--white); font-family: var(--font-head); font-size: 13px; font-weight: 700; padding: 11px 22px; border-radius: 4px; transition: var(--transition); white-space: nowrap; }
-    .nav-partner-btn:hover { background: var(--orange-dark); }
-    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+    .nav-partner-btn {
+      background: var(--orange); color: var(--white);
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      padding: 11px 22px; border-radius: 4px; white-space: nowrap;
+      transition: background 0.25s, transform 0.25s var(--ease), box-shadow 0.25s;
+    }
+    .nav-partner-btn:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,130,0,0.28); }
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 26px; height: 2px; background: var(--white);
+      border-radius: 2px; transition: all 0.35s var(--ease);
+    }
+    /* Hamburger → X morph */
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* SIDEBAR */
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1100; opacity: 0; transition: opacity 0.3s ease; }
+    /* ============================================================
+       SIDEBAR
+    ============================================================ */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72); z-index: 1100;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
     .sidebar-overlay.active { display: block; opacity: 1; }
-    .sidebar { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: #000; z-index: 1200; transition: right 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.06); }
+    .sidebar {
+      position: fixed; top: 0; right: -320px; width: 300px; height: 100vh;
+      background: #000; z-index: 1200;
+      transition: right 0.45s var(--ease);
+      display: flex; flex-direction: column; overflow-y: auto;
+      border-left: 1px solid rgba(255,255,255,0.06);
+    }
     .sidebar.open { right: 0; }
-    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); min-height: 80px; }
+    /* Staggered link entrance */
+    .sidebar.open .sidebar-nav a { animation: sbLinkIn 0.4s var(--ease) both; }
+    .sidebar.open .sidebar-nav a:nth-child(1) { animation-delay: 0.08s; }
+    .sidebar.open .sidebar-nav a:nth-child(2) { animation-delay: 0.14s; }
+    .sidebar.open .sidebar-nav a:nth-child(3) { animation-delay: 0.20s; }
+    .sidebar.open .sidebar-nav a:nth-child(4) { animation-delay: 0.26s; }
+    .sidebar.open .sidebar-nav a:nth-child(5) { animation-delay: 0.32s; }
+    @keyframes sbLinkIn {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .sidebar-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); min-height: 80px;
+    }
     .sidebar-logo-wrap { display: flex; align-items: center; gap: 10px; }
     .sidebar-logo-wrap img { height: 40px; width: auto; object-fit: contain; }
     .sidebar-logo-text { font-family: var(--font-head); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 0.5px; }
     .sidebar-logo-text span { color: var(--orange); }
-    .sidebar-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.65); font-size: 26px; line-height: 1; padding: 4px; transition: color var(--transition); }
-    .sidebar-close:hover { color: var(--white); }
+    .sidebar-close {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.55); font-size: 26px; line-height: 1; padding: 4px;
+      transition: color 0.2s, transform 0.3s var(--ease);
+    }
+    .sidebar-close:hover { color: var(--white); transform: rotate(90deg); }
     .sidebar-nav { padding: 24px 16px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
-    .sidebar-nav a { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.75); padding: 14px 16px; border-radius: 6px; transition: var(--transition); display: block; }
-    .sidebar-nav a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
-    .sidebar-partner { margin: 8px 16px 32px; display: block; background: var(--orange); color: var(--white); font-family: var(--font-head); font-size: 15px; font-weight: 700; padding: 14px 20px; border-radius: 6px; text-align: center; transition: var(--transition); }
-    .sidebar-partner:hover { background: var(--orange-dark); }
-    .sidebar-socials { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; gap: 10px; flex-wrap: wrap; }
-    .sidebar-socials a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-    .sidebar-socials a:hover { border-color: var(--orange); background: rgba(255,130,0,0.1); }
-    .sidebar-socials svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.65); }
+    .sidebar-nav a {
+      font-family: var(--font-head); font-size: 16px; font-weight: 600;
+      color: rgba(255,255,255,0.65); padding: 14px 16px; border-radius: 6px;
+      transition: color 0.25s, background 0.25s, padding-left 0.3s var(--ease); display: block;
+    }
+    .sidebar-nav a:hover { color: var(--white); background: rgba(255,255,255,0.06); padding-left: 22px; }
+    .sidebar-partner {
+      margin: 8px 16px 32px; display: block; background: var(--orange); color: var(--white);
+      font-family: var(--font-head); font-size: 15px; font-weight: 700;
+      padding: 14px 20px; border-radius: 6px; text-align: center;
+      transition: background 0.25s, transform 0.25s var(--ease);
+    }
+    .sidebar-partner:hover { background: var(--orange-dark); transform: translateY(-2px); }
+    .sidebar-socials {
+      padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .sidebar-socials a {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s var(--ease);
+    }
+    .sidebar-socials a:hover { border-color: var(--orange); background: rgba(255,130,0,0.1); transform: translateY(-3px); }
+    .sidebar-socials svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.6); transition: fill 0.25s; }
     .sidebar-socials a:hover svg { fill: var(--orange); }
 
-    /* HERO */
-    .about-hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; background: #000; overflow: hidden; padding-top: 80px; }
-    .about-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center top; }
-    .about-hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.72) 45%, rgba(0,0,0,0.88) 100%); }
-    .about-hero-bg-text { position: absolute; bottom: -40px; right: -20px; font-family: var(--font-head); font-size: clamp(120px, 18vw, 260px); font-weight: 900; color: rgba(255,255,255,0.025); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -4px; z-index: 1; }
-    .about-hero-content { position: relative; z-index: 2; width: 100%; max-width: var(--max); margin: 0 auto; padding: 80px 40px 80px; }
-    .about-hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    /* ============================================================
+       HERO — staggered entrance (matches index.html cadence)
+    ============================================================ */
+    .about-hero {
+      position: relative; min-height: 100vh; display: flex; align-items: flex-end;
+      background: #000; overflow: hidden; padding-top: 80px;
+    }
+    .about-hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      background-size: cover; background-position: center top;
+      /* Gentle Ken Burns — same as index.html hero */
+      animation: heroBG 18s ease-in-out infinite alternate;
+    }
+    @keyframes heroBG {
+      from { transform: scale(1.0); }
+      to   { transform: scale(1.05); }
+    }
+    .about-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.72) 45%, rgba(0,0,0,0.88) 100%);
+    }
+    .about-hero-bg-text {
+      position: absolute; bottom: -40px; right: -20px;
+      font-family: var(--font-head); font-size: clamp(120px, 18vw, 260px);
+      font-weight: 900; color: rgba(255,255,255,0.025); line-height: 1;
+      pointer-events: none; user-select: none; letter-spacing: -4px; z-index: 1;
+    }
+    .about-hero-content {
+      position: relative; z-index: 2; width: 100%;
+      max-width: var(--max); margin: 0 auto; padding: 80px 40px 80px;
+    }
+
+    /* Hero stagger — same delays as index.html */
+    .about-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px; margin-bottom: 32px;
+      opacity: 0; animation: hf 0.7s var(--ease) 0.5s forwards;
+    }
     .about-hero-eyebrow-line { width: 40px; height: 2px; background: var(--orange); border-radius: 2px; }
-    .about-hero-eyebrow span { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); }
-    .about-hero-title { font-family: var(--font-head); font-size: clamp(48px, 7.5vw, 100px); font-weight: 900; color: var(--white); line-height: 1.0; margin-bottom: 32px; max-width: 900px; }
+    .about-hero-eyebrow span {
+      font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--orange);
+    }
+    .about-hero-title {
+      font-family: var(--font-head); font-size: clamp(48px, 7.5vw, 100px);
+      font-weight: 900; color: var(--white); line-height: 1.0; margin-bottom: 32px; max-width: 900px;
+      opacity: 0; animation: hf 0.95s var(--ease) 0.75s forwards;
+    }
     .about-hero-title .accent { color: var(--orange); }
-    .about-hero-body { font-size: 18px; color: rgba(255,255,255,0.62); max-width: 580px; line-height: 1.8; margin-bottom: 48px; }
-    .about-hero-stats { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 40px; flex-wrap: wrap; }
+    .about-hero-body {
+      font-size: 18px; color: rgba(255,255,255,0.55); max-width: 580px; line-height: 1.8; margin-bottom: 48px;
+      opacity: 0; animation: hf 0.85s var(--ease) 1.0s forwards;
+    }
+    .about-hero-stats {
+      display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 40px; flex-wrap: wrap;
+      opacity: 0; animation: hf 0.85s var(--ease) 1.3s forwards;
+    }
     .about-hero-stat { padding: 0 48px 0 0; border-right: 1px solid rgba(255,255,255,0.08); margin-right: 48px; }
     .about-hero-stat:last-child { border-right: none; margin-right: 0; }
     .about-hero-stat-num { font-family: var(--font-head); font-size: 36px; font-weight: 900; color: var(--white); line-height: 1; }
     .about-hero-stat-num span { color: var(--orange); }
-    .about-hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 6px; font-weight: 500; letter-spacing: 0.5px; }
+    .about-hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.38); margin-top: 6px; font-weight: 500; letter-spacing: 0.5px; }
 
-    /* TICKER STRIP */
+    @keyframes hf {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       TICKER STRIP
+    ============================================================ */
     .strip { background: var(--orange); padding: 22px 0; overflow: hidden; }
-    .strip-track { display: flex; gap: 0; animation: ticker 28s linear infinite; white-space: nowrap; width: max-content; }
+    .strip-track {
+      display: flex; gap: 0;
+      animation: ticker 28s linear infinite; white-space: nowrap; width: max-content;
+    }
     .strip-track:hover { animation-play-state: paused; }
-    .strip-item { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--white); padding: 0 40px; display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
-    .strip-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; flex-shrink: 0; }
+    .strip-item {
+      font-family: var(--font-head); font-size: 14px; font-weight: 700;
+      color: var(--white); padding: 0 40px; display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+    }
+    .strip-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.45); border-radius: 50%; flex-shrink: 0; }
     @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* WHAT WE BELIEVE */
+    /* ============================================================
+       WHAT WE BELIEVE
+    ============================================================ */
     .believe { background: var(--black); padding: 96px 0; position: relative; overflow: hidden; }
-    .believe::after { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.06) 0%, transparent 65%); pointer-events: none; }
+    .believe::after {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,130,0,0.055) 0%, transparent 65%);
+      pointer-events: none;
+    }
     .believe-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
     .believe-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
     .believe-eyebrow-line { width: 32px; height: 2px; background: var(--orange); border-radius: 2px; }
     .believe-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 28px; }
     .believe-title span { color: var(--orange); }
-    .believe-body { font-size: 16px; line-height: 1.9; color: rgba(255,255,255,0.56); margin-bottom: 16px; }
+    .believe-body { font-size: 16px; line-height: 1.9; color: rgba(255,255,255,0.52); margin-bottom: 16px; }
     .believe-pillars { display: flex; flex-direction: column; gap: 0; }
+    .believe-quote {
+      margin-top: 36px; background: rgba(255,130,0,0.07); border-left: 3px solid var(--orange);
+      padding: 24px 28px; border-radius: 0 10px 10px 0;
+      transition: background 0.3s;
+    }
+    .believe-quote:hover { background: rgba(255,130,0,0.11); }
+    .believe-quote p { font-family: var(--font-head); font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.7; }
 
-    /* ACCORDION */
+    /* ============================================================
+       ACCORDION
+    ============================================================ */
     .accordion-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
     .accordion-item:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
-    .accordion-trigger { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; text-align: left; transition: var(--transition); }
+    .accordion-trigger {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 24px 0; text-align: left; transition: var(--transition);
+    }
     .accordion-trigger:hover .accordion-title { color: var(--orange); }
     .accordion-trigger-left { display: flex; align-items: center; gap: 16px; }
     .accordion-num { font-family: var(--font-head); font-size: 10px; font-weight: 800; color: var(--orange); letter-spacing: 2px; flex-shrink: 0; }
-    .accordion-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--white); transition: color var(--transition); }
-    .accordion-icon { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--transition); }
-    .accordion-icon svg { width: 12px; height: 12px; fill: none; stroke: rgba(255,255,255,0.5); stroke-width: 2.5; transition: transform var(--transition); }
+    .accordion-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--white); transition: color 0.25s; }
+    .accordion-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all 0.3s var(--ease);
+    }
+    .accordion-icon svg { width: 12px; height: 12px; fill: none; stroke: rgba(255,255,255,0.45); stroke-width: 2.5; transition: transform 0.35s var(--ease); }
     .accordion-item.open .accordion-icon { background: var(--orange); border-color: var(--orange); }
     .accordion-item.open .accordion-icon svg { stroke: #fff; transform: rotate(180deg); }
     .accordion-item.open .accordion-title { color: var(--orange); }
-    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; opacity: 0; }
+    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; opacity: 0; }
     .accordion-item.open .accordion-body { max-height: 300px; opacity: 1; }
-    .accordion-content { font-size: 14px; color: rgba(255,255,255,0.48); line-height: 1.8; padding: 0 0 24px 44px; }
+    .accordion-content { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.8; padding: 0 0 24px 44px; }
 
-    /* Cream accordions */
+    /* Cream variant */
     .accordion-cream .accordion-item { border-bottom-color: rgba(0,0,0,0.08); }
     .accordion-cream .accordion-item:first-child { border-top-color: rgba(0,0,0,0.08); }
     .accordion-cream .accordion-title { color: var(--black); }
     .accordion-cream .accordion-trigger:hover .accordion-title { color: var(--orange); }
     .accordion-cream .accordion-icon { border-color: rgba(0,0,0,0.15); }
-    .accordion-cream .accordion-icon svg { stroke: rgba(0,0,0,0.4); }
+    .accordion-cream .accordion-icon svg { stroke: rgba(0,0,0,0.38); }
     .accordion-cream .accordion-item.open .accordion-title { color: var(--orange); }
     .accordion-cream .accordion-content { color: var(--mid); }
 
-    /* WHY GOOD NEWS */
+    /* ============================================================
+       WHY GOOD NEWS
+    ============================================================ */
     .why-good { background: var(--cream); padding: 96px 0; position: relative; overflow: hidden; }
-    .why-good::before { content: 'IMPACT'; position: absolute; top: 30px; right: -10px; font-family: var(--font-head); font-size: 180px; font-weight: 900; color: rgba(0,0,0,0.04); line-height: 1; pointer-events: none; user-select: none; }
+    .why-good::before {
+      content: 'IMPACT'; position: absolute; top: 30px; right: -10px;
+      font-family: var(--font-head); font-size: 180px; font-weight: 900;
+      color: rgba(0,0,0,0.038); line-height: 1; pointer-events: none; user-select: none;
+    }
     .why-good-header { max-width: 700px; margin-bottom: 64px; position: relative; z-index: 1; }
     .why-good-title { font-family: var(--font-head); font-size: clamp(32px, 4.5vw, 58px); font-weight: 900; color: var(--black); line-height: 1.05; margin-bottom: 18px; }
     .why-good-title span { color: var(--orange); }
@@ -160,95 +447,139 @@
 
     /* Benefit cards */
     .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; position: relative; z-index: 1; }
-    .benefit-card { background: var(--white); padding: 36px 32px; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: default; }
-    .benefit-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
-    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+    .benefit-card {
+      background: var(--white); padding: 36px 32px;
+      position: relative; overflow: hidden;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      cursor: default;
+    }
+    /* Bottom border reveal — consistent with index.html ben-cell */
+    .benefit-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--orange); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
+    .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 20px 52px rgba(0,0,0,0.1); }
     .benefit-card:hover::after { transform: scaleX(1); }
-    .benefit-icon { width: 52px; height: 52px; background: var(--orange-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .benefit-icon {
+      width: 52px; height: 52px; background: var(--orange-pale);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+      transition: background 0.3s, transform 0.3s var(--ease);
+    }
+    .benefit-card:hover .benefit-icon { background: rgba(255,130,0,0.15); transform: scale(1.08); }
     .benefit-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 2; }
     .benefit-number { position: absolute; top: 24px; right: 24px; font-family: var(--font-head); font-size: 48px; font-weight: 900; color: rgba(0,0,0,0.04); line-height: 1; }
     .benefit-title { font-family: var(--font-head); font-size: 17px; font-weight: 800; color: var(--black); margin-bottom: 10px; line-height: 1.25; }
     .benefit-body { font-size: 14px; color: var(--mid); line-height: 1.75; }
 
-    /* HOW WE WORK */
+    /* ============================================================
+       HOW WE WORK
+    ============================================================ */
     .how-we-work { background: var(--black); padding: 96px 0; position: relative; overflow: hidden; }
-    .how-we-work::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.05) 0%, transparent 65%); pointer-events: none; }
+    .how-we-work::after {
+      content: ''; position: absolute; bottom: -150px; left: -150px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,130,0,0.045) 0%, transparent 65%); pointer-events: none;
+    }
     .how-header { text-align: center; max-width: 640px; margin: 0 auto 72px; position: relative; z-index: 1; }
     .how-title { font-family: var(--font-head); font-size: clamp(30px, 4vw, 52px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
     .how-title span { color: var(--orange); }
-    .how-sub { font-size: 16px; color: rgba(255,255,255,0.48); line-height: 1.7; }
-    .pillar-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.06); }
-    .pillar { background: var(--black-3); padding: 48px 36px; display: flex; flex-direction: column; gap: 20px; transition: background 0.3s ease; }
+    .how-sub { font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+    .pillar-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.06); position: relative; z-index: 1;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .pillar {
+      background: var(--black-3); padding: 48px 36px;
+      display: flex; flex-direction: column; gap: 20px;
+      transition: background 0.35s;
+      position: relative; overflow: hidden;
+    }
+    /* Orange top bar on pillar hover */
+    .pillar::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--orange); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
     .pillar:hover { background: var(--black-4); }
+    .pillar:hover::before { transform: scaleX(1); }
     .pillar-num { font-family: var(--font-head); font-size: 11px; font-weight: 800; color: var(--orange); letter-spacing: 3px; }
-    .pillar-icon { width: 56px; height: 56px; border-radius: 12px; background: rgba(255,130,0,0.1); display: flex; align-items: center; justify-content: center; }
+    .pillar-icon {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: rgba(255,130,0,0.1); display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, transform 0.3s var(--ease);
+    }
+    .pillar:hover .pillar-icon { background: rgba(255,130,0,0.18); transform: scale(1.06); }
     .pillar-icon svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; stroke-width: 1.8; }
     .pillar-title { font-family: var(--font-head); font-size: 20px; font-weight: 800; color: var(--white); line-height: 1.2; }
-    .pillar-body { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.8; }
-    .pillar-tag { display: inline-block; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); background: rgba(255,130,0,0.1); padding: 5px 12px; border-radius: 20px; align-self: flex-start; }
+    .pillar-body { font-size: 14px; color: rgba(255,255,255,0.42); line-height: 1.8; }
+    .pillar-tag {
+      display: inline-block; font-family: var(--font-head); font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange);
+      background: rgba(255,130,0,0.1); padding: 5px 12px; border-radius: 20px; align-self: flex-start;
+    }
 
-    /* OUR STORY */
+    /* ============================================================
+       OUR STORY
+    ============================================================ */
     .our-story { background: var(--cream); padding: 96px 0; position: relative; overflow: hidden; }
-    .our-story::before { content: 'STORY'; position: absolute; top: 40px; right: -20px; font-family: var(--font-head); font-size: 200px; font-weight: 900; color: rgba(0,0,0,0.04); line-height: 1; pointer-events: none; user-select: none; }
+    .our-story::before {
+      content: 'STORY'; position: absolute; top: 40px; right: -20px;
+      font-family: var(--font-head); font-size: 200px; font-weight: 900;
+      color: rgba(0,0,0,0.035); line-height: 1; pointer-events: none; user-select: none;
+    }
     .story-inner { display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
     .story-sidebar { position: sticky; top: 100px; }
     .story-sidebar-label { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
     .story-sidebar-title { font-family: var(--font-head); font-size: clamp(28px, 3vw, 40px); font-weight: 900; color: var(--black); line-height: 1.1; margin-bottom: 28px; }
-    .story-sidebar-img { aspect-ratio: 3/4; background: #000; border-radius: 8px; overflow: hidden; position: relative; }
-    .story-sidebar-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
-    .story-sidebar-img-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 20px 16px; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); }
+    .story-sidebar-img {
+      aspect-ratio: 3/4; background: #000; border-radius: 8px; overflow: hidden; position: relative;
+    }
+    .story-sidebar-img img {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.85;
+      transition: transform 0.7s var(--ease), opacity 0.4s;
+    }
+    .story-sidebar-img:hover img { transform: scale(1.04); opacity: 1; }
+    .story-sidebar-img-label {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 20px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    }
     .story-sidebar-img-label p { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 1px; }
     .story-intro { font-size: 17px; color: var(--mid); line-height: 1.8; margin-bottom: 36px; }
 
-    /* TEAM */
+    /* ============================================================
+       TEAM
+    ============================================================ */
     .team { background: var(--black); padding: 96px 0; position: relative; overflow: hidden; }
-    .team::before { content: ''; position: absolute; bottom: -150px; left: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.06) 0%, transparent 65%); pointer-events: none; }
+    .team::before {
+      content: ''; position: absolute; bottom: -150px; left: -150px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,130,0,0.055) 0%, transparent 65%); pointer-events: none;
+    }
     .team-header { text-align: center; max-width: 600px; margin: 0 auto 64px; position: relative; z-index: 1; }
     .team-header-title { font-family: var(--font-head); font-size: clamp(32px, 4.5vw, 56px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
     .team-header-title span { color: var(--orange); }
-    .team-header-body { font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.75; }
+    .team-header-body { font-size: 17px; color: rgba(255,255,255,0.45); line-height: 1.75; }
 
-    /* TEAM TABS — desktop */
+    /* Team tabs */
     .team-tabs-wrap { position: relative; margin-bottom: 48px; z-index: 1; }
     .team-tabs-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 60px;
-      background: linear-gradient(to right, transparent, #000);
-      pointer-events: none;
-      border-radius: 0;
+      content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 60px;
+      background: linear-gradient(to right, transparent, #000); pointer-events: none;
     }
     .team-tabs {
-      display: flex;
-      gap: 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      position: relative;
+      display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory; position: relative;
     }
     .team-tabs::-webkit-scrollbar { display: none; }
-
     .team-tab {
-      font-family: var(--font-head);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      padding: 14px 24px 12px;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: color 0.2s, border-color 0.2s;
-      position: relative;
-      top: 1px;
-      scroll-snap-align: start;
+      font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.32);
+      background: none; border: none; border-bottom: 2px solid transparent;
+      padding: 14px 24px 12px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      transition: color 0.25s, border-color 0.25s; position: relative; top: 1px; scroll-snap-align: start;
     }
     .team-tab:hover { color: rgba(255,255,255,0.7); }
     .team-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
@@ -256,109 +587,135 @@
     .team-tab[data-dept="portal"].active { color: #4caf88; border-bottom-color: #4caf88; }
     .team-tab[data-dept="studio"].active { color: #e05a4e; border-bottom-color: #e05a4e; }
 
-    /* Mobile dept select (shown on small screens) */
+    /* Mobile select */
     .team-dept-select {
-      display: none;
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 8px;
-      color: var(--white);
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 14px 16px;
-      margin-bottom: 32px;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
+      display: none; width: 100%;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; color: var(--white);
+      font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      padding: 14px 16px; margin-bottom: 32px; cursor: pointer;
+      appearance: none; -webkit-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ff8200' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      background-size: 16px;
-      position: relative;
-      z-index: 1;
+      background-repeat: no-repeat; background-position: right 16px center; background-size: 16px; position: relative; z-index: 1;
     }
     .team-dept-select option { background: #111; color: var(--white); }
 
-    .team-panel { display: none; opacity: 0; animation: panelIn 0.3s ease forwards; position: relative; z-index: 1; }
-    .team-panel.active { display: block; }
-    @keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    /* Panel reveal — fade + translateY consistent with rv class */
+    .team-panel { display: none; position: relative; z-index: 1; }
+    .team-panel.active { display: block; animation: panelIn 0.45s var(--ease) forwards; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     .team-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start; }
-    .member-card { width: 200px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 28px 20px 22px; display: flex; flex-direction: column; align-items: center; transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; cursor: default; }
-    .member-card:hover { transform: translateY(-4px); background: rgba(255,130,0,0.06); border-color: rgba(255,130,0,0.25); box-shadow: 0 12px 32px rgba(255,130,0,0.12); }
-    .dept-radio   .member-card:hover { background: rgba(155,114,212,0.07); border-color: rgba(155,114,212,0.3); box-shadow: 0 12px 32px rgba(155,114,212,0.15); }
-    .dept-portal  .member-card:hover { background: rgba(76,175,136,0.07); border-color: rgba(76,175,136,0.3); box-shadow: 0 12px 32px rgba(76,175,136,0.15); }
-    .dept-studio  .member-card:hover { background: rgba(224,90,78,0.07); border-color: rgba(224,90,78,0.3); box-shadow: 0 12px 32px rgba(224,90,78,0.15); }
+
+    /* Member card — lift + glow on hover */
+    .member-card {
+      width: 200px; background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
+      padding: 28px 20px 22px; display: flex; flex-direction: column; align-items: center;
+      transition: transform 0.35s var(--ease), background 0.35s, border-color 0.35s, box-shadow 0.35s;
+      cursor: default;
+    }
+    .member-card:hover { transform: translateY(-6px); background: rgba(255,130,0,0.06); border-color: rgba(255,130,0,0.28); box-shadow: 0 16px 40px rgba(255,130,0,0.14); }
+    .dept-radio  .member-card:hover { background: rgba(155,114,212,0.07); border-color: rgba(155,114,212,0.3); box-shadow: 0 16px 40px rgba(155,114,212,0.15); }
+    .dept-portal .member-card:hover { background: rgba(76,175,136,0.07);  border-color: rgba(76,175,136,0.3);  box-shadow: 0 16px 40px rgba(76,175,136,0.15);  }
+    .dept-studio .member-card:hover { background: rgba(224,90,78,0.07);   border-color: rgba(224,90,78,0.3);   box-shadow: 0 16px 40px rgba(224,90,78,0.15);   }
 
     .member-avatar-wrap { position: relative; margin-bottom: 16px; }
-    .member-avatar { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; border: 2.5px solid var(--orange); background: #1a1a1a; flex-shrink: 0; }
-    .dept-radio   .member-avatar { border-color: #9b72d4; }
-    .dept-portal  .member-avatar { border-color: #4caf88; }
-    .dept-studio  .member-avatar { border-color: #e05a4e; }
-    .member-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .member-avatar {
+      width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+      border: 2.5px solid var(--orange); background: #1a1a1a; flex-shrink: 0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .member-card:hover .member-avatar { box-shadow: 0 0 0 4px rgba(255,130,0,0.18); }
+    .dept-radio  .member-avatar { border-color: #9b72d4; }
+    .dept-portal .member-avatar { border-color: #4caf88; }
+    .dept-studio .member-avatar { border-color: #e05a4e; }
+    .member-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s var(--ease); }
+    .member-card:hover .member-avatar img { transform: scale(1.06); }
     .member-avatar img.ph { object-fit: contain; padding: 8px; opacity: 0.3; }
 
-    .intern-badge { position: absolute; bottom: 0; right: -4px; background: var(--orange); color: #fff; font-family: var(--font-head); font-size: 9px; font-weight: 800; padding: 3px 7px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; border: 2px solid var(--black-3); white-space: nowrap; }
+    .intern-badge {
+      position: absolute; bottom: 0; right: -4px;
+      background: var(--orange); color: #fff;
+      font-family: var(--font-head); font-size: 9px; font-weight: 800;
+      padding: 3px 7px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase;
+      border: 2px solid var(--black-3); white-space: nowrap;
+    }
     .dept-radio  .intern-badge { background: #9b72d4; }
     .dept-portal .intern-badge { background: #4caf88; }
     .dept-studio .intern-badge { background: #e05a4e; }
 
     .member-name { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--white); text-align: center; line-height: 1.3; margin-bottom: 10px; }
     .member-socials { display: flex; gap: 6px; align-items: center; justify-content: center; }
-    .member-socials a { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); transition: var(--transition); opacity: 0.6; }
-    .member-socials a:hover { opacity: 1; border-color: rgba(255,130,0,0.4); background: rgba(255,130,0,0.08); }
+    .member-socials a {
+      display: flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.25s var(--ease); opacity: 0.58;
+    }
+    .member-socials a:hover { opacity: 1; border-color: rgba(255,130,0,0.4); background: rgba(255,130,0,0.08); transform: translateY(-2px); }
     .member-socials svg { width: 13px; height: 13px; fill: rgba(255,255,255,0.7); }
 
-    /* JOIN CTA */
-    .team-join { margin-top: 64px; padding: 48px; background: rgba(255,130,0,0.07); border: 1px solid rgba(255,130,0,0.18); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; position: relative; z-index: 1; }
+    /* Join CTA */
+    .team-join {
+      margin-top: 64px; padding: 48px;
+      background: rgba(255,130,0,0.07); border: 1px solid rgba(255,130,0,0.18); border-radius: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+      position: relative; z-index: 1;
+      transition: background 0.35s, border-color 0.35s;
+    }
+    .team-join:hover { background: rgba(255,130,0,0.11); border-color: rgba(255,130,0,0.28); }
     .team-join-label { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
     .team-join-title { font-family: var(--font-head); font-size: clamp(20px, 2.5vw, 30px); font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 8px; }
-    .team-join-body { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 500px; line-height: 1.7; }
+    .team-join-body { font-size: 15px; color: rgba(255,255,255,0.48); max-width: 500px; line-height: 1.7; }
 
-    /* FOOTER */
+    /* ============================================================
+       FOOTER
+    ============================================================ */
     .footer { background: #000; padding: 80px 0 0; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 60px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 60px;
+      padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
     .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .footer-logo img { height: 48px; width: auto; object-fit: contain; }
     .footer-logo-text { font-family: var(--font-head); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 0.5px; }
     .footer-logo-text span { color: var(--orange); }
-    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 300px; margin-bottom: 28px; }
+    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.42); line-height: 1.7; max-width: 300px; margin-bottom: 28px; }
     .footer-socials { display: flex; gap: 10px; flex-wrap: wrap; }
-    .footer-social-link { width: 38px; height: 38px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-    .footer-social-link:hover { border-color: var(--orange); background: rgba(255,130,0,0.1); }
-    .footer-social-link svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.55); }
+    .footer-social-link {
+      width: 38px; height: 38px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.28s var(--ease);
+    }
+    .footer-social-link:hover { border-color: var(--orange); background: rgba(255,130,0,0.1); transform: translateY(-3px); }
+    .footer-social-link svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.5); transition: fill 0.25s; }
     .footer-social-link:hover svg { fill: var(--orange); }
     .footer-col-title { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--white); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
     .footer-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.45); transition: color var(--transition); }
-    .footer-links a:hover { color: var(--white); }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.42); transition: color 0.2s, padding-left 0.25s; }
+    .footer-links a:hover { color: var(--white); padding-left: 5px; }
     .footer-contact-item { display: flex; gap: 12px; margin-bottom: 16px; }
     .footer-contact-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
     .footer-contact-icon svg { width: 100%; height: 100%; stroke: var(--orange); fill: none; stroke-width: 2; }
-    .footer-contact-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
-    .footer-contact-text a { color: rgba(255,255,255,0.5); transition: color var(--transition); }
+    .footer-contact-text { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    .footer-contact-text a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
     .footer-contact-text a:hover { color: var(--orange); }
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 16px; flex-wrap: wrap; }
-    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.28); }
-    .footer-copy a { color: rgba(255,255,255,0.45); transition: color var(--transition); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.26); }
+    .footer-copy a { color: rgba(255,255,255,0.42); transition: color 0.2s; }
     .footer-copy a:hover { color: var(--white); }
     .footer-bottom-links { display: flex; gap: 24px; list-style: none; }
-    .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,0.28); transition: color var(--transition); }
-    .footer-bottom-links a:hover { color: rgba(255,255,255,0.65); }
+    .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,0.26); transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.62); }
     .footer-orange-bar { height: 4px; background: linear-gradient(90deg, var(--orange), transparent); }
 
-    /* PAGE LOADER */
-    .page-loader { position: fixed; inset: 0; z-index: 9998; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; transition: opacity 0.6s ease, visibility 0.6s ease; }
-    .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .page-loader-logo { font-family: var(--font-head); font-size: 22px; font-weight: 900; color: var(--white); letter-spacing: 2px; text-transform: uppercase; }
-    .page-loader-logo span { color: var(--orange); }
-    .page-loader-tagline { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: -28px; }
-    .loader { position: relative; width: 85px; height: 50px; background-repeat: no-repeat; background-image: linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0), linear-gradient(var(--orange) 50px, transparent 0); background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center; animation: rikSpikeRoll 0.65s linear infinite alternate; }
-    @keyframes rikSpikeRoll { 0% { background-size: 10px 3px; } 16% { background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px; } 33% { background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px; } 50% { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px; } 66% { background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px; } 83% { background-size: 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px; } 100% { background-size: 10px 3px, 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px; } }
-
-    /* RESPONSIVE */
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
     @media (max-width: 1024px) {
       .story-inner { grid-template-columns: 1fr; }
       .story-sidebar { position: static; }
@@ -368,7 +725,6 @@
       .benefit-grid { grid-template-columns: repeat(2, 1fr); }
       .pillar-row { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 768px) {
       .navbar { padding: 0 20px; height: 72px; }
       .nav-links, .nav-partner-btn { display: none; }
@@ -378,18 +734,14 @@
       .about-hero-content { padding: 64px 20px 64px; }
       .about-hero-stats { gap: 24px; }
       .about-hero-stat { padding: 0 24px 0 0; margin-right: 24px; }
-
-      /* Hide scrolling tabs, show select on mobile */
       .team-tabs-wrap { display: none; }
       .team-dept-select { display: block; }
-
       .team-grid { justify-content: center; }
       .team-join { flex-direction: column; align-items: flex-start; }
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
       .benefit-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 480px) {
       .member-card { width: 160px; }
       .about-hero-stat { border-right: none; }
@@ -398,13 +750,19 @@
 </head>
 <body>
 
+<!-- ============================================================
+     PAGE LOADER — standard Ferguson Media spinner (same on all pages)
+============================================================ -->
 <div class="page-loader" id="pageLoader">
-  <div class="page-loader-logo">FERGUSON <span>MEDIA</span></div>
-  <div class="page-loader-tagline">Shifting the Narrative</div>
-  <span class="loader"></span>
+  <div>
+    <div class="loader-wordmark">Ferguson <span>Media</span></div>
+    <div class="loader-line-bg"><div class="loader-line"></div></div>
+  </div>
 </div>
 
-<!-- NAVBAR -->
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
 <nav class="navbar" id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';" />
@@ -428,10 +786,7 @@
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <div class="sidebar-logo-wrap">
-      <img src="images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-      <span class="sidebar-logo-text" style="display:none;">FERGUSON <span>MEDIA</span></span>
-    </div>
+    <span class="sidebar-logo-text">FERGUSON <span>MEDIA</span></span>
     <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&#215;</button>
   </div>
   <nav class="sidebar-nav">
@@ -439,7 +794,6 @@
     <a href="about.html">About</a>
     <a href="news.html">Good News</a>
     <a href="partner.html">Partner With Us</a>
-
   </nav>
   <a href="contact.html" class="sidebar-partner">Contact Us</a>
   <div class="sidebar-socials">
@@ -451,7 +805,9 @@
   </div>
 </aside>
 
-<!-- HERO — fixed: now properly wrapped in section.about-hero -->
+<!-- ============================================================
+     HERO
+============================================================ -->
 <section class="about-hero">
   <div class="about-hero-bg" style="background-image:url('images/hero-bg.png');"></div>
   <div class="about-hero-overlay"></div>
@@ -487,7 +843,7 @@
 </section>
 
 <!-- TICKER -->
-<div class="strip">
+<div class="strip rv-f">
   <div class="strip-track" id="stripTrack">
     <span class="strip-item">Good news builds trust<div class="strip-dot"></div></span>
     <span class="strip-item">Good news drives investment<div class="strip-dot"></div></span>
@@ -516,34 +872,27 @@
   </div>
 </div>
 
-<!-- WHAT WE BELIEVE -->
+<!-- ============================================================
+     WHAT WE BELIEVE
+============================================================ -->
 <section class="believe">
   <div class="container">
     <div class="believe-inner">
-      <div class="believe-left">
+      <div class="believe-left rv-l">
         <div class="believe-eyebrow">
           <div class="believe-eyebrow-line"></div>
           <span class="section-label" style="margin-bottom:0;">Our Mission</span>
         </div>
-        <h2 class="believe-title">
-          We Build the Archive<br />
-          South Africa <span>Deserves.</span>
-        </h2>
-        <p class="believe-body">
-          Every country needs a record of what worked, who made it work, and how others can copy it. Ferguson Media was built to create that record, rigorous, solutions-driven documentation of real, verifiable progress.
-        </p>
-        <p class="believe-body">
-          Based at 35 Ferguson Road, Illovo, Sandton, we work across three connected pillars: the Good News Portal, a Creative Hub, and a Community Media network reaching townships and rural areas that mainstream media cannot access.
-        </p>
-        <div style="margin-top:36px; background:rgba(255,130,0,0.07); border-left:3px solid var(--orange); padding:24px 28px; border-radius:0 10px 10px 0;">
-          <p style="font-family:var(--font-head); font-size:15px; font-weight:600; color:rgba(255,255,255,0.85); line-height:1.7;">
-            "The brands that will lead South Africa in the next decade are the ones being written into its story today. Ferguson Media is where that story is being written."
-          </p>
+        <h2 class="believe-title">We Build the Archive<br />South Africa <span>Deserves.</span></h2>
+        <p class="believe-body">Every country needs a record of what worked, who made it work, and how others can copy it. Ferguson Media was built to create that record, rigorous, solutions-driven documentation of real, verifiable progress.</p>
+        <p class="believe-body">Based at 35 Ferguson Road, Illovo, Sandton, we work across three connected pillars: the Good News Portal, a Creative Hub, and a Community Media network reaching townships and rural areas that mainstream media cannot access.</p>
+        <div class="believe-quote">
+          <p>"The brands that will lead South Africa in the next decade are the ones being written into its story today. Ferguson Media is where that story is being written."</p>
         </div>
       </div>
 
-      <div class="believe-pillars">
-        <p style="font-family:var(--font-head); font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--orange); margin-bottom:28px;">What We Stand For</p>
+      <div class="believe-pillars rv-r">
+        <p style="font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:28px;">What We Stand For</p>
         <div class="accordion-list">
           <div class="accordion-item open">
             <button class="accordion-trigger" aria-expanded="true">
@@ -586,46 +935,70 @@
   </div>
 </section>
 
-<!-- WHY GOOD NEWS -->
+<!-- ============================================================
+     WHY GOOD NEWS
+============================================================ -->
 <section class="why-good" id="advantages">
   <div class="container">
-    <div class="why-good-header">
+    <div class="why-good-header rv">
       <span class="section-label">The Good News Advantage</span>
       <h2 class="why-good-title">Why Good News <span>Is the Smartest</span> Investment.</h2>
       <p class="why-good-sub">Good news media is not soft media. It is high performance media, built for audiences who act, brands who lead, and communities who believe.</p>
     </div>
     <div class="benefit-grid">
-      <div class="benefit-card"><div class="benefit-number">01</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="benefit-title">Trust That Grows Over Time</div><p class="benefit-body">Audiences who read good news regularly show higher brand recall and are more likely to buy. When your brand appears next to verified progress, trust builds, and it grows with every new story.</p></div>
-      <div class="benefit-card"><div class="benefit-number">02</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="benefit-title">Content That Lasts</div><p class="benefit-body">A documented impact story lives permanently on the Good News Portal. Six months after your campaign ends, people are still finding it, sharing it, and linking it to your brand. No other media spend does that.</p></div>
-      <div class="benefit-card"><div class="benefit-number">03</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="benefit-title">Results You Can Measure</div><p class="benefit-body">We do not report on impressions. We report on outcomes. Every partnership produces a clear Social Return on Investment that you can present to your board and CSI team with confidence.</p></div>
-      <div class="benefit-card"><div class="benefit-number">04</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="benefit-title">Audiences Who Take Action</div><p class="benefit-body">People who choose good news are looking to act, invest, and get involved. They are decision makers, community builders, and buyers with clear intent, exactly the audience brands want.</p></div>
-      <div class="benefit-card"><div class="benefit-number">05</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="benefit-title">Editorial Credibility</div><p class="benefit-body">Your brand is not placed next to our content. It is woven into it through real storytelling. Readers engage with impact stories the way they engage with journalism, not with ads.</p></div>
-      <div class="benefit-card"><div class="benefit-number">06</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M20.2 20.2c2.04-2.03 3.3-4.84 3.3-7.97C23.5 5.5 18.3.3 11.97.3S.47 5.5.47 12.23s5.2 11.93 11.5 11.93c3.13 0 5.96-1.26 8-3.3"/><path d="M15.7 15.7c1.02-1.02 1.65-2.42 1.65-3.97C17.35 8.47 14.88 6 11.73 6S6.1 8.47 6.1 11.73s2.47 5.73 5.63 5.73c1.55 0 2.95-.63 3.97-1.66"/></svg></div><div class="benefit-title">National Reach, Local Depth</div><p class="benefit-body">Community radio stations carry our content into townships and rural areas that no billboard or digital spend can access. One story in Ferguson Media reaches from the boardroom to the community hall at the same time.</p></div>
+      <div class="benefit-card rv d1"><div class="benefit-number">01</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="benefit-title">Trust That Grows Over Time</div><p class="benefit-body">Audiences who read good news regularly show higher brand recall and are more likely to buy. When your brand appears next to verified progress, trust builds, and it grows with every new story.</p></div>
+      <div class="benefit-card rv d2"><div class="benefit-number">02</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="benefit-title">Content That Lasts</div><p class="benefit-body">A documented impact story lives permanently on the Good News Portal. Six months after your campaign ends, people are still finding it, sharing it, and linking it to your brand.</p></div>
+      <div class="benefit-card rv d3"><div class="benefit-number">03</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="benefit-title">Results You Can Measure</div><p class="benefit-body">We do not report on impressions. We report on outcomes. Every partnership produces a clear Social Return on Investment that you can present to your board and CSI team with confidence.</p></div>
+      <div class="benefit-card rv d1"><div class="benefit-number">04</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="benefit-title">Audiences Who Take Action</div><p class="benefit-body">People who choose good news are looking to act, invest, and get involved. They are decision makers, community builders, and buyers with clear intent.</p></div>
+      <div class="benefit-card rv d2"><div class="benefit-number">05</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="benefit-title">Editorial Credibility</div><p class="benefit-body">Your brand is not placed next to our content. It is woven into it through real storytelling. Readers engage with impact stories the way they engage with journalism, not with ads.</p></div>
+      <div class="benefit-card rv d3"><div class="benefit-number">06</div><div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M20.2 20.2c2.04-2.03 3.3-4.84 3.3-7.97C23.5 5.5 18.3.3 11.97.3S.47 5.5.47 12.23s5.2 11.93 11.5 11.93c3.13 0 5.96-1.26 8-3.3"/><path d="M15.7 15.7c1.02-1.02 1.65-2.42 1.65-3.97C17.35 8.47 14.88 6 11.73 6S6.1 8.47 6.1 11.73s2.47 5.73 5.63 5.73c1.55 0 2.95-.63 3.97-1.66"/></svg></div><div class="benefit-title">National Reach, Local Depth</div><p class="benefit-body">Community radio stations carry our content into townships and rural areas that no billboard or digital spend can access. One story reaches from the boardroom to the community hall at the same time.</p></div>
     </div>
   </div>
 </section>
 
-<!-- HOW WE WORK -->
+<!-- ============================================================
+     HOW WE WORK
+============================================================ -->
 <section class="how-we-work">
   <div class="container">
-    <div class="how-header">
+    <div class="how-header rv">
       <span class="section-label">Our Ecosystem</span>
       <h2 class="how-title">Three Pillars. <span>One Complete</span> Content Engine.</h2>
       <p class="how-sub">Every story we produce moves through a connected system built for maximum reach and documented impact.</p>
     </div>
     <div class="pillar-row">
-      <div class="pillar"><div class="pillar-num">PILLAR 01</div><div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="pillar-title">The Good News Portal</div><p class="pillar-body">A permanent, searchable digital archive of South Africa's progress, published to broadcast standard and discoverable for years after the story goes live.</p><span class="pillar-tag">Digital Anchor</span></div>
-      <div class="pillar"><div class="pillar-num">PILLAR 02</div><div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/></svg></div><div class="pillar-title">Community Media Network</div><p class="pillar-body">Partner radio stations carry content into townships and rural areas, including 919 FM, taking good news to the communities mainstream media cannot reach.</p><span class="pillar-tag">National Distribution</span></div>
-      <div class="pillar"><div class="pillar-num">PILLAR 03</div><div class="pillar-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div class="pillar-title">The Creative Hub</div><p class="pillar-body">Video, photography, audio, and long-form writing, produced to broadcast quality by a team of young South African creatives who know the stories they are telling.</p><span class="pillar-tag">Broadcast Quality Production</span></div>
+      <div class="pillar rv d1">
+        <div class="pillar-num">PILLAR 01</div>
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="pillar-title">The Good News Portal</div>
+        <p class="pillar-body">A permanent, searchable digital archive of South Africa's progress, published to broadcast standard and discoverable for years after the story goes live.</p>
+        <span class="pillar-tag">Digital Anchor</span>
+      </div>
+      <div class="pillar rv d2">
+        <div class="pillar-num">PILLAR 02</div>
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/></svg></div>
+        <div class="pillar-title">Community Media Network</div>
+        <p class="pillar-body">Partner radio stations carry content into townships and rural areas, including 919 FM, taking good news to the communities mainstream media cannot reach.</p>
+        <span class="pillar-tag">National Distribution</span>
+      </div>
+      <div class="pillar rv d3">
+        <div class="pillar-num">PILLAR 03</div>
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+        <div class="pillar-title">The Creative Hub</div>
+        <p class="pillar-body">Video, photography, audio, and long-form writing, produced to broadcast quality by a team of young South African creatives who know the stories they are telling.</p>
+        <span class="pillar-tag">Broadcast Quality Production</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- OUR STORY -->
+<!-- ============================================================
+     OUR STORY
+============================================================ -->
 <section class="our-story">
   <div class="container">
     <div class="story-inner">
-      <div class="story-sidebar">
+      <div class="story-sidebar rv-l">
         <div class="story-sidebar-label">Our Journey</div>
         <h2 class="story-sidebar-title">How Ferguson<br />Media Was Built.</h2>
         <div class="story-sidebar-img">
@@ -633,7 +1006,7 @@
           <div class="story-sidebar-img-label"><p>35 Ferguson Road, Illovo, Johannesburg</p></div>
         </div>
       </div>
-      <div class="story-content">
+      <div class="story-content rv d2">
         <p class="story-intro">Ferguson Media was started on one simple idea: South Africa has no shortage of great things happening every day. What it lacked was a dedicated, credible platform to document and share them at scale.</p>
         <div class="accordion-list accordion-cream">
           <div class="accordion-item open">
@@ -648,21 +1021,21 @@
               <div class="accordion-trigger-left"><span class="accordion-num">THE MODEL</span><span class="accordion-title">Solutions Journalism, Powered by Brand Investment</span></div>
               <div class="accordion-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
             </button>
-            <div class="accordion-body"><p class="accordion-content">Ferguson Media is not funded by ad clicks or outrage. It is funded by brands that understand the business value of being written into South Africa's story, connecting CSI budgets and brand marketing to real, documented community outcomes that produce verified social return and national reach.</p></div>
+            <div class="accordion-body"><p class="accordion-content">Ferguson Media is not funded by ad clicks or outrage. It is funded by brands that understand the business value of being written into South Africa's story, connecting CSI budgets and brand marketing to real, documented community outcomes.</p></div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false">
               <div class="accordion-trigger-left"><span class="accordion-num">THE ECOSYSTEM</span><span class="accordion-title">Three Pillars, One Engine</span></div>
               <div class="accordion-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
             </button>
-            <div class="accordion-body"><p class="accordion-content">The Good News Portal anchors our digital presence. The Community Media Hub shares content into townships and rural areas through partner stations. The Creative Hub produces everything to broadcast standard, making sure the quality of our work matches the quality of the stories we are telling.</p></div>
+            <div class="accordion-body"><p class="accordion-content">The Good News Portal anchors our digital presence. The Community Media Hub shares content into townships and rural areas through partner stations. The Creative Hub produces everything to broadcast standard.</p></div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger" aria-expanded="false">
               <div class="accordion-trigger-left"><span class="accordion-num">THE VISION</span><span class="accordion-title">The Permanent Record</span></div>
               <div class="accordion-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
             </button>
-            <div class="accordion-body"><p class="accordion-content">Ferguson Media's long-term goal is to build an archive so complete, so credible, and so widely shared that the main story told about South Africa changes, not just in the media, but in the minds of the people who live here. When people believe a country is winning, they invest in it. That is what we are building. One story at a time.</p></div>
+            <div class="accordion-body"><p class="accordion-content">Ferguson Media's long-term goal is to build an archive so complete, so credible, and so widely shared that the main story told about South Africa changes — not just in the media, but in the minds of the people who live here.</p></div>
           </div>
         </div>
       </div>
@@ -670,17 +1043,18 @@
   </div>
 </section>
 
-<!-- TEAM -->
+<!-- ============================================================
+     TEAM
+============================================================ -->
 <section class="team" id="team">
   <div class="container">
-    <div class="team-header">
+    <div class="team-header rv">
       <span class="section-label">The People</span>
       <h2 class="team-header-title">Meet the Team <span>Behind<br />the Story.</span></h2>
       <p class="team-header-body">Journalists, producers, developers, and storytellers, all working on one goal: to document South Africa's progress and show it to the world.</p>
     </div>
 
-    <!-- Desktop: scrollable tabs -->
-    <div class="team-tabs-wrap">
+    <div class="team-tabs-wrap rv">
       <div class="team-tabs" id="teamTabs">
         <button class="team-tab active" data-dept="leadership">Leadership</button>
         <button class="team-tab" data-dept="portal">Good News Portal</button>
@@ -690,7 +1064,6 @@
       </div>
     </div>
 
-    <!-- Mobile: dropdown select -->
     <select class="team-dept-select" id="teamDeptSelect">
       <option value="leadership">Leadership</option>
       <option value="portal">Good News Portal</option>
@@ -752,20 +1125,21 @@
       </div>
     </div>
 
-    <!-- Join CTA -->
-    <div class="team-join">
+    <div class="team-join rv">
       <div class="team-join-text">
         <div class="team-join-label">Join Us</div>
         <div class="team-join-title">Want to Help Tell South Africa's Good News Story?</div>
         <p class="team-join-body">We are always looking for journalists, videographers, audio producers, and community storytellers who believe in the power of solutions journalism. Get in touch.</p>
       </div>
-      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      <a href="contact.html" class="btn btn-primary">Get in Touch <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer rv-f">
   <div class="container">
     <div class="footer-top">
       <div>
@@ -798,34 +1172,82 @@
   <div class="footer-orange-bar"></div>
 </footer>
 
+<!-- ============================================================
+     JAVASCRIPT — Animation Engine + App Logic
+============================================================ -->
 <script>
+  /* ----------------------------------------------------------
+     AVATAR PLACEHOLDER FALLBACK
+  ---------------------------------------------------------- */
   function phl(img) {
     img.onerror = null;
     img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%231a1a1a'/%3E%3Ccircle cx='40' cy='28' r='14' fill='%23333'/%3E%3Cpath d='M8 78c0-17.673 14.327-32 32-32s32 14.327 32 32' fill='%23333'/%3E%3C/svg%3E";
     img.classList.add('ph');
   }
 
+  /* ----------------------------------------------------------
+     1. PAGE LOADER + BODY REVEAL
+  ---------------------------------------------------------- */
   const pageLoader = document.getElementById('pageLoader');
-  window.addEventListener('load', () => setTimeout(() => pageLoader.classList.add('hidden'), 700));
-  setTimeout(() => pageLoader.classList.add('hidden'), 3000);
 
+  function dismissLoader() {
+    pageLoader.classList.add('hidden');
+    setTimeout(() => document.body.classList.add('fm-ready'), 80);
+  }
+
+  window.addEventListener('load', () => setTimeout(dismissLoader, 700));
+  setTimeout(dismissLoader, 3000);
+
+  /* ----------------------------------------------------------
+     2. NAVBAR — scroll shrink
+  ---------------------------------------------------------- */
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-  });
+  }, { passive: true });
 
+  /* ----------------------------------------------------------
+     3. MOBILE SIDEBAR
+  ---------------------------------------------------------- */
   const hamburgerBtn   = document.getElementById('hamburgerBtn');
   const sidebar        = document.getElementById('sidebar');
   const sidebarOverlay = document.getElementById('sidebarOverlay');
   const sidebarClose   = document.getElementById('sidebarClose');
 
-  function openSidebar()  { sidebar.classList.add('open'); sidebarOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-  function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+  function openSidebar()  {
+    sidebar.classList.add('open');
+    sidebarOverlay.classList.add('active');
+    hamburgerBtn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('active');
+    hamburgerBtn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
   hamburgerBtn.addEventListener('click', openSidebar);
   sidebarClose.addEventListener('click', closeSidebar);
   sidebarOverlay.addEventListener('click', closeSidebar);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
+  /* ----------------------------------------------------------
+     4. SCROLL REVEAL — single shared IntersectionObserver
+  ---------------------------------------------------------- */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('on');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.rv, .rv-l, .rv-r, .rv-f').forEach(el => revealObserver.observe(el));
+
+  /* ----------------------------------------------------------
+     5. ACCORDION
+  ---------------------------------------------------------- */
   document.querySelectorAll('.accordion-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
       const item = trigger.closest('.accordion-item');
@@ -842,33 +1264,26 @@
     });
   });
 
-  // Shared function to switch department
+  /* ----------------------------------------------------------
+     6. TEAM TABS
+  ---------------------------------------------------------- */
   function switchDept(dept) {
-    // Update tabs
     document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
     const activeTab = document.querySelector(`.team-tab[data-dept="${dept}"]`);
     if (activeTab) activeTab.classList.add('active');
-
-    // Update select
     document.getElementById('teamDeptSelect').value = dept;
-
-    // Update panels
     document.querySelectorAll('.team-panel').forEach(p => p.classList.remove('active'));
     requestAnimationFrame(() => requestAnimationFrame(() => {
       document.getElementById('dept-' + dept).classList.add('active');
     }));
   }
 
-  // Desktop tabs
   document.querySelectorAll('.team-tab').forEach(tab => {
     tab.addEventListener('click', () => switchDept(tab.dataset.dept));
   });
-
-  // Mobile select
   document.getElementById('teamDeptSelect').addEventListener('change', function() {
     switchDept(this.value);
   });
 </script>
-
 </body>
 </html>
