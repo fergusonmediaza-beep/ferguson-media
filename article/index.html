@@ -759,7 +759,7 @@ async function init() {
     }
 
     const story    = data.items[0];
-    const includes = includes || {};
+    const includes = data.includes || {};
 
     // Render article
     document.getElementById('articleRoot').innerHTML = renderArticle(story, includes);
