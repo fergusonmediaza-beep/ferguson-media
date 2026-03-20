@@ -461,7 +461,7 @@ function getAssetUrl(includes, id, width = 1200, height = null, fit = 'fill') {
   if (!includes || !includes.Asset) return null;
   const a = includes.Asset.find(x => x.sys.id === id);
   if (!a) return null;
-  let url = `https:${a.fields.file.url}?w=${width}&fit=${fit}&f=center&fm=webp&q=80`;
+let url = `https:${a.fields.file.url}?w=${width}&fit=${fit}&f=center&fm=webp&q=90`;
   if (height) url += `&h=${height}`;
   return url;
 }
@@ -550,7 +550,7 @@ function renderArticle(story, includes) {
 
   // Hero image
   const imgId  = f.heroImage?.sys?.id;
-const imgUrl = imgId ? (getAssetUrl(includes, imgId, 800, 450, 'fill') || 'images/placeholder.jpg') : 'images/placeholder.jpg';
+const imgUrl = imgId ? (getAssetUrl(includes, imgId, 1400, 788, 'fill') || 'images/placeholder.jpg') : 'images/placeholder.jpg';
 
   // Body HTML
   let bodyHtml = '';
