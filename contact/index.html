@@ -10,6 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LflDpEsAAAAALBXSCZgacLALDANwZKxv6l8ZBPn"></script>
+
   <style>
     /* ============================================================
        DESIGN TOKENS
@@ -38,7 +43,6 @@
     body {
       font-family: var(--fb); color: var(--black);
       background: var(--white); overflow-x: hidden; line-height: 1.6;
-      /* Page fade-in — consistent with all pages */
       opacity: 0;
       transition: opacity 0.55s var(--ease);
     }
@@ -48,7 +52,7 @@
     .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
 
     /* ============================================================
-       ANIMATION SYSTEM — same reusable classes across all pages
+       ANIMATION SYSTEM
     ============================================================ */
     .rv {
       opacity: 0; transform: translateY(44px);
@@ -74,7 +78,7 @@
     .d4{transition-delay:.26s} .d5{transition-delay:.33s} .d6{transition-delay:.40s}
 
     /* ============================================================
-       PAGE LOADER — standard Ferguson Media spinner (all pages)
+       PAGE LOADER
     ============================================================ */
     .page-loader {
       position: fixed; inset: 0; z-index: 9000; background: var(--black);
@@ -107,7 +111,7 @@
     .toast.error { border-left-color: #e53935; }
 
     /* ============================================================
-       NAVBAR — consistent across all pages
+       NAVBAR
     ============================================================ */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -139,7 +143,6 @@
       color: rgba(255,255,255,0.58); padding: 8px 16px;
       position: relative; transition: color 0.25s;
     }
-    /* Orange underline draw — same on all pages */
     .nav-links a::after {
       content: ''; position: absolute; bottom: 4px; left: 16px; right: 16px;
       height: 1.5px; background: var(--orange);
@@ -223,7 +226,7 @@
     .sb-soc a:hover svg { fill: var(--orange); }
 
     /* ============================================================
-       EYEBROW / BUTTONS — consistent
+       EYEBROW / BUTTONS
     ============================================================ */
     .eyebrow {
       font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px;
@@ -247,23 +250,18 @@
     .btn-owh:hover { border-color: var(--white); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
 
     /* ============================================================
-       HERO — staggered entrance consistent with all pages
+       HERO
     ============================================================ */
     .hero {
       position: relative; min-height: 100vh; display: flex; align-items: center;
       background: var(--black); overflow: hidden; padding-top: 80px;
     }
     .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-    .hero-bg img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
-    }
-
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
     .hero-content {
       position: relative; z-index: 2; padding: 80px 56px 100px;
       max-width: var(--max); margin: 0 auto; width: 100%;
     }
-
-    /* Hero stagger — same cadence across all pages */
     .hero-kicker {
       display: inline-flex; align-items: center; gap: 14px; margin-bottom: 40px;
       opacity: 0; animation: hfIn 0.7s var(--ease) 0.5s forwards;
@@ -275,7 +273,6 @@
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
     .hk-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.15); }
     .hk-txt { font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 4px; text-transform: uppercase; }
-
     .hero-h1 {
       font-family: var(--fh); font-weight: 900; line-height: 1.08; margin-bottom: 44px;
       opacity: 0; animation: hfIn 0.95s var(--ease) 0.75s forwards;
@@ -283,19 +280,16 @@
     .hero-h1 .line-1 { display: block; font-size: clamp(72px, 10vw, 148px); color: var(--white); }
     .hero-h1 .line-2 { display: block; font-size: clamp(72px, 10vw, 148px); color: var(--orange); }
     .hero-h1 .line-3 { display: block; font-size: clamp(72px, 10vw, 148px); color: rgba(255,255,255,0.16); }
-
     .hero-sub-row {
       display: flex; align-items: flex-start; gap: 52px; flex-wrap: wrap;
       opacity: 0; animation: hfIn 0.85s var(--ease) 1.05s forwards;
     }
     .hero-vdivider { width: 1px; height: 64px; background: rgba(255,255,255,0.12); flex-shrink: 0; margin-top: 4px; }
     .hero-sub { font-size: 17px; color: rgba(255,255,255,0.48); max-width: 480px; line-height: 1.8; }
-
     .hero-ctas {
       display: flex; gap: 14px; flex-wrap: wrap; margin-top: 48px;
       opacity: 0; animation: hfIn 0.85s var(--ease) 1.3s forwards;
     }
-
     .hero-scroll {
       position: absolute; bottom: 48px; left: 56px; z-index: 3;
       display: flex; align-items: center; gap: 14px;
@@ -305,7 +299,6 @@
     .hs-bar { position: absolute; top: 0; width: 100%; height: 40%; background: var(--orange); animation: sbar 2.2s ease-in-out infinite; }
     @keyframes sbar{0%{top:-40%;opacity:0}30%{opacity:1}70%{opacity:1}100%{top:140%;opacity:0}}
     .hs-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); writing-mode: vertical-rl; transform: rotate(180deg); }
-
     @keyframes hfIn { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 
     /* ============================================================
@@ -313,7 +306,6 @@
     ============================================================ */
     .contact-section { background: var(--black); padding: 0; position: relative; overflow: hidden; }
     .contact-top-bar { height: 1px; background: linear-gradient(90deg, transparent, var(--orange) 30%, var(--orange) 70%, transparent); }
-
     .contact-layout { display: grid; grid-template-columns: 420px 1fr; min-height: 100vh; }
 
     /* Left panel */
@@ -331,7 +323,6 @@
     .cl-title { font-family: var(--fh); font-size: clamp(28px, 2.8vw, 40px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 20px; }
     .cl-title span { color: var(--orange); }
     .cl-body { font-size: 14px; color: rgba(255,255,255,0.38); line-height: 1.8; margin-bottom: 48px; }
-
     .cl-contacts { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; }
     .cl-contact-item {
       display: flex; align-items: flex-start; gap: 16px; padding: 20px 0;
@@ -351,13 +342,12 @@
     .cl-ci-value { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
     .cl-ci-value a { color: rgba(255,255,255,0.55); transition: color 0.2s; }
     .cl-ci-value a:hover { color: var(--orange); }
-
     .cl-promise { background: rgba(255,122,0,0.05); border: 1px solid rgba(255,122,0,0.15); padding: 20px 24px; transition: background 0.3s; }
     .cl-promise:hover { background: rgba(255,122,0,0.09); }
     .cl-promise-title { font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
     .cl-promise p { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.7; }
 
-    /* Right panel — form */
+    /* Right panel */
     .contact-right { padding: 80px 72px; background: var(--black-2); }
 
     /* Inquiry selector */
@@ -381,7 +371,6 @@
     .iq-btn:hover { background: rgba(255,255,255,0.025); }
     .iq-btn.active { background: rgba(255,122,0,0.07); }
     .iq-btn.active::after { transform: scaleX(1); }
-
     .iq-icon {
       width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
@@ -390,14 +379,12 @@
     .iq-icon svg { width: 13px; height: 13px; stroke: rgba(255,255,255,0.25); fill: none; stroke-width: 1.8; transition: stroke 0.3s; }
     .iq-btn.active .iq-icon, .iq-btn:hover .iq-icon { border-color: var(--orange); background: rgba(255,122,0,0.1); }
     .iq-btn.active .iq-icon svg, .iq-btn:hover .iq-icon svg { stroke: var(--orange); }
-
     .iq-num { font-family: var(--fh); font-size: 8px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.18); margin-bottom: 4px; transition: color 0.3s; }
     .iq-btn.active .iq-num { color: var(--orange); }
     .iq-name { font-family: var(--fh); font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.55); line-height: 1.2; margin-bottom: 4px; transition: color 0.3s; }
     .iq-btn.active .iq-name { color: var(--white); }
     .iq-desc { font-size: 11px; color: rgba(255,255,255,0.22); line-height: 1.5; transition: color 0.3s; }
     .iq-btn.active .iq-desc { color: rgba(255,255,255,0.38); }
-
     .iq-check {
       position: absolute; top: 14px; right: 14px; width: 18px; height: 18px; border-radius: 50%;
       background: var(--orange); display: flex; align-items: center; justify-content: center;
@@ -426,7 +413,6 @@
     .field-group { position: relative; margin-bottom: 2px; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
     .field-row .field-group { margin-bottom: 0; }
-
     .field-group input, .field-group textarea {
       width: 100%; background: rgba(255,255,255,0.04); border: none;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -436,7 +422,6 @@
     .field-group input::placeholder, .field-group textarea::placeholder { opacity: 0; }
     .field-group input:focus, .field-group textarea:focus { background: rgba(255,122,0,0.04); border-bottom-color: var(--orange); }
     .field-group textarea { min-height: 140px; }
-
     .field-label {
       position: absolute; top: 20px; left: 20px;
       font-family: var(--fh); font-size: 11px; font-weight: 700;
@@ -448,12 +433,24 @@
     .field-group textarea:focus ~ .field-label,
     .field-group textarea:not(:placeholder-shown) ~ .field-label,
     .field-group.has-value .field-label { top: 10px; font-size: 9px; color: var(--orange); letter-spacing: 3px; }
-
     .field-line { position: absolute; bottom: 0; left: 0; height: 1px; background: var(--orange); width: 0; transition: width 0.4s var(--ease); }
     .field-group input:focus ~ .field-line, .field-group textarea:focus ~ .field-line { width: 100%; }
-
     .required-hint { font-size: 11px; color: rgba(255,255,255,0.2); margin-bottom: 24px; font-family: var(--fh); letter-spacing: 0.3px; }
     .required-hint span { color: var(--orange); }
+
+    /* reCAPTCHA v3 badge override — keeps it subtle on dark bg */
+    .grecaptcha-badge {
+      opacity: 0.45;
+      transition: opacity 0.3s;
+    }
+    .grecaptcha-badge:hover { opacity: 1; }
+    /* Small notice shown near submit */
+    .recaptcha-notice {
+      font-size: 11px; color: rgba(255,255,255,0.18); line-height: 1.6;
+      margin-top: 16px;
+    }
+    .recaptcha-notice a { color: rgba(255,122,0,0.6); transition: color 0.2s; }
+    .recaptcha-notice a:hover { color: var(--orange); }
 
     .form-submit-row { padding: 32px 0 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .form-note { font-size: 12px; color: rgba(255,255,255,0.22); line-height: 1.6; max-width: 220px; }
@@ -466,16 +463,16 @@
       transition: all 0.3s var(--ease); letter-spacing: 0.3px;
       position: relative; overflow: hidden;
     }
-    /* Sheen on hover — subtle premium touch */
     .submit-btn::before {
       content: ''; position: absolute; inset: 0;
       background: rgba(255,255,255,0.1); transform: translateX(-110%);
       transition: transform 0.4s var(--ease);
     }
     .submit-btn:hover::before { transform: translateX(0); }
-    .submit-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 20px 48px rgba(255,122,0,0.3); }
+    .submit-btn:hover:not(:disabled) { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 20px 48px rgba(255,122,0,0.3); }
+    .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
     .submit-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s var(--ease); position: relative; z-index: 1; }
-    .submit-btn:hover svg { transform: translateX(4px); }
+    .submit-btn:hover:not(:disabled) svg { transform: translateX(4px); }
     .submit-btn span { position: relative; z-index: 1; }
 
     /* ============================================================
@@ -491,10 +488,7 @@
     .reach-title { font-family: var(--fh); font-size: clamp(34px, 4vw, 52px); font-weight: 900; color: var(--black); line-height: 1.1; margin-bottom: 16px; }
     .reach-title span { color: var(--orange); }
     .reach-sub { font-size: 16px; color: var(--mid); max-width: 480px; line-height: 1.75; }
-
     .reach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(0,0,0,0.07); position: relative; z-index: 1; }
-
-    /* Reach cards — lift + border reveal + icon scale */
     .reach-card {
       background: var(--white); padding: 44px 32px;
       position: relative; overflow: hidden;
@@ -537,10 +531,7 @@
     .sw-title { font-family: var(--fh); font-size: clamp(32px, 3.5vw, 48px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
     .sw-title span { color: var(--orange); }
     .sw-sub { font-size: 15px; color: rgba(255,255,255,0.38); max-width: 440px; margin: 0 auto; line-height: 1.75; }
-
     .sw-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.05); position: relative; z-index: 1; }
-
-    /* Social cards — lift + colour-matched glow on hover */
     .sw-card {
       background: var(--black); padding: 44px 28px;
       display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;
@@ -588,24 +579,15 @@
     .loc-title { font-family: var(--fh); font-size: clamp(30px, 3.5vw, 46px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 28px; }
     .loc-title span { color: var(--orange); }
     .loc-details { display: flex; flex-direction: column; gap: 20px; }
-    .loc-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      transition: padding-left 0.3s var(--ease);
-    }
+    .loc-item { display: flex; align-items: flex-start; gap: 16px; transition: padding-left 0.3s var(--ease); }
     .loc-item:hover { padding-left: 6px; }
-    .loc-ic {
-      width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.08);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      transition: border-color 0.25s, background 0.25s;
-    }
+    .loc-ic { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.25s, background 0.25s; }
     .loc-item:hover .loc-ic { border-color: var(--orange); background: rgba(255,122,0,0.08); }
     .loc-ic svg { width: 16px; height: 16px; stroke: var(--orange); fill: none; stroke-width: 2; }
     .loc-txt { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
     .loc-txt a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
     .loc-txt a:hover { color: var(--orange); }
     .loc-txt strong { display: block; font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.62); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; }
-
-    /* Map with corner brackets */
     .loc-map { position: relative; aspect-ratio: 4/3; background: var(--black-2); overflow: hidden; }
     .loc-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(1) invert(0.9) contrast(0.85); transition: filter 0.4s; }
     .loc-map:hover iframe { filter: grayscale(0.6) contrast(0.9); }
@@ -652,6 +634,28 @@
     .footer-bar { height: 3px; background: linear-gradient(90deg, var(--orange) 0%, rgba(255,122,0,0.2) 60%, transparent 100%); }
 
     /* ============================================================
+       COOKIE BAR
+    ============================================================ */
+    .cookie-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000;
+      background: var(--black-2); border-top: 1px solid var(--border);
+      padding: 20px 56px; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+      transform: translateY(100%); transition: transform 0.5s var(--ease);
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.45);
+    }
+    .cookie-bar.visible { transform: translateY(0); }
+    .cookie-bar__text { font-family: var(--fb); font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.55; max-width: 680px; }
+    .cookie-bar__text a { color: var(--orange); text-decoration: underline; text-underline-offset: 3px; }
+    .cookie-bar__text a:hover { color: var(--orange-dk); }
+    .cookie-bar__actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .cookie-btn { font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 11px 22px; cursor: pointer; border: none; letter-spacing: 0.4px; transition: all 0.25s; white-space: nowrap; }
+    .cookie-btn--accept { background: var(--orange); color: var(--white); }
+    .cookie-btn--accept:hover { background: var(--orange-dk); }
+    .cookie-btn--decline { background: transparent; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); }
+    .cookie-btn--decline:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media(max-width:1100px) {
@@ -687,6 +691,9 @@
       .ft-bot { flex-direction: column; align-items: flex-start; gap: 12px; }
       .mstrip-tag { display: none; }
       .toast { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+      .cookie-bar { flex-direction: column; align-items: flex-start; padding: 20px 24px; gap: 16px; }
+      .cookie-bar__actions { width: 100%; }
+      .cookie-btn { flex: 1; text-align: center; }
     }
     @media(max-width:600px) {
       .container { padding: 0 16px; }
@@ -700,86 +707,10 @@
       .reach-grid { grid-template-columns: 1fr; }
       .sw-grid { grid-template-columns: 1fr 1fr; }
     }
-
-    .cookie-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 8000;
-  background: var(--black-2);
-  border-top: 1px solid var(--border);
-  padding: 20px 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  transform: translateY(100%);
-  transition: transform 0.5s var(--ease);
-  box-shadow: 0 -8px 40px rgba(0,0,0,0.45);
-}
-.cookie-bar.visible { transform: translateY(0); }
-
-.cookie-bar__text {
-  font-family: var(--fb);
-  font-size: 13.5px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.55;
-  max-width: 680px;
-}
-.cookie-bar__text a {
-  color: var(--orange);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.cookie-bar__text a:hover { color: var(--orange-dk); }
-
-.cookie-bar__actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.cookie-btn {
-  font-family: var(--fh);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 11px 22px;
-  cursor: pointer;
-  border: none;
-  letter-spacing: 0.4px;
-  transition: all 0.25s;
-  white-space: nowrap;
-}
-.cookie-btn--accept {
-  background: var(--orange);
-  color: var(--white);
-}
-.cookie-btn--accept:hover { background: var(--orange-dk); }
-
-.cookie-btn--decline {
-  background: transparent;
-  color: rgba(255,255,255,0.4);
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.cookie-btn--decline:hover {
-  color: var(--white);
-  border-color: rgba(255,255,255,0.3);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .cookie-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px 24px;
-    gap: 16px;
-  }
-  .cookie-bar__actions { width: 100%; }
-  .cookie-btn { flex: 1; text-align: center; }
-}
   </style>
 </head>
 
+<!-- Cookie Bar -->
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p class="cookie-bar__text">
     We use cookies to improve your experience on the Ferguson Media Good News Portal,
@@ -798,29 +729,21 @@
   const BAR   = document.getElementById('cookieBar');
   const KEY   = 'fm_cookie_consent';
   const saved = localStorage.getItem(KEY);
-
-  // Only show if no decision has been stored yet
-  if (!saved) {
-    // Slight delay so it doesn't clash with the page loader animation
-    setTimeout(() => BAR.classList.add('visible'), 1200);
-  }
-
+  if (!saved) { setTimeout(() => BAR.classList.add('visible'), 1200); }
   document.getElementById('cookieAccept').addEventListener('click', function () {
     localStorage.setItem(KEY, 'accepted');
     BAR.classList.remove('visible');
-    // ── Optional: initialise analytics here after consent ──
-    // e.g. gtag('consent', 'update', { analytics_storage: 'granted' });
   });
-
   document.getElementById('cookieDecline').addEventListener('click', function () {
     localStorage.setItem(KEY, 'declined');
     BAR.classList.remove('visible');
   });
 })();
 </script>
+
 <body>
 
-<!-- PAGE LOADER — standard spinner -->
+<!-- PAGE LOADER -->
 <div class="page-loader" id="pageLoader">
   <div>
     <div class="loader-wordmark">Ferguson <span>Media</span></div>
@@ -830,9 +753,7 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- ============================================================
-     NAVBAR
-============================================================ -->
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
     <img src="/images/logo-white.png" alt="Ferguson Media" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
@@ -873,14 +794,11 @@
   </div>
 </aside>
 
-<!-- ============================================================
-     HERO
-============================================================ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
     <img src="/images/contact-hero.png" alt="" aria-hidden="true" />
   </div>
-
   <div class="hero-content">
     <div class="hero-kicker">
       <div class="hk-dot"></div>
@@ -901,16 +819,13 @@
       <a href="#reach" class="btn btn-owh">Quick Details</a>
     </div>
   </div>
-
   <div class="hero-scroll">
     <div class="hs-track"><div class="hs-bar"></div></div>
     <div class="hs-label">Scroll</div>
   </div>
 </section>
 
-<!-- ============================================================
-     CONTACT FORM
-============================================================ -->
+<!-- CONTACT FORM -->
 <section class="contact-section" id="contact">
   <div class="contact-top-bar"></div>
   <div class="contact-layout">
@@ -920,20 +835,19 @@
       <div class="cl-overline">Get In Touch</div>
       <h2 class="cl-title">Every Conversation<br />Starts <span>Here.</span></h2>
       <p class="cl-body">Choose what best describes your reason for reaching out, fill in the form, and we'll come back to you with the right person from our team.</p>
-
       <div class="cl-contacts">
         <div class="cl-contact-item">
           <div class="cl-ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div>
             <div class="cl-ci-label">Email</div>
-            <div class="cl-ci-value"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></div>
+            <div class="cl-ci-value"><a href="/cdn-cgi/l/email-protection#5f363139301f393a2d382a2c3031323a3b363e713c3071253e"><span class="__cf_email__" data-cfemail="3851565e57785e5d4a5f4d4b5756555d5c5159165b57164259">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="cl-contact-item">
           <div class="cl-ci-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
           <div>
             <div class="cl-ci-label">Phone</div>
-            <div class="cl-ci-value"><a href="tel:+27836722453">+27 82 467 8925</a></div>
+            <div class="cl-ci-value"><a href="tel:+27824678925">+27 82 467 8925</a></div>
           </div>
         </div>
         <div class="cl-contact-item">
@@ -951,7 +865,6 @@
           </div>
         </div>
       </div>
-
       <div class="cl-promise">
         <div class="cl-promise-title">Our Promise</div>
         <p>Every message is read by a real person. We respond within one South African business day — no auto-replies, no waiting rooms.</p>
@@ -1052,7 +965,14 @@
         </div>
 
         <div class="form-submit-row">
-          <p class="form-note">We respond to every enquiry within one South African business day.</p>
+          <div>
+            <p class="form-note">We respond to every enquiry within one South African business day.</p>
+            <p class="recaptcha-notice">
+              Protected by reCAPTCHA —
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp;
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a> apply.
+            </p>
+          </div>
           <button type="submit" class="submit-btn" id="submitBtn">
             <span id="submitLabel">Send Message</span>
             <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1063,9 +983,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     OTHER WAYS TO REACH US
-============================================================ -->
+<!-- OTHER WAYS TO REACH US -->
 <section class="reach" id="reach">
   <div class="container" style="position:relative;z-index:1">
     <div class="reach-hd rv">
@@ -1078,15 +996,15 @@
         <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <div class="rc-label">Email Us</div>
         <div class="rc-title">Direct Line to the Team</div>
-        <p class="rc-body">For partnerships, media, or general questions — our inbox is always open.<br /><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p>
-        <a href="mailto:info@fergusonmedia.co.za" class="rc-action">Send Email <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <p class="rc-body">For partnerships, media, or general questions — our inbox is always open.<br /><a href="/cdn-cgi/l/email-protection#e881868e87a88e8d9a8f9d9b8786858d8c8189c68b87c69289"><span class="__cf_email__" data-cfemail="f1989f979eb19794839684829e9f9c94959890df929edf8b90">[email&#160;protected]</span></a></p>
+        <a href="/cdn-cgi/l/email-protection#ef86818980af898a9d889a9c8081828a8b868ec18c80c1958e" class="rc-action">Send Email <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="reach-card rv d2">
         <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
         <div class="rc-label">Call Us</div>
         <div class="rc-title">Pick Up the Phone</div>
-        <p class="rc-body">Based in Sandton, Johannesburg. Available Monday to Friday, 8am – 4pm SAST.<br /><a href="tel:+27836722453">+27 82 467 8925</a></p>
-        <a href="tel:+27836722453" class="rc-action">Call Now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <p class="rc-body">Based in Sandton, Johannesburg. Available Monday to Friday, 8am – 4pm SAST.<br /><a href="tel:+27824678925">+27 82 467 8925</a></p>
+        <a href="tel:+27824678925" class="rc-action">Call Now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="reach-card rv d3">
         <div class="rc-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -1106,9 +1024,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     SOCIAL WALL
-============================================================ -->
+<!-- SOCIAL WALL -->
 <section class="social-wall">
   <div class="container">
     <div class="sw-hd rv">
@@ -1136,7 +1052,7 @@
         <div class="sw-card-follow">Like ↗</div>
       </a>
       <a href="https://www.linkedin.com/company/ferguson-mediaza/posts/?feedView=all" target="_blank" rel="noopener" class="sw-card">
-        <div class="sw-card-ic"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+        <div class="sw-card-ic"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
         <div class="sw-card-name">LinkedIn</div>
         <div class="sw-card-handle">Ferguson Media ZA</div>
         <div class="sw-card-follow">Connect ↗</div>
@@ -1163,9 +1079,7 @@
   </div>
 </div>
 
-<!-- ============================================================
-     LOCATION
-============================================================ -->
+<!-- LOCATION -->
 <section class="location">
   <div class="container">
     <div class="loc-inner">
@@ -1179,11 +1093,11 @@
           </div>
           <div class="loc-item">
             <div class="loc-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div class="loc-txt"><strong>Phone</strong><a href="tel:+27836722453">+27 82 467 8925</a></div>
+            <div class="loc-txt"><strong>Phone</strong><a href="tel:+27824678925">+27 82 467 8925</a></div>
           </div>
           <div class="loc-item">
             <div class="loc-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="loc-txt"><strong>Email</strong><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></div>
+            <div class="loc-txt"><strong>Email</strong><a href="/cdn-cgi/l/email-protection#91f8fff7fed1f7f4e3f6e4e2fefffcf4f5f8f0bff2febfebf0"><span class="__cf_email__" data-cfemail="355c5b535a755350475240465a5b5850515c541b565a1b4f54">[email&#160;protected]</span></a></div>
           </div>
           <div class="loc-item">
             <div class="loc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -1207,9 +1121,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
+<!-- FOOTER -->
 <footer class="footer rv-f">
   <div class="container">
     <div class="ft-top">
@@ -1244,13 +1156,12 @@
           <li><a href="/news/?category=innovation-solutions">Innovation and Solutions</a></li>
           <li><a href="/news/?category=social-cohesion">Social Cohesion</a></li>
           <li><a href="/news/?category=economic-impact">Economic Impact</a></li>
-
         </ul>
       </div>
       <div>
         <h4 class="ft-ct">Get in Touch</h4>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
-        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27836722453">+27 82 467 8925</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27824678925">+27 82 467 8925</a></p></div>
       </div>
     </div>
     <div class="ft-bot">
@@ -1262,9 +1173,20 @@
 </footer>
 
 <!-- ============================================================
-     JAVASCRIPT — Animation Engine + App Logic
+     JAVASCRIPT
 ============================================================ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ----------------------------------------------------------
+   KEYS
+---------------------------------------------------------- */
+const EMAILJS_PUBLIC_KEY  = '32FOtBf-pk-tbd2XU';
+const EMAILJS_SERVICE_ID  = 'service_vgm08e6';
+const EMAILJS_TEMPLATE_ID = 'template_axm96wi';
+const RECAPTCHA_SITE_KEY  = '6LflDpEsAAAAALBXSCZgacLALDANwZKxv6l8ZBPn';
+
+// Initialise EmailJS
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
 /* ----------------------------------------------------------
    1. PAGE LOADER + BODY REVEAL
 ---------------------------------------------------------- */
@@ -1277,14 +1199,14 @@ window.addEventListener('load', () => setTimeout(dismissLoader, 800));
 setTimeout(dismissLoader, 3200);
 
 /* ----------------------------------------------------------
-   2. NAVBAR — scroll shrink (consistent with all pages)
+   2. NAVBAR — scroll shrink
 ---------------------------------------------------------- */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
 /* ----------------------------------------------------------
-   3. SIDEBAR — hamburger morph + staggered links
+   3. SIDEBAR
 ---------------------------------------------------------- */
 const sov = document.getElementById('sov');
 const sb  = document.getElementById('sidebar');
@@ -1299,7 +1221,7 @@ sov.addEventListener('click', closeSB);
 document.addEventListener('keydown', e => e.key === 'Escape' && closeSB());
 
 /* ----------------------------------------------------------
-   4. SCROLL REVEAL — single shared IntersectionObserver
+   4. SCROLL REVEAL
 ---------------------------------------------------------- */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1354,9 +1276,17 @@ document.querySelectorAll('.field-group input, .field-group textarea').forEach(i
 });
 
 /* ----------------------------------------------------------
-   8. FORM SUBMISSION
+   8. FORM SUBMISSION — EmailJS + reCAPTCHA v3
 ---------------------------------------------------------- */
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+function resetForm(form) {
+  form.reset();
+  document.querySelectorAll('.field-group').forEach(fg => fg.classList.remove('has-value'));
+  iqBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+  inquiryTypeInput.value = '';
+  contextHintEl.textContent = 'Select an inquiry type above to get started.';
+}
+
+document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
   const inquiryType  = inquiryTypeInput.value;
@@ -1366,31 +1296,55 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const organisation = document.getElementById('organisation').value.trim();
   const message      = document.getElementById('message').value.trim();
 
+  /* — Validation — */
   if (!inquiryType) {
     showToast('Please select an inquiry type above.', true);
     document.querySelector('.inquiry-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
-  if (!firstName) { showToast('Please enter your first name.', true); document.getElementById('firstName').focus(); return; }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.', true); document.getElementById('email').focus(); return; }
+  if (!firstName)  { showToast('Please enter your first name.', true); document.getElementById('firstName').focus(); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showToast('Please enter a valid email address.', true);
+    document.getElementById('email').focus(); return;
+  }
   if (!message) { showToast('Please enter a message before sending.', true); document.getElementById('message').focus(); return; }
 
-  const subject = `[${inquiryType}] Message from ${firstName}${lastName ? ' ' + lastName : ''}`;
-  const body = [
-    `Inquiry Type: ${inquiryType}`,
-    `Name: ${firstName}${lastName ? ' ' + lastName : ''}`,
-    `Email: ${email}`,
-    organisation ? `Organisation: ${organisation}` : null,
-    ``, `Message:`, message
-  ].filter(l => l !== null).join('\n');
+  /* — Lock UI — */
+  const btn   = document.getElementById('submitBtn');
+  const label = document.getElementById('submitLabel');
+  btn.disabled = true;
+  label.textContent = 'Sending…';
 
-  window.location.href = `mailto:info@fergusonmedia.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  /* — reCAPTCHA v3 token → EmailJS — */
+  grecaptcha.ready(() => {
+    grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' })
+      .then(token => {
+        const templateParams = {
+          inquiry_type            : inquiryType,
+          first_name              : firstName,
+          last_name               : lastName,
+          from_name               : `${firstName} ${lastName}`.trim(),
+          reply_to                : email,
+          organisation            : organisation || '—',
+          message                 : message,
+          'g-recaptcha-response'  : token
+        };
 
-  this.reset();
-  document.querySelectorAll('.field-group').forEach(fg => fg.classList.remove('has-value'));
-  iqBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
-  inquiryTypeInput.value = '';
-  contextHintEl.textContent = 'Select an inquiry type above to get started.';
+        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      })
+      .then(() => {
+        showToast('Message sent! We\'ll be in touch within one business day.');
+        resetForm(document.getElementById('contactForm'));
+      })
+      .catch(err => {
+        console.error('Submission error:', err);
+        showToast('Something went wrong. Please try emailing us directly.', true);
+      })
+      .finally(() => {
+        btn.disabled = false;
+        label.textContent = 'Send Message';
+      });
+  });
 });
 </script>
 </body>
