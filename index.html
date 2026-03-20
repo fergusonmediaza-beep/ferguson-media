@@ -921,8 +921,12 @@
 .p-hd-title span { color: var(--orange); }
 .p-hd-count { font-family: var(--fh); font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.28); letter-spacing: 2px; text-transform: uppercase; padding-bottom: 4px; }
 .p-grid {
-  display: grid; grid-template-columns: 1.7fr 1fr 1fr 1.4fr;
-  gap: 1px; background: rgba(0,0,0,0.09); position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 1px;
+  background: rgba(0,0,0,0.09);
+  position: relative;
+  z-index: 1;
 }
 .p-cell {
   background: var(--off); position: relative; overflow: hidden;
@@ -956,9 +960,9 @@
 .p-cell-type { font-size: 11px; color: rgba(0,0,0,0.38); }
 .p-cell-logo { position: relative; z-index: 1; }
 .p-cell-logo img {
-  height: 44px; /* down from 56px */
+  height: 80px; 
   width: auto; 
-  max-width: 130px; /* down from 160px */
+  max-width: 140px; 
   object-fit: contain;
   opacity: 0.75; display: block;
   transition: opacity 0.35s, transform 0.4s var(--ease);
@@ -975,9 +979,8 @@
 .p-cell-arrow svg { width: 14px; height: 14px; stroke: rgba(0,0,0,0.28); fill: none; stroke-width: 2; transition: all 0.3s; }
 .p-cell:hover .p-cell-arrow { background: var(--orange); border-color: var(--orange); }
 .p-cell:hover .p-cell-arrow svg { stroke: var(--white); }
-.p-cell.tall { grid-row: span 2; min-height: 393px; }
-@media(max-width:1000px) { .p-grid{grid-template-columns:1fr 1fr;} .p-cell.tall{grid-row:span 1;min-height:196px;} }
-@media(max-width:600px)  { .p-grid{grid-template-columns:1fr;} }
+@media(max-width:1000px) { .p-grid { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:600px)  { .p-grid { grid-template-columns: 1fr; } }
 
     /* ============================================================
        FOOTER
@@ -1069,8 +1072,124 @@
       .hk-txt { display: none; }
       .hk-line { display: none; }
     }
+
+    .cookie-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 8000;
+  background: var(--black-2);
+  border-top: 1px solid var(--border);
+  padding: 20px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transform: translateY(100%);
+  transition: transform 0.5s var(--ease);
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.45);
+}
+.cookie-bar.visible { transform: translateY(0); }
+
+.cookie-bar__text {
+  font-family: var(--fb);
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.55;
+  max-width: 680px;
+}
+.cookie-bar__text a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cookie-bar__text a:hover { color: var(--orange-dk); }
+
+.cookie-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  font-family: var(--fh);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 11px 22px;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.4px;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.cookie-btn--accept {
+  background: var(--orange);
+  color: var(--white);
+}
+.cookie-btn--accept:hover { background: var(--orange-dk); }
+
+.cookie-btn--decline {
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.cookie-btn--decline:hover {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cookie-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 24px;
+    gap: 16px;
+  }
+  .cookie-bar__actions { width: 100%; }
+  .cookie-btn { flex: 1; text-align: center; }
+}
   </style>
 </head>
+
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p class="cookie-bar__text">
+    We use cookies to improve your experience on the Ferguson Media Good News Portal,
+    analyse site traffic, and personalise content. By clicking <strong style="color:var(--white)">Accept</strong>,
+    you consent to our use of cookies. You can learn more in our
+    <a href="/privacy/">Privacy Policy</a>.
+  </p>
+  <div class="cookie-bar__actions">
+    <button class="cookie-btn cookie-btn--decline" id="cookieDecline">Decline</button>
+    <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept Cookies</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const BAR   = document.getElementById('cookieBar');
+  const KEY   = 'fm_cookie_consent';
+  const saved = localStorage.getItem(KEY);
+
+  // Only show if no decision has been stored yet
+  if (!saved) {
+    // Slight delay so it doesn't clash with the page loader animation
+    setTimeout(() => BAR.classList.add('visible'), 1200);
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function () {
+    localStorage.setItem(KEY, 'accepted');
+    BAR.classList.remove('visible');
+    // ── Optional: initialise analytics here after consent ──
+    // e.g. gtag('consent', 'update', { analytics_storage: 'granted' });
+  });
+
+  document.getElementById('cookieDecline').addEventListener('click', function () {
+    localStorage.setItem(KEY, 'declined');
+    BAR.classList.remove('visible');
+  });
+})();
+</script>
 <body>
 
 <!-- PAGE LOADER -->
@@ -1823,10 +1942,10 @@
         <div class="p-hd-label">Trusted Network</div>
         <h2 class="p-hd-title">Partners, Affiliates <span>&amp; Clients.</span></h2>
       </div>
-      <div class="p-hd-count">7 Partners &amp; Affiliates</div>
+      <div class="p-hd-count">10 Partners &amp; Affiliates</div>
     </div>
     <div class="p-grid">
-      <a href="https://empirepartnerfoundation.org" target="_blank" rel="noopener" class="p-cell tall rv d1">
+      <a href="https://empirepartnerfoundation.org" target="_blank" rel="noopener" class="p-cell rv d1">
         <div class="p-cell-top"><div class="p-cell-name">Empire Partner Foundation</div><div class="p-cell-type">Strategic Partner</div></div>
         <div class="p-cell-logo"><img src="images/epf.png" alt="Empire Partner Foundation" class="logo-white" /></div>
         <div class="p-cell-num">01</div>
@@ -1866,6 +1985,26 @@
   <div class="p-cell-top"><div class="p-cell-name">Pro Bono</div><div class="p-cell-type">Legal Partner</div></div>
   <div class="p-cell-logo"><img src="images/proborno.png" alt="Pro Bono" /></div>
   <div class="p-cell-num">07</div>
+  <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+</a>
+<a href="https://tdmza.co.za" target="_blank" rel="noopener" class="p-cell rv d8">
+  <div class="p-cell-top"><div class="p-cell-name">TDM</div><div class="p-cell-type">Media Partner</div></div>
+  <div class="p-cell-logo"><img src="images/tdm.png" alt="TDM" /></div>
+  <div class="p-cell-num">08</div>
+  <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+</a>
+
+<a href="https://npiconsulting.co.za/" target="_blank" rel="noopener" class="p-cell rv d8">
+  <div class="p-cell-top"><div class="p-cell-name">NPI</div><div class="p-cell-type">Strategic Partner</div></div>
+  <div class="p-cell-logo"><img src="images/npi.png" alt="NPI" /></div>
+  <div class="p-cell-num">09</div>
+  <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+</a>
+
+<a href="https://www.hcipretoria.gov.in" target="_blank" rel="noopener" class="p-cell rv d8">
+  <div class="p-cell-top"><div class="p-cell-name">Indian High Commission</div><div class="p-cell-type">Government Partner</div></div>
+  <div class="p-cell-logo"><img src="images/ihc.png" alt="Indian High Commission" /></div>
+  <div class="p-cell-num">10</div>
   <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
 </a>
     </div>
