@@ -550,7 +550,7 @@ function renderArticle(story, includes) {
 
   // Hero image
   const imgId  = f.heroImage?.sys?.id;
-const imgUrl = imgId ? (getAssetUrl(data.includes, imgId, 800, 450, 'fill') || 'images/placeholder.jpg') : 'images/placeholder.jpg';
+const imgUrl = imgId ? (getAssetUrl(includes, imgId, 800, 450, 'fill') || 'images/placeholder.jpg') : 'images/placeholder.jpg';
 
   // Body HTML
   let bodyHtml = '';
@@ -691,7 +691,7 @@ function renderMoreStories(data, currentSlug) {
     const f    = s.fields;
     const slug = f.slug || s.sys.id;
     const imgId  = f.heroImage?.sys?.id;
-    const imgUrl = imgId ? (getAssetUrl(data.includes, imgId) || 'images/placeholder.jpg') : 'images/placeholder.jpg';
+const imgUrl = imgId ? (getAssetUrl(data.includes, imgId, 800, 450, 'fill') || 'images/placeholder.jpg') : 'images/placeholder.jpg';
     const scat = CAT_LABELS[f.category] || 'Good News';
     return `
       <a href="/article/?slug=${slug}" class="ms-card">
@@ -759,7 +759,7 @@ async function init() {
     }
 
     const story    = data.items[0];
-    const includes = data.includes || {};
+    const includes = includes || {};
 
     // Render article
     document.getElementById('articleRoot').innerHTML = renderArticle(story, includes);
