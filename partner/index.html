@@ -72,6 +72,7 @@
     .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.35); }
     .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 
+    /* ── PAGE LOADER ── */
     .page-loader {
       position: fixed; inset: 0; z-index: 9998; background: #000;
       display: flex; align-items: center; justify-content: center;
@@ -84,6 +85,7 @@
     .loader-line { height: 100%; background: var(--orange); animation: ll 1.6s var(--ease) forwards; }
     @keyframes ll { from{width:0} to{width:100%} }
 
+    /* ── NAVBAR ── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 0 40px; height: 80px;
@@ -116,6 +118,7 @@
     .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    /* ── SIDEBAR ── */
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 1100; opacity: 0; transition: opacity 0.3s ease; }
     .sidebar-overlay.active { display: block; opacity: 1; }
     .sidebar { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: #000; z-index: 1200; transition: right 0.45s var(--ease); display: flex; flex-direction: column; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.06); }
@@ -145,6 +148,7 @@
     .sidebar-socials svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.62); transition: fill 0.25s; }
     .sidebar-socials a:hover svg { fill: var(--orange); }
 
+    /* ── HERO ── */
     .partner-hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; background: #000; overflow: hidden; padding-top: 80px; }
     .partner-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center top; animation: heroBG 18s ease-in-out infinite alternate; }
     @keyframes heroBG { from{transform:scale(1.0)} to{transform:scale(1.05)} }
@@ -160,6 +164,7 @@
     .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: hf 0.85s var(--ease) 1.25s forwards; }
     @keyframes hf { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* ── TICKER STRIP ── */
     .strip { background: var(--orange); padding: 22px 0; overflow: hidden; }
     .strip-track { display: flex; animation: ticker 30s linear infinite; width: max-content; white-space: nowrap; }
     .strip-track:hover { animation-play-state: paused; }
@@ -167,6 +172,7 @@
     .strip-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.45); border-radius: 50%; flex-shrink: 0; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
+    /* ── WHY PARTNER ── */
     .why-partner { background: var(--black); padding: 96px 0; position: relative; overflow: hidden; }
     .why-partner::after { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.055) 0%, transparent 65%); pointer-events: none; }
     .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
@@ -226,6 +232,7 @@
     .pkg-card.featured .pkg-cta:hover { background: var(--orange-dark); }
     .pkg-badge { position: absolute; top: 24px; right: 24px; background: var(--orange); color: var(--white); font-family: var(--font-head); font-size: 9px; font-weight: 800; padding: 5px 12px; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 20px; }
 
+    /* ── HOW WE WORK ── */
     .how-we-work { background: var(--black); padding: 96px 0; position: relative; overflow: hidden; }
     .how-we-work::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,130,0,0.045) 0%, transparent 65%); pointer-events: none; }
     .how-header { text-align: center; max-width: 640px; margin: 0 auto 72px; position: relative; z-index: 1; }
@@ -245,6 +252,7 @@
     .pillar-body { font-size: 14px; color: rgba(255,255,255,0.42); line-height: 1.8; }
     .pillar-tag { display: inline-block; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); background: rgba(255,130,0,0.1); padding: 5px 12px; border-radius: 20px; align-self: flex-start; }
 
+    /* ── RADIO PARTNER ── */
     .radio-partner { background: var(--black-3); padding: 0; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .radio-partner-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
     .radio-left { background: var(--black); padding: 72px 64px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
@@ -287,6 +295,7 @@
     .web-tier-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
     .web-tier-pages { font-family: var(--font-head); font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; }
 
+    /* ── OUR WORK ── */
     .our-work { background: var(--black); padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.06); }
     .our-work-header { text-align: center; margin-bottom: 56px; }
     .our-work-title { font-family: var(--font-head); font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 12px; }
@@ -307,6 +316,7 @@
     .work-link:hover { gap: 10px; }
     .work-link svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2.5; }
 
+    /* ── FINAL CTA ── */
     .final-cta { background: var(--orange); padding: 96px 0; position: relative; overflow: hidden; }
     .final-cta::before { content: 'TOGETHER'; position: absolute; bottom: -40px; right: -20px; font-family: var(--font-head); font-size: clamp(80px, 14vw, 200px); font-weight: 900; color: rgba(0,0,0,0.08); line-height: 1; pointer-events: none; user-select: none; }
     .final-cta-inner { text-align: center; max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
@@ -319,7 +329,7 @@
     .btn-white-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.45); border-radius: 4px; }
     .btn-white-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.12); transform: translateY(-2px); }
 
-    /* ── OFFERINGS ── */
+    /* ── PARTNER CTA / OFFERINGS ── */
     .pcta { padding: 90px 0; background: var(--black); }
     .pcta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
     .pcta-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 56px); font-weight: 900; color: var(--white); line-height: 1.12; letter-spacing: -0.5px; margin-bottom: 24px; }
@@ -340,6 +350,7 @@
     .off-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
     .off-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; }
 
+    /* ── FOOTER ── */
     .footer { background: #000; padding: 80px 0 0; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 60px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
@@ -371,6 +382,7 @@
     .footer-bottom-links a:hover { color: rgba(255,255,255,0.62); }
     .footer-orange-bar { height: 4px; background: linear-gradient(90deg, var(--orange), transparent); }
 
+    /* ── COOKIE BAR ── */
     .cookie-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000; background: var(--black-2); border-top: 1px solid var(--border); padding: 20px 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; transform: translateY(100%); transition: transform 0.5s var(--ease); box-shadow: 0 -8px 40px rgba(0,0,0,0.45); }
     .cookie-bar.visible { transform: translateY(0); }
     .cookie-bar__text { font-family: var(--font-body); font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.55; max-width: 680px; }
@@ -382,35 +394,113 @@
     .cookie-btn--decline { background: transparent; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); }
     .cookie-btn--decline:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
 
-    @media (max-width: 1024px) {
+    /* ============================================================
+       RESPONSIVE — ported from news page patterns
+    ============================================================ */
+
+    /* ── 1100px — tablet landscape ── */
+    @media (max-width: 1100px) {
       .why-inner { grid-template-columns: 1fr; gap: 56px; }
       .pkg-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
       .pillar-row { grid-template-columns: 1fr; }
       .web-support-inner { grid-template-columns: 1fr; gap: 56px; }
       .work-grid { grid-template-columns: repeat(2, 1fr); }
       .radio-partner-inner { grid-template-columns: 1fr; }
-      .radio-left { padding: 56px 40px; }
-      .radio-right { padding: 48px 40px; }
+      .radio-left { padding: 56px 48px; }
+      .radio-right { padding: 48px 48px; }
+      .pcta-inner { grid-template-columns: 1fr; gap: 56px; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
-    @media (max-width: 768px) {
-      .navbar { padding: 0 20px; height: 72px; }
+
+    /* ── 900px — tablet portrait / main mobile breakpoint (matches news page) ── */
+    @media (max-width: 900px) {
+      /* Navbar */
+      .navbar { padding: 0 24px; height: 72px; }
+      .navbar.scrolled { height: 60px; }
       .nav-links, .nav-partner-btn { display: none; }
       .nav-hamburger { display: flex; }
-      .nav-logo img { height: 40px; }
-      .container { padding: 0 20px; }
-      .partner-hero-content { padding: 64px 20px 64px; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
-      .radio-left, .radio-right { padding: 48px 20px; }
-      .footer-top { grid-template-columns: 1fr; gap: 40px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .final-cta-btns { flex-direction: column; align-items: center; }
+      .nav-logo img { height: 44px; }
+      .navbar.scrolled .nav-logo img { height: 36px; }
+
+      /* Container */
+      .container { padding: 0 24px; }
+
+      /* Hero */
+      .partner-hero-content { padding: 56px 24px 64px; }
+      .partner-hero-title { font-size: clamp(40px, 9vw, 64px); }
+      .partner-hero-body { font-size: 16px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+
+      /* Why partner */
+      .why-inner { grid-template-columns: 1fr; gap: 48px; }
+
+      /* Packages */
+      .pkg-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0; }
+      .pkg-head { padding: 32px 28px 24px; }
+      .pkg-body { padding: 24px 28px; }
+      .pkg-footer { padding: 20px 28px 28px; }
+
+      /* Pillars */
+      .pillar-row { grid-template-columns: 1fr; }
+      .pillar { padding: 36px 28px; }
+
+      /* Radio */
+      .radio-partner-inner { grid-template-columns: 1fr; min-height: unset; }
+      .radio-left { padding: 56px 24px; }
+      .radio-right { padding: 48px 24px; }
+
+      /* Web support */
+      .web-support-inner { grid-template-columns: 1fr; gap: 48px; }
       .web-tier:hover { transform: none; }
+      .web-tier { padding: 20px 20px; }
+
+      /* Our work */
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Partner CTA */
+      .pcta-inner { grid-template-columns: 1fr; gap: 48px; }
+      .pcta-btns { flex-direction: column; align-items: stretch; }
+      .pcta-btns .btn { justify-content: center; }
+      .offering:hover { transform: none; }
+
+      /* Final CTA */
+      .final-cta-btns { flex-direction: column; align-items: center; }
+      .final-cta-btns .btn { width: 100%; max-width: 360px; justify-content: center; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      /* Cookie bar */
       .cookie-bar { flex-direction: column; align-items: flex-start; padding: 20px 24px; gap: 16px; }
       .cookie-bar__actions { width: 100%; }
       .cookie-btn { flex: 1; text-align: center; }
     }
-    @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
+
+    /* ── 640px — mobile (matches news page small breakpoint) ── */
+    @media (max-width: 640px) {
+      .partner-hero-content { padding: 48px 24px 56px; }
+      .partner-hero-title { font-size: clamp(36px, 10vw, 52px); }
+
+      /* Single column everywhere */
+      .work-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+
+      /* Packages full-width */
+      .pkg-grid { max-width: 100%; }
+
+      /* Radio tighter */
+      .radio-left { padding: 44px 24px; }
+      .radio-right { padding: 40px 24px; }
+      .radio-logo-wrap img { height: 52px; }
+
+      /* Why quote */
+      .why-quote { padding: 20px 20px; }
+
+      /* Proof card */
+      .proof-n { font-size: 32px; }
+    }
   </style>
 </head>
 
@@ -565,9 +655,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     CSI IMPACT PACKAGES — PATCH 1 APPLIED (prices added)
-============================================================ -->
+<!-- CSI IMPACT PACKAGES -->
 <section class="csi-packages" id="impact-packages">
   <div class="container">
     <div class="csi-packages-header rv">
@@ -582,7 +670,6 @@
         <div class="pkg-head">
           <div class="pkg-tier-label"><div class="pkg-tier-dot"></div> Bronze Impact</div>
           <div class="pkg-name">Your Story,<br />On the Record.</div>
-          <!-- PATCH 1: price anchor -->
           <div style="margin:18px 0 16px;padding:16px 0;border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07)">
             <div style="font-family:var(--font-head);font-size:28px;font-weight:900;color:var(--black);line-height:1;letter-spacing:-0.5px">R8,500<span style="font-size:13px;font-weight:600;color:var(--mid);letter-spacing:0"> excl. VAT</span></div>
             <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-top:8px">Entry Impact Package</div>
@@ -606,7 +693,6 @@
         <div class="pkg-head">
           <div class="pkg-tier-label"><div class="pkg-tier-dot"></div> Silver Impact</div>
           <div class="pkg-name">Your Story,<br />Seen and Shared.</div>
-          <!-- PATCH 1: price anchor -->
           <div style="margin:18px 0 16px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)">
             <div style="font-family:var(--font-head);font-size:28px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-0.5px">R18,000<span style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0"> excl. VAT</span></div>
             <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-top:8px">Core Impact Package</div>
@@ -630,7 +716,6 @@
         <div class="pkg-head">
           <div class="pkg-tier-label"><div class="pkg-tier-dot"></div> Gold Impact</div>
           <div class="pkg-name">Your Story,<br />Heard Everywhere.</div>
-          <!-- PATCH 1: price anchor -->
           <div style="margin:18px 0 16px;padding:16px 0;border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07)">
             <div style="font-family:var(--font-head);font-size:28px;font-weight:900;color:var(--black);line-height:1;letter-spacing:-0.5px">R45,000<span style="font-size:13px;font-weight:600;color:var(--mid);letter-spacing:0"> excl. VAT</span></div>
             <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-top:8px">Full Ecosystem Package</div>
@@ -653,7 +738,7 @@
   </div>
 </section>
 
-<!-- HOW WE WORK — PATCH 2 APPLIED (Pillar 03 updated) -->
+<!-- HOW WE WORK -->
 <section class="how-we-work">
   <div class="container">
     <div class="how-header rv">
@@ -676,7 +761,6 @@
         <p class="pillar-body">Partner radio stations carry content into townships and rural areas, including 919 FM, taking your brand's story to the communities mainstream media simply cannot reach.</p>
         <span class="pillar-tag">National Distribution</span>
       </div>
-      <!-- PATCH 2: updated Pillar 03 with vertical video callout -->
       <div class="pillar rv d3">
         <div class="pillar-num">PILLAR 03</div>
         <div class="pillar-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
@@ -722,7 +806,7 @@
   </div>
 </section>
 
-<!-- WEBSITE SUPPORT — PATCH 4b APPLIED -->
+<!-- WEBSITE SUPPORT -->
 <section class="web-support">
   <div class="container">
     <div class="web-support-inner">
@@ -730,7 +814,6 @@
         <div class="web-support-label">Supporting Your Initiative</div>
         <h2 class="web-support-title">Need a Website to <span>Anchor Your Story?</span></h2>
         <p class="web-support-body">A great impact campaign deserves a digital home that looks as good as the work behind it. We build clean, responsive websites that carry your brand's story clearly, professionally, and with purpose.</p>
-        <!-- PATCH 4b: updated second paragraph -->
         <p class="web-support-body">Whether it is a five-page launch site for a new initiative or a full corporate platform with a built-in impact archive, we build it to the same broadcast standard as our editorial work. Many clients pair a website build with a Gold Impact Package — so the story we document has a dedicated digital home that lives beyond the portal.</p>
         <div style="margin-top:36px">
           <a href="/contact/?path=website" class="btn btn-primary">Discuss a Website <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -775,7 +858,7 @@
   </div>
 </section>
 
-<!-- PARTNER CTA — PATCH 2b APPLIED (offering 04 added) -->
+<!-- PARTNER CTA -->
 <section class="pcta">
   <div class="container">
     <div class="pcta-inner">
@@ -808,7 +891,6 @@
           <div class="off-ic"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M14 9.5a2 2 0 0 1 0 3"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
           <div><div class="off-title">Corporate Audio Campaigns</div><p class="off-desc">Your brand's story reaches 8.5M people through community radio stations, delivered in local languages for real grassroots reach.</p></div>
         </div>
-        <!-- PATCH 2b: new vertical video offering -->
         <div class="offering">
           <div class="off-num">04</div>
           <div class="off-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
