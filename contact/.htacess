@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Kill ALL old WordPress sections (bulk handling)
+RewriteRule ^blog(/.*)?$ - [G]
+RewriteRule ^people(/.*)?$ - [G]
+RewriteRule ^projects(/.*)?$ - [G]
+RewriteRule ^field_link_to_content(/.*)?$ - [G]
+
+# Kill query-based junk (like ?page=, ?p=, etc.)
+RewriteCond %{QUERY_STRING} (page=|p=|slug=) [NC]
+RewriteRule ^.*$ - [G]
