@@ -30,14 +30,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
-    :root {
+  :root {
       --orange: #FF7A00;
       --orange-dk: #E06D00;
       --orange-pale: #FFF4EA;
       --black: #0A0A0A;
       --black-2: #111111;
       --white: #FFFFFF;
-      /* ── KEY CHANGE: warm off-white as the page base ── */
       --page: #FAFAF7;
       --surface: #F4F2EE;
       --mid: #6B6B6B;
@@ -96,7 +95,7 @@
     .toast.show { transform: translateY(0); opacity: 1; }
 
     /* ================================================================
-       NAVBAR — transparent over hero, light on scroll
+       NAVBAR — dark text from the start since hero is light
     ================================================================ */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -119,25 +118,26 @@
     .nav-logo:hover { opacity: 0.82; }
     .nav-logo img { height: 48px; width: auto; object-fit: contain; transition: height 0.4s var(--ease); }
     .navbar.scrolled .nav-logo img { height: 40px; }
-    .nav-logo-text { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 1px; transition: color 0.4s; }
+    /* Logo text — dark on light hero */
+    .nav-logo-text { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--black); letter-spacing: 1px; transition: color 0.4s; }
     .nav-logo-text span { color: var(--orange); }
-    .navbar.scrolled .nav-logo-text { color: var(--black); }
 
+    /* Nav links — dark on light hero */
     .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
-    .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); padding: 8px 15px; position: relative; transition: color 0.25s; }
+    .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(0,0,0,0.5); padding: 8px 15px; position: relative; transition: color 0.25s; }
     .nav-links a::after { content: ''; position: absolute; bottom: 3px; left: 15px; right: 15px; height: 1.5px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover { color: var(--black); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-    .nav-links a.active { color: var(--white); }
+    .nav-links a.active { color: var(--black); }
     .navbar.scrolled .nav-links a { color: rgba(0,0,0,0.5); }
     .navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--black); }
 
     .nav-cta-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 11px 22px; letter-spacing: 0.5px; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; white-space: nowrap; }
     .nav-cta-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,122,0,0.28); }
 
+    /* Hamburger — dark on light hero */
     .nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s var(--ease); }
-    .navbar.scrolled .nav-ham span { background: var(--black); }
+    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: all 0.3s var(--ease); }
     .nav-ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-ham.open span:nth-child(2) { opacity: 0; }
     .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -164,12 +164,16 @@
     .btn:hover svg { transform: translateX(4px); }
     .btn-or { background: var(--orange); color: var(--white); }
     .btn-or:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,122,0,0.28); }
-    .btn-owh { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.25); }
-    .btn-owh:hover { border-color: var(--white); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+    /* Dark outline button — for light hero */
+    .btn-owh { background: transparent; color: var(--black); border: 1.5px solid rgba(0,0,0,0.25); }
+    .btn-owh:hover { border-color: var(--black); background: rgba(0,0,0,0.05); transform: translateY(-2px); }
     .btn-bk { background: #2A2A27; color: var(--white); }
     .btn-bk:hover { background: #3a3a36; transform: translateY(-2px); }
     .btn-outline { background: transparent; color: var(--black); border: 1.5px solid rgba(0,0,0,0.18); }
     .btn-outline:hover { border-color: var(--black); background: var(--black); color: var(--white); transform: translateY(-2px); }
+    /* White outline — for use on orange/dark sections only */
+    .btn-owh-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); }
+    .btn-owh-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 
     /* ── Eyebrow ── */
     .eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
@@ -178,31 +182,62 @@
     .eyebrow.center::before { display: none; }
 
     /* ================================================================
-       HERO — keep dark, it works
+       HERO — LIGHT background with orange animated paths
     ================================================================ */
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; background: var(--black); padding-top: 76px; }
-    .hero-media { position: absolute; inset: 0; }
-    .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
-    .hero-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.05) 100%); }
-    .hero-content { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; padding: 100px 56px 80px; width: 100%; }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--page);
+      padding-top: 76px;
+    }
+    .hero-media { position: absolute; inset: 0; background: var(--page); }
+
+    /* Subtle light-to-surface gradient overlay — no dark overlay */
+    .hero-over {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(250,250,247,0.5) 0%, transparent 60%);
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto;padding: 100px 56px 80px; width: 100%; }
+
     .hero-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; opacity: 0; animation: hf 0.7s var(--ease) 0.5s forwards; }
     .hk-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2.2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.55)} }
-    .hk-txt { font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 4px; text-transform: uppercase; }
-    .hero-h1 { font-family: var(--fh); font-size: clamp(52px, 8.5vw, 128px); font-weight: 900; color: var(--white); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 32px; opacity: 0; animation: hf 0.9s var(--ease) 0.75s forwards; }
+    .hk-txt { font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(0,0,0,0.4); letter-spacing: 4px; text-transform: uppercase; }
+
+    .hero-h1 { font-family: var(--fh); font-size: clamp(52px, 8.5vw, 128px); font-weight: 900; color: var(--black); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 32px; opacity: 0; animation: hf 0.9s var(--ease) 0.75s forwards; }
     .hero-h1 .line { display: block; }
     .hero-h1 .ac { color: var(--orange); }
 
-    /* Replaced hero paragraph with 3 punchy bullets */
+    /* ── Hero path background ── */
+    .hero-path-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.35;
+    }
+    .hero-path-svg path {
+      animation: pathDraw 20s linear infinite;
+    }
+    @keyframes pathDraw {
+      0%   { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -800; }
+    }
+
     .hero-bullets { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; opacity: 0; animation: hf 0.8s var(--ease) 1.0s forwards; }
     .hero-bullet { display: flex; align-items: center; gap: 10px; }
     .hero-bullet-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
-    .hero-bullet-txt { font-size: 15px; color: rgba(255,255,255,0.65); font-family: var(--fb); }
+    .hero-bullet-txt { font-size: 15px; color: rgba(0,0,0,0.55); font-family: var(--fb); }
 
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: hf 0.8s var(--ease) 1.25s forwards; }
+
     .hero-scroll-ind { position: absolute; bottom: 40px; right: 56px; z-index: 3; display: flex; align-items: center; gap: 10px; opacity: 0; animation: hf 0.6s var(--ease) 2.0s forwards; }
-    .hsi-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.22); writing-mode: vertical-rl; transform: rotate(180deg); }
-    .hsi-track { width: 1px; height: 48px; background: rgba(255,255,255,0.1); overflow: hidden; position: relative; }
+    .hsi-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(0,0,0,0.22); writing-mode: vertical-rl; transform: rotate(180deg); }
+    .hsi-track { width: 1px; height: 48px; background: rgba(0,0,0,0.1); overflow: hidden; position: relative; }
     .hsi-bar { position: absolute; top: 0; width: 100%; height: 40%; background: var(--orange); animation: sb 2.2s ease-in-out infinite; }
     @keyframes sb { 0%{top:-40%;opacity:0} 30%{opacity:1} 70%{opacity:1} 100%{top:140%;opacity:0} }
     @keyframes hf { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
@@ -216,185 +251,52 @@
     .mission-text em { font-style: normal; opacity: 0.78; font-weight: 400; }
 
     /* ================================================================
-       B2B — light background, bullets in cards
+       B2B
     ================================================================ */
-    .b2b {
-      background: var(--page);
-      padding: 88px 0 0;
-    }
-
-    .b2b-top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-      margin-bottom: 64px;
-    }
-
-    .b2b-headline {
-      font-family: var(--fh);
-      font-size: clamp(34px, 4.5vw, 60px);
-      font-weight: 900;
-      color: var(--black);
-      line-height: 1.05;
-      letter-spacing: -0.5px;
-    }
+    .b2b { background: var(--page); padding: 88px 0 0; }
+    .b2b-top { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-bottom: 64px; }
+    .b2b-headline { font-family: var(--fh); font-size: clamp(34px, 4.5vw, 60px); font-weight: 900; color: var(--black); line-height: 1.05; letter-spacing: -0.5px; }
     .b2b-headline .accent { color: var(--orange); display: block; }
-
     .b2b-right { display: flex; flex-direction: column; gap: 24px; }
-
-    /* Replaced body paragraph with 3-bullet list */
     .b2b-points { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .b2b-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-family: var(--fb);
-      font-size: 16px;
-      color: var(--mid);
-      line-height: 1.55;
-    }
-    .b2b-points li::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--orange);
-      flex-shrink: 0;
-      margin-top: 8px;
-    }
-
-    .b2b-pkg-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 28px;
-      background: var(--orange);
-      color: var(--white);
-      font-family: var(--fh);
-      font-size: 14px;
-      font-weight: 700;
-      transition: background 0.25s, transform 0.25s;
-    }
+    .b2b-points li { display: flex; align-items: flex-start; gap: 12px; font-family: var(--fb); font-size: 16px; color: var(--mid); line-height: 1.55; }
+    .b2b-points li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; margin-top: 8px; }
+    .b2b-pkg-link { display: inline-flex; align-items: center; justify-content: space-between; padding: 18px 28px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 14px; font-weight: 700; transition: background 0.25s, transform 0.25s; }
     .b2b-pkg-link:hover { background: var(--orange-dk); transform: translateY(-2px); }
     .b2b-pkg-link svg { width: 15px; height: 15px; stroke: var(--white); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
     .b2b-pkg-link:hover svg { transform: translateX(5px); }
-
-    /* Three cards with bullet answers */
-    .b2b-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .b2b-card {
-      padding: 44px 36px 40px;
-      background: var(--white);
-      border-right: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
+    .b2b-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border); }
+    .b2b-card { padding: 44px 36px 40px; background: var(--white); border-right: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; }
     .b2b-card:last-child { border-right: none; }
     .b2b-card:hover { background: var(--surface); }
-
-    .b2b-card-num {
-      position: absolute; bottom: -24px; right: -6px;
-      font-family: var(--fh); font-size: 140px; font-weight: 900;
-      color: rgba(0,0,0,0.04); line-height: 1; pointer-events: none;
-      letter-spacing: -6px; transition: color 0.4s;
-    }
+    .b2b-card-num { position: absolute; bottom: -24px; right: -6px; font-family: var(--fh); font-size: 140px; font-weight: 900; color: rgba(0,0,0,0.04); line-height: 1; pointer-events: none; letter-spacing: -6px; transition: color 0.4s; }
     .b2b-card:hover .b2b-card-num { color: rgba(255,122,0,0.05); }
-
-    .b2b-card-q {
-      font-family: var(--fh);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--black);
-      line-height: 1.4;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
+    .b2b-card-q { font-family: var(--fh); font-size: 16px; font-weight: 700; color: var(--black); line-height: 1.4; margin-bottom: 20px; font-style: italic; }
     .b2b-card-q::before { content: '\201C'; color: var(--orange); font-size: 22px; font-style: normal; margin-right: 3px; }
-
-    .b2b-card-bar {
-      width: 28px; height: 2px; background: var(--orange);
-      margin-bottom: 16px; transition: width 0.4s;
-    }
+    .b2b-card-bar { width: 28px; height: 2px; background: var(--orange); margin-bottom: 16px; transition: width 0.4s; }
     .b2b-card:hover .b2b-card-bar { width: 48px; }
-
-    /* Bullet answers — the key change */
     .b2b-card-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
-    .b2b-card-bullets li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 13px; color: var(--mid); line-height: 1.55;
-    }
-    .b2b-card-bullets li::before {
-      content: '→';
-      color: var(--orange);
-      font-size: 12px;
-      flex-shrink: 0;
-      margin-top: 1px;
-      font-family: var(--fh);
-    }
+    .b2b-card-bullets li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--mid); line-height: 1.55; }
+    .b2b-card-bullets li::before { content: '→'; color: var(--orange); font-size: 12px; flex-shrink: 0; margin-top: 1px; font-family: var(--fh); }
 
     /* ================================================================
-       WHY — light surface, tighter copy
+       WHY
     ================================================================ */
-    .why {
-      padding: 88px 0;
-      background: var(--surface);
-    }
-
-    .why-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .why-h2 {
-      font-family: var(--fh);
-      font-size: clamp(30px, 4vw, 50px);
-      font-weight: 900;
-      color: var(--black);
-      line-height: 1.1;
-      letter-spacing: -0.5px;
-      margin-bottom: 24px;
-    }
+    .why { padding: 88px 0; background: var(--surface); }
+    .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .why-h2 { font-family: var(--fh); font-size: clamp(30px, 4vw, 50px); font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 24px; }
     .why-h2 span { color: var(--orange); }
-
-    /* Replaced body paragraphs + quote with 3 clean bullets */
     .why-points { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
-    .why-points li {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 14px 18px;
-      background: var(--white);
-      border-left: 3px solid var(--orange);
-    }
+    .why-points li { display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; background: var(--white); border-left: 3px solid var(--orange); }
     .why-points li .wp-icon { color: var(--orange); font-family: var(--fh); font-size: 13px; font-weight: 700; flex-shrink: 0; padding-top: 1px; }
     .why-points li p { font-size: 14px; color: var(--black); font-weight: 600; line-height: 1.4; }
     .why-points li span { font-size: 12px; color: var(--mid); display: block; margin-top: 2px; font-weight: 400; }
-
-    /* Benefit grid — already strong, keep with tweaks */
-    .ben-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .ben-cell {
-      background: var(--white);
-      padding: 24px 20px;
-      border: 1px solid var(--border);
-      transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s;
-    }
+    .ben-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ben-cell { background: var(--white); padding: 24px 20px; border: 1px solid var(--border); transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s; }
     .ben-cell:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); border-color: rgba(255,122,0,0.3); }
-
     .ben-ic-box { width: 40px; height: 40px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: background 0.3s; }
     .ben-cell:hover .ben-ic-box { background: rgba(255,122,0,0.15); }
     .ben-ic-box svg { width: 18px; height: 18px; stroke: var(--orange); fill: none; stroke-width: 2; }
-
     .ben-title { font-family: var(--fh); font-size: 11px; font-weight: 800; color: var(--black); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
     .ben-body { font-size: 12px; color: var(--mid); line-height: 1.6; }
 
@@ -408,7 +310,6 @@
     .stories-link:hover { gap: 14px; }
     .stories-link svg { width: 13px; height: 13px; stroke: var(--orange); fill: none; stroke-width: 2.5; }
     .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-
     .story-card { background: var(--white); display: block; overflow: hidden; transition: transform 0.4s var(--ease), box-shadow 0.4s; position: relative; }
     .story-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.12); z-index: 1; }
     .sc-img { position: relative; aspect-ratio: 4/3; overflow: hidden; }
@@ -421,7 +322,6 @@
     .sc-read { display: inline-flex; align-items: center; gap: 7px; font-family: var(--fh); font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.3px; transition: gap 0.3s; }
     .sc-read svg { width: 13px; height: 13px; stroke: var(--orange); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
     .story-card:hover .sc-read { gap: 12px; }
-
     .stories-cta { text-align: center; margin-top: 44px; }
     .stories-loading { grid-column: 1/-1; text-align: center; padding: 56px 0; font-family: var(--fh); font-size: 13px; color: var(--mid); letter-spacing: 1px; }
 
@@ -449,55 +349,19 @@
     .pillar-card:hover .pillar-arr svg { stroke: var(--white); transform: rotate(45deg); }
 
     /* ================================================================
-       CTA STRIP — orange background, no black
+       CTA STRIP — orange bg, white text
     ================================================================ */
-    .cta-strip {
-      background: var(--orange);
-      padding: 80px 0;
-    }
-    .cta-strip-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-    .cta-strip-left {}
-    .cta-strip-h {
-      font-family: var(--fh);
-      font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.5px;
-      margin-bottom: 20px;
-    }
+    .cta-strip { background: var(--orange); padding: 80px 0; }
+    .cta-strip-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .cta-strip-h { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 20px; }
     .cta-strip-h span { color: rgba(255,255,255,0.75); }
-
-    /* 3 stat/proof bullets */
     .cta-strip-stats { display: flex; flex-direction: column; gap: 14px; }
-    .cta-stat {
-      display: flex; align-items: center; gap: 18px;
-      padding: 16px 20px;
-      background: rgba(0,0,0,0.1);
-      border-left: 2px solid rgba(255,255,255,0.5);
-      transition: background 0.3s;
-    }
+    .cta-stat { display: flex; align-items: center; gap: 18px; padding: 16px 20px; background: rgba(0,0,0,0.1); border-left: 2px solid rgba(255,255,255,0.5); transition: background 0.3s; }
     .cta-stat:hover { background: rgba(0,0,0,0.15); }
     .cta-stat-n { font-family: var(--fh); font-size: 28px; font-weight: 900; color: var(--white); line-height: 1; flex-shrink: 0; min-width: 72px; }
     .cta-stat-l { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; }
-
-    /* Right: 3 offering bullets + CTA buttons */
-    .cta-strip-right {}
     .cta-offerings { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
-    .cta-offering {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 18px 20px;
-      border: 1px solid rgba(255,255,255,0.2);
-      margin-bottom: -1px;
-      background: rgba(255,255,255,0.08);
-      transition: background 0.3s, border-color 0.3s, transform 0.3s;
-      position: relative;
-    }
+    .cta-offering { display: flex; align-items: flex-start; gap: 16px; padding: 18px 20px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: -1px; background: rgba(255,255,255,0.08); transition: background 0.3s, border-color 0.3s, transform 0.3s; position: relative; }
     .cta-offering:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.35); transform: translateX(4px); z-index: 1; }
     .cta-offering-ic { width: 36px; height: 36px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.3s; }
     .cta-offering:hover .cta-offering-ic { background: rgba(255,255,255,0.25); }
@@ -648,7 +512,7 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
-    <img src="images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <img src="images/logo-black.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
   <ul class="nav-links">
@@ -680,22 +544,28 @@
 </aside>
 
 <!-- ================================================================
-     HERO — dark is intentional and correct for this section
+     HERO — animated SVG path background (replaces video)
 ================================================================ -->
 <section class="hero">
-  <div class="hero-media">
-    <video autoplay muted loop playsinline poster="images/hero-bg.png">
-      <source src="images/about-hero.mp4" type="video/mp4" />
-    </video>
+
+  <!-- Animated path background -->
+<div class="hero-media" style="background: var(--page);"></div>
+    <svg class="hero-path-svg" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    </svg>
   </div>
+
   <div class="hero-over"></div>
+
   <div class="hero-content">
+    <div class="hero-kicker">
+      <div class="hk-dot"></div>
+      <span class="hk-txt">South Africa's Good News Platform</span>
+    </div>
     <h1 class="hero-h1">
       <span class="line">South Africa</span>
       <span class="line">Is Winning</span>
       <span class="line ac">We Prove It</span>
     </h1>
-    <!-- Replaced 40-word paragraph with 3 punchy bullets -->
     <div class="hero-bullets">
       <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">Stories of courage, daily</span></div>
       <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">CSI investment, documented</span></div>
@@ -706,23 +576,12 @@
       <a href="/partner/" class="btn btn-owh">Partner With Us</a>
     </div>
   </div>
+
   <div class="hero-scroll-ind">
     <div class="hsi-label">Scroll</div>
     <div class="hsi-track"><div class="hsi-bar"></div></div>
   </div>
 </section>
-
-<!-- MISSION BAR -->
-<div class="mission-bar rv-f">
-  <div class="container">
-    <div class="mission-inner">
-      <div class="mission-tag">Our Purpose</div>
-      <div class="mission-text-wrap">
-        <p class="mission-text">More than feel-good stories. <em>We show what works. We share the energy. We build a culture of success.</em></p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ================================================================
      B2B — light background, bullets replace paragraphs
@@ -1147,7 +1006,7 @@ const navbar=document.getElementById('navbar'),navImg=document.getElementById('n
 window.addEventListener('scroll',()=>{
   const s=window.scrollY>56;
   navbar.classList.toggle('scrolled',s);
-  if(navImg)navImg.src=s?'images/logo-black.png':'images/logo-white.png';
+  if(navImg)navImg.src='images/logo-black.png';
 },{passive:true});
 
 /* 3. Mobile Sidebar */
@@ -1203,6 +1062,38 @@ async function initStories(){
   grid.querySelectorAll('.rv').forEach(el=>ro.observe(el));
 }
 initStories();
+
+/* Hero path background — replaces video */
+(function() {
+  const svg = document.querySelector('.hero-path-svg');
+  if (!svg) return;
+
+  const position1 = 1;
+  const position2 = -1;
+
+  function makePaths(position) {
+    return Array.from({ length: 36 }, (_, i) => {
+      const d = `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`;
+      const opacity = 0.1 + i * 0.03;
+      const width   = 0.5 + i * 0.03;
+      const duration = 20 + (i * 7 % 10); // deterministic spread, no Math.random()
+      const delay    = -(i * 1.1);        // stagger start so they don't sync
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('stroke', '#FF7A00');
+      path.setAttribute('stroke-width', width);
+      path.setAttribute('stroke-opacity', opacity);
+      path.setAttribute('fill', 'none');
+      path.style.strokeDasharray = '800';
+      path.style.strokeDashoffset = '0';
+      path.style.animation = `pathDraw ${duration}s linear ${delay}s infinite`;
+      return path;
+    });
+  }
+
+  [...makePaths(position1), ...makePaths(position2)].forEach(p => svg.appendChild(p));
+})();
 </script>
 </body>
 </html>
