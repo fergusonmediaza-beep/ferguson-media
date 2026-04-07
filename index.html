@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ferguson Media | South Africa's Good News Media Platform</title>
-  <meta name="description" content="Ferguson Media amplifies stories of progress, innovation, and community impact across South Africa. We document CSI investments and share good news stories that build brand trust and prove real change." />
-  <meta name="keywords" content="Ferguson Media, good news South Africa, CSI storytelling, corporate social investment media, positive news South Africa" />
+  <title>Ferguson Media | CSI Storytelling, Radio Distribution & Content Production</title>
+  <meta name="description" content="South Africa's good news media partner: CSI storytelling packages from R8,500, radio distribution to 8.5M+ listeners, and full-service content production. Document, distribute & measure your social impact." />
+  <meta name="keywords" content="Ferguson Media, good news South Africa, CSI storytelling, corporate social investment media, positive news South Africa, radio distribution, content production" />
   <meta name="author" content="Ferguson Media" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://fergusonmedia.co.za/" />
@@ -22,13 +22,11 @@
   <meta name="geo.region" content="ZA-GP" />
   <meta name="geo.placename" content="Sandton, Johannesburg" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ferguson Media","url":"https://fergusonmedia.co.za","logo":"https://fergusonmedia.co.za/images/logo-white.png","description":"South Africa's premier good news media platform.","address":{"@type":"PostalAddress","streetAddress":"35 Ferguson Road","addressLocality":"Illovo, Sandton","addressRegion":"Gauteng","postalCode":"2196","addressCountry":"ZA"},"telephone":"+27824678925"}</script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="48x48" href="https://fergusonmedia.co.za/images/favicon.png" />
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
   <style>
   :root {
       --orange: #FF7A00;
@@ -47,24 +45,13 @@
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --max: 1280px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--page); }
-    body {
-      font-family: var(--fb);
-      color: var(--black);
-      background: var(--page);
-      overflow-x: hidden;
-      line-height: 1.6;
-      opacity: 0;
-      transition: opacity 0.5s var(--ease);
-    }
+    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; opacity: 0; transition: opacity 0.5s var(--ease); }
     body.fm-ready { opacity: 1; }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
-
-    /* ── Reveal ── */
     .rv { opacity: 0; transform: translateY(36px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
     .rv.on { opacity: 1; transform: translateY(0); }
     .rv-l { opacity: 0; transform: translateX(-36px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
@@ -75,74 +62,39 @@
     .rv-f.on { opacity: 1; }
     .d1{transition-delay:.05s} .d2{transition-delay:.12s} .d3{transition-delay:.19s}
     .d4{transition-delay:.26s} .d5{transition-delay:.33s} .d6{transition-delay:.40s}
-
-    /* ── Loader ── */
-    .page-loader {
-      position: fixed; inset: 0; z-index: 9000;
-      background: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.6s var(--ease), visibility 0.6s;
-    }
+    .page-loader { position: fixed; inset: 0; z-index: 9000; background: var(--black); display: flex; align-items: center; justify-content: center; transition: opacity 0.6s var(--ease), visibility 0.6s; }
     .page-loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
     .loader-wordmark { font-family: var(--fh); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 24px; }
     .loader-wordmark span { color: var(--orange); }
     .loader-line-bg { width: 140px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto; overflow: hidden; }
     .loader-line { height: 100%; background: var(--orange); animation: ll 1.5s var(--ease) forwards; }
     @keyframes ll { from{width:0} to{width:100%} }
-
-    /* ── Toast ── */
     .toast { position: fixed; bottom: 32px; right: 32px; background: var(--black); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 600; padding: 16px 24px; border-left: 3px solid var(--orange); box-shadow: 0 12px 40px rgba(0,0,0,0.35); z-index: 9999; transform: translateY(70px); opacity: 0; transition: all 0.4s var(--ease); }
     .toast.show { transform: translateY(0); opacity: 1; }
 
-    /* ================================================================
-       NAVBAR — dark text from the start since hero is light
-    ================================================================ */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      height: 76px; padding: 0 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.4s var(--ease), box-shadow 0.4s, height 0.4s, border-color 0.4s;
-      animation: navIn 0.6s var(--ease) 0.3s both;
-    }
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s var(--ease), box-shadow 0.4s, height 0.4s, border-color 0.4s; animation: navIn 0.6s var(--ease) 0.3s both; }
     @keyframes navIn { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
-
-    .navbar.scrolled {
-      background: rgba(250,250,247,0.96);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-      height: 64px;
-    }
-
+    .navbar.scrolled { background: rgba(250,250,247,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.06); height: 64px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; transition: opacity 0.2s; }
     .nav-logo:hover { opacity: 0.82; }
     .nav-logo img { height: 48px; width: auto; object-fit: contain; transition: height 0.4s var(--ease); }
     .navbar.scrolled .nav-logo img { height: 40px; }
-    /* Logo text — dark on light hero */
     .nav-logo-text { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--black); letter-spacing: 1px; transition: color 0.4s; }
     .nav-logo-text span { color: var(--orange); }
-
-    /* Nav links — dark on light hero */
     .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
     .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(0,0,0,0.5); padding: 8px 15px; position: relative; transition: color 0.25s; }
     .nav-links a::after { content: ''; position: absolute; bottom: 3px; left: 15px; right: 15px; height: 1.5px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
     .nav-links a:hover { color: var(--black); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
     .nav-links a.active { color: var(--black); }
-    .navbar.scrolled .nav-links a { color: rgba(0,0,0,0.5); }
-    .navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--black); }
-
     .nav-cta-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 11px 22px; letter-spacing: 0.5px; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; white-space: nowrap; }
     .nav-cta-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,122,0,0.28); }
-
-    /* Hamburger — dark on light hero */
     .nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: all 0.3s var(--ease); }
     .nav-ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-ham.open span:nth-child(2) { opacity: 0; }
     .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    /* ── Sidebar ── */
     .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
     .s-ov.open { display: block; opacity: 1; }
     .sidebar { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: var(--black); z-index: 1200; transition: right 0.4s var(--ease); display: flex; flex-direction: column; }
@@ -155,86 +107,45 @@
     .sb-nav { padding: 24px 14px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
     .sb-nav a { font-family: var(--fh); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.48); padding: 13px 14px; transition: color 0.2s, padding-left 0.3s; }
     .sb-nav a:hover { color: var(--white); padding-left: 20px; }
-    .sb-cta { margin: 8px 14px 28px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 15px; text-align: center; transition: background 0.25s; }
+    .sb-cta { margin: 8px 14px 28px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 15px; text-align: center; transition: background 0.25s; display: block; }
     .sb-cta:hover { background: var(--orange-dk); }
 
-    /* ── Buttons ── */
+    /* BUTTONS */
     .btn { display: inline-flex; align-items: center; gap: 9px; padding: 15px 30px; font-family: var(--fh); font-size: 13px; font-weight: 700; transition: all 0.3s var(--ease); border: none; cursor: pointer; white-space: nowrap; letter-spacing: 0.2px; }
     .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; flex-shrink: 0; }
     .btn:hover svg { transform: translateX(4px); }
     .btn-or { background: var(--orange); color: var(--white); }
     .btn-or:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,122,0,0.28); }
-    /* Dark outline button — for light hero */
     .btn-owh { background: transparent; color: var(--black); border: 1.5px solid rgba(0,0,0,0.25); }
     .btn-owh:hover { border-color: var(--black); background: rgba(0,0,0,0.05); transform: translateY(-2px); }
     .btn-bk { background: #2A2A27; color: var(--white); }
     .btn-bk:hover { background: #3a3a36; transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: var(--black); border: 1.5px solid rgba(0,0,0,0.18); }
-    .btn-outline:hover { border-color: var(--black); background: var(--black); color: var(--white); transform: translateY(-2px); }
-    /* White outline — for use on orange/dark sections only */
-    .btn-owh-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); }
-    .btn-owh-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
-
-    /* ── Eyebrow ── */
     .eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
     .eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); flex-shrink: 0; }
     .eyebrow.center { justify-content: center; }
     .eyebrow.center::before { display: none; }
 
-    /* ================================================================
-       HERO — LIGHT background with orange animated paths
-    ================================================================ */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: var(--page);
-      padding-top: 76px;
-    }
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: var(--page); padding-top: 76px; }
     .hero-media { position: absolute; inset: 0; background: var(--page); }
-
-    /* Subtle light-to-surface gradient overlay — no dark overlay */
-    .hero-over {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(250,250,247,0.5) 0%, transparent 60%);
-    }
-
-    .hero-content { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto;padding: 100px 56px 80px; width: 100%; }
-
+    .hero-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(250,250,247,0.5) 0%, transparent 60%); }
+    .hero-content { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; padding: 100px 56px 80px; width: 100%; }
+    .hero-path-svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.35; }
+    .hero-path-svg path { animation: pathDraw 20s linear infinite; }
+    @keyframes pathDraw { 0%{stroke-dashoffset:0} 100%{stroke-dashoffset:-800} }
     .hero-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; opacity: 0; animation: hf 0.7s var(--ease) 0.5s forwards; }
     .hk-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2.2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.55)} }
     .hk-txt { font-family: var(--fh); font-size: 11px; font-weight: 700; color: rgba(0,0,0,0.4); letter-spacing: 4px; text-transform: uppercase; }
-
-    .hero-h1 { font-family: var(--fh); font-size: clamp(52px, 8.5vw, 128px); font-weight: 900; color: var(--black); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 32px; opacity: 0; animation: hf 0.9s var(--ease) 0.75s forwards; }
+    .hero-h1 { font-family: var(--fh); font-size: clamp(52px, 8.5vw, 128px); font-weight: 900; color: var(--black); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 28px; opacity: 0; animation: hf 0.9s var(--ease) 0.75s forwards; }
     .hero-h1 .line { display: block; }
     .hero-h1 .ac { color: var(--orange); }
 
-    /* ── Hero path background ── */
-    .hero-path-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.35;
-    }
-    .hero-path-svg path {
-      animation: pathDraw 20s linear infinite;
-    }
-    @keyframes pathDraw {
-      0%   { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: -800; }
-    }
+    /* Clear descriptor — plain English explanation */
+    .hero-descriptor { font-family: var(--fb); font-size: clamp(15px,1.6vw,18px); color: rgba(0,0,0,0.6); line-height: 1.7; max-width: 580px; margin-bottom: 40px; opacity: 0; animation: hf 0.8s var(--ease) 0.95s forwards; }
+    .hero-descriptor strong { color: var(--black); font-weight: 600; }
 
-    .hero-bullets { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; opacity: 0; animation: hf 0.8s var(--ease) 1.0s forwards; }
-    .hero-bullet { display: flex; align-items: center; gap: 10px; }
-    .hero-bullet-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
-    .hero-bullet-txt { font-size: 15px; color: rgba(0,0,0,0.55); font-family: var(--fb); }
-
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: hf 0.8s var(--ease) 1.25s forwards; }
-
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: hf 0.8s var(--ease) 1.2s forwards; }
     .hero-scroll-ind { position: absolute; bottom: 40px; right: 56px; z-index: 3; display: flex; align-items: center; gap: 10px; opacity: 0; animation: hf 0.6s var(--ease) 2.0s forwards; }
     .hsi-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(0,0,0,0.22); writing-mode: vertical-rl; transform: rotate(180deg); }
     .hsi-track { width: 1px; height: 48px; background: rgba(0,0,0,0.1); overflow: hidden; position: relative; }
@@ -242,7 +153,7 @@
     @keyframes sb { 0%{top:-40%;opacity:0} 30%{opacity:1} 70%{opacity:1} 100%{top:140%;opacity:0} }
     @keyframes hf { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-    /* ── Mission Bar ── */
+    /* MISSION BAR */
     .mission-bar { background: var(--orange); }
     .mission-inner { display: flex; align-items: stretch; }
     .mission-tag { background: rgba(0,0,0,0.14); padding: 20px 36px; font-family: var(--fh); font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.75); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; }
@@ -250,9 +161,7 @@
     .mission-text { font-family: var(--fh); font-size: clamp(13px, 1.5vw, 15px); font-weight: 600; color: var(--white); }
     .mission-text em { font-style: normal; opacity: 0.78; font-weight: 400; }
 
-    /* ================================================================
-       B2B
-    ================================================================ */
+    /* B2B */
     .b2b { background: var(--page); padding: 88px 0 0; }
     .b2b-top { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-bottom: 64px; }
     .b2b-headline { font-family: var(--fh); font-size: clamp(34px, 4.5vw, 60px); font-weight: 900; color: var(--black); line-height: 1.05; letter-spacing: -0.5px; }
@@ -279,9 +188,7 @@
     .b2b-card-bullets li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--mid); line-height: 1.55; }
     .b2b-card-bullets li::before { content: '→'; color: var(--orange); font-size: 12px; flex-shrink: 0; margin-top: 1px; font-family: var(--fh); }
 
-    /* ================================================================
-       WHY
-    ================================================================ */
+    /* WHY */
     .why { padding: 88px 0; background: var(--surface); }
     .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
     .why-h2 { font-family: var(--fh); font-size: clamp(30px, 4vw, 50px); font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 24px; }
@@ -300,9 +207,7 @@
     .ben-title { font-family: var(--fh); font-size: 11px; font-weight: 800; color: var(--black); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
     .ben-body { font-size: 12px; color: var(--mid); line-height: 1.6; }
 
-    /* ================================================================
-       STORIES
-    ================================================================ */
+    /* STORIES */
     .stories { padding: 80px 0; background: var(--page); }
     .stories-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; gap: 20px; flex-wrap: wrap; }
     .stories-title { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: var(--black); letter-spacing: -0.5px; line-height: 1.12; }
@@ -320,14 +225,12 @@
     .sc-title { font-family: var(--fh); font-size: 16px; font-weight: 800; color: var(--black); line-height: 1.3; margin-bottom: 8px; }
     .sc-exc { font-size: 13px; color: var(--mid); line-height: 1.65; margin-bottom: 18px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .sc-read { display: inline-flex; align-items: center; gap: 7px; font-family: var(--fh); font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.3px; transition: gap 0.3s; }
-    .sc-read svg { width: 13px; height: 13px; stroke: var(--orange); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .sc-read svg { width: 13px; height: 13px; stroke: var(--orange); fill: none; stroke-width: 2.5; }
     .story-card:hover .sc-read { gap: 12px; }
     .stories-cta { text-align: center; margin-top: 44px; }
     .stories-loading { grid-column: 1/-1; text-align: center; padding: 56px 0; font-family: var(--fh); font-size: 13px; color: var(--mid); letter-spacing: 1px; }
 
-    /* ================================================================
-       PILLARS
-    ================================================================ */
+    /* PILLARS */
     .pillars { padding: 80px 0; background: var(--surface); }
     .pillars-hd { text-align: center; max-width: 560px; margin: 0 auto 60px; }
     .pillars-title { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: var(--black); letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 12px; }
@@ -348,9 +251,7 @@
     .pillar-card:hover .pillar-arr { background: var(--orange); border-color: var(--orange); }
     .pillar-card:hover .pillar-arr svg { stroke: var(--white); transform: rotate(45deg); }
 
-    /* ================================================================
-       CTA STRIP — orange bg, white text
-    ================================================================ */
+    /* CTA STRIP */
     .cta-strip { background: var(--orange); padding: 80px 0; }
     .cta-strip-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
     .cta-strip-h { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 20px; }
@@ -369,10 +270,10 @@
     .cta-offering-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
     .cta-offering-body { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.55; }
     .cta-strip-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-owh-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); padding: 15px 30px; font-family: var(--fh); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 9px; transition: all 0.3s var(--ease); }
+    .btn-owh-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 
-    /* ================================================================
-       PARTNERS
-    ================================================================ */
+    /* PARTNERS */
     .partners { padding: 80px 0; background: var(--page); position: relative; overflow: hidden; }
     .partners::before { content: 'NETWORK'; position: absolute; bottom: -16px; right: -8px; font-family: var(--fh); font-size: clamp(100px,12vw,200px); font-weight: 900; color: rgba(0,0,0,0.035); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -6px; white-space: nowrap; }
     .p-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; gap: 20px; flex-wrap: wrap; position: relative; z-index: 1; }
@@ -400,15 +301,11 @@
     .p-cell:hover .p-cell-arrow { background: var(--orange); border-color: var(--orange); }
     .p-cell:hover .p-cell-arrow svg { stroke: var(--white); }
 
-    /* ================================================================
-       FOOTER
-    ================================================================ */
+    /* FOOTER */
     .footer { background: var(--surface); padding: 80px 0 0; border-top: 1px solid var(--border); }
     .ft-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; padding-bottom: 60px; border-bottom: 1px solid var(--border); }
     .ft-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
     .ft-logo img { height: 40px; width: auto; object-fit: contain; filter: brightness(0); }
-    .ft-logo-txt { font-family: var(--fh); font-size: 14px; font-weight: 900; color: var(--black); letter-spacing: 0.5px; display: none; }
-    .ft-logo-txt span { color: var(--orange); }
     .ft-tag { font-size: 13px; color: var(--mid); line-height: 1.72; max-width: 260px; margin-bottom: 24px; }
     .ft-soc { display: flex; gap: 7px; flex-wrap: wrap; }
     .ft-sl { width: 32px; height: 32px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
@@ -427,13 +324,10 @@
     .ft-cit a:hover { color: var(--orange); }
     .ft-bot { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 14px; flex-wrap: wrap; }
     .ft-copy { font-size: 12px; color: rgba(0,0,0,0.35); }
-    .ft-copy a { color: rgba(0,0,0,0.45); transition: color 0.2s; }
     .ft-bl { display: flex; gap: 20px; list-style: none; }
     .ft-bl a { font-size: 12px; color: rgba(0,0,0,0.35); transition: color 0.2s; }
     .ft-bl a:hover { color: var(--orange); }
     .footer-bar { height: 3px; background: linear-gradient(90deg, var(--orange) 0%, rgba(255,122,0,0.15) 60%, transparent 100%); }
-
-    /* ── Cookie Bar ── */
     .cookie-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000; background: var(--white); border-top: 1px solid var(--border); box-shadow: 0 -4px 24px rgba(0,0,0,0.08); padding: 18px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transform: translateY(100%); transition: transform 0.5s var(--ease); }
     .cookie-bar.visible { transform: translateY(0); }
     .cookie-bar__text { font-size: 13px; color: var(--mid); line-height: 1.5; max-width: 640px; }
@@ -445,23 +339,14 @@
     .cookie-btn--decline { background: transparent; color: var(--mid); border: 1px solid var(--border); }
     .cookie-btn--decline:hover { color: var(--black); border-color: rgba(0,0,0,0.25); }
 
-    /* ================================================================
-       RESPONSIVE
-    ================================================================ */
-    @media(max-width:1100px) {
-      .cta-strip-inner { grid-template-columns: 1fr; gap: 48px; }
-      .ft-top { grid-template-columns: 1fr 1fr; gap: 36px; }
-    }
-    @media(max-width:1000px) {
-      .p-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    @media(max-width:1100px) { .cta-strip-inner { grid-template-columns: 1fr; gap: 48px; } .ft-top { grid-template-columns: 1fr 1fr; gap: 36px; } }
+    @media(max-width:1000px) { .p-grid { grid-template-columns: repeat(2, 1fr); } }
     @media(max-width:900px) {
       .navbar, .cookie-bar { padding: 0 24px; }
       .nav-links, .nav-cta-btn { display: none; }
       .nav-ham { display: flex; }
       .container { padding: 0 24px; }
       .hero-content { padding: 100px 24px 72px; }
-      .hero-bullets { flex-direction: column; gap: 12px; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
       .hero-scroll-ind { display: none; }
       .b2b-top, .why-inner { grid-template-columns: 1fr; gap: 36px; }
@@ -478,38 +363,20 @@
       .cookie-bar__actions { width: 100%; }
       .cookie-btn { flex: 1; text-align: center; }
     }
-    @media(max-width:600px) {
-      .p-grid { grid-template-columns: 1fr; }
-      .ben-grid { grid-template-columns: 1fr; }
-    }
+    @media(max-width:600px) { .p-grid { grid-template-columns: 1fr; } .ben-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 
-<!-- ── Cookie Bar ── -->
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie consent">
-  <p class="cookie-bar__text">We use cookies to improve your experience. By clicking <strong style="color:var(--white)">Accept</strong>, you consent to our use of cookies. <a href="/privacy/">Privacy Policy</a>.</p>
-  <div class="cookie-bar__actions">
-    <button class="cookie-btn cookie-btn--decline" id="cookieDecline">Decline</button>
-    <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept Cookies</button>
-  </div>
+  <p class="cookie-bar__text">We use cookies to improve your experience. By clicking <strong>Accept</strong>, you consent to our use of cookies. <a href="/privacy/">Privacy Policy</a>.</p>
+  <div class="cookie-bar__actions"><button class="cookie-btn cookie-btn--decline" id="cookieDecline">Decline</button><button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept Cookies</button></div>
 </div>
-<script>
-(function(){const B=document.getElementById('cookieBar'),K='fm_cookie_consent';if(!localStorage.getItem(K))setTimeout(()=>B.classList.add('visible'),1200);document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(K,'accepted');B.classList.remove('visible');});document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(K,'declined');B.classList.remove('visible');});})();
-</script>
+<script>(function(){const B=document.getElementById('cookieBar'),K='fm_cookie_consent';if(!localStorage.getItem(K))setTimeout(()=>B.classList.add('visible'),1200);document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(K,'accepted');B.classList.remove('visible');});document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(K,'declined');B.classList.remove('visible');});})();</script>
 
 <body>
-
-<!-- PAGE LOADER -->
-<div class="page-loader" id="pageLoader">
-  <div>
-    <div class="loader-wordmark">Ferguson <span>Media</span></div>
-    <div class="loader-line-bg"><div class="loader-line"></div></div>
-  </div>
-</div>
-
+<div class="page-loader" id="pageLoader"><div><div class="loader-wordmark">Ferguson <span>Media</span></div><div class="loader-line-bg"><div class="loader-line"></div></div></div></div>
 <div class="toast" id="toast"></div>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
     <img src="images/logo-black.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
@@ -519,7 +386,7 @@
     <li><a href="/" class="active">Home</a></li>
     <li><a href="/about/">About</a></li>
     <li><a href="/news/">Good News</a></li>
-    <li><a href="/partner/">Partner With Us</a></li>
+    <li><a href="/partner/">Our Solutions</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
     <a href="/contact/" class="nav-cta-btn">Contact Us</a>
@@ -527,429 +394,222 @@
   </div>
 </nav>
 
-<!-- MOBILE SIDEBAR -->
 <div class="s-ov" id="sov"></div>
 <aside class="sidebar" id="sidebar">
-  <div class="sb-head">
-    <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
-    <button class="sb-close" id="sbClose">&#215;</button>
-  </div>
+  <div class="sb-head"><span class="sb-logo">FERGUSON <span>MEDIA</span></span><button class="sb-close" id="sbClose">&#215;</button></div>
   <nav class="sb-nav">
     <a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/news/">Good News</a>
-    <a href="/partner/">Partner With Us</a>
+    <a href="/partner/">Our Solutions</a>
   </nav>
   <a href="/contact/" class="sb-cta">Contact</a>
 </aside>
 
-<!-- ================================================================
-     HERO — animated SVG path background (replaces video)
-================================================================ -->
+<!-- HERO -->
 <section class="hero">
-
-  <!-- Animated path background -->
-<div class="hero-media" style="background: var(--page);"></div>
-    <svg class="hero-path-svg" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    </svg>
-  </div>
-
+  <div class="hero-media"></div>
+  <svg class="hero-path-svg" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"></svg>
   <div class="hero-over"></div>
-
   <div class="hero-content">
-    <div class="hero-kicker">
-      <div class="hk-dot"></div>
-      <span class="hk-txt">South Africa's Good News Platform</span>
-    </div>
+    <div class="hero-kicker"><div class="hk-dot"></div><span class="hk-txt">South Africa's Good News Media Company</span></div>
     <h1 class="hero-h1">
       <span class="line">South Africa</span>
-      <span class="line">Is Winning</span>
-      <span class="line ac">We Prove It</span>
+      <span class="line">Is Winning.</span>
+      <span class="line ac">We Prove It.</span>
     </h1>
-    <div class="hero-bullets">
-      <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">Stories of courage, daily</span></div>
-      <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">CSI investment, documented</span></div>
-      <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">Brand trust, built to last</span></div>
-    </div>
+    <!-- Plain-English explanation for first-time visitors -->
+    <p class="hero-descriptor">
+      Ferguson Media is a <strong>South African media company</strong> based in Johannesburg. We find real stories of progress happening across the country, publish them on our Good News Portal, broadcast them to over <strong>8.5 million community radio listeners</strong>, and help brands document and share the impact of their social investment work.
+    </p>
     <div class="hero-ctas">
       <a href="/news/" class="btn btn-or">Read the Good News <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="/partner/" class="btn btn-owh">Partner With Us</a>
+      <a href="/partner/" class="btn btn-owh">See Our Solutions & Packages</a>
     </div>
   </div>
-
-  <div class="hero-scroll-ind">
-    <div class="hsi-label">Scroll</div>
-    <div class="hsi-track"><div class="hsi-bar"></div></div>
-  </div>
+  <div class="hero-scroll-ind"><div class="hsi-label">Scroll</div><div class="hsi-track"><div class="hsi-bar"></div></div></div>
 </section>
 
-<!-- ================================================================
-     B2B — light background, bullets replace paragraphs
-================================================================ -->
+<!-- MISSION BAR -->
+<div class="mission-bar">
+  <div class="mission-inner container">
+    <div class="mission-tag">Our Mission</div>
+    <div class="mission-text-wrap"><p class="mission-text">South Africa is full of people doing extraordinary things — <em>most of it never gets told.</em> We change that.</p></div>
+  </div>
+</div>
+
+<!-- B2B -->
 <section class="b2b">
   <div class="container">
-
     <div class="b2b-top">
       <div class="rv-l">
-        <div class="eyebrow">For Corporate &amp; CSI Teams</div>
-        <h2 class="b2b-headline">
-          You're Doing<br />the Work.
-          <span class="accent">Get Recognised.</span>
-        </h2>
+        <div class="eyebrow">For Companies &amp; CSI Teams</div>
+        <h2 class="b2b-headline">Your Company<br />Is Doing Good.<span class="accent">Can People See It?</span></h2>
       </div>
       <div class="b2b-right rv-r">
-        <!-- Replaced 60-word paragraph with 3 bullets -->
         <ul class="b2b-points">
-          <li>Turn your CSI budget into verified, shareable proof</li>
-          <li>Broadcast-standard stories built for boardrooms</li>
-          <li>Three clear tiers — priced from R8,500 excl. VAT</li>
+          <li>Many companies spend millions on social investment but have no content to show for it</li>
+          <li>We turn your CSI work into professional stories, videos and social content your board can present</li>
+          <li>Three package options starting from R8,500 excl. VAT</li>
         </ul>
-        <a href="/partner/#impact-packages" class="b2b-pkg-link">
-          View Impact Packages
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <a href="/partner/#impact-packages" class="b2b-pkg-link">See Our Packages <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
-
-    <!-- Cards: question + bullet answers -->
     <div class="b2b-cards">
-
-      <div class="b2b-card rv d1">
-        <div class="b2b-card-num">01</div>
-        <p class="b2b-card-q">We funded something real, but have nothing to show the board.</p>
-        <div class="b2b-card-bar"></div>
-        <ul class="b2b-card-bullets">
-          <li>Broadcast-quality stories &amp; video</li>
-          <li>Permanent on the Good News Portal</li>
-          <li>Verified evidence, not a spreadsheet</li>
-        </ul>
-      </div>
-
-      <div class="b2b-card rv d2">
-        <div class="b2b-card-num">02</div>
-        <p class="b2b-card-q">Our report shows spending — not impact on real people.</p>
-        <div class="b2b-card-bar"></div>
-        <ul class="b2b-card-bullets">
-          <li>Real names, places, outcomes</li>
-          <li>Journalistic storytelling, not compliance</li>
-          <li>Communities remember who showed up</li>
-        </ul>
-      </div>
-
-      <div class="b2b-card rv d3">
-        <div class="b2b-card-num">03</div>
-        <p class="b2b-card-q">Our messaging reaches everyone and lands with no one.</p>
-        <div class="b2b-card-bar"></div>
-        <ul class="b2b-card-bullets">
-          <li>Your brand built into the story</li>
-          <li>Recognised as the reason it happened</li>
-          <li>Not a logo — a catalyst</li>
-        </ul>
-      </div>
-
+      <div class="b2b-card rv d1"><div class="b2b-card-num">01</div><p class="b2b-card-q">We spent money on a community project but have no record of what it achieved.</p><div class="b2b-card-bar"></div><ul class="b2b-card-bullets"><li>We interview people, write the story and produce the video</li><li>It lives permanently on our Good News Portal</li><li>You get proof you can share — not just a spreadsheet</li></ul></div>
+      <div class="b2b-card rv d2"><div class="b2b-card-num">02</div><p class="b2b-card-q">Our annual CSI report lists what we spent, not what actually changed.</p><div class="b2b-card-bar"></div><ul class="b2b-card-bullets"><li>Real people, real places, real outcomes on camera</li><li>Journalistic storytelling your stakeholders will actually read</li><li>The community sees — and remembers — who made it happen</li></ul></div>
+      <div class="b2b-card rv d3"><div class="b2b-card-num">03</div><p class="b2b-card-q">We run campaigns but they don't seem to connect with the people we're trying to reach.</p><div class="b2b-card-bar"></div><ul class="b2b-card-bullets"><li>Your brand is woven into the story, not placed beside it</li><li>Distributed via radio to 8.5M+ community listeners</li><li>People trust brands they see doing real things in their area</li></ul></div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     WHY — light surface, bullets instead of paragraphs
-================================================================ -->
+<!-- SOLUTIONS PREVIEW (NEW SECTION) -->
+<section class="why" style="padding-top:40px">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:32px">
+      <span class="eyebrow center">How We Help Brands Like Yours</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)">
+      <div class="b2b-card rv d1" style="border-right:1px solid var(--border);border-bottom:none">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div class="ben-ic-box" style="width:36px;height:36px;margin:0"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
+          <div style="font-family:var(--fh);font-size:13px;font-weight:700;color:var(--black)">Impact Storytelling</div>
+        </div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">Professional CSI documentation turned into permanent, broadcast-quality stories. Bronze, Silver & Gold packages available.</p>
+        <a href="/partner/#impact-packages" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--fh);font-size:11px;font-weight:700;color:var(--orange);margin-top:14px">View Packages <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:var(--orange);fill:none;stroke-width:2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="b2b-card rv d2" style="border-right:1px solid var(--border);border-bottom:none">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div class="ben-ic-box" style="width:36px;height:36px;margin:0"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
+          <div style="font-family:var(--fh);font-size:13px;font-weight:700;color:var(--black)">Radio Distribution</div>
+        </div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">Reach 8.5M+ listeners in townships and rural communities via 919 FM and our national partner network.</p>
+        <a href="/partner/#radio" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--fh);font-size:11px;font-weight:700;color:var(--orange);margin-top:14px">Learn More <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:var(--orange);fill:none;stroke-width:2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="b2b-card rv d3" style="border-bottom:none">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div class="ben-ic-box" style="width:36px;height:36px;margin:0"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div style="font-family:var(--fh);font-size:13px;font-weight:700;color:var(--black)">Creative Hub</div>
+        </div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">Full-service content: social media, video, podcasts, PR & brand development — managed by a youth-led creative team.</p>
+        <a href="/partner/#creative" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--fh);font-size:11px;font-weight:700;color:var(--orange);margin-top:14px">Explore Services <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:var(--orange);fill:none;stroke-width:2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
 <section class="why">
   <div class="container">
     <div class="why-inner">
-
-      <!-- Left: headline + 3 bullet proofs -->
       <div class="rv-l">
-        <span class="eyebrow">The Advantage</span>
-        <h2 class="why-h2">Good News Is the Best Brand Tool <span>You're Not Using</span></h2>
-
-        <!-- Replaced 2 paragraphs + quote block with 3 punchy proof points -->
+        <span class="eyebrow">Why Good News Works for Brands</span>
+        <h2 class="why-h2">Positive Stories Are One of the Most Powerful <span>Marketing Tools Available</span></h2>
         <ul class="why-points">
           <li>
             <span class="wp-icon">01</span>
-            <div><p>Brands in progress stories earn real trust</p><span>Communities remember who invested in them</span></div>
+            <div><p>People trust brands they see helping real communities</p><span>Being part of a verified good news story builds the kind of trust that advertising alone cannot buy</span></div>
           </li>
           <li>
             <span class="wp-icon">02</span>
-            <div><p>Positive news gets shared 3× more</p><span>Organic spread across platforms and communities</span></div>
+            <div><p>Positive stories get shared three times more than negative ones</p><span>Your audience does the distribution for you — organically, across platforms and communities</span></div>
           </li>
           <li>
             <span class="wp-icon">03</span>
-            <div><p>Stories outlast any campaign</p><span>Brand equity that builds for years, not weeks</span></div>
+            <div><p>A well-told story lives on long after a campaign ends</p><span>Our Good News Portal keeps your story searchable and shareable for years — not weeks</span></div>
           </li>
         </ul>
-
-        <a href="/about/#advantages" class="btn btn-or" style="margin-top:8px">See the Full Strategy <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="/about/#advantages" class="btn btn-or" style="margin-top:8px">Read the Full Strategy <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-
-      <!-- Right: benefit cards (already strong) -->
       <div class="ben-grid">
-        <div class="ben-cell rv d1">
-          <div class="ben-ic-box"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4h1M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4h-1M12 17a5 5 0 0 1-5-5V4h10v8a5 5 0 0 1-5 5Z"/></svg></div>
-          <div class="ben-title">Community Trust</div>
-          <p class="ben-body">Earn trust where it counts.</p>
-        </div>
-        <div class="ben-cell rv d2">
-          <div class="ben-ic-box"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <div class="ben-title">3× Share Rate</div>
-          <p class="ben-body">Positive news spreads naturally.</p>
-        </div>
-        <div class="ben-cell rv d3">
-          <div class="ben-ic-box"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
-          <div class="ben-title">Lasting Content</div>
-          <p class="ben-body">Builds brand equity for years.</p>
-        </div>
-        <div class="ben-cell rv d4">
-          <div class="ben-ic-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-          <div class="ben-title">Grassroots Reach</div>
-          <p class="ben-body">Township &amp; rural audiences.</p>
-        </div>
-        <div class="ben-cell rv d5">
-          <div class="ben-ic-box"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <div class="ben-title">Verified ROI</div>
-          <p class="ben-body">Social ROI for the board.</p>
-        </div>
-        <div class="ben-cell rv d6">
-          <div class="ben-ic-box"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <div class="ben-title">Narrative Power</div>
-          <p class="ben-body">You shape South Africa's story.</p>
-        </div>
+        <div class="ben-cell rv d1"><div class="ben-ic-box"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4h1M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4h-1M12 17a5 5 0 0 1-5-5V4h10v8a5 5 0 0 1-5 5Z"/></svg></div><div class="ben-title">Community Trust</div><p class="ben-body">Communities remember who invested in them.</p></div>
+        <div class="ben-cell rv d2"><div class="ben-ic-box"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div class="ben-title">3× More Shares</div><p class="ben-body">Good news spreads naturally without paid boost.</p></div>
+        <div class="ben-cell rv d3"><div class="ben-ic-box"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div><div class="ben-title">Long-Lasting Content</div><p class="ben-body">Stories stay online and keep working for years.</p></div>
+        <div class="ben-cell rv d4"><div class="ben-ic-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="ben-title">Township &amp; Rural Reach</div><p class="ben-body">We reach audiences digital advertising misses.</p></div>
+        <div class="ben-cell rv d5"><div class="ben-ic-box"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="ben-title">Measurable Impact</div><p class="ben-body">Social ROI reports your board can present.</p></div>
+        <div class="ben-cell rv d6"><div class="ben-ic-box"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="ben-title">Shape the Narrative</div><p class="ben-body">Help tell a better story about South Africa.</p></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     STORIES
-================================================================ -->
+<!-- STORIES -->
 <section class="stories">
   <div class="container">
-    <div class="stories-hd rv">
-      <div>
-        <span class="eyebrow">From the Good News Portal</span>
-        <h2 class="stories-title">Latest Stories</h2>
-      </div>
-      <a href="/news/" class="stories-link">View All Stories <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="stories-grid" id="storiesGrid">
-      <div class="stories-loading" id="storiesLoading">Loading stories…</div>
-    </div>
-    <div class="stories-cta rv">
-      <a href="/news/" class="btn btn-bk">Explore All Good News <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
+    <div class="stories-hd rv"><div><span class="eyebrow">Stories From Our Good News Portal</span><h2 class="stories-title">What We've Been Covering</h2></div><a href="/news/" class="stories-link">Read All Stories <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+    <div class="stories-grid" id="storiesGrid"><div class="stories-loading" id="storiesLoading">Loading stories…</div></div>
+    <div class="stories-cta rv"><a href="/news/" class="btn btn-bk">Explore All Good News <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
   </div>
 </section>
 
-<!-- ================================================================
-     PILLARS
-================================================================ -->
+<!-- PILLARS -->
 <section class="pillars">
   <div class="container">
-    <div class="pillars-hd rv">
-      <span class="eyebrow center">What We Cover</span>
-      <h2 class="pillars-title">Four Pillars of Progress</h2>
-      <p class="pillars-sub">Every story fits one of four areas driving South Africa's growth.</p>
-    </div>
+    <div class="pillars-hd rv"><span class="eyebrow center">The Stories We Tell</span><h2 class="pillars-title">Four Areas of Progress We Cover</h2><p class="pillars-sub">Every story we publish falls into one of four areas where South Africa is growing and building something better.</p></div>
     <div class="pillars-grid">
-      <a href="/news/?category=youth-excellence" class="pillar-card rv d1">
-        <img src="images/1.png" alt="Youth Excellence" />
-        <div class="pillar-ov"></div>
-        <div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="pillar-content">
-          <span class="pillar-num">Pillar 01</span>
-          <div class="pillar-title">Youth Excellence</div>
-          <p class="pillar-desc">Young innovators and entrepreneurs building their futures.</p>
-        </div>
-      </a>
-      <a href="/news/?category=innovation-solutions" class="pillar-card rv d2">
-        <img src="images/2.png" alt="Innovation and Solutions" />
-        <div class="pillar-ov"></div>
-        <div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="pillar-content">
-          <span class="pillar-num">Pillar 02</span>
-          <div class="pillar-title">Innovation &amp; Solutions</div>
-          <p class="pillar-desc">Local ideas solving real African problems with African answers.</p>
-        </div>
-      </a>
-      <a href="/news/?category=social-cohesion" class="pillar-card rv d3">
-        <img src="images/3.png" alt="Social Cohesion" />
-        <div class="pillar-ov"></div>
-        <div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="pillar-content">
-          <span class="pillar-num">Pillar 03</span>
-          <div class="pillar-title">Social Cohesion</div>
-          <p class="pillar-desc">Communities working side by side to build something bigger.</p>
-        </div>
-      </a>
-      <a href="/news/?category=economic-impact" class="pillar-card rv d4">
-        <img src="images/4.png" alt="Economic Impact" />
-        <div class="pillar-ov"></div>
-        <div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="pillar-content">
-          <span class="pillar-num">Pillar 04</span>
-          <div class="pillar-title">Economic Impact</div>
-          <p class="pillar-desc">Small businesses and entrepreneurs creating jobs every day.</p>
-        </div>
-      </a>
+      <a href="/news/?category=youth-excellence" class="pillar-card rv d1"><img src="images/1.png" alt="Youth Excellence" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 01</span><div class="pillar-title">Youth Excellence</div><p class="pillar-desc">Young South Africans who are building businesses, winning competitions and leading in their communities.</p></div></a>
+      <a href="/news/?category=innovation-solutions" class="pillar-card rv d2"><img src="images/2.png" alt="Innovation and Solutions" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 02</span><div class="pillar-title">Innovation &amp; Solutions</div><p class="pillar-desc">Local people solving real problems — from energy and water to healthcare and education — with African answers.</p></div></a>
+      <a href="/news/?category=social-cohesion" class="pillar-card rv d3"><img src="images/3.png" alt="Social Cohesion" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 03</span><div class="pillar-title">Social Cohesion</div><p class="pillar-desc">Neighbourhoods, organisations and communities working together to build something bigger than themselves.</p></div></a>
+      <a href="/news/?category=economic-impact" class="pillar-card rv d4"><img src="images/4.png" alt="Economic Impact" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 04</span><div class="pillar-title">Economic Impact</div><p class="pillar-desc">Small businesses, entrepreneurs and township economies creating real jobs and building lasting livelihoods.</p></div></a>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     CTA STRIP — replaces 3 removed sections (Ecosystem, Manifesto, Brand)
-     Tight, punchy, dark contrast block
-================================================================ -->
+<!-- CTA STRIP -->
 <section class="cta-strip">
   <div class="container">
     <div class="cta-strip-inner">
-
-      <div class="cta-strip-left rv-l">
-        <span class="eyebrow" style="color:rgba(255,255,255,0.7);gap:10px">Your Brand's Story</span>
-        <h2 class="cta-strip-h">We Don't Just<br />Cover Good News.<br /><span>We Create It.</span></h2>
-
-        <!-- 3 stats instead of 2 paragraphs -->
+      <div class="rv-l">
+        <span class="eyebrow" style="color:rgba(255,255,255,0.7)">How We Can Help Your Brand</span>
+        <h2 class="cta-strip-h">We Don't Just<br />Write About Impact.<br /><span>We Create It.</span></h2>
+        <p style="font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;margin:18px 0 24px">Choose from impact storytelling packages (from R8,500), community radio distribution, or full Creative Hub support — or combine all three.</p>
         <div class="cta-strip-stats" style="margin-top:28px">
-          <div class="cta-stat rv d1">
-            <div class="cta-stat-n">R13.1B</div>
-            <div class="cta-stat-l">in CSI spent in SA in 2025 — most of it invisible</div>
-          </div>
-          <div class="cta-stat rv d2">
-            <div class="cta-stat-n">8.5M</div>
-            <div class="cta-stat-l">listeners reached via community radio</div>
-          </div>
-          <div class="cta-stat rv d3">
-            <div class="cta-stat-n">3×</div>
-            <div class="cta-stat-l">higher share rate for positive, purposeful stories</div>
-          </div>
+          <div class="cta-stat rv d1"><div class="cta-stat-n">R13.1B</div><div class="cta-stat-l">spent on corporate social investment in South Africa in 2025 — most of it with no story attached</div></div>
+          <div class="cta-stat rv d2"><div class="cta-stat-n">8.5M</div><div class="cta-stat-l">people reached through our community radio distribution network</div></div>
+          <div class="cta-stat rv d3"><div class="cta-stat-n">3×</div><div class="cta-stat-l">more likely to be shared — positive, purposeful stories outperform standard content</div></div>
         </div>
       </div>
-
-      <div class="cta-strip-right rv-r">
-        <!-- 3 offering bullets instead of the long step-by-step flow -->
+      <div class="rv-r">
         <ul class="cta-offerings">
-          <li class="cta-offering">
-            <div class="cta-offering-ic"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
-            <div>
-              <div class="cta-offering-title">Solutions Journalism Series</div>
-              <p class="cta-offering-body">Deep-dive stories tied to your CSI focus — yours to own.</p>
-            </div>
-          </li>
-          <li class="cta-offering">
-            <div class="cta-offering-ic"><svg viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg></div>
-            <div>
-              <div class="cta-offering-title">Impact Podcasts</div>
-              <p class="cta-offering-body">Investment to outcome — distributed across the FM network.</p>
-            </div>
-          </li>
-          <li class="cta-offering">
-            <div class="cta-offering-ic"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M14 9.5a2 2 0 0 1 0 3"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
-            <div>
-              <div class="cta-offering-title">Audio Campaigns</div>
-              <p class="cta-offering-body">Local languages. Real grassroots reach. 8.5M listeners.</p>
-            </div>
-          </li>
+          <li class="cta-offering"><div class="cta-offering-ic"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div><div><div class="cta-offering-title">Good News Story — CSI Impact Packages</div><p class="cta-offering-body">We document your community investment work as a professional story and publish it where it will be seen and remembered. Bronze, Silver and Gold — from R8,500.</p></div></li>
+          <li class="cta-offering"><div class="cta-offering-ic"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div><div><div class="cta-offering-title">Community Media Hub — Radio Distribution</div><p class="cta-offering-body">We broadcast your story through 919 FM Sandton and our partner radio stations, reaching over 8.5 million listeners in townships and rural communities across South Africa.</p></div></li>
+          <li class="cta-offering"><div class="cta-offering-ic"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div><div class="cta-offering-title">Creative Hub — Social Media &amp; Content</div><p class="cta-offering-body">We manage your social media, produce videos, run your podcast and handle your brand communications — from R10,000 per month.</p></div></li>
         </ul>
-
         <div class="cta-strip-btns">
-          <a href="/partner/#impact-packages" class="btn btn-or">Explore Packages <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="/contact/" class="btn btn-owh">Talk to the Team</a>
+          <a href="/partner/" class="btn btn-or">See All Solutions &amp; Pricing <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/contact/" class="btn-owh-white">Talk to Our Team</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     PARTNERS
-================================================================ -->
+<!-- PARTNERS -->
 <div class="partners">
   <div class="container">
-    <div class="p-hd rv">
-      <div>
-        <div class="p-hd-label">Trusted Network</div>
-        <h2 class="p-hd-title">Partners, Affiliates <span>&amp; Clients.</span></h2>
-      </div>
-      <div class="p-hd-count">10 Partners &amp; Affiliates</div>
-    </div>
+    <div class="p-hd rv"><div><div class="p-hd-label">Who We Work With</div><h2 class="p-hd-title">Our Partners, Affiliates <span>&amp; Clients.</span></h2></div><div class="p-hd-count">10 Partners &amp; Affiliates</div></div>
     <div class="p-grid">
-      <a href="https://empirepartnerfoundation.org" target="_blank" rel="noopener" class="p-cell rv d1">
-        <div class="p-cell-top"><div class="p-cell-name">Empire Partner Foundation</div></div>
-        <div class="p-cell-logo"><img src="images/epf.png" alt="Empire Partner Foundation" class="logo-white" /></div>
-        <div class="p-cell-num">01</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://www.nelsonmandela.org" target="_blank" rel="noopener" class="p-cell rv d2">
-        <div class="p-cell-top"><div class="p-cell-name">Nelson Mandela Foundation</div></div>
-        <div class="p-cell-logo"><img src="images/nmf.png" alt="Nelson Mandela Foundation" /></div>
-        <div class="p-cell-num">02</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://www.mict.org.za" target="_blank" rel="noopener" class="p-cell rv d3">
-        <div class="p-cell-top"><div class="p-cell-name">MICT SETA</div></div>
-        <div class="p-cell-logo"><img src="images/seta.png" alt="MICT SETA" /></div>
-        <div class="p-cell-num">03</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://919.co.za/" target="_blank" rel="noopener" class="p-cell rv d4">
-        <div class="p-cell-top"><div class="p-cell-name">919 FM Sandton</div></div>
-        <div class="p-cell-logo"><img src="images/919.png" alt="919 FM Sandton" /></div>
-        <div class="p-cell-num">04</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://www.wits.ac.za" target="_blank" rel="noopener" class="p-cell rv d5">
-        <div class="p-cell-top"><div class="p-cell-name">Wits Commercial Enterprise</div></div>
-        <div class="p-cell-logo"><img src="images/wits.png" alt="Wits Enterprise" class="logo-white" /></div>
-        <div class="p-cell-num">05</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://breathworkafrica.co.za" target="_blank" rel="noopener" class="p-cell rv d6">
-        <div class="p-cell-top"><div class="p-cell-name">Breathwork Africa</div></div>
-        <div class="p-cell-logo"><img src="images/breathwork.png" alt="Breathwork Africa" /></div>
-        <div class="p-cell-num">06</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://probono.org.za/" target="_blank" rel="noopener" class="p-cell rv d1">
-        <div class="p-cell-top"><div class="p-cell-name">Pro Bono</div></div>
-        <div class="p-cell-logo"><img src="images/proborno.png" alt="Pro Bono" /></div>
-        <div class="p-cell-num">07</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://tdmza.co.za" target="_blank" rel="noopener" class="p-cell rv d2">
-        <div class="p-cell-top"><div class="p-cell-name">TDM</div></div>
-        <div class="p-cell-logo"><img src="images/tdm.png" alt="TDM" /></div>
-        <div class="p-cell-num">08</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://npiconsulting.co.za/" target="_blank" rel="noopener" class="p-cell rv d3">
-        <div class="p-cell-top"><div class="p-cell-name">NPI</div></div>
-        <div class="p-cell-logo"><img src="images/npi.png" alt="NPI" /></div>
-        <div class="p-cell-num">09</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
-      <a href="https://www.hcipretoria.gov.in" target="_blank" rel="noopener" class="p-cell rv d4">
-        <div class="p-cell-top"><div class="p-cell-name">Indian High Commission</div></div>
-        <div class="p-cell-logo"><img src="images/ihc.png" alt="Indian High Commission" /></div>
-        <div class="p-cell-num">10</div>
-        <div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
-      </a>
+      <a href="https://empirepartnerfoundation.org" target="_blank" rel="noopener" class="p-cell rv d1"><div class="p-cell-top"><div class="p-cell-name">Empire Partner Foundation</div></div><div class="p-cell-logo"><img src="images/epf.png" alt="Empire Partner Foundation" class="logo-white" /></div><div class="p-cell-num">01</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.nelsonmandela.org" target="_blank" rel="noopener" class="p-cell rv d2"><div class="p-cell-top"><div class="p-cell-name">Nelson Mandela Foundation</div></div><div class="p-cell-logo"><img src="images/nmf.png" alt="Nelson Mandela Foundation" /></div><div class="p-cell-num">02</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.mict.org.za" target="_blank" rel="noopener" class="p-cell rv d3"><div class="p-cell-top"><div class="p-cell-name">MICT SETA</div></div><div class="p-cell-logo"><img src="images/seta.png" alt="MICT SETA" /></div><div class="p-cell-num">03</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://919.co.za/" target="_blank" rel="noopener" class="p-cell rv d4"><div class="p-cell-top"><div class="p-cell-name">919 FM Sandton</div></div><div class="p-cell-logo"><img src="images/919.png" alt="919 FM Sandton" /></div><div class="p-cell-num">04</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.wits.ac.za" target="_blank" rel="noopener" class="p-cell rv d5"><div class="p-cell-top"><div class="p-cell-name">Wits Commercial Enterprise</div></div><div class="p-cell-logo"><img src="images/wits.png" alt="Wits Enterprise" class="logo-white" /></div><div class="p-cell-num">05</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://breathworkafrica.co.za" target="_blank" rel="noopener" class="p-cell rv d6"><div class="p-cell-top"><div class="p-cell-name">Breathwork Africa</div></div><div class="p-cell-logo"><img src="images/breathwork.png" alt="Breathwork Africa" /></div><div class="p-cell-num">06</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://probono.org.za/" target="_blank" rel="noopener" class="p-cell rv d1"><div class="p-cell-top"><div class="p-cell-name">Pro Bono</div></div><div class="p-cell-logo"><img src="images/proborno.png" alt="Pro Bono" /></div><div class="p-cell-num">07</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://tdmza.co.za" target="_blank" rel="noopener" class="p-cell rv d2"><div class="p-cell-top"><div class="p-cell-name">TDM</div></div><div class="p-cell-logo"><img src="images/tdm.png" alt="TDM" /></div><div class="p-cell-num">08</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://npiconsulting.co.za/" target="_blank" rel="noopener" class="p-cell rv d3"><div class="p-cell-top"><div class="p-cell-name">NPI</div></div><div class="p-cell-logo"><img src="images/npi.png" alt="NPI" /></div><div class="p-cell-num">09</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.hcipretoria.gov.in" target="_blank" rel="noopener" class="p-cell rv d4"><div class="p-cell-top"><div class="p-cell-name">Indian High Commission</div></div><div class="p-cell-logo"><img src="images/ihc.png" alt="Indian High Commission" /></div><div class="p-cell-num">10</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
     </div>
   </div>
 </div>
 
-<!-- ================================================================
-     FOOTER
-================================================================ -->
+<!-- FOOTER -->
 <footer class="footer rv-f">
   <div class="container">
     <div class="ft-top">
       <div>
-        <div class="ft-logo">
-          <img src="images/logo-black.png" alt="Ferguson Media" onerror="this.src='images/logo-white.png';this.style.filter='brightness(0)'" />
-          <span class="ft-logo-txt">FERGUSON <span>MEDIA</span></span>
-        </div>
-        <p class="ft-tag">South Africa's premier good news media platform. Stories of strength, innovation, and community action from across the nation.</p>
+        <div class="ft-logo"><img src="images/logo-black.png" alt="Ferguson Media" onerror="this.src='images/logo-white.png';this.style.filter='brightness(0)'" /></div>
+        <p class="ft-tag">Ferguson Media finds, documents and shares stories of progress from across South Africa — published on our Good News Portal and broadcast to over 8.5 million community radio listeners.</p>
         <div class="ft-soc">
           <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
           <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
@@ -958,58 +618,25 @@
           <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
         </div>
       </div>
-      <div>
-        <h4 class="ft-ct">Navigate</h4>
-        <ul class="ft-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/news/">Good News Portal</a></li>
-          <li><a href="/about/">About Ferguson Media</a></li>
-          <li><a href="/partner/">Partner With Us</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="ft-ct">Story Categories</h4>
-        <ul class="ft-links">
-          <li><a href="/news/?category=youth-excellence">Youth Excellence</a></li>
-          <li><a href="/news/?category=innovation-solutions">Innovation &amp; Solutions</a></li>
-          <li><a href="/news/?category=social-cohesion">Social Cohesion</a></li>
-          <li><a href="/news/?category=economic-impact">Economic Impact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="ft-ct">Get in Touch</h4>
+      <div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/partner/">Our Solutions</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div><h4 class="ft-ct">Story Categories</h4><ul class="ft-links"><li><a href="/news/?category=youth-excellence">Youth Excellence</a></li><li><a href="/news/?category=innovation-solutions">Innovation &amp; Solutions</a></li><li><a href="/news/?category=social-cohesion">Social Cohesion</a></li><li><a href="/news/?category=economic-impact">Economic Impact</a></li></ul></div>
+      <div><h4 class="ft-ct">Get in Touch</h4>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27824678925">+27 82 467 8925</a></p></div>
       </div>
     </div>
-    <div class="ft-bot">
-      <p class="ft-copy">&copy; 2026 Ferguson Media (Pty) Ltd. All rights reserved.</p>
-      <ul class="ft-bl"><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li></ul>
-    </div>
+    <div class="ft-bot"><p class="ft-copy">&copy; 2026 Ferguson Media (Pty) Ltd. All rights reserved.</p><ul class="ft-bl"><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li></ul></div>
   </div>
   <div class="footer-bar"></div>
 </footer>
 
-<!-- ================================================================
-     JAVASCRIPT
-================================================================ -->
 <script>
-/* 1. Page Loader */
-const ldr = document.getElementById('pageLoader');
+const ldr=document.getElementById('pageLoader');
 function dismissLoader(){ldr.classList.add('gone');setTimeout(()=>document.body.classList.add('fm-ready'),80);}
 window.addEventListener('load',()=>setTimeout(dismissLoader,700));
 setTimeout(dismissLoader,3000);
-
-/* 2. Navbar scroll — light bg + logo swap */
 const navbar=document.getElementById('navbar'),navImg=document.getElementById('navLogoImg');
-window.addEventListener('scroll',()=>{
-  const s=window.scrollY>56;
-  navbar.classList.toggle('scrolled',s);
-  if(navImg)navImg.src='images/logo-black.png';
-},{passive:true});
-
-/* 3. Mobile Sidebar */
+window.addEventListener('scroll',()=>{const s=window.scrollY>56;navbar.classList.toggle('scrolled',s);if(navImg)navImg.src='images/logo-black.png';},{passive:true});
 const sov=document.getElementById('sov'),sb=document.getElementById('sidebar'),ham=document.getElementById('hamBtn');
 function openSB(){sb.classList.add('open');sov.classList.add('open');ham.classList.add('open');document.body.style.overflow='hidden';}
 function closeSB(){sb.classList.remove('open');sov.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
@@ -1017,83 +644,17 @@ ham.addEventListener('click',openSB);
 document.getElementById('sbClose').addEventListener('click',closeSB);
 sov.addEventListener('click',closeSB);
 document.addEventListener('keydown',e=>e.key==='Escape'&&closeSB());
-
-/* 4. Scroll Reveal */
-const ro=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});
-},{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});},{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-f').forEach(el=>ro.observe(el));
-
-/* 5. Toast */
-function showToast(msg,err=false){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(err?' error':'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4200);}
-
-/* 6. Contentful Stories */
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4200);}
 const SPACE='xjj6th2dvsr4',TOKEN='8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo',ENV='master',CT='goodNewsStory';
 const CAT={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation',socialCohesion:'Social Cohesion',economicImpact:'Economic Impact'};
-
 function getImg(data,id){if(!data.includes||!data.includes.Asset)return null;const a=data.includes.Asset.find(x=>x.sys.id===id);return a?'https:'+a.fields.file.url:null;}
-
-function buildCard(s,data,i){
-  const f=s.fields,imgId=f.heroImage&&f.heroImage.sys?f.heroImage.sys.id:null;
-  const img=imgId?(getImg(data,imgId)||'images/placeholder.jpg'):'images/placeholder.jpg';
-  const d=['d1','d2','d3'];
-  return `<a href="/article/?slug=${f.slug||s.sys.id}" class="story-card rv ${d[i]||''}">
-    <div class="sc-img"><img src="${img}" alt="${f.title}" loading="lazy"/><span class="sc-cat">${CAT[f.category]||'Good News'}</span></div>
-    <div class="sc-body"><h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p>
-    <span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`;}
-
-function placeholders(){
-  return [
-    {t:'Birthday Celebration Turns Into Book Launch',c:'Youth Excellence',e:'Young siblings Oyama and Prince launched their latest books on a milestone birthday.'},
-    {t:'Free Bus Travel Helps Thousands of Jobseekers',c:'Economic Impact',e:'A Cape Town initiative removes transport barriers for job seekers across the city.'},
-    {t:'Indoni Initiative Develops Skills of Young People',c:'Youth Excellence',e:'The Indoni initiative gives South African youth the skills they need to lead.'}
-  ].map((i,idx)=>`<a href="/news/" class="story-card rv d${idx+1}">
-    <div class="sc-img"><img src="images/placeholder.jpg" alt="${i.t}" loading="lazy"/><span class="sc-cat">${i.c}</span></div>
-    <div class="sc-body"><h3 class="sc-title">${i.t}</h3><p class="sc-exc">${i.e}</p>
-    <span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`).join('');}
-
-async function initStories(){
-  const grid=document.getElementById('storiesGrid'),loading=document.getElementById('storiesLoading');
-  try{
-    const data=await(await fetch(`https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&order=-sys.createdAt&limit=3&include=1&access_token=${TOKEN}`)).json();
-    if(loading)loading.remove();
-    grid.innerHTML=(!data.items||!data.items.length)?placeholders():data.items.map((s,i)=>buildCard(s,data,i)).join('');
-  }catch{if(loading)loading.remove();grid.innerHTML=placeholders();}
-  grid.querySelectorAll('.rv').forEach(el=>ro.observe(el));
-}
+function buildCard(s,data,i){const f=s.fields,imgId=f.heroImage&&f.heroImage.sys?f.heroImage.sys.id:null;const img=imgId?(getImg(data,imgId)||'images/placeholder.jpg'):'images/placeholder.jpg';const d=['d1','d2','d3'];return `<a href="/article/?slug=${f.slug||s.sys.id}" class="story-card rv ${d[i]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" loading="lazy"/><span class="sc-cat">${CAT[f.category]||'Good News'}</span></div><div class="sc-body"><h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`;}
+function placeholders(){return[{t:'Birthday Celebration Turns Into Book Launch',c:'Youth Excellence',e:'Young siblings Oyama and Prince launched their latest books on a milestone birthday.'},{t:'Free Bus Travel Helps Thousands of Jobseekers',c:'Economic Impact',e:'A Cape Town initiative removes transport barriers for job seekers across the city.'},{t:'Indoni Initiative Develops Skills of Young People',c:'Youth Excellence',e:'The Indoni initiative gives South African youth the skills they need to lead.'}].map((i,idx)=>`<a href="/news/" class="story-card rv d${idx+1}"><div class="sc-img"><img src="images/placeholder.jpg" alt="${i.t}" loading="lazy"/><span class="sc-cat">${i.c}</span></div><div class="sc-body"><h3 class="sc-title">${i.t}</h3><p class="sc-exc">${i.e}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`).join('');}
+async function initStories(){const grid=document.getElementById('storiesGrid'),loading=document.getElementById('storiesLoading');try{const data=await(await fetch(`https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&order=-sys.createdAt&limit=3&include=1&access_token=${TOKEN}`)).json();if(loading)loading.remove();grid.innerHTML=(!data.items||!data.items.length)?placeholders():data.items.map((s,i)=>buildCard(s,data,i)).join('');}catch{if(loading)loading.remove();grid.innerHTML=placeholders();}grid.querySelectorAll('.rv').forEach(el=>ro.observe(el));}
 initStories();
-
-/* Hero path background — replaces video */
-(function() {
-  const svg = document.querySelector('.hero-path-svg');
-  if (!svg) return;
-
-  const position1 = 1;
-  const position2 = -1;
-
-  function makePaths(position) {
-    return Array.from({ length: 36 }, (_, i) => {
-      const d = `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`;
-      const opacity = 0.1 + i * 0.03;
-      const width   = 0.5 + i * 0.03;
-      const duration = 20 + (i * 7 % 10); // deterministic spread, no Math.random()
-      const delay    = -(i * 1.1);        // stagger start so they don't sync
-
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', d);
-      path.setAttribute('stroke', '#FF7A00');
-      path.setAttribute('stroke-width', width);
-      path.setAttribute('stroke-opacity', opacity);
-      path.setAttribute('fill', 'none');
-      path.style.strokeDasharray = '800';
-      path.style.strokeDashoffset = '0';
-      path.style.animation = `pathDraw ${duration}s linear ${delay}s infinite`;
-      return path;
-    });
-  }
-
-  [...makePaths(position1), ...makePaths(position2)].forEach(p => svg.appendChild(p));
-})();
+(function(){const svg=document.querySelector('.hero-path-svg');if(!svg)return;const p1=1,p2=-1;function makePaths(pos){return Array.from({length:36},(_,i)=>{const d=`M-${380-i*5*pos} -${189+i*6}C-${380-i*5*pos} -${189+i*6} -${312-i*5*pos} ${216-i*6} ${152-i*5*pos} ${343-i*6}C${616-i*5*pos} ${470-i*6} ${684-i*5*pos} ${875-i*6} ${684-i*5*pos} ${875-i*6}`;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',d);path.setAttribute('stroke','#FF7A00');path.setAttribute('stroke-width',0.5+i*0.03);path.setAttribute('stroke-opacity',0.1+i*0.03);path.setAttribute('fill','none');path.style.strokeDasharray='800';path.style.animation=`pathDraw ${20+(i*7%10)}s linear ${-(i*1.1)}s infinite`;return path;});}[...makePaths(p1),...makePaths(p2)].forEach(p=>svg.appendChild(p));})();
 </script>
 </body>
 </html>
