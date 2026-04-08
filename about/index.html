@@ -200,31 +200,7 @@
     .adv-bullets li { font-size: 12px; color: var(--mid); line-height: 1.5; display: flex; align-items: flex-start; gap: 7px; }
     .adv-bullets li::before { content: '·'; color: var(--orange); font-size: 16px; line-height: 1; flex-shrink: 0; }
 
-    /* ================================================================
-       THREE PILLARS — orange background (no black)
-    ================================================================ */
-    .pillars { background: var(--orange); padding: 88px 0; }
-    .pillars-hd { text-align: center; max-width: 580px; margin: 0 auto 60px; }
-    .pillars-eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; }
-    .pillars-h2 { font-family: var(--fh); font-size: clamp(28px, 4vw, 52px); font-weight: 900; color: var(--white); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 12px; }
-    .pillars-h2 span { color: rgba(255,255,255,0.75); }
-    .pillars-sub { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.7; }
 
-    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .pillar-card { background: rgba(255,255,255,0.1); padding: 40px 32px; border: 1px solid rgba(255,255,255,0.18); transition: background 0.3s, transform 0.3s; position: relative; overflow: hidden; }
-    .pillar-card:hover { background: rgba(255,255,255,0.18); transform: translateY(-4px); }
-    .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: rgba(255,255,255,0.5); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
-    .pillar-card:hover::before { transform: scaleX(1); }
-    .pillar-tag { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
-    .pillar-ic { width: 48px; height: 48px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; transition: background 0.3s; }
-    .pillar-card:hover .pillar-ic { background: rgba(255,255,255,0.25); }
-    .pillar-ic svg { width: 22px; height: 22px; stroke: var(--white); fill: none; stroke-width: 2; }
-    .pillar-name { font-family: var(--fh); font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
-    /* Replaced paragraph with 3 bullets */
-    .pillar-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-    .pillar-bullets li { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
-    .pillar-bullets li::before { content: '→'; color: rgba(255,255,255,0.6); font-size: 12px; flex-shrink: 0; font-family: var(--fh); }
-    .pillar-badge { display: inline-block; margin-top: 20px; font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.25); padding: 5px 10px; }
 
     /* ================================================================
        OUR STORY — light, timeline bullets not paragraphs
@@ -396,21 +372,7 @@
     .tm-li-link svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
     .tm-li-link:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-pale); }
 
-    /* ================================================================
-       CTA STRIP — orange (consistent with homepage)
-    ================================================================ */
-    .cta-strip { background: var(--orange); padding: 72px 0; }
-    .cta-strip-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .cta-h { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .cta-h span { color: rgba(255,255,255,0.75); }
-    .cta-sub { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 28px; }
-    .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    /* Right side: 3 stat callouts */
-    .cta-stats { display: flex; flex-direction: column; gap: 14px; }
-    .cta-stat { display: flex; align-items: center; gap: 18px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-left: 2px solid rgba(255,255,255,0.5); transition: background 0.3s; }
-    .cta-stat:hover { background: rgba(255,255,255,0.18); }
-    .cta-stat-n { font-family: var(--fh); font-size: 28px; font-weight: 900; color: var(--white); flex-shrink: 0; min-width: 68px; }
-    .cta-stat-l { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.45; }
+
 
     /* ================================================================
        FOOTER — warm off-white (consistent with homepage)
@@ -751,57 +713,7 @@
   </div>
 </section>
 
-<!-- ================================================================
-     THREE PILLARS — orange background
-================================================================ -->
-<section class="pillars">
-  <div class="container">
-    <div class="pillars-hd rv">
-      <div class="pillars-eyebrow">Our Ecosystem</div>
-      <h2 class="pillars-h2">Three Pillars.<br /><span>One Complete Content Engine.</span></h2>
-      <p class="pillars-sub">Every story moves through a connected system built for maximum reach and documented impact.</p>
-    </div>
-    <div class="pillars-grid">
 
-      <div class="pillar-card rv d1">
-        <div class="pillar-tag">Pillar 01</div>
-        <div class="pillar-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <div class="pillar-name">The Good News Portal</div>
-        <ul class="pillar-bullets">
-          <li>Permanent, searchable digital archive</li>
-          <li>Published to broadcast standard</li>
-          <li>Discoverable for years after publication</li>
-        </ul>
-        <span class="pillar-badge">Digital Anchor</span>
-      </div>
-
-      <div class="pillar-card rv d2">
-        <div class="pillar-tag">Pillar 02</div>
-        <div class="pillar-ic"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M14 9.5a2 2 0 0 1 0 3"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
-        <div class="pillar-name">Community Media Network</div>
-        <ul class="pillar-bullets">
-          <li>Partner radio stations including 919 FM</li>
-          <li>Stories into townships and rural areas</li>
-          <li>Mainstream media cannot reach these audiences</li>
-        </ul>
-        <span class="pillar-badge">National Distribution</span>
-      </div>
-
-      <div class="pillar-card rv d3">
-        <div class="pillar-tag">Pillar 03</div>
-        <div class="pillar-ic"><svg viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg></div>
-        <div class="pillar-name">The Creative Hub</div>
-        <ul class="pillar-bullets">
-          <li>Video, photography, audio, long-form writing</li>
-          <li>Young South African creatives who know the stories</li>
-          <li>Broadcast quality, every time</li>
-        </ul>
-        <span class="pillar-badge">Broadcast Quality</span>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ================================================================
      OUR STORY — timeline bullets, not paragraphs
@@ -1031,38 +943,7 @@
   </div>
 </div>
 
-<!-- ================================================================
-     CTA STRIP
-================================================================ -->
-<section class="cta-strip">
-  <div class="container">
-    <div class="cta-strip-inner">
-      <div class="rv-l">
-        <span class="eyebrow" style="color:rgba(255,255,255,0.7)">Ready to Start?</span>
-        <h2 class="cta-h">Your Brand Deserves<br /><span>To Be Part of the Story.</span></h2>
-        <p class="cta-sub">Three clear tiers. Priced from R8,500 excl. VAT.</p>
-        <div class="cta-btns">
-          <a href="/partner/#impact-packages" class="btn btn-owh">View Impact Packages <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="/contact/" class="btn" style="background:rgba(255,255,255,0.15);color:var(--white);border:1.5px solid rgba(255,255,255,0.3)">Talk to the Team</a>
-        </div>
-      </div>
-      <div class="cta-stats rv-r">
-        <div class="cta-stat rv d1">
-          <div class="cta-stat-n">100+</div>
-          <div class="cta-stat-l">young South African creatives supported</div>
-        </div>
-        <div class="cta-stat rv d2">
-          <div class="cta-stat-n">8.5M</div>
-          <div class="cta-stat-l">listeners reached via community radio</div>
-        </div>
-        <div class="cta-stat rv d3">
-          <div class="cta-stat-n">3×</div>
-          <div class="cta-stat-l">higher share rate for positive, purposeful stories</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ================================================================
      FOOTER

@@ -152,7 +152,40 @@
     .strip-item { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); padding: 16px 32px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .strip-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 50%; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
+/* PILLARS */
+.pillars { padding: 80px 0; background: var(--surface); }
+.pillars-hd { text-align: center; max-width: 560px; margin: 0 auto 60px; }
+.pillars-title { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: var(--black); letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 12px; }
+.pillars-sub { font-size: 15px; color: var(--mid); line-height: 1.7; }
+.pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); }
+.pillar-card { position: relative; overflow: hidden; aspect-ratio: 16/10; display: block; }
+.pillar-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+.pillar-card:hover img { transform: scale(1.06); }
+.pillar-ov { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.2) 55%, transparent 100%); transition: background 0.4s; }
+.pillar-card:hover .pillar-ov { background: linear-gradient(0deg, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.5) 65%, transparent 100%); }
+.pillar-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+.pillar-num { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; display: block; }
+.pillar-title { font-family: var(--fh); font-size: clamp(17px, 1.8vw, 24px); font-weight: 900; color: var(--white); line-height: 1.2; }
+.pillar-desc { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease), margin-top 0.3s; }
+.pillar-card:hover .pillar-desc { max-height: 100px; margin-top: 10px; }
+.pillar-arr { position: absolute; top: 20px; right: 20px; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.pillar-arr svg { width: 13px; height: 13px; stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 2; transition: all 0.3s; }
+.pillar-card:hover .pillar-arr { background: var(--orange); border-color: var(--orange); }
+.pillar-card:hover .pillar-arr svg { stroke: var(--white); transform: rotate(45deg); }
+.eyebrow {
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.eyebrow.center { justify-content: center; }
+@media(max-width:900px) { .pillars-grid { grid-template-columns: 1fr; } }
     /* ── Filter bar — LIGHT (not black) ── */
     .filters-bar {
       background: var(--white);
@@ -499,6 +532,20 @@
         <div class="hero-meta-num">50<span>K</span></div>
         <div class="hero-meta-label">Monthly Views</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="container">
+    <div class="pillars-hd rv"><span class="eyebrow center">The Stories We Tell</span><h2 class="pillars-title">Four Areas of Progress We Cover</h2><p class="pillars-sub">Every story we publish falls into one of four areas where South Africa is growing and building something better.</p></div>
+    <div class="pillars-grid">
+      <a href="/news/?category=youth-excellence" class="pillar-card rv d1"><img src="https://fergusonmedia.co.za/images/1.png" alt="Youth Excellence" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 01</span><div class="pillar-title">Youth Excellence</div><p class="pillar-desc">Young South Africans who are building businesses, winning competitions and leading in their communities.</p></div></a>
+      <a href="/news/?category=innovation-solutions" class="pillar-card rv d2"><img src="https://fergusonmedia.co.za/images/2.png" alt="Innovation and Solutions" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 02</span><div class="pillar-title">Innovation &amp; Solutions</div><p class="pillar-desc">Local people solving real problems — from energy and water to healthcare and education — with African answers.</p></div></a>
+      <a href="/news/?category=social-cohesion" class="pillar-card rv d3"><img src="https://fergusonmedia.co.za/images/3.png" alt="Social Cohesion" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 03</span><div class="pillar-title">Social Cohesion</div><p class="pillar-desc">Neighbourhoods, organisations and communities working together to build something bigger than themselves.</p></div></a>
+      <a href="/news/?category=economic-impact" class="pillar-card rv d4"><img src="https://fergusonmedia.co.za/images/4.png" alt="Economic Impact" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 04</span><div class="pillar-title">Economic Impact</div><p class="pillar-desc">Small businesses, entrepreneurs and township economies creating real jobs and building lasting livelihoods.</p></div></a>
     </div>
   </div>
 </section>

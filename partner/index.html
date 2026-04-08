@@ -837,9 +837,20 @@ tabs.forEach(tab=>{
   });
 });
 
-/* Check for URL hash to pre-select tab */
-if(window.location.hash==='#impact-packages'){
-  document.getElementById('tab-gns').click();
+const hashMap = {
+  '#impact-packages': 'tab-gns',
+  '#radio':           'tab-cmh',
+  '#creative':        'tab-ch'
+};
+const matchedTab = hashMap[window.location.hash];
+if (matchedTab) {
+  // Activate tab immediately but don't scroll yet — loader is still covering the page
+  const targetTab = document.getElementById(matchedTab);
+  const targetPanel = 'panel-' + targetTab.dataset.tab;
+  document.querySelectorAll('.sol-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sol-panel').forEach(p => p.classList.remove('active'));
+  targetTab.classList.add('active');
+  document.getElementById(targetPanel).classList.add('active');
 }
 
 /* Scroll Reveal */
