@@ -736,7 +736,39 @@ const CAT={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation',s
 function getImg(data,id){if(!data.includes||!data.includes.Asset)return null;const a=data.includes.Asset.find(x=>x.sys.id===id);return a?'https:'+a.fields.file.url:null;}
 function buildCard(s,data,i){const f=s.fields,imgId=f.heroImage&&f.heroImage.sys?f.heroImage.sys.id:null;const img=imgId?(getImg(data,imgId)||'images/placeholder.jpg'):'images/placeholder.jpg';const d=['d1','d2','d3'];return `<a href="/article/?slug=${f.slug||s.sys.id}" class="story-card rv ${d[i]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" loading="lazy"/><span class="sc-cat">${CAT[f.category]||'Good News'}</span></div><div class="sc-body"><h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`;}
 function placeholders(){return[{t:'Birthday Celebration Turns Into Book Launch',c:'Youth Excellence',e:'Young siblings Oyama and Prince launched their latest books on a milestone birthday.'},{t:'Free Bus Travel Helps Thousands of Jobseekers',c:'Economic Impact',e:'A Cape Town initiative removes transport barriers for job seekers across the city.'},{t:'Indoni Initiative Develops Skills of Young People',c:'Youth Excellence',e:'The Indoni initiative gives South African youth the skills they need to lead.'}].map((i,idx)=>`<a href="/news/" class="story-card rv d${idx+1}"><div class="sc-img"><img src="images/placeholder.jpg" alt="${i.t}" loading="lazy"/><span class="sc-cat">${i.c}</span></div><div class="sc-body"><h3 class="sc-title">${i.t}</h3><p class="sc-exc">${i.e}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`).join('');}
-async function initStories(){const grid=document.getElementById('storiesGrid'),loading=document.getElementById('storiesLoading');try{const data=await(await fetch(`https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&order=-sys.createdAt&limit=3&include=1&access_token=${TOKEN}`)).json();if(loading)loading.remove();grid.innerHTML=(!data.items||!data.items.length)?placeholders():data.items.map((s,i)=>buildCard(s,data,i)).join('');}catch{if(loading)loading.remove();grid.innerHTML=placeholders();}grid.querySelectorAll('.rv').forEach(el=>ro.observe(el));}
+async function initStories() {
+  const grid = document.getElementById('storiesGrid');
+  const loading = document.getElementById('storiesLoading');
+  try {
+    // First try to get featured/pinned stories
+    let data = await (await fetch(
+      `https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&fields.featured=true&order=-sys.createdAt&limit=3&include=1&access_token=${TOKEN}`
+    )).json();
+
+    // If fewer than 3 featured, top up with newest
+    if (!data.items || data.items.length < 3) {
+      const needed = 3 - (data.items?.length || 0);
+      const existingSlugs = (data.items || []).map(s => s.fields.slug);
+      const fallback = await (await fetch(
+        `https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&order=-sys.createdAt&limit=${needed + existingSlugs.length}&include=1&access_token=${TOKEN}`
+      )).json();
+      const extras = (fallback.items || [])
+        .filter(s => !existingSlugs.includes(s.fields.slug))
+        .slice(0, needed);
+      data.items = [...(data.items || []), ...extras];
+      if (!data.includes) data.includes = fallback.includes;
+    }
+
+    if (loading) loading.remove();
+    grid.innerHTML = (!data.items || !data.items.length)
+      ? placeholders()
+      : data.items.map((s, i) => buildCard(s, data, i)).join('');
+  } catch {
+    if (loading) loading.remove();
+    grid.innerHTML = placeholders();
+  }
+  grid.querySelectorAll('.rv').forEach(el => ro.observe(el));
+}
 initStories();
 (function(){const svg=document.querySelector('.hero-path-svg');if(!svg)return;const p1=1,p2=-1;function makePaths(pos){return Array.from({length:36},(_,i)=>{const d=`M-${380-i*5*pos} -${189+i*6}C-${380-i*5*pos} -${189+i*6} -${312-i*5*pos} ${216-i*6} ${152-i*5*pos} ${343-i*6}C${616-i*5*pos} ${470-i*6} ${684-i*5*pos} ${875-i*6} ${684-i*5*pos} ${875-i*6}`;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',d);path.setAttribute('stroke','#FF7A00');path.setAttribute('stroke-width',0.5+i*0.03);path.setAttribute('stroke-opacity',0.1+i*0.03);path.setAttribute('fill','none');path.style.strokeDasharray='800';path.style.animation=`pathDraw ${20+(i*7%10)}s linear ${-(i*1.1)}s infinite`;return path;});}[...makePaths(p1),...makePaths(p2)].forEach(p=>svg.appendChild(p));})();
 </script>
