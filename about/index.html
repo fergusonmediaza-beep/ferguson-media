@@ -15,6 +15,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="48x48" href="https://fergusonmedia.co.za/images/favicon.png" />
 
@@ -93,6 +94,22 @@
     .nav-ham.open span:nth-child(2) { opacity: 0; }
     .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+.nav-dropdown-wrap { position: relative; }
+.nav-dropdown-trigger { display: flex; align-items: center; }
+.nav-dropdown-wrap::after { content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 20px; }
+.nav-dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.13); width: 280px; opacity: 0; pointer-events: none; margin-top: 12px; transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); z-index: 200; }
+.nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); transition-delay: 0s; }
+.nav-dropdown-wrap:not(:hover) .nav-dropdown { transition-delay: 0.12s; }
+.nav-dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--white); border-left: 1px solid var(--border); border-top: 1px solid var(--border); rotate: 45deg; }
+.nav-dropdown-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--orange-pale); }
+.nav-di-icon { width: 32px; height: 32px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.nav-dropdown-item:hover .nav-di-icon { background: rgba(255,122,0,0.15); }
+.nav-di-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+.nav-di-sub { font-size: 11px; color: var(--mid); }
+.nav-dropdown-wrap:hover .nav-dropdown-trigger svg { transform: rotate(180deg); }
+.sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
     /* ── Sidebar ── */
     .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
     .s-ov.open { display: block; opacity: 1; }
@@ -179,26 +196,7 @@
     .stand-bullets li { font-size: 12px; color: var(--mid); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
     .stand-bullets li::before { content: '→'; color: var(--orange); font-size: 11px; flex-shrink: 0; font-family: var(--fh); }
 
-    /* ================================================================
-       ADVANTAGES — light surface, shortened cards
-    ================================================================ */
-    .advantages { background: var(--surface); padding: 88px 0; }
-    .adv-hd { text-align: center; max-width: 600px; margin: 0 auto 60px; }
-    .adv-h2 { font-family: var(--fh); font-size: clamp(28px, 3.8vw, 48px); font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 12px; }
-    .adv-h2 span { color: var(--orange); }
-    .adv-sub { font-size: 15px; color: var(--mid); line-height: 1.7; }
 
-    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .adv-card { background: var(--white); padding: 28px 24px; border: 1px solid var(--border); transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s; }
-    .adv-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.08); border-color: rgba(255,122,0,0.25); }
-    .adv-ic { width: 44px; height: 44px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; transition: background 0.3s; }
-    .adv-card:hover .adv-ic { background: rgba(255,122,0,0.15); }
-    .adv-ic svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; }
-    .adv-title { font-family: var(--fh); font-size: 13px; font-weight: 800; color: var(--black); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-    /* Replaced paragraph with 2-line bullet */
-    .adv-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .adv-bullets li { font-size: 12px; color: var(--mid); line-height: 1.5; display: flex; align-items: flex-start; gap: 7px; }
-    .adv-bullets li::before { content: '·'; color: var(--orange); font-size: 16px; line-height: 1; flex-shrink: 0; }
 
 
 
@@ -482,11 +480,27 @@
     <img src="../images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
-  <ul class="nav-links">
+<ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li><a href="/about/" class="active">About</a></li>
     <li><a href="/news/">Good News</a></li>
-    <li><a href="/partner/">Partner With Us</a></li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true">Our Solutions <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/good-news-story/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
+          <div><div class="nav-di-title">Good News Story</div><div class="nav-di-sub">CSI impact packages from R8,500</div></div>
+        </a>
+        <a href="/community-media-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
+          <div><div class="nav-di-title">Community Media Hub</div><div class="nav-di-sub">Radio distribution to 8.5M+ listeners</div></div>
+        </a>
+        <a href="/creative-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div><div class="nav-di-title">Creative Hub</div><div class="nav-di-sub">Full-service content & brand production</div></div>
+        </a>
+      </div>
+    </li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
     <a href="/contact/" class="nav-cta-btn">Contact Us</a>
@@ -501,11 +515,14 @@
     <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
     <button class="sb-close" id="sbClose">&#215;</button>
   </div>
-  <nav class="sb-nav">
+<nav class="sb-nav">
     <a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/news/">Good News</a>
-    <a href="/partner/">Partner With Us</a>
+    <div class="sb-section-label">Our Solutions</div>
+    <a href="/good-news-story/" style="padding-left:28px;font-size:13px">→ Good News Story</a>
+    <a href="/community-media-hub/" style="padding-left:28px;font-size:13px">→ Community Media Hub</a>
+    <a href="/creative-hub/" style="padding-left:28px;font-size:13px">→ Creative Hub</a>
   </nav>
   <a href="/contact/" class="sb-cta">Contact</a>
 </aside>
@@ -524,11 +541,7 @@
       South Africa's Good News<br />Is Our
       <span class="ac">Only Business</span>
     </h1>
-    <div class="hero-bullets">
-      <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">High-performance media, built for communities</span></div>
-      <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">Brands that lead, audiences that respond</span></div>
-      <div class="hero-bullet"><div class="hero-bullet-dot"></div><span class="hero-bullet-txt">Every story verified, every outcome documented</span></div>
-    </div>
+<p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.8;max-width:620px;margin-bottom:36px;opacity:0;animation:hf 0.8s var(--ease) 0.9s forwards">Ferguson Media is a youth-driven media-technology company dedicated to transforming South Africa's creative economy through innovation, storytelling, and data-driven communication. We partner with organisations, government institutions, and development agencies to build digital ecosystems that elevate community voices while delivering measurable impact. Our work integrates media production, technology solutions, and youth capacity-building to position FM as a trusted partner in modern communication and digital transformation.</p>
     <div class="hero-ctas">
       <a href="/partner/" class="btn btn-or">Partner With Us <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="/news/" class="btn btn-owh">Read the Good News</a>
@@ -643,75 +656,7 @@
   </div>
 </section>
 
-<!-- ================================================================
-     ADVANTAGES — Why Good News Is the Smartest Investment
-================================================================ -->
-<section class="advantages" id="advantages">
-  <div class="container">
-    <div class="adv-hd rv">
-      <span class="eyebrow center">The Good News Advantage</span>
-      <h2 class="adv-h2">Why Good News Is the <span>Smartest Investment</span></h2>
-      <p class="adv-sub">Not soft media. High-performance media — built for brands who lead and communities who act.</p>
-    </div>
-    <div class="adv-grid">
 
-      <div class="adv-card rv d1">
-        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="adv-title">Trust That Grows</div>
-        <ul class="adv-bullets">
-          <li>Higher brand loyalty among good news audiences</li>
-          <li>Trust compounds with every new story</li>
-        </ul>
-      </div>
-
-      <div class="adv-card rv d2">
-        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg></div>
-        <div class="adv-title">Content That Lasts</div>
-        <ul class="adv-bullets">
-          <li>Permanently on the Good News Portal</li>
-          <li>Shared and found months after campaigns end</li>
-        </ul>
-      </div>
-
-      <div class="adv-card rv d3">
-        <div class="adv-ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-        <div class="adv-title">Results You Measure</div>
-        <ul class="adv-bullets">
-          <li>Social Return on Investment, not impressions</li>
-          <li>Clear reports for your CSI team and board</li>
-        </ul>
-      </div>
-
-      <div class="adv-card rv d4">
-        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="adv-title">Audiences Who Act</div>
-        <ul class="adv-bullets">
-          <li>Decision makers, community builders, active buyers</li>
-          <li>People who choose to seek progress news</li>
-        </ul>
-      </div>
-
-      <div class="adv-card rv d5">
-        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-        <div class="adv-title">Editorial Credibility</div>
-        <ul class="adv-bullets">
-          <li>Your brand woven into real storytelling</li>
-          <li>Higher engagement than placed advertising</li>
-        </ul>
-      </div>
-
-      <div class="adv-card rv d6">
-        <div class="adv-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <div class="adv-title">National Reach, Local Depth</div>
-        <ul class="adv-bullets">
-          <li>Community radio into townships and rural areas</li>
-          <li>Boardroom to community hall, simultaneously</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 
@@ -814,7 +759,7 @@
     <!-- LEADERSHIP -->
     <div class="team-panel active" id="dept-leadership">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Jack Devnarain" data-dept="Leadership" data-img="/images/jack.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip." data-x="https://x.com/JackD157" data-facebook="https://www.facebook.com/jack.devnarain.39">
+        <div class="member-card rv d1" data-name="Jack Devnarain" data-dept="Leadership" data-img="/images/jack.jpg" data-bio="Jack is an accomplished South African actor, MC, and Chairman of the South African Guild of Actors. He manages his professional ventures as the proprietor of Dingo Dawg and a dedicated philanthropist. Through the Nelson Mandela Foundation, he uses his platform to drive meaningful and lasting social change." data-x="https://x.com/JackD157" data-facebook="https://www.facebook.com/jack.devnarain.39">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/jack.jpg" alt="Jack Devnarain" loading="lazy" /></div></div>
           <div class="member-name">Jack Devnarain</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
@@ -825,22 +770,22 @@
     <!-- GOOD NEWS PORTAL -->
     <div class="team-panel" id="dept-portal">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Pamela Morare" data-dept="Good News Portal" data-img="/images/pamela.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://za.linkedin.com/in/pamela-morare-361b4b23b">
+        <div class="member-card rv d1" data-name="Pamela Morare" data-dept="Good News Portal" data-img="/images/pamela.jpg" data-bio="Pamela is a self-driven journalist dedicated to the art of impactful storytelling. With a professional foundation built on practical training in print, multimedia, and broadcast environments, she brings a versatile perspective to every assignment. Having honed her skills through hands-on field experience and professional internships.
+
+
+
+" data-linkedin="https://za.linkedin.com/in/pamela-morare-361b4b23b">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/pamela.jpg" alt="Pamela Morare" loading="lazy" /></div></div>
           <div class="member-name">Pamela Morare</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Thobani Madlala" data-dept="Good News Portal" data-img="/images/thobani.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/thobani-madlala-361338216">
+        <div class="member-card rv d2" data-name="Thobani Madlala" data-dept="Good News Portal" data-img="/images/thobani.jpg" data-intern="true" data-bio="A dedicated multimedia journalist with a focus on authentic storytelling and community engagement. Thobani holds an Advanced Diploma in Journalism from TUT and brings extensive practical experience in both print and broadcast media to the team. From conducting field interviews to digital news packaging. " data-linkedin="https://www.linkedin.com/in/thobani-madlala-361338216">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thobani.jpg" alt="Thobani Madlala" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Thobani Madlala</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d3" data-name="Thembinkosi Dlamini" data-dept="Good News Portal" data-img="/images/thembinkosi.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/thembinkosi-dlamini-605870210">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thembinkosi.jpg" alt="Thembinkosi Dlamini" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
-          <div class="member-name">Thembinkosi Dlamini</div>
-          <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
-        </div>
-        <div class="member-card rv d4" data-name="Sinethemba Zondi" data-dept="Good News Portal" data-img="/images/sinethemba.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/sinethembazondi01">
+
+        <div class="member-card rv d4" data-name="Sinethemba Zondi" data-dept="Good News Portal" data-img="/images/sinethemba.jpg" data-intern="true" data-bio="A fresh voice in the South African media landscape, Sinethemba is a Journalism student at TUT with a passion for multi-platform content creation. Specializing in reporting and editorial work, she brings a keen eye for detail and a modern approach to storytelling. Whether behind the camera as a photojournalist or crafting compelling articles." data-linkedin="https://www.linkedin.com/in/sinethembazondi01">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/sinethemba.jpg" alt="Sinethemba Zondi" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Sinethemba Zondi</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
@@ -851,45 +796,35 @@
     <!-- COMMUNITY RADIO -->
     <div class="team-panel" id="dept-radio">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Silindile Tshabalala" data-dept="Community Radio" data-img="/images/slindile.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/silindile-tshabalala-743675149">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/slindile.jpg" alt="Silindile Tshabalala" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
-          <div class="member-name">Silindile Tshabalala</div>
-          <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
-        </div>
-        <div class="member-card rv d2" data-name="Neptule Maidi" data-dept="Community Radio" data-img="/images/neptule.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/neptule-maidi-mashabela-290789340/">
+   
+        <div class="member-card rv d2" data-name="Neptule Maidi" data-dept="Community Radio" data-img="/images/neptule.jpg" data-intern="true" data-bio="Neptule is a Communication and Media Studies graduate from the University of Limpopo. She is currently a news intern at Ferguson Media, specializing in editorial writing and content production. Driven by a passion for broadcasting, she focuses on delivering high-quality reporting with a commitment to professional excellence." data-linkedin="https://www.linkedin.com/in/neptule-maidi-mashabela-290789340/">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/neptule.jpg" alt="Neptule Maidi" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Neptule Maidi</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
       </div>
     </div>
-
-    <!-- CONTENT & WEBSITES -->
+<!-- CONTENT & WEBSITES -->
     <div class="team-panel" id="dept-content">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Zakes Sithole" data-dept="Content &amp; Websites" data-img="/images/zakes.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/zakes-sithole-b81263237/">
+        <div class="member-card rv d1" data-name="Zakes Sithole" data-dept="Content &amp; Websites" data-img="/images/zakes.jpg" data-bio="Zakes is a premier marketing specialist with expertise in digital strategy and campaign management. He integrates analytical data with creative copywriting to architect high-impact narratives that drive engagement. His approach focuses on building sophisticated digital ecosystems that foster meaningful connections and professional growth." data-linkedin="https://www.linkedin.com/in/zakes-sithole-b81263237/">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/zakes.jpg" alt="Zakes Sithole" loading="lazy" /></div></div>
           <div class="member-name">Zakes Sithole</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Mihle Nomandla" data-dept="Content &amp; Websites" data-img="/images/mihle.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/mihle-nomandla-7a4b70266">
+        <div class="member-card rv d2" data-name="Mihle Nomandla" data-dept="Content &amp; Websites" data-img="/images/mihle.jpg" data-bio="Mihle is an award-winning communication specialist focusing on brand positioning and strategic media relations. She excels in crafting sophisticated digital narratives that foster deep audience engagement and professional growth. Her work consistently prioritizes impactful storytelling to drive both brand visibility and meaningful social transformation." data-linkedin="https://www.linkedin.com/in/mihle-nomandla-7a4b70266">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/mihle.jpg" alt="Mihle Nomandla" loading="lazy" /></div></div>
           <div class="member-name">Mihle Nomandla</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d3" data-name="Asive Simoki" data-dept="Content &amp; Websites" data-img="/images/asive.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/asive-daniel-simoki-6b91a9360/">
+        <div class="member-card rv d3" data-name="Asive Simoki" data-dept="Content &amp; Websites" data-img="/images/asive.jpg" data-bio="Asive is a versatile developer managing the digital lifecycle from premium design to publishing and SEO. He builds high-performance applications by pairing robust architecture with minimalist frontends. His focus is on delivering seamless, search-optimized solutions that solve complex infrastructure challenges." data-linkedin="https://www.linkedin.com/in/asive-daniel-simoki-6b91a9360/">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/asive.jpg" alt="Asive Simoki" loading="lazy" /></div></div>
           <div class="member-name">Asive Simoki</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d4" data-name="Zenande Kholungoane" data-dept="Content &amp; Websites" data-img="/images/zenande.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://za.linkedin.com/in/zenande-kholungoane-553856335">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/zenande.jpg" alt="Zenande Kholungoane" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
-          <div class="member-name">Zenande Kholungoane</div>
-          <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
-        </div>
-        <div class="member-card rv d5" data-name="Silindile Tshabalala" data-dept="Content &amp; Websites" data-img="/images/slindile.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/silindile-tshabalala-743675149">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/slindile.jpg" alt="Silindile Tshabalala" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
-          <div class="member-name">Silindile Tshabalala</div>
+        <div class="member-card rv d4" data-name="Thembinkosi Dlamini" data-dept="Content &amp; Websites" data-img="/images/thembinkosi.jpg" data-intern="true" data-bio="Thembinkosi is a public relations professional with experience in radio content production and strategic communication. He specializes in storytelling to connect diverse audiences with impactful ideas through creative research and planning. His work focuses on delivering professional media projects that inform and engage effectively." data-linkedin="https://www.linkedin.com/in/thembinkosi-dlamini-605870210">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thembinkosi.jpg" alt="Thembinkosi Dlamini" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+          <div class="member-name">Thembinkosi Dlamini</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
       </div>
@@ -898,22 +833,22 @@
     <!-- STUDIO -->
     <div class="team-panel" id="dept-studio">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Emile Mariemuthu" data-dept="Studio" data-img="/images/emile.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/emile-mariemuthu-0130392ab/">
+        <div class="member-card rv d1" data-name="Emile Mariemuthu" data-dept="Studio" data-img="/images/emile.jpg" data-bio="Emile is a content creator specialist at Ferguson Media, specializing in high-end video production and 3D modeling. He utilizes a professional suite of tools, including DaVinci Resolve and Blender, to craft cinematic and visually stunning digital assets. His technical expertise in post-production ensures the delivery of premium content that drives significant brand engagement." data-linkedin="https://www.linkedin.com/in/emile-mariemuthu-0130392ab/">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/emile.jpg" alt="Emile Mariemuthu" loading="lazy" /></div></div>
           <div class="member-name">Emile Mariemuthu</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Karabo Mantlhakga" data-dept="Studio" data-img="/images/karabo.jpg" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://www.linkedin.com/in/karabo-mantlhakga-266398342">
+        <div class="member-card rv d2" data-name="Karabo Mantlhakga" data-dept="Studio" data-img="/images/karabo.jpg" data-bio="Karabo is a skilled video editor specializing in high-impact post-production and digital storytelling. He brings a refined technical approach to the editing suite, ensuring every project meets professional standards. His work focuses on producing high-quality visuals that communicate compelling narratives to a wide audience." data-linkedin="https://www.linkedin.com/in/karabo-mantlhakga-266398342">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/karabo.jpg" alt="Karabo Mantlhakga" loading="lazy" /></div></div>
           <div class="member-name">Karabo Mantlhakga</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d3" data-name="Iminathi Nombembe" data-dept="Studio" data-img="/images/iminathi.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://za.linkedin.com/in/iminathi-nombembe-a4b2293ab">
+        <div class="member-card rv d3" data-name="Iminathi Nombembe" data-dept="Studio" data-img="/images/iminathi.jpg" data-intern="true" data-bio="minathi is a media professional focused on digital communications and newsroom operations. She specializes in refining content production and editorial research to support impactful storytelling. Her goal is to deliver clear narratives that effectively resonate with a modern and diverse audience." data-linkedin="https://za.linkedin.com/in/iminathi-nombembe-a4b2293ab">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/iminathi.jpg" alt="Iminathi Nombembe" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Iminathi Nombembe</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d4" data-name="Letago Mothwa" data-dept="Studio" data-img="/images/letago.jpg" data-intern="true" data-bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." data-linkedin="https://za.linkedin.com/in/letago-mothwa-201b312a7">
+        <div class="member-card rv d4" data-name="Letago Mothwa" data-dept="Studio" data-img="/images/letago.jpg" data-intern="true" data-bio="Letago is a live performance graduate with a background in theatre and stage combat. She possesses a versatile skillset including media presenting, voice-over work, and professional dance choreography. She focuses on delivering compelling performances across film, stage, and various marketing platforms." data-linkedin="https://za.linkedin.com/in/letago-mothwa-201b312a7">
           <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/letago.jpg" alt="Letago Mothwa" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Letago Mothwa</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
@@ -923,6 +858,7 @@
 
   </div>
 </section>
+
 
 <!-- Team Modal -->
 <div class="tm-overlay" id="tmOverlay">
@@ -953,10 +889,9 @@
     <div class="ft-top">
       <div>
         <div class="ft-logo">
-          <img src="../images/logo-black.png" alt="Ferguson Media" onerror="this.src='../images/logo-white.png';this.style.filter='brightness(0)'" />
-          <span class="ft-logo-txt">FERGUSON <span>MEDIA</span></span>
+          <img src="/images/logo-black.png" alt="Ferguson Media" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" />
         </div>
-        <p class="ft-tag">South Africa's premier good news media platform. Stories of strength, innovation, and community action from across the nation.</p>
+        <p class="ft-tag">A youth-driven media and technology company combining storytelling, digital innovation and community radio to document South Africa's progress.</p>
         <div class="ft-soc">
           <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
           <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
@@ -971,23 +906,22 @@
           <li><a href="/">Home</a></li>
           <li><a href="/news/">Good News Portal</a></li>
           <li><a href="/about/">About Ferguson Media</a></li>
-          <li><a href="/partner/">Partner With Us</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="ft-ct">Story Categories</h4>
+        <h4 class="ft-ct">Our Solutions</h4>
         <ul class="ft-links">
-          <li><a href="/news/?category=youth-excellence">Youth Excellence</a></li>
-          <li><a href="/news/?category=innovation-solutions">Innovation &amp; Solutions</a></li>
-          <li><a href="/news/?category=social-cohesion">Social Cohesion</a></li>
-          <li><a href="/news/?category=economic-impact">Economic Impact</a></li>
+          <li><a href="/good-news-story/">Good News Story</a></li>
+          <li><a href="/community-media-hub/">Community Media Hub</a></li>
+          <li><a href="/creative-hub/">Creative Hub</a></li>
         </ul>
       </div>
       <div>
         <h4 class="ft-ct">Get in Touch</h4>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
-        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27824678925">+27 82 467 8925</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27110841100">011 084 1100</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p class="ft-cit"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p></div>
       </div>
     </div>
     <div class="ft-bot">
@@ -997,7 +931,6 @@
   </div>
   <div class="footer-bar"></div>
 </footer>
-
 <script>
 /* Loader */
 const ldr=document.getElementById('pageLoader');

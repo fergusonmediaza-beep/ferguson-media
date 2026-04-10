@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good News Story | Ferguson Media CSI Impact Packages</title>
+  <meta name="description" content="Document your brand's community investment with Ferguson Media's Good News Story packages. Bronze, Silver and Gold CSI impact storytelling from R8,500." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://fergusonmedia.co.za/good-news-story/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fergusonmedia.co.za/good-news-story/" />
+  <meta property="og:title" content="Good News Story | Ferguson Media CSI Impact Packages" />
+  <meta property="og:image" content="https://fergusonmedia.co.za/images/og-image.png" />
+  <meta property="og:site_name" content="Ferguson Media" />
+  <link rel="icon" type="image/png" sizes="48x48" href="https://fergusonmedia.co.za/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #FF7A00;
+      --orange-dk: #E06D00;
+      --orange-pale: #FFF4EA;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --page: #FAFAF7;
+      --surface: #F4F2EE;
+      --mid: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --fh: 'Poppins', sans-serif;
+      --fb: 'Public Sans', sans-serif;
+      --ease: cubic-bezier(0.16,1,0.3,1);
+      --ease-out: cubic-bezier(0.22,1,0.36,1);
+      --max: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--black); }
+    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; opacity: 0; transition: opacity 0.5s var(--ease); }
+    body.fm-ready { opacity: 1; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
+    .rv { opacity: 0; transform: translateY(32px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .rv.on { opacity: 1; transform: translateY(0); }
+    .rv-l { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .rv-l.on { opacity: 1; transform: translateX(0); }
+    .rv-r { opacity: 0; transform: translateX(32px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .rv-r.on { opacity: 1; transform: translateX(0); }
+    .rv-f { opacity: 0; transition: opacity 0.65s var(--ease-out); }
+    .rv-f.on { opacity: 1; }
+    .d1{transition-delay:.05s} .d2{transition-delay:.12s} .d3{transition-delay:.19s}
+    .d4{transition-delay:.26s} .d5{transition-delay:.33s} .d6{transition-delay:.40s}
+
+    /* LOADER */
+    .page-loader { position: fixed; inset: 0; z-index: 9000; background: var(--black); display: flex; align-items: center; justify-content: center; transition: opacity 0.6s var(--ease), visibility 0.6s; }
+    .page-loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-wordmark { font-family: var(--fh); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 24px; }
+    .loader-wordmark span { color: var(--orange); }
+    .loader-line-bg { width: 140px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto; overflow: hidden; }
+    .loader-line { height: 100%; background: var(--orange); animation: ll 1.5s var(--ease) forwards; }
+    @keyframes ll { from{width:0} to{width:100%} }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s var(--ease), box-shadow 0.4s, height 0.4s; animation: navIn 0.6s var(--ease) 0.3s both; }
+    @keyframes navIn { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+    .navbar.scrolled { background: rgba(250,250,247,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.06); height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-logo:hover { opacity: 0.82; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; transition: height 0.4s; }
+    .navbar.scrolled .nav-logo img { height: 40px; }
+    .nav-logo-text { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 1px; transition: color 0.4s; }
+    .nav-logo-text span { color: var(--orange); }
+    .navbar.scrolled .nav-logo-text { color: var(--black); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); padding: 8px 15px; position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 3px; left: 15px; right: 15px; height: 1.5px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--white); }
+    .navbar.scrolled .nav-links a { color: rgba(0,0,0,0.5); }
+    .navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--black); }
+    .nav-cta-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 11px 22px; letter-spacing: 0.5px; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; white-space: nowrap; }
+    .nav-cta-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,122,0,0.28); }
+    .nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+    .navbar.scrolled .nav-ham span { background: var(--black); }
+    .nav-ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-ham.open span:nth-child(2) { opacity: 0; }
+    .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-dropdown-wrap { position: relative; }
+.nav-dropdown-trigger { display: flex; align-items: center; }
+.nav-dropdown-wrap::after { content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 20px; }
+.nav-dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.13); width: 280px; opacity: 0; pointer-events: none; margin-top: 12px; transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); z-index: 200; }
+.nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); transition-delay: 0s; }
+.nav-dropdown-wrap:not(:hover) .nav-dropdown { transition-delay: 0.12s; }
+.nav-dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--white); border-left: 1px solid var(--border); border-top: 1px solid var(--border); rotate: 45deg; }
+.nav-dropdown-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--orange-pale); }
+.nav-di-icon { width: 32px; height: 32px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.nav-dropdown-item:hover .nav-di-icon { background: rgba(255,122,0,0.15); }
+.nav-di-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+.nav-di-sub { font-size: 11px; color: var(--mid); }
+.nav-dropdown-wrap:hover .nav-dropdown-trigger svg { transform: rotate(180deg); }
+.sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
+
+    /* SIDEBAR */
+    .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
+    .s-ov.open { display: block; opacity: 1; }
+    .sidebar { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: var(--black); z-index: 1200; transition: right 0.4s var(--ease); display: flex; flex-direction: column; }
+    .sidebar.open { right: 0; }
+    .sb-head { display: flex; align-items: center; justify-content: space-between; padding: 0 22px; height: 76px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sb-logo { font-family: var(--fh); font-size: 14px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .sb-logo span { color: var(--orange); }
+    .sb-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.4); font-size: 26px; line-height: 1; transition: color 0.2s, transform 0.3s; }
+    .sb-close:hover { color: var(--white); transform: rotate(90deg); }
+    .sb-nav { padding: 24px 14px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .sb-nav a { font-family: var(--fh); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.48); padding: 13px 14px; transition: color 0.2s, padding-left 0.3s; }
+    .sb-nav a:hover { color: var(--white); padding-left: 20px; }
+    .sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
+    .sb-cta { margin: 8px 14px 28px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 15px; text-align: center; transition: background 0.25s; display: block; }
+    .sb-cta:hover { background: var(--orange-dk); }
+
+    /* EYEBROW */
+    .eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); flex-shrink: 0; }
+    .eyebrow.center { justify-content: center; }
+    .eyebrow.center::before { display: none; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 15px 30px; font-family: var(--fh); font-size: 13px; font-weight: 700; transition: all 0.3s var(--ease); border: none; cursor: pointer; white-space: nowrap; }
+    .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; flex-shrink: 0; }
+    .btn:hover svg { transform: translateX(4px); }
+    .btn-or { background: var(--orange); color: var(--white); }
+    .btn-or:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,122,0,0.28); }
+    .btn-owh { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.28); }
+    .btn-owh:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 72vh; display: flex; align-items: flex-end; overflow: hidden; padding-top: 76px; background: var(--black); }
+    .hero-media { position: absolute; inset: 0; }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .hero-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.1) 100%); }
+    .hero-content { position: relative; z-index: 2; max-width: var(--max); margin: 0 auto; padding: 80px 56px 72px; width: 100%; }
+    .hero-h1 { font-family: var(--fh); font-size: clamp(40px,6.5vw,88px); font-weight: 900; color: var(--white); line-height: 1.06; letter-spacing: -0.5px; margin-bottom: 24px; opacity: 0; animation: hf 0.9s var(--ease) 0.6s forwards; }
+    .hero-h1 .ac { color: var(--orange); display: block; }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 560px; margin-bottom: 36px; opacity: 0; animation: hf 0.8s var(--ease) 0.85s forwards; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: hf 0.8s var(--ease) 1.05s forwards; }
+    @keyframes hf { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    /* TICKER */
+    .ticker-bar { background: var(--orange); overflow: hidden; white-space: nowrap; }
+    .ticker-inner { display: inline-flex; animation: ticker 28s linear infinite; }
+    .ticker-inner:hover { animation-play-state: paused; }
+    .ticker-item { display: inline-flex; align-items: center; padding: 18px 0; }
+    .ticker-text { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); padding: 0 32px; letter-spacing: 0.3px; }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+
+    /* PILLARS */
+.pillars { padding: 80px 0; background: var(--surface); }
+.pillars-hd { text-align: center; max-width: 560px; margin: 0 auto 60px; }
+.pillars-title { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: var(--black); letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 12px; }
+.pillars-sub { font-size: 15px; color: var(--mid); line-height: 1.7; }
+.pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); }
+.pillar-card { position: relative; overflow: hidden; aspect-ratio: 16/10; display: block; }
+.pillar-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+.pillar-card:hover img { transform: scale(1.06); }
+.pillar-ov { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.2) 55%, transparent 100%); transition: background 0.4s; }
+.pillar-card:hover .pillar-ov { background: linear-gradient(0deg, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.5) 65%, transparent 100%); }
+.pillar-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+.pillar-num { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; display: block; }
+.pillar-title { font-family: var(--fh); font-size: clamp(17px, 1.8vw, 24px); font-weight: 900; color: var(--white); line-height: 1.2; }
+.pillar-desc { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease), margin-top 0.3s; }
+.pillar-card:hover .pillar-desc { max-height: 100px; margin-top: 10px; }
+.pillar-arr { position: absolute; top: 20px; right: 20px; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.pillar-arr svg { width: 13px; height: 13px; stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 2; transition: all 0.3s; }
+.pillar-card:hover .pillar-arr { background: var(--orange); border-color: var(--orange); }
+.pillar-card:hover .pillar-arr svg { stroke: var(--white); transform: rotate(45deg); }
+.eyebrow {
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.eyebrow.center { justify-content: center; }
+@media(max-width:900px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+    /* PACKAGES */
+    .packages { background: var(--page); padding: 88px 0; }
+    .pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .pkg-card { background: var(--white); display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.4s var(--ease), box-shadow 0.4s; border: 1px solid var(--border); }
+    .pkg-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+    .pkg-card:hover { transform: translateY(-7px); box-shadow: 0 24px 56px rgba(0,0,0,0.13); z-index: 2; }
+    .pkg-card:hover::after { transform: scaleX(1); }
+    .pkg-card.featured { background: var(--black); }
+    .pkg-card.featured::after { transform: scaleX(1); }
+    .pkg-head { padding: 40px 36px 28px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .pkg-card.featured .pkg-head { border-bottom-color: rgba(255,255,255,0.07); }
+    .pkg-tier-label { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .pkg-tier-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+    .pkg-name { font-family: var(--fh); font-size: clamp(20px,2vw,26px); font-weight: 900; color: var(--black); line-height: 1.15; margin-bottom: 12px; }
+    .pkg-card.featured .pkg-name { color: var(--white); }
+    .pkg-price-block { margin: 18px 0 16px; padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.07); border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .pkg-card.featured .pkg-price-block { border-top-color: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.1); }
+    .pkg-price { font-family: var(--fh); font-size: 28px; font-weight: 900; color: var(--black); line-height: 1; letter-spacing: -0.5px; }
+    .pkg-card.featured .pkg-price { color: var(--white); }
+    .pkg-price-note { font-size: 13px; font-weight: 600; color: var(--mid); }
+    .pkg-card.featured .pkg-price-note { color: rgba(255,255,255,0.5); }
+    .pkg-price-sub { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-top: 8px; }
+    .pkg-ideal { font-size: 14px; color: var(--mid); line-height: 1.65; }
+    .pkg-card.featured .pkg-ideal { color: rgba(255,255,255,0.46); }
+    .pkg-body { padding: 28px 36px; flex: 1; }
+    .pkg-deliverables { display: flex; flex-direction: column; gap: 12px; }
+    .pkg-deliverable { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #2a2a2a; line-height: 1.55; }
+    .pkg-card.featured .pkg-deliverable { color: rgba(255,255,255,0.7); }
+    .pkg-check { width: 20px; height: 20px; background: rgba(255,122,0,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .pkg-check svg { width: 10px; height: 10px; stroke: var(--orange); fill: none; stroke-width: 3; }
+    .pkg-footer { padding: 24px 36px 36px; }
+    .pkg-cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px 24px; font-family: var(--fh); font-size: 13px; font-weight: 700; background: rgba(255,122,0,0.1); color: var(--orange); transition: all 0.3s var(--ease); border: 1px solid rgba(255,122,0,0.2); }
+    .pkg-cta:hover { background: var(--orange); color: var(--white); transform: translateY(-2px); }
+    .pkg-cta svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .pkg-cta:hover svg { transform: translateX(4px); }
+    .pkg-card.featured .pkg-cta { background: var(--orange); color: var(--white); border-color: var(--orange); }
+    .pkg-card.featured .pkg-cta:hover { background: var(--orange-dk); }
+    .pkg-badge { position: absolute; top: 24px; right: 24px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 9px; font-weight: 800; padding: 5px 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    /* ADVANTAGES */
+    .advantages { background: var(--surface); padding: 88px 0; }
+    .adv-hd { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+    .adv-h2 { font-family: var(--fh); font-size: clamp(28px,3.8vw,48px); font-weight: 900; color: var(--black); line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .adv-h2 span { color: var(--orange); }
+    .adv-sub { font-size: 15px; color: var(--mid); line-height: 1.7; }
+    .adv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .adv-card { background: var(--white); padding: 28px 24px; border: 1px solid var(--border); transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s; }
+    .adv-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.08); border-color: rgba(255,122,0,0.25); }
+    .adv-ic { width: 44px; height: 44px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; transition: background 0.3s; }
+    .adv-card:hover .adv-ic { background: rgba(255,122,0,0.15); }
+    .adv-ic svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .adv-title { font-family: var(--fh); font-size: 13px; font-weight: 800; color: var(--black); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .adv-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .adv-bullets li { font-size: 12px; color: var(--mid); line-height: 1.5; display: flex; align-items: flex-start; gap: 7px; }
+    .adv-bullets li::before { content: '·'; color: var(--orange); font-size: 16px; line-height: 1; flex-shrink: 0; }
+
+    /* FINAL CTA */
+    .final-cta { background: var(--orange); padding: 80px 0; position: relative; overflow: hidden; }
+    .final-cta::before { content: 'IMPACT'; position: absolute; bottom: -20px; right: -10px; font-family: var(--fh); font-size: clamp(80px,12vw,180px); font-weight: 900; color: rgba(0,0,0,0.07); line-height: 1; pointer-events: none; letter-spacing: -4px; }
+    .final-cta-inner { text-align: center; max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
+    .final-cta-label { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 18px; }
+    .final-cta-title { font-family: var(--fh); font-size: clamp(30px,4.5vw,56px); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: 16px; }
+    .final-cta-body { font-size: 16px; color: rgba(255,255,255,0.72); line-height: 1.8; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .final-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--black); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 15px 30px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s var(--ease); }
+    .btn-white:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
+    .btn-white svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .btn-white:hover svg { transform: translateX(4px); }
+    .btn-wh-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 15px 30px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s var(--ease); }
+    .btn-wh-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    /* FOOTER */
+    .footer { background: var(--surface); padding: 80px 0 0; border-top: 1px solid var(--border); }
+    .ft-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; padding-bottom: 60px; border-bottom: 1px solid var(--border); }
+    .ft-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .ft-logo img { height: 40px; width: auto; object-fit: contain; filter: brightness(0); }
+    .ft-tag { font-size: 13px; color: var(--mid); line-height: 1.72; max-width: 260px; margin-bottom: 24px; }
+    .ft-soc { display: flex; gap: 7px; flex-wrap: wrap; }
+    .ft-sl { width: 32px; height: 32px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .ft-sl:hover { border-color: var(--orange); background: var(--orange-pale); transform: translateY(-2px); }
+    .ft-sl svg { width: 13px; height: 13px; fill: rgba(0,0,0,0.4); transition: fill 0.25s; }
+    .ft-sl:hover svg { fill: var(--orange); }
+    .ft-ct { font-family: var(--fh); font-size: 10px; font-weight: 700; color: var(--black); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 20px; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ft-links a { font-size: 13px; color: var(--mid); transition: color 0.2s, padding-left 0.25s; }
+    .ft-links a:hover { color: var(--orange); padding-left: 4px; }
+    .ft-ci { display: flex; gap: 10px; margin-bottom: 14px; }
+    .ft-cic { width: 15px; height: 15px; flex-shrink: 0; margin-top: 3px; }
+    .ft-cic svg { width: 100%; height: 100%; stroke: var(--orange); fill: none; stroke-width: 2; }
+    .ft-cit { font-size: 13px; color: var(--mid); line-height: 1.6; }
+    .ft-cit a { color: var(--mid); transition: color 0.2s; }
+    .ft-cit a:hover { color: var(--orange); }
+    .ft-bot { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 14px; flex-wrap: wrap; }
+    .ft-copy { font-size: 12px; color: rgba(0,0,0,0.35); }
+    .ft-bl { display: flex; gap: 20px; list-style: none; }
+    .ft-bl a { font-size: 12px; color: rgba(0,0,0,0.35); transition: color 0.2s; }
+    .ft-bl a:hover { color: var(--orange); }
+    .footer-bar { height: 3px; background: linear-gradient(90deg, var(--orange) 0%, rgba(255,122,0,0.15) 60%, transparent 100%); }
+
+    /* COOKIE */
+    .cookie-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000; background: var(--white); border-top: 1px solid var(--border); box-shadow: 0 -4px 24px rgba(0,0,0,0.08); padding: 18px 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transform: translateY(100%); transition: transform 0.5s var(--ease); }
+    .cookie-bar.visible { transform: translateY(0); }
+    .cookie-bar__text { font-size: 13px; color: var(--mid); line-height: 1.5; max-width: 640px; }
+    .cookie-bar__text a { color: var(--orange); text-decoration: underline; text-underline-offset: 2px; }
+    .cookie-bar__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .cookie-btn { font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 10px 20px; cursor: pointer; border: none; transition: all 0.25s; white-space: nowrap; }
+    .cookie-btn--accept { background: var(--orange); color: var(--white); }
+    .cookie-btn--accept:hover { background: var(--orange-dk); }
+    .cookie-btn--decline { background: transparent; color: var(--mid); border: 1px solid var(--border); }
+    .cookie-btn--decline:hover { color: var(--black); border-color: rgba(0,0,0,0.25); }
+
+    /* RESPONSIVE */
+    @media(max-width:1100px) { .ft-top { grid-template-columns: 1fr 1fr; gap: 36px; } }
+    @media(max-width:900px) {
+      .navbar, .cookie-bar { padding: 0 24px; }
+      .nav-links, .nav-cta-btn { display: none; }
+      .nav-ham { display: flex; }
+      .container { padding: 0 24px; }
+      .hero-content { padding: 72px 24px 60px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .pkg-grid { grid-template-columns: 1fr; }
+      .adv-grid { grid-template-columns: 1fr 1fr; }
+      .ft-top { grid-template-columns: 1fr; gap: 28px; }
+      .ft-bot { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .cookie-bar { flex-direction: column; align-items: flex-start; padding: 18px 24px; gap: 14px; }
+      .cookie-bar__actions { width: 100%; }
+      .cookie-btn { flex: 1; text-align: center; }
+    }
+    @media(max-width:600px) { .adv-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie consent">
+  <p class="cookie-bar__text">We use cookies to improve your experience. By clicking <strong>Accept</strong>, you consent to our use of cookies. <a href="/privacy/">Privacy Policy</a>.</p>
+  <div class="cookie-bar__actions">
+    <button class="cookie-btn cookie-btn--decline" id="cookieDecline">Decline</button>
+    <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept Cookies</button>
+  </div>
+</div>
+<script>(function(){const B=document.getElementById('cookieBar'),K='fm_cookie_consent';if(!localStorage.getItem(K))setTimeout(()=>B.classList.add('visible'),1200);document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(K,'accepted');B.classList.remove('visible');});document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(K,'declined');B.classList.remove('visible');});})();</script>
+
+<body>
+
+<div class="page-loader" id="pageLoader">
+  <div>
+    <div class="loader-wordmark">Ferguson <span>Media</span></div>
+    <div class="loader-line-bg"><div class="loader-line"></div></div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/news/">Good News</a></li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger active" aria-haspopup="true">Our Solutions <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/good-news-story/" class="nav-dropdown-item" style="background:var(--orange-pale)">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
+          <div><div class="nav-di-title">Good News Story</div><div class="nav-di-sub">CSI impact packages from R8,500</div></div>
+        </a>
+        <a href="/community-media-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
+          <div><div class="nav-di-title">Community Media Hub</div><div class="nav-di-sub">Radio distribution to 8.5M+ listeners</div></div>
+        </a>
+        <a href="/creative-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div><div class="nav-di-title">Creative Hub</div><div class="nav-di-sub">Full-service content & brand production</div></div>
+        </a>
+      </div>
+    </li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="/contact/" class="nav-cta-btn">Contact Us</a>
+    <button class="nav-ham" id="hamBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="s-ov" id="sov"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
+    <button class="sb-close" id="sbClose">&#215;</button>
+  </div>
+  <nav class="sb-nav">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/news/">Good News</a>
+    <div class="sb-section-label">Our Solutions</div>
+    <a href="/good-news-story/" style="padding-left:28px;font-size:13px">→ Good News Story</a>
+    <a href="/community-media-hub/" style="padding-left:28px;font-size:13px">→ Community Media Hub</a>
+    <a href="/creative-hub/" style="padding-left:28px;font-size:13px">→ Creative Hub</a>
+  </nav>
+  <a href="/contact/" class="sb-cta">Contact</a>
+</aside>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="/images/gns-hero.svg" alt="Good News Story" onerror="this.src='/images/about-hero.jpg'" />
+  </div>
+  <div class="hero-over"></div>
+  <div class="hero-content">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.6);margin-bottom:20px;opacity:0;animation:hf 0.7s var(--ease) 0.4s forwards">Solution 01 — CSI &amp; Brand Impact</div>
+    <h1 class="hero-h1">
+      Your Impact, On the Record.
+      <span class="ac">Permanently.</span>
+    </h1>
+    <p class="hero-sub">Professional CSI documentation turned into permanent, broadcast-quality stories. Built to outlast any campaign and shared across our full national network.</p>
+    <div class="hero-ctas">
+      <a href="#packages" class="btn btn-or">See Our Packages <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="/contact/" class="btn btn-owh">Talk to the Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <div class="ticker-item"><span class="ticker-text">Packages from R8,500</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Permanent portal listing</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Broadcast-quality storytelling</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">CSI documentation that lasts</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Social Return on Investment reports</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Distributed to 8.5M+ listeners</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Packages from R8,500</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Permanent portal listing</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Broadcast-quality storytelling</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">CSI documentation that lasts</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Social Return on Investment reports</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span class="ticker-text">Distributed to 8.5M+ listeners</span><span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="container">
+    <div class="pillars-hd rv"><span class="eyebrow center">The Stories We Tell</span><h2 class="pillars-title">Four Areas of Progress We Cover</h2><p class="pillars-sub">Every story we publish falls into one of four areas where South Africa is growing and building something better.</p></div>
+    <div class="pillars-grid">
+      <a href="/news/?category=youth-excellence" class="pillar-card rv d1"><img src="https://fergusonmedia.co.za/images/1.png" alt="Youth Excellence" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 01</span><div class="pillar-title">Youth Excellence</div><p class="pillar-desc">Young South Africans who are building businesses, winning competitions and leading in their communities.</p></div></a>
+      <a href="/news/?category=innovation-solutions" class="pillar-card rv d2"><img src="https://fergusonmedia.co.za/images/2.png" alt="Innovation and Solutions" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 02</span><div class="pillar-title">Innovation &amp; Solutions</div><p class="pillar-desc">Local people solving real problems from energy and water to healthcare and education with African answers.</p></div></a>
+      <a href="/news/?category=social-cohesion" class="pillar-card rv d3"><img src="https://fergusonmedia.co.za/images/3.png" alt="Social Cohesion" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 03</span><div class="pillar-title">Social Cohesion</div><p class="pillar-desc">Neighbourhoods, organisations and communities working together to build something bigger than themselves.</p></div></a>
+      <a href="/news/?category=economic-impact" class="pillar-card rv d4"><img src="https://fergusonmedia.co.za/images/4.png" alt="Economic Impact" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 04</span><div class="pillar-title">Economic Impact</div><p class="pillar-desc">Small businesses, entrepreneurs and township economies creating real jobs and building lasting livelihoods.</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="container">
+    <div class="rv" style="text-align:center;max-width:620px;margin:0 auto 60px">
+      <span class="eyebrow center">Choose Your Package</span>
+      <h2 style="font-family:var(--fh);font-size:clamp(28px,3.5vw,44px);font-weight:900;color:var(--black);line-height:1.1;letter-spacing:-0.5px;margin-bottom:12px">Bronze, Silver <span style="color:var(--orange)">or Gold.</span></h2>
+      <p style="font-size:15px;color:var(--mid);line-height:1.7">Every package produces permanent, broadcast-quality content that documents your brand's real contribution to South Africa.</p>
+    </div>
+    <div class="pkg-grid">
+
+      <!-- BRONZE -->
+      <div class="pkg-card rv d1">
+        <div class="pkg-head">
+          <div class="pkg-tier-label"><div class="pkg-tier-dot"></div>Bronze Impact</div>
+          <div class="pkg-name">Your Story,<br />On the Record.</div>
+          <div class="pkg-price-block">
+            <div class="pkg-price">R8,500<span class="pkg-price-note"> excl. VAT</span></div>
+            <div class="pkg-price-sub">Entry Impact Package</div>
+          </div>
+          <p class="pkg-ideal">A strong entry point for brands ready to document their first verified impact story and begin building a permanent content asset.</p>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-deliverables">
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>1 portal story written to broadcast standard (1,200 words)</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>3 branded social graphics designed for multi-platform use</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Permanent listing on the Good News Portal</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Distributed across Ferguson Media social channels</div>
+          </div>
+        </div>
+        <div class="pkg-footer"><a href="/contact/?path=bronze" class="pkg-cta">Enquire About Bronze <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+      </div>
+
+      <!-- SILVER -->
+      <div class="pkg-card featured rv d2">
+        <div class="pkg-badge">Most Chosen</div>
+        <div class="pkg-head">
+          <div class="pkg-tier-label"><div class="pkg-tier-dot"></div>Silver Impact</div>
+          <div class="pkg-name">Your Story,<br />Seen and Shared.</div>
+          <div class="pkg-price-block">
+            <div class="pkg-price">R18,000<span class="pkg-price-note"> excl. VAT</span></div>
+            <div class="pkg-price-sub">Core Impact Package</div>
+          </div>
+          <p class="pkg-ideal">For organisations that want their impact documented in depth and put in front of audiences who are ready to act, invest, and get involved.</p>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-deliverables">
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>1 portal story at 1,500 words, solutions journalism standard</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>5 branded social graphics across all key formats</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>1 vertical video reel (60 sec) for social distribution</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Permanent portal listing with full brand integration</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Full Ferguson Media social distribution</div>
+          </div>
+        </div>
+        <div class="pkg-footer"><a href="/contact/?path=silver" class="pkg-cta">Enquire About Silver <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+      </div>
+
+      <!-- GOLD -->
+      <div class="pkg-card rv d3">
+        <div class="pkg-head">
+          <div class="pkg-tier-label"><div class="pkg-tier-dot"></div>Gold Impact</div>
+          <div class="pkg-name">Your Story,<br />Heard Everywhere.</div>
+          <div class="pkg-price-block">
+            <div class="pkg-price">R45,000<span class="pkg-price-note"> excl. VAT</span></div>
+            <div class="pkg-price-sub">Full Ecosystem Package</div>
+          </div>
+          <p class="pkg-ideal">A complete impact content engine for corporate partners who want their story told at scale across every platform Ferguson Media reaches.</p>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-deliverables">
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>1 podcast episode, produced in full audio and visual format</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>1 in-depth solutions journalism story (2,000 words)</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>4 vertical video reels for LinkedIn, Instagram &amp; TikTok</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>10 branded social posts scheduled across FM channels</div>
+            <div class="pkg-deliverable"><div class="pkg-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Full portal listing + community radio distribution</div>
+          </div>
+        </div>
+        <div class="pkg-footer"><a href="/contact/?path=gold" class="pkg-cta">Enquire About Gold <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="advantages" id="advantages">
+  <div class="container">
+    <div class="adv-hd rv">
+      <span class="eyebrow center">The Good News Advantage</span>
+      <h2 class="adv-h2">Why Good News Is the <span>Smartest Investment</span></h2>
+      <p class="adv-sub">Not soft media. High-performance media built for brands who lead and communities who act.</p>
+    </div>
+    <div class="adv-grid">
+
+      <div class="adv-card rv d1">
+        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="adv-title">Trust That Grows</div>
+        <ul class="adv-bullets">
+          <li>Higher brand loyalty among good news audiences</li>
+          <li>Trust compounds with every new story</li>
+        </ul>
+      </div>
+
+      <div class="adv-card rv d2">
+        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg></div>
+        <div class="adv-title">Content That Lasts</div>
+        <ul class="adv-bullets">
+          <li>Permanently on the Good News Portal</li>
+          <li>Shared and found months after campaigns end</li>
+        </ul>
+      </div>
+
+      <div class="adv-card rv d3">
+        <div class="adv-ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="adv-title">Results You Measure</div>
+        <ul class="adv-bullets">
+          <li>Social Return on Investment, not impressions</li>
+          <li>Clear reports for your CSI team and board</li>
+        </ul>
+      </div>
+
+      <div class="adv-card rv d4">
+        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="adv-title">Audiences Who Act</div>
+        <ul class="adv-bullets">
+          <li>Decision makers, community builders, active buyers</li>
+          <li>People who choose to seek progress news</li>
+        </ul>
+      </div>
+
+      <div class="adv-card rv d5">
+        <div class="adv-ic"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        <div class="adv-title">Editorial Credibility</div>
+        <ul class="adv-bullets">
+          <li>Your brand woven into real storytelling</li>
+          <li>Higher engagement than placed advertising</li>
+        </ul>
+      </div>
+
+      <div class="adv-card rv d6">
+        <div class="adv-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="adv-title">National Reach, Local Depth</div>
+        <ul class="adv-bullets">
+          <li>Community radio into townships and rural areas</li>
+          <li>Boardroom to community hall, simultaneously</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-inner rv">
+      <div class="final-cta-label">Let's Make It Real</div>
+      <h2 class="final-cta-title">Ready to Document Your Impact?</h2>
+      <p class="final-cta-body">Whether you choose Bronze, Silver or Gold  we respond personally to every enquiry and help you find the right fit for your organisation.</p>
+      <div class="final-cta-btns">
+        <a href="/contact/" class="btn-white">Send Us a Message <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="/about/" class="btn-wh-outline">Learn About Ferguson Media</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer rv-f">
+  <div class="container">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo"><img src="/images/logo-black.png" alt="Ferguson Media" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" /></div>
+        <p class="ft-tag">A youth-driven media and technology company combining storytelling, digital innovation and community radio to document South Africa's progress.</p>
+        <div class="ft-soc">
+          <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a class="ft-sl" href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a class="ft-sl" href="https://www.linkedin.com/company/ferguson-mediaza/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="ft-ct">Navigate</h4>
+        <ul class="ft-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/news/">Good News Portal</a></li>
+          <li><a href="/about/">About Ferguson Media</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-ct">Our Solutions</h4>
+        <ul class="ft-links">
+          <li><a href="/good-news-story/">Good News Story</a></li>
+          <li><a href="/community-media-hub/">Community Media Hub</a></li>
+          <li><a href="/creative-hub/">Creative Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-ct">Get in Touch</h4>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27110841100">+27 82 467 8925</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p class="ft-cit"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">&copy; 2026 Ferguson Media (Pty) Ltd. All rights reserved.</p>
+      <ul class="ft-bl"><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bar"></div>
+</footer>
+
+<script>
+const ldr=document.getElementById('pageLoader');
+function dismissLoader(){ldr.classList.add('gone');setTimeout(()=>document.body.classList.add('fm-ready'),80);}
+window.addEventListener('load',()=>setTimeout(dismissLoader,700));
+setTimeout(dismissLoader,3000);
+
+const navbar=document.getElementById('navbar'),navImg=document.getElementById('navLogoImg');
+window.addEventListener('scroll',()=>{const s=window.scrollY>56;navbar.classList.toggle('scrolled',s);if(navImg)navImg.src=s?'/images/logo-black.png':'/images/logo-white.png';},{passive:true});
+
+const sov=document.getElementById('sov'),sb=document.getElementById('sidebar'),ham=document.getElementById('hamBtn');
+function openSB(){sb.classList.add('open');sov.classList.add('open');ham.classList.add('open');document.body.style.overflow='hidden';}
+function closeSB(){sb.classList.remove('open');sov.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
+ham.addEventListener('click',openSB);
+document.getElementById('sbClose').addEventListener('click',closeSB);
+sov.addEventListener('click',closeSB);
+document.addEventListener('keydown',e=>e.key==='Escape'&&closeSB());
+
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});},{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-f').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

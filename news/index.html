@@ -26,6 +26,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://fergusonmedia.co.za/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <style>
@@ -104,6 +105,23 @@
     .nav-ham.open span:nth-child(2) { opacity: 0; }
     .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+.nav-dropdown-wrap { position: relative; }
+.nav-dropdown-trigger { display: flex; align-items: center; }
+.nav-dropdown-wrap::after { content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 20px; }
+.nav-dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.13); width: 280px; opacity: 0; pointer-events: none; margin-top: 12px; transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); z-index: 200; }
+.nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); transition-delay: 0s; }
+.nav-dropdown-wrap:not(:hover) .nav-dropdown { transition-delay: 0.12s; }
+.nav-dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--white); border-left: 1px solid var(--border); border-top: 1px solid var(--border); rotate: 45deg; }
+.nav-dropdown-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--orange-pale); }
+.nav-di-icon { width: 32px; height: 32px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.nav-dropdown-item:hover .nav-di-icon { background: rgba(255,122,0,0.15); }
+.nav-di-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+.nav-di-sub { font-size: 11px; color: var(--mid); }
+.nav-dropdown-wrap:hover .nav-dropdown-trigger svg { transform: rotate(180deg); }
+.sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
+
     /* ── Sidebar (black — intentional) ── */
     .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
     .s-ov.open { display: block; opacity: 1; }
@@ -152,40 +170,7 @@
     .strip-item { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); padding: 16px 32px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .strip-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 50%; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-/* PILLARS */
-.pillars { padding: 80px 0; background: var(--surface); }
-.pillars-hd { text-align: center; max-width: 560px; margin: 0 auto 60px; }
-.pillars-title { font-family: var(--fh); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: var(--black); letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 12px; }
-.pillars-sub { font-size: 15px; color: var(--mid); line-height: 1.7; }
-.pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(0,0,0,0.08); }
-.pillar-card { position: relative; overflow: hidden; aspect-ratio: 16/10; display: block; }
-.pillar-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
-.pillar-card:hover img { transform: scale(1.06); }
-.pillar-ov { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.2) 55%, transparent 100%); transition: background 0.4s; }
-.pillar-card:hover .pillar-ov { background: linear-gradient(0deg, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.5) 65%, transparent 100%); }
-.pillar-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
-.pillar-num { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; display: block; }
-.pillar-title { font-family: var(--fh); font-size: clamp(17px, 1.8vw, 24px); font-weight: 900; color: var(--white); line-height: 1.2; }
-.pillar-desc { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease), margin-top 0.3s; }
-.pillar-card:hover .pillar-desc { max-height: 100px; margin-top: 10px; }
-.pillar-arr { position: absolute; top: 20px; right: 20px; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-.pillar-arr svg { width: 13px; height: 13px; stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 2; transition: all 0.3s; }
-.pillar-card:hover .pillar-arr { background: var(--orange); border-color: var(--orange); }
-.pillar-card:hover .pillar-arr svg { stroke: var(--white); transform: rotate(45deg); }
-.eyebrow {
-  font-family: var(--fh);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--orange);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.eyebrow.center { justify-content: center; }
-@media(max-width:900px) { .pillars-grid { grid-template-columns: 1fr; } }
+
     /* ── Filter bar — LIGHT (not black) ── */
     .filters-bar {
       background: var(--white);
@@ -472,11 +457,27 @@
     <img src="/images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
-  <ul class="nav-links">
+<ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li><a href="/about/">About</a></li>
     <li><a href="/news/" class="active">Good News</a></li>
-    <li><a href="/partner/">Partner With Us</a></li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true">Our Solutions <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/good-news-story/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
+          <div><div class="nav-di-title">Good News Story</div><div class="nav-di-sub">CSI impact packages from R8,500</div></div>
+        </a>
+        <a href="/community-media-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
+          <div><div class="nav-di-title">Community Media Hub</div><div class="nav-di-sub">Radio distribution to 8.5M+ listeners</div></div>
+        </a>
+        <a href="/creative-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div><div class="nav-di-title">Creative Hub</div><div class="nav-di-sub">Full-service content & brand production</div></div>
+        </a>
+      </div>
+    </li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
     <a href="/contact/" class="nav-cta-btn">Contact Us</a>
@@ -491,11 +492,14 @@
     <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
     <button class="sb-close" id="sbClose">&#215;</button>
   </div>
-  <nav class="sb-nav">
+<nav class="sb-nav">
     <a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/news/">Good News</a>
-    <a href="/partner/">Partner With Us</a>
+    <div class="sb-section-label">Our Solutions</div>
+    <a href="/good-news-story/" style="padding-left:28px;font-size:13px">→ Good News Story</a>
+    <a href="/community-media-hub/" style="padding-left:28px;font-size:13px">→ Community Media Hub</a>
+    <a href="/creative-hub/" style="padding-left:28px;font-size:13px">→ Creative Hub</a>
   </nav>
   <a href="/contact/" class="sb-cta">Contact Us</a>
   <div class="sb-soc">
@@ -537,18 +541,7 @@
 </section>
 
 
-<!-- PILLARS -->
-<section class="pillars">
-  <div class="container">
-    <div class="pillars-hd rv"><span class="eyebrow center">The Stories We Tell</span><h2 class="pillars-title">Four Areas of Progress We Cover</h2><p class="pillars-sub">Every story we publish falls into one of four areas where South Africa is growing and building something better.</p></div>
-    <div class="pillars-grid">
-      <a href="/news/?category=youth-excellence" class="pillar-card rv d1"><img src="https://fergusonmedia.co.za/images/1.png" alt="Youth Excellence" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 01</span><div class="pillar-title">Youth Excellence</div><p class="pillar-desc">Young South Africans who are building businesses, winning competitions and leading in their communities.</p></div></a>
-      <a href="/news/?category=innovation-solutions" class="pillar-card rv d2"><img src="https://fergusonmedia.co.za/images/2.png" alt="Innovation and Solutions" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 02</span><div class="pillar-title">Innovation &amp; Solutions</div><p class="pillar-desc">Local people solving real problems — from energy and water to healthcare and education — with African answers.</p></div></a>
-      <a href="/news/?category=social-cohesion" class="pillar-card rv d3"><img src="https://fergusonmedia.co.za/images/3.png" alt="Social Cohesion" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 03</span><div class="pillar-title">Social Cohesion</div><p class="pillar-desc">Neighbourhoods, organisations and communities working together to build something bigger than themselves.</p></div></a>
-      <a href="/news/?category=economic-impact" class="pillar-card rv d4"><img src="https://fergusonmedia.co.za/images/4.png" alt="Economic Impact" /><div class="pillar-ov"></div><div class="pillar-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="pillar-content"><span class="pillar-num">Area 04</span><div class="pillar-title">Economic Impact</div><p class="pillar-desc">Small businesses, entrepreneurs and township economies creating real jobs and building lasting livelihoods.</p></div></a>
-    </div>
-  </div>
-</section>
+
 
 <!-- TICKER -->
 <div class="strip">
@@ -628,35 +621,8 @@
   </div>
 </section>
 
-<!-- SUBMIT CTA — orange, bullets, stats ──
-<section class="submit-cta rv-f">
-  <div class="submit-inner">
-    <div>
-      <div class="submit-label">Share Your Story</div>
-      <h2 class="submit-title">Know a Story<br /><span>South Africa Should Hear?</span></h2>
-      <ul class="submit-bullets">
-        <li>Real progress — verified and documented</li>
-        <li>Communities, innovators, and entrepreneurs</li>
-        <li>Stories that inspire action, not just feeling</li>
-      </ul>
-      <a href="/contact/" class="submit-btn">Submit a Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="submit-stats">
-      <div class="submit-stat">
-        <div class="submit-stat-n">4</div>
-        <div class="submit-stat-l">Story categories covering all of SA's progress</div>
-      </div>
-      <div class="submit-stat">
-        <div class="submit-stat-n">50K</div>
-        <div class="submit-stat-l">Monthly readers across the Good News Portal</div>
-      </div>
-      <div class="submit-stat">
-        <div class="submit-stat-n">3×</div>
-        <div class="submit-stat-l">Higher share rate for positive, purposeful stories</div>
-      </div>
-    </div>
-  </div>
-</section> -->
+
+</section> 
 
 <!-- FOOTER -->
 <footer class="footer rv-f">
@@ -665,9 +631,8 @@
       <div>
         <div class="ft-logo">
           <img src="/images/logo-black.png" alt="Ferguson Media" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" />
-          <span class="ft-logo-txt">FERGUSON <span>MEDIA</span></span>
         </div>
-        <p class="ft-tag">South Africa's premier good news media platform. Stories of strength, innovation, and community action from across the nation.</p>
+        <p class="ft-tag">A youth-driven media and technology company combining storytelling, digital innovation and community radio to document South Africa's progress.</p>
         <div class="ft-soc">
           <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
           <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
@@ -682,23 +647,22 @@
           <li><a href="/">Home</a></li>
           <li><a href="/news/">Good News Portal</a></li>
           <li><a href="/about/">About Ferguson Media</a></li>
-          <li><a href="/partner/">Partner With Us</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="ft-ct">Story Categories</h4>
+        <h4 class="ft-ct">Our Solutions</h4>
         <ul class="ft-links">
-          <li><a href="/news/?category=youthExcellence">Youth Excellence</a></li>
-          <li><a href="/news/?category=innovationSolutions">Innovation &amp; Solutions</a></li>
-          <li><a href="/news/?category=socialCohesion">Social Cohesion</a></li>
-          <li><a href="/news/?category=economicImpact">Economic Impact</a></li>
+          <li><a href="/good-news-story/">Good News Story</a></li>
+          <li><a href="/community-media-hub/">Community Media Hub</a></li>
+          <li><a href="/creative-hub/">Creative Hub</a></li>
         </ul>
       </div>
       <div>
         <h4 class="ft-ct">Get in Touch</h4>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
-        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27824678925">+27 82 467 8925</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27110841100">011 084 1100</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p class="ft-cit"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p></div>
       </div>
     </div>
     <div class="ft-bot">

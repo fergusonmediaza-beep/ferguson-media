@@ -8,6 +8,7 @@
   <meta name="description" content="Ferguson Media — South Africa's Good News Portal" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/images/favicon.png" />
 
@@ -70,7 +71,23 @@
     .nav-ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-ham.open span:nth-child(2) { opacity: 0; }
     .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
+.nav-dropdown-wrap { position: relative; }
+.nav-dropdown-trigger { display: flex; align-items: center; }
+.nav-dropdown-wrap::after { content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 20px; }
+.nav-dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.13); width: 280px; opacity: 0; pointer-events: none; margin-top: 12px; transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); z-index: 200; }
+.nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); transition-delay: 0s; }
+.nav-dropdown-wrap:not(:hover) .nav-dropdown { transition-delay: 0.12s; }
+.nav-dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--white); border-left: 1px solid var(--border); border-top: 1px solid var(--border); rotate: 45deg; }
+.nav-dropdown-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--orange-pale); }
+.nav-di-icon { width: 32px; height: 32px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.nav-dropdown-item:hover .nav-di-icon { background: rgba(255,122,0,0.15); }
+.nav-di-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+.nav-di-sub { font-size: 11px; color: var(--mid); }
+.nav-dropdown-wrap:hover .nav-dropdown-trigger svg { transform: rotate(180deg); }
+.sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
+    
     /* ── Sidebar (black — intentional) ── */
     .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
     .s-ov.open { display: block; opacity: 1; }
@@ -285,11 +302,27 @@
     <img src="/images/logo-black.png" alt="Ferguson Media" id="navLogoImg" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
-  <ul class="nav-links">
+<ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li><a href="/about/">About</a></li>
     <li><a href="/news/">Good News</a></li>
-    <li><a href="/partner/">Partner With Us</a></li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true">Our Solutions <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/good-news-story/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
+          <div><div class="nav-di-title">Good News Story</div><div class="nav-di-sub">CSI impact packages from R8,500</div></div>
+        </a>
+        <a href="/community-media-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
+          <div><div class="nav-di-title">Community Media Hub</div><div class="nav-di-sub">Radio distribution to 8.5M+ listeners</div></div>
+        </a>
+        <a href="/creative-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div><div class="nav-di-title">Creative Hub</div><div class="nav-di-sub">Full-service content & brand production</div></div>
+        </a>
+      </div>
+    </li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
     <a href="/contact/" class="nav-cta-btn">Contact Us</a>
@@ -304,13 +337,16 @@
     <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
     <button class="sb-close" id="sbClose">&#215;</button>
   </div>
-  <nav class="sb-nav">
+<nav class="sb-nav">
     <a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/news/">Good News</a>
-    <a href="/partner/">Partner With Us</a>
-    <a href="/contact/">Contact</a>
+    <div class="sb-section-label">Our Solutions</div>
+    <a href="/good-news-story/" style="padding-left:28px;font-size:13px">→ Good News Story</a>
+    <a href="/community-media-hub/" style="padding-left:28px;font-size:13px">→ Community Media Hub</a>
+    <a href="/creative-hub/" style="padding-left:28px;font-size:13px">→ Creative Hub</a>
   </nav>
+  <a href="/contact/" class="sb-cta">Contact Us</a>
   <a href="/partner/" class="sb-cta">Partner With Us</a>
   <div class="sb-soc">
     <a href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -344,8 +380,8 @@
           <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
         </div>
       </div>
-      <div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/partner/">Partner With Us</a></li><li><a href="/contact/">Contact</a></li></ul></div>
-      <div><h4 class="ft-ct">Story Categories</h4><ul class="ft-links"><li><a href="/news/?category=youthExcellence">Youth Excellence</a></li><li><a href="/news/?category=innovationSolutions">Innovation &amp; Solutions</a></li><li><a href="/news/?category=socialCohesion">Social Cohesion</a></li><li><a href="/news/?category=economicImpact">Economic Impact</a></li></ul></div>
+<div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+      <div><h4 class="ft-ct">Our Solutions</h4><ul class="ft-links"><li><a href="/good-news-story/">Good News Story</a></li><li><a href="/community-media-hub/">Community Media Hub</a></li><li><a href="/creative-hub/">Creative Hub</a></li></ul></div>
       <div>
         <h4 class="ft-ct">Get in Touch</h4>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
