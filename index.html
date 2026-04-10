@@ -21,7 +21,7 @@
   <meta name="twitter:image" content="https://fergusonmedia.co.za/images/og-image.png" />
   <meta name="geo.region" content="ZA-GP" />
   <meta name="geo.placename" content="Sandton, Johannesburg" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ferguson Media","url":"https://fergusonmedia.co.za","logo":"https://fergusonmedia.co.za/images/logo-white.png","description":"A youth-driven media and technology company combining storytelling, digital innovation and community impact across South Africa.","address":{"@type":"PostalAddress","streetAddress":"35 Ferguson Road","addressLocality":"Illovo, Sandton","addressRegion":"Gauteng","postalCode":"2196","addressCountry":"ZA"},"telephone":"+27110841100","email":"info@fergusonmedia.co.za"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ferguson Media","url":"https://fergusonmedia.co.za","logo":"https://fergusonmedia.co.za/images/logo-black.png","description":"A youth-driven media and technology company combining storytelling, digital innovation and community impact across South Africa.","address":{"@type":"PostalAddress","streetAddress":"35 Ferguson Road","addressLocality":"Illovo, Sandton","addressRegion":"Gauteng","postalCode":"2196","addressCountry":"ZA"},"telephone":"+27110841100","email":"info@fergusonmedia.co.za"}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -431,7 +431,7 @@
 
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
-    <img src="images/logo-black.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+<img src="/images/logo-black.png" alt="Ferguson Media" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
 <ul class="nav-links">
@@ -719,8 +719,8 @@ const ldr=document.getElementById('pageLoader');
 function dismissLoader(){ldr.classList.add('gone');setTimeout(()=>document.body.classList.add('fm-ready'),80);}
 window.addEventListener('load',()=>setTimeout(dismissLoader,700));
 setTimeout(dismissLoader,3000);
-const navbar=document.getElementById('navbar'),navImg=document.getElementById('navLogoImg');
-window.addEventListener('scroll',()=>{const s=window.scrollY>56;navbar.classList.toggle('scrolled',s);if(navImg)navImg.src='images/logo-black.png';},{passive:true});
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{const s=window.scrollY>56;navbar.classList.toggle('scrolled',s);},{passive:true});
 const sov=document.getElementById('sov'),sb=document.getElementById('sidebar'),ham=document.getElementById('hamBtn');
 function openSB(){sb.classList.add('open');sov.classList.add('open');ham.classList.add('open');document.body.style.overflow='hidden';}
 function closeSB(){sb.classList.remove('open');sov.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
