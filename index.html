@@ -1018,6 +1018,7 @@
   <div class="footer-bar"></div>
 </footer>
 
+<script src="/config.js"></script>
 <script>
 
   (function(){
@@ -1054,7 +1055,7 @@ document.addEventListener('keydown',e=>e.key==='Escape'&&closeSB());
 const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});},{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-f').forEach(el=>ro.observe(el));
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4200);}
-const SPACE='xjj6th2dvsr4',TOKEN='8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo',ENV='master',CT='goodNewsStory';
+const SPACE=window.FM_CONFIG.CONTENTFUL_SPACE,TOKEN=window.FM_CONFIG.CONTENTFUL_TOKEN,ENV='master',CT='goodNewsStory';
 const CAT={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation',socialCohesion:'Social Cohesion',economicImpact:'Economic Impact'};
 function getImg(data,id){if(!data.includes||!data.includes.Asset)return null;const a=data.includes.Asset.find(x=>x.sys.id===id);return a?'https:'+a.fields.file.url:null;}
 function buildCard(s,data,i){const f=s.fields,imgId=f.heroImage&&f.heroImage.sys?f.heroImage.sys.id:null;const img=imgId?(getImg(data,imgId)||'images/placeholder.jpg'):'images/placeholder.jpg';const d=['d1','d2','d3'];return `<a href="/article/?slug=${f.slug||s.sys.id}" class="story-card rv ${d[i]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" loading="lazy"/><span class="sc-cat">${CAT[f.category]||'Good News'}</span></div><div class="sc-body"><h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`;}

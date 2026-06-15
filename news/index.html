@@ -721,6 +721,7 @@
   <div class="footer-bar"></div>
 </footer>
 
+<script src="/config.js"></script>
 <script>
 /* 1. Loader */
 const ldr=document.getElementById('pageLoader');
@@ -751,7 +752,7 @@ function observeAll(){document.querySelectorAll('.rv,.rv-l,.rv-f').forEach(el=>r
 observeAll();
 
 /* 5. Contentful config */
-const SPACE_ID='xjj6th2dvsr4',ACCESS_TOKEN='8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo',ENV='master',CONTENT_TYPE='goodNewsStory',PAGE_SIZE=6;
+const SPACE_ID=window.FM_CONFIG.CONTENTFUL_SPACE,ACCESS_TOKEN=window.FM_CONFIG.CONTENTFUL_TOKEN,ENV='master',CONTENT_TYPE='goodNewsStory',PAGE_SIZE=6;
 const CAT_LABELS={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation & Solutions',socialCohesion:'Social Cohesion',economicImpact:'Economic Impact'};
 const FMT_LABELS={'profile':'Profile','case-study':'Case Study','opinion':'Opinion','event-coverage':'Event Coverage'};
 const SUB_LABELS={entrepreneurship:'Entrepreneurship','tech-digital':'Tech & Digital',sustainability:'Sustainability','education-skills':'Education & Skills','creative-arts':'Creative Arts','sport-wellness':'Sport & Wellness','community-advocacy':'Community Advocacy','investment-csr':'Investment & CSR'};

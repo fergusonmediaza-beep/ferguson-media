@@ -405,8 +405,9 @@
   <div class="footer-bar"></div>
 </footer>
 
+<script src="/config.js"></script>
 <script>
-const SPACE_ID='xjj6th2dvsr4',ACCESS_TOKEN='8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo',ENV='master',CONTENT_TYPE='goodNewsStory';
+const SPACE_ID=window.FM_CONFIG.CONTENTFUL_SPACE,ACCESS_TOKEN=window.FM_CONFIG.CONTENTFUL_TOKEN,ENV='master',CONTENT_TYPE='goodNewsStory';
 const CAT_LABELS={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation & Solutions',socialCohesion:'Social Cohesion',economicImpact:'Economic Impact'};
 
 function fmtDate(iso){return new Date(iso).toLocaleDateString('en-ZA',{year:'numeric',month:'long',day:'numeric'});}
