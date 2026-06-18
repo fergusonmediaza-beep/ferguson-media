@@ -314,7 +314,19 @@
 <ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li><a href="/about/">About</a></li>
-    <li><a href="/news/">Good News</a></li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true">Good News <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/news/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div>
+          <div><div class="nav-di-title">Good News Portal</div><div class="nav-di-sub">Positive stories from South Africa</div></div>
+        </a>
+        <a href="/good-news-check-in/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--orange)" stroke="none"/></svg></div>
+          <div><div class="nav-di-title">Good News Check In</div><div class="nav-di-sub">Video conversations &amp; episodes</div></div>
+        </a>
+      </div>
+    </li>
     <li class="nav-dropdown-wrap">
       <a href="#" class="nav-dropdown-trigger" aria-haspopup="true">Our Solutions <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
       <div class="nav-dropdown">
@@ -349,7 +361,9 @@
 <nav class="sb-nav">
     <a href="/">Home</a>
     <a href="/about/">About</a>
-    <a href="/news/">Good News</a>
+    <div class="sb-section-label">Good News</div>
+    <a href="/news/" style="padding-left:28px;font-size:13px">→ Good News Portal</a>
+    <a href="/good-news-check-in/" style="padding-left:28px;font-size:13px">→ Good News Check In</a>
     <div class="sb-section-label">Our Solutions</div>
     <a href="/good-news-story/" style="padding-left:28px;font-size:13px">→ Good News Story</a>
     <a href="/community-media-hub/" style="padding-left:28px;font-size:13px">→ Community Media Hub</a>
@@ -389,7 +403,8 @@
           <a class="ft-sl" href="https://www.tiktok.com/@fergusonmedia_sa?_r=1&_t=ZS-95npP6kUD81" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
         </div>
       </div>
-<div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+<div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li>
+          <li><a href="/good-news-check-in/">Good News Check In</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       <div><h4 class="ft-ct">Our Solutions</h4><ul class="ft-links"><li><a href="/good-news-story/">Good News Story</a></li><li><a href="/community-media-hub/">Community Media Hub</a></li><li><a href="/creative-hub/">Creative Hub</a></li></ul></div>
       <div>
         <h4 class="ft-ct">Get in Touch</h4>

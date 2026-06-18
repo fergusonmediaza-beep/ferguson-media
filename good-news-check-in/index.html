@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good News Check In | Ferguson Media</title>
+  <meta name="description" content="Video conversations with South Africans who are building businesses, leading communities, and creating lasting change. The Good News Check-In by Ferguson Media." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://fergusonmedia.co.za/good-news-check-in/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fergusonmedia.co.za/good-news-check-in/" />
+  <meta property="og:title" content="Good News Check In | Ferguson Media" />
+  <meta property="og:image" content="https://fergusonmedia.co.za/images/og-image.png" />
+  <meta property="og:site_name" content="Ferguson Media" />
+  <link rel="icon" type="image/png" sizes="48x48" href="https://fergusonmedia.co.za/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800;1,900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #FF7A00;
+      --orange-dk: #E06D00;
+      --orange-pale: #FFF4EA;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --page: #FAFAF7;
+      --surface: #F4F2EE;
+      --mid: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --fh: 'Poppins', sans-serif;
+      --fb: 'Public Sans', sans-serif;
+      --ease: cubic-bezier(0.16,1,0.3,1);
+      --ease-out: cubic-bezier(0.22,1,0.36,1);
+      --max: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--black); }
+    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; opacity: 0; transition: opacity 0.5s var(--ease); }
+    body.fm-ready { opacity: 1; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
+    .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .rv.on { opacity: 1; transform: translateY(0); }
+    .rv-f { opacity: 0; transition: opacity 0.65s var(--ease-out); }
+    .rv-f.on { opacity: 1; }
+    .d1{transition-delay:.05s} .d2{transition-delay:.13s} .d3{transition-delay:.21s}
+
+    /* LOADER */
+    .page-loader { position: fixed; inset: 0; z-index: 9000; background: var(--black); display: flex; align-items: center; justify-content: center; transition: opacity 0.6s var(--ease), visibility 0.6s; }
+    .page-loader.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-wordmark { font-family: var(--fh); font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 24px; }
+    .loader-wordmark span { color: var(--orange); }
+    .loader-line-bg { width: 140px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 auto; overflow: hidden; }
+    .loader-line { height: 100%; background: var(--orange); animation: ll 1.5s var(--ease) forwards; }
+    @keyframes ll { from{width:0} to{width:100%} }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s var(--ease), box-shadow 0.4s, height 0.4s; animation: navIn 0.6s var(--ease) 0.3s both; }
+    @keyframes navIn { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+    .navbar.scrolled { background: rgba(250,250,247,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.06); height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-logo:hover { opacity: 0.82; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; transition: height 0.4s; }
+    .navbar.scrolled .nav-logo img { height: 40px; }
+    .nav-logo-text { font-family: var(--fh); font-size: 15px; font-weight: 900; color: var(--white); letter-spacing: 1px; transition: color 0.4s; }
+    .nav-logo-text span { color: var(--orange); }
+    .navbar.scrolled .nav-logo-text { color: var(--black); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a { font-family: var(--fh); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); padding: 8px 15px; position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 3px; left: 15px; right: 15px; height: 1.5px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--white); }
+    .navbar.scrolled .nav-links a { color: rgba(0,0,0,0.5); }
+    .navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--black); }
+    .nav-cta-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 12px; font-weight: 700; padding: 11px 22px; letter-spacing: 0.5px; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; white-space: nowrap; }
+    .nav-cta-btn:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,122,0,0.28); }
+    .nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+    .navbar.scrolled .nav-ham span { background: var(--black); }
+    .nav-ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-ham.open span:nth-child(2) { opacity: 0; }
+    .nav-ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-dropdown-wrap { position: relative; }
+    .nav-dropdown-trigger { display: flex; align-items: center; }
+    .nav-dropdown-wrap::after { content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 20px; }
+    .nav-dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.13); width: 280px; opacity: 0; pointer-events: none; margin-top: 12px; transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); z-index: 200; }
+    .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); transition-delay: 0s; }
+    .nav-dropdown-wrap:not(:hover) .nav-dropdown { transition-delay: 0.12s; }
+    .nav-dropdown::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: var(--white); border-left: 1px solid var(--border); border-top: 1px solid var(--border); rotate: 45deg; }
+    .nav-dropdown-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+    .nav-dropdown-item:last-child { border-bottom: none; }
+    .nav-dropdown-item:hover { background: var(--orange-pale); }
+    .nav-di-icon { width: 32px; height: 32px; background: var(--orange-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .nav-dropdown-item:hover .nav-di-icon { background: rgba(255,122,0,0.15); }
+    .nav-di-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+    .nav-di-sub { font-size: 11px; color: var(--mid); }
+    .nav-dropdown-wrap:hover .nav-dropdown-trigger svg { transform: rotate(180deg); }
+    .sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
+
+    /* SIDEBAR */
+    .s-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; transition: opacity 0.3s; }
+    .s-ov.open { display: block; opacity: 1; }
+    .sidebar { position: fixed; top: 0; right: -300px; width: 280px; height: 100vh; background: var(--black); z-index: 1200; transition: right 0.4s var(--ease); display: flex; flex-direction: column; }
+    .sidebar.open { right: 0; }
+    .sb-head { display: flex; align-items: center; justify-content: space-between; padding: 0 22px; height: 76px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sb-logo { font-family: var(--fh); font-size: 14px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .sb-logo span { color: var(--orange); }
+    .sb-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.4); font-size: 26px; line-height: 1; transition: color 0.2s, transform 0.3s; }
+    .sb-close:hover { color: var(--white); transform: rotate(90deg); }
+    .sb-nav { padding: 24px 14px; flex: 1; display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
+    .sb-nav a { font-family: var(--fh); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.48); padding: 13px 14px; transition: color 0.2s, padding-left 0.3s; }
+    .sb-nav a:hover { color: var(--white); padding-left: 20px; }
+    .sb-cta { margin: 8px 14px 28px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 15px; text-align: center; transition: background 0.25s; display: block; }
+    .sb-cta:hover { background: var(--orange-dk); }
+
+    /* HERO */
+    .hero { position: relative; min-height: 78vh; display: flex; align-items: flex-end; overflow: hidden; padding-top: 76px; background: var(--black); }
+    .hero-img { position: absolute; inset: 0; z-index: 0; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-img-over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.45) 55%, rgba(10,10,10,0.25) 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 96px 56px 80px; width: 100%; }
+    .hero-eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 12px; margin-bottom: 28px; opacity: 0; animation: hf 0.7s var(--ease) 0.5s forwards; }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--orange); display: block; flex-shrink: 0; }
+    .hero-h1 { font-family: var(--fh); font-size: clamp(52px, 8vw, 110px); font-weight: 900; color: var(--white); line-height: 0.95; letter-spacing: -2px; margin-bottom: 28px; opacity: 0; animation: hf 0.9s var(--ease) 0.65s forwards; }
+    .hero-h1 em { font-style: italic; color: var(--orange); display: block; font-weight: 900; }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.52); line-height: 1.75; max-width: 480px; margin-bottom: 44px; opacity: 0; animation: hf 0.8s var(--ease) 0.85s forwards; }
+    .hero-search-wrap { opacity: 0; animation: hf 0.8s var(--ease) 1s forwards; }
+    .hero-search { display: flex; align-items: center; background: var(--white); border-radius: 50px; overflow: hidden; max-width: 520px; padding: 6px 6px 6px 22px; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+    .hero-search svg { width: 16px; height: 16px; stroke: rgba(0,0,0,0.3); fill: none; stroke-width: 2; flex-shrink: 0; margin-right: 12px; }
+    .hero-search input { flex: 1; border: none; outline: none; font-family: var(--fb); font-size: 14px; color: var(--black); background: transparent; min-width: 0; }
+    .hero-search input::placeholder { color: rgba(0,0,0,0.35); }
+    .hero-search-btn { background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; border: none; padding: 12px 28px; border-radius: 50px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.25s, transform 0.2s; flex-shrink: 0; }
+    .hero-search-btn:hover { background: var(--orange-dk); transform: translateX(2px); }
+    .hero-search-btn svg { width: 13px; height: 13px; stroke: var(--white); fill: none; stroke-width: 2.5; }
+    .hero-try { font-size: 12px; color: rgba(255,255,255,0.32); margin-top: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .hero-try strong { color: rgba(255,255,255,0.5); font-weight: 600; }
+    .hero-try-chip { color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.2s; text-decoration: underline; text-underline-offset: 2px; }
+    .hero-try-chip:hover { color: var(--orange); }
+    @keyframes hf { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* FILTERS */
+    .filters-bar { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 64px; z-index: 100; }
+    .filters-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 56px; flex-wrap: wrap; }
+    .filter-pills { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .filter-pill { font-family: var(--fh); font-size: 12px; font-weight: 600; padding: 7px 16px; border: 1.5px solid rgba(0,0,0,0.12); background: transparent; color: rgba(0,0,0,0.55); cursor: pointer; border-radius: 50px; transition: all 0.22s; white-space: nowrap; }
+    .filter-pill:hover { border-color: var(--orange); color: var(--orange); }
+    .filter-pill.active { background: var(--black); border-color: var(--black); color: var(--white); }
+    .filter-selects { display: flex; gap: 8px; }
+    .filter-select { font-family: var(--fh); font-size: 12px; font-weight: 600; color: rgba(0,0,0,0.55); border: 1.5px solid rgba(0,0,0,0.12); background: transparent; padding: 7px 28px 7px 14px; border-radius: 50px; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23999' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; background-size: 14px; transition: border-color 0.2s; }
+    .filter-select:focus { outline: none; border-color: var(--orange); }
+
+    /* FEATURED */
+    .featured { padding: 72px 0 0; }
+    .section-eyebrow { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .section-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--orange); display: block; flex-shrink: 0; }
+    .section-title { font-family: var(--fh); font-size: clamp(22px, 2.8vw, 34px); font-weight: 900; color: var(--black); letter-spacing: -0.4px; line-height: 1.15; margin-bottom: 32px; }
+    .featured-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--black); overflow: hidden; min-height: 400px; }
+    .featured-thumb { position: relative; overflow: hidden; }
+    .featured-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .featured-card:hover .featured-thumb img { transform: scale(1.04); }
+    .featured-thumb-over { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.4), transparent); }
+    .featured-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s var(--ease), box-shadow 0.3s; box-shadow: 0 8px 32px rgba(255,122,0,0.5); }
+    .featured-card:hover .featured-play { transform: translate(-50%,-50%) scale(1.12); box-shadow: 0 12px 40px rgba(255,122,0,0.6); }
+    .featured-play svg { width: 22px; height: 22px; fill: var(--white); margin-left: 3px; }
+    .featured-body { padding: 48px 52px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-tag { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .featured-title { font-family: var(--fh); font-size: clamp(20px, 2.2vw, 28px); font-weight: 900; color: var(--white); line-height: 1.25; margin-bottom: 16px; }
+    .featured-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 28px; }
+    .featured-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .featured-date { font-family: var(--fh); font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.3); }
+    .featured-host { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .featured-cta { display: inline-flex; align-items: center; gap: 9px; background: var(--orange); color: var(--white); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 13px 24px; transition: background 0.25s, transform 0.25s; width: fit-content; }
+    .featured-cta:hover { background: var(--orange-dk); transform: translateY(-2px); }
+    .featured-cta svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .featured-cta:hover svg { transform: translateX(4px); }
+
+    /* EPISODE GRID */
+    .collection { padding: 72px 0 96px; }
+    .ep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .ep-card { background: var(--white); border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.4s var(--ease), box-shadow 0.4s; position: relative; }
+    .ep-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+    .ep-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    .ep-card:hover::after { transform: scaleX(1); }
+    .ep-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--black); }
+    .ep-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .ep-card:hover .ep-thumb img { transform: scale(1.05); }
+    .ep-thumb-over { position: absolute; inset: 0; background: rgba(10,10,10,0.3); transition: background 0.3s; }
+    .ep-card:hover .ep-thumb-over { background: rgba(10,10,10,0.15); }
+    .ep-play { position: absolute; bottom: 14px; right: 14px; width: 42px; height: 42px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s var(--ease); box-shadow: 0 4px 16px rgba(255,122,0,0.45); }
+    .ep-card:hover .ep-play { transform: scale(1.15); }
+    .ep-play svg { width: 15px; height: 15px; fill: var(--white); margin-left: 2px; }
+    .ep-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+    .ep-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .ep-date { font-family: var(--fh); font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; }
+    .ep-dot { width: 3px; height: 3px; background: rgba(0,0,0,0.2); border-radius: 50%; }
+    .ep-host-tag { font-size: 11px; color: var(--mid); }
+    .ep-title { font-family: var(--fh); font-size: 15px; font-weight: 800; color: var(--black); line-height: 1.3; margin-bottom: 10px; }
+    .ep-desc { font-size: 13px; color: var(--mid); line-height: 1.6; flex: 1; }
+
+    /* FOOTER */
+    .footer { background: var(--surface); padding: 80px 0 0; border-top: 1px solid var(--border); }
+    .ft-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid var(--border); }
+    .ft-logo { margin-bottom: 18px; }
+    .ft-logo img { height: 44px; width: auto; }
+    .ft-tag { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
+    .ft-soc { display: flex; gap: 10px; flex-wrap: wrap; }
+    .ft-sl { width: 36px; height: 36px; background: rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.25s; }
+    .ft-sl:hover { background: var(--orange); transform: translateY(-3px); }
+    .ft-sl svg { width: 14px; height: 14px; fill: var(--mid); transition: fill 0.25s; }
+    .ft-sl:hover svg { fill: var(--white); }
+    .ft-ct { font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--black); margin-bottom: 20px; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ft-links a { font-size: 13px; color: var(--mid); transition: color 0.2s, padding-left 0.25s; }
+    .ft-links a:hover { color: var(--orange); padding-left: 4px; }
+    .ft-ci { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .ft-cic { width: 30px; height: 30px; background: rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ft-cic svg { width: 13px; height: 13px; stroke: var(--mid); fill: none; stroke-width: 1.5; }
+    .ft-cit { font-size: 13px; color: var(--mid); line-height: 1.6; }
+    .ft-cit a { color: var(--mid); transition: color 0.2s; }
+    .ft-cit a:hover { color: var(--orange); }
+    .ft-bot { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; gap: 16px; flex-wrap: wrap; }
+    .ft-copy { font-size: 12px; color: rgba(0,0,0,0.35); }
+    .ft-bl { list-style: none; display: flex; gap: 20px; }
+    .ft-bl a { font-size: 12px; color: rgba(0,0,0,0.35); transition: color 0.2s; }
+    .ft-bl a:hover { color: var(--orange); }
+    .footer-bar { height: 3px; background: linear-gradient(90deg, var(--orange) 0%, rgba(255,122,0,0.15) 60%, transparent 100%); }
+
+    /* WHATSAPP */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 900; width: 52px; height: 52px; background: #25D366; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.45); }
+    .wa-float svg { width: 26px; height: 26px; fill: var(--white); }
+
+    /* MOBILE SELECT */
+    .filter-select-mobile { display: none; width: 100%; background: var(--white); border: none; border-bottom: 1px solid var(--border); color: var(--black); font-family: var(--fh); font-size: 13px; font-weight: 700; padding: 14px 16px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FF7A00' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px; outline: none; }
+    .filter-select-mobile option { background: var(--white); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .ep-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-thumb { min-height: 280px; }
+      .featured-body { padding: 36px; }
+      .ft-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .hero-content { padding: 80px 24px 64px; }
+      .nav-links, .nav-cta-btn { display: none; }
+      .nav-ham { display: flex; }
+      .navbar { padding: 0 24px; }
+      .filters-inner { padding: 0; flex-direction: column; align-items: stretch; gap: 0; }
+      .filter-pills { display: none; }
+      .filter-selects { display: none; }
+      .filter-select-mobile { display: block; }
+      .hero-search { padding: 4px 4px 4px 14px; }
+      .hero-search-btn { padding: 10px 16px; font-size: 12px; }
+      .hero-search-btn span { display: none; }
+      .ep-grid { grid-template-columns: 1fr; }
+      .ft-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer { padding: 56px 0 0; }
+    }
+
+    /* SEARCH RESULTS */
+    .no-results { text-align: center; padding: 64px 0; color: var(--mid); font-size: 15px; }
+    .no-results strong { display: block; font-family: var(--fh); font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+    .ep-card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="page-loader" id="loader">
+  <div>
+    <div class="loader-wordmark">FERGUSON <span>MEDIA</span></div>
+    <div class="loader-line-bg"><div class="loader-line"></div></div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger active" aria-haspopup="true">Good News <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/news/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div>
+          <div><div class="nav-di-title">Good News Portal</div><div class="nav-di-sub">Positive stories from South Africa</div></div>
+        </a>
+        <a href="/good-news-check-in/" class="nav-dropdown-item" style="background:var(--orange-pale)">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--orange)" stroke="none"/></svg></div>
+          <div><div class="nav-di-title">Good News Check In</div><div class="nav-di-sub">Video conversations &amp; episodes</div></div>
+        </a>
+      </div>
+    </li>
+    <li class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger" aria-haspopup="true">Our Solutions <svg viewBox="0 0 24 24" style="width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:4px;transition:transform 0.3s;display:inline-block;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-dropdown">
+        <a href="/good-news-story/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/></svg></div>
+          <div><div class="nav-di-title">Good News Story</div><div class="nav-di-sub">CSI impact packages</div></div>
+        </a>
+        <a href="/community-media-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><path d="M18 8a6 6 0 0 1 0 8"/><path d="M6 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2l3.5-3.5C10 5 11 5.5 11 6.5v11c0 1-.9 1.4-1.5.9L6 15Z"/></svg></div>
+          <div><div class="nav-di-title">Community Media Hub</div><div class="nav-di-sub">Radio distribution — 8.5M+ potential reach</div></div>
+        </a>
+        <a href="/creative-hub/" class="nav-dropdown-item">
+          <div class="nav-di-icon"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div><div class="nav-di-title">Creative Hub</div><div class="nav-di-sub">Full-service content &amp; brand production</div></div>
+        </a>
+      </div>
+    </li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="/contact/" class="nav-cta-btn">Contact Us</a>
+    <button class="nav-ham" id="hamBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="s-ov" id="sov"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <span class="sb-logo">FERGUSON <span>MEDIA</span></span>
+    <button class="sb-close" id="sbClose">&#215;</button>
+  </div>
+  <nav class="sb-nav">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <div class="sb-section-label">Good News</div>
+    <a href="/news/" style="padding-left:28px;font-size:13px">→ Good News Portal</a>
+    <a href="/good-news-check-in/" style="padding-left:28px;font-size:13px;color:var(--orange)">→ Good News Check In</a>
+    <div class="sb-section-label">Our Solutions</div>
+    <a href="/good-news-story/" style="padding-left:28px;font-size:13px">→ Good News Story</a>
+    <a href="/community-media-hub/" style="padding-left:28px;font-size:13px">→ Community Media Hub</a>
+    <a href="/creative-hub/" style="padding-left:28px;font-size:13px">→ Creative Hub</a>
+  </nav>
+  <a href="/contact/" class="sb-cta">Contact</a>
+</aside>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="/images/checkin.webp" alt="Good News Check In" />
+    <div class="hero-img-over"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">The Good News Check-In</div>
+    <h1 class="hero-h1">Good News<em>Check In</em></h1>
+    <p class="hero-sub">Explore conversations with entrepreneurs, community leaders, and changemakers across South Africa — captured, verified and told the Ferguson Media way.</p>
+    <div class="hero-search-wrap">
+      <div class="hero-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search by name, topic or keyword..." autocomplete="off" />
+        <button class="hero-search-btn" onclick="doSearch()">
+          <span>Search</span> <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="hero-try">
+        <strong>Try:</strong>
+        <span class="hero-try-chip" onclick="setSearch('Koketso Ramatlho')">"Koketso Ramatlho"</span>,
+        <span class="hero-try-chip" onclick="setSearch('Themba Robin')">"Themba Robin"</span>,
+        <span class="hero-try-chip" onclick="setSearch('Everest')">"Everest"</span>,
+        <span class="hero-try-chip" onclick="setSearch('Youth Day')">"Youth Day"</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filters-bar" id="filtersBar">
+  <select class="filter-select-mobile" id="filterSelectMobile" onchange="onMobileFilter(this.value)">
+    <option value="all">All Episodes</option>
+    <option value="entrepreneurship">Entrepreneurship</option>
+    <option value="creative-arts">Creative Arts</option>
+    <option value="community-advocacy">Community Advocacy</option>
+    <option value="education-skills">Education &amp; Skills</option>
+    <option value="sport-wellness">Sport &amp; Wellness</option>
+  </select>
+  <div class="filters-inner">
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" data-filter="all">All Episodes</button>
+      <button class="filter-pill" data-filter="entrepreneurship">Entrepreneurship</button>
+      <button class="filter-pill" data-filter="creative-arts">Creative Arts</button>
+      <button class="filter-pill" data-filter="community-advocacy">Community Advocacy</button>
+      <button class="filter-pill" data-filter="education-skills">Education &amp; Skills</button>
+      <button class="filter-pill" data-filter="sport-wellness">Sport &amp; Wellness</button>
+    </div>
+    <div class="filter-selects">
+      <select class="filter-select" id="hostSelect" onchange="applyFilters()">
+        <option value="all">All Hosts</option>
+        <option value="mirha">Mirha Sukraj</option>
+        <option value="jack">Jack Devnarain</option>
+      </select>
+      <select class="filter-select" id="yearSelect" onchange="applyFilters()">
+        <option value="all">All Years</option>
+        <option value="2026">2026</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED EPISODE -->
+<section class="featured">
+  <div class="container">
+    <div class="rv">
+      <div class="section-eyebrow">Editor's Pick</div>
+      <h2 class="section-title">This Week's Featured Episode</h2>
+    </div>
+    <div class="featured-card rv" id="featuredCard" data-id="bc7YdtVYf18">
+      <div class="featured-thumb">
+        <img src="https://img.youtube.com/vi/bc7YdtVYf18/maxresdefault.jpg" alt="Youth Day Spotlight: From Idea to Impact" onerror="this.src='https://img.youtube.com/vi/bc7YdtVYf18/hqdefault.jpg'" loading="lazy" />
+        <div class="featured-thumb-over"></div>
+        <div class="featured-play">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-tag">Youth Day Special · Jun 15, 2026</div>
+        <h3 class="featured-title">Youth Day Spotlight: From Idea to Impact</h3>
+        <p class="featured-desc">Hosted by Mirha Sukraj, this episode features Koketso Ramatlho — founder of Angela Care and winner of the 2025 Engen The Making Of competition. She shares the entrepreneurial journey behind her success, the lessons learned, and how winning transformed her approach to innovation and sustainable business growth.</p>
+        <div class="featured-meta">
+          <span class="featured-date">Jun 15, 2026</span>
+          <span class="featured-host">Hosted by Mirha Sukraj</span>
+        </div>
+        <a href="/good-news-check-in/youth-day-spotlight/" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL COLLECTION -->
+<section class="collection">
+  <div class="container">
+    <div class="rv">
+      <div class="section-eyebrow">The Full Collection</div>
+      <h2 class="section-title">Browse the Episodes</h2>
+    </div>
+    <div class="ep-grid" id="epGrid">
+
+      <!-- EP 01: Youth Day — Jun 2026 -->
+      <a href="/good-news-check-in/youth-day-spotlight/" class="ep-card rv d1"
+         data-tags="entrepreneurship,education-skills" data-host="mirha" data-year="2026"
+         data-search="youth day koketso ramatlho angela care engen making of mirha sukraj entrepreneurship">
+        <div class="ep-thumb">
+          <img src="https://img.youtube.com/vi/bc7YdtVYf18/maxresdefault.jpg" alt="Youth Day Spotlight" onerror="this.src='https://img.youtube.com/vi/bc7YdtVYf18/hqdefault.jpg'" loading="lazy" />
+          <div class="ep-thumb-over"></div>
+          <div class="ep-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-date">Jun 15, 2026</span>
+            <span class="ep-dot"></span>
+            <span class="ep-host-tag">Mirha Sukraj</span>
+          </div>
+          <h3 class="ep-title">Youth Day Spotlight: From Idea to Impact</h3>
+          <p class="ep-desc">Koketso Ramatlho, founder of Angela Care and 2025 Engen The Making Of winner, shares her entrepreneurial journey and the resilience that shaped her path.</p>
+        </div>
+      </a>
+
+      <!-- EP 02: Themba Robin — May 2026 -->
+      <a href="/good-news-check-in/themba-robin/" class="ep-card rv d2"
+         data-tags="creative-arts" data-host="jack" data-year="2026"
+         data-search="themba robin comedy positivity jack devnarain south african comedian content creator childlike lens">
+        <div class="ep-thumb">
+          <img src="https://img.youtube.com/vi/TdXAspp7_X8/maxresdefault.jpg" alt="Finding the Funny in the Everyday" onerror="this.src='https://img.youtube.com/vi/TdXAspp7_X8/hqdefault.jpg'" loading="lazy" />
+          <div class="ep-thumb-over"></div>
+          <div class="ep-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-date">May 6, 2026</span>
+            <span class="ep-dot"></span>
+            <span class="ep-host-tag">Jack Devnarain</span>
+          </div>
+          <h3 class="ep-title">Finding the Funny in the Everyday: Comedy &amp; Positivity</h3>
+          <p class="ep-desc">Themba Robin shares his "childlike lens" philosophy — turning everyday frustrations into relatable, positive storytelling that ripples through communities.</p>
+        </div>
+      </a>
+
+      <!-- EP 03: Angela Yeung — Jan 2026 -->
+      <a href="/good-news-check-in/angela-yeung/" class="ep-card rv d3"
+         data-tags="community-advocacy" data-host="jack" data-year="2026"
+         data-search="angela yeung mount everest ngo purpose resilience leadership jack devnarain climbing">
+        <div class="ep-thumb">
+          <img src="https://img.youtube.com/vi/UQZZs1lxj4w/maxresdefault.jpg" alt="Balancing Purpose and Extremes" onerror="this.src='https://img.youtube.com/vi/UQZZs1lxj4w/hqdefault.jpg'" loading="lazy" />
+          <div class="ep-thumb-over"></div>
+          <div class="ep-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-date">Jan 22, 2026</span>
+            <span class="ep-dot"></span>
+            <span class="ep-host-tag">Jack Devnarain</span>
+          </div>
+          <h3 class="ep-title">Balancing Purpose and Extremes: NGOs &amp; Mount Everest</h3>
+          <p class="ep-desc">Angela Yeung on running an NGO while climbing Mount Everest — a conversation about resilience, leadership, and what it means to lead with purpose under pressure.</p>
+        </div>
+      </a>
+
+    </div>
+    <div class="no-results" id="noResults" style="display:none">
+      <strong>No episodes found</strong>
+      Try a different search term or filter.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer rv-f">
+  <div class="container">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo"><img src="/images/logo-black.png" alt="Ferguson Media" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" /></div>
+        <p class="ft-tag">A youth-driven media and technology company combining storytelling, digital innovation and community radio to document South Africa's progress.</p>
+        <div class="ft-soc">
+          <a class="ft-sl" href="https://www.instagram.com/fergusonmediaza/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a class="ft-sl" href="https://www.youtube.com/@FergusonMediaZA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a class="ft-sl" href="https://www.facebook.com/p/Ferguson-Media-61580440481465/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a class="ft-sl" href="https://www.linkedin.com/company/ferguson-mediaza/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="ft-ct">Navigate</h4>
+        <ul class="ft-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/news/">Good News Portal</a></li>
+          <li><a href="/good-news-check-in/">Good News Check In</a></li>
+          <li><a href="/about/">About Ferguson Media</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-ct">Our Solutions</h4>
+        <ul class="ft-links">
+          <li><a href="/good-news-story/">Good News Story</a></li>
+          <li><a href="/community-media-hub/">Community Media Hub</a></li>
+          <li><a href="/creative-hub/">Creative Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-ct">Get in Touch</h4>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27824678925">+27 82 467 8925</a></p></div>
+        <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p class="ft-cit"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">&copy; 2026 Ferguson Media (Pty) Ltd. All rights reserved.</p>
+      <ul class="ft-bl"><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bar"></div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/27672554475" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with Ferguson Media on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Loader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('gone');
+      document.body.classList.add('fm-ready');
+    }, 900);
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  const navLogoImg = document.getElementById('navLogoImg');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
+      if (navLogoImg) { navLogoImg.src = '/images/logo-black.png'; }
+    } else {
+      navbar.classList.remove('scrolled');
+      if (navLogoImg) { navLogoImg.src = '/images/logo-white.png'; }
+    }
+  }, { passive: true });
+
+  // Sidebar
+  const sov = document.getElementById('sov'), sb = document.getElementById('sidebar'),
+        ham = document.getElementById('hamBtn'), sbc = document.getElementById('sbClose');
+  function openSb() { sb.classList.add('open'); sov.classList.add('open'); ham.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeSb() { sb.classList.remove('open'); sov.classList.remove('open'); ham.classList.remove('open'); document.body.style.overflow = ''; }
+  ham.addEventListener('click', openSb);
+  sbc.addEventListener('click', closeSb);
+  sov.addEventListener('click', closeSb);
+
+  // Reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.rv, .rv-f').forEach(el => obs.observe(el));
+
+  // Filter pills
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      applyFilters();
+    });
+  });
+
+  function applyFilters() {
+    const activeTag = document.querySelector('.filter-pill.active')?.dataset.filter || 'all';
+    const host = document.getElementById('hostSelect').value;
+    const year = document.getElementById('yearSelect').value;
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    let visible = 0;
+
+    document.querySelectorAll('.ep-card').forEach(card => {
+      const tags = card.dataset.tags || '';
+      const cardHost = card.dataset.host || '';
+      const cardYear = card.dataset.year || '';
+      const searchText = card.dataset.search || '';
+      const title = card.querySelector('.ep-title')?.textContent.toLowerCase() || '';
+      const desc = card.querySelector('.ep-desc')?.textContent.toLowerCase() || '';
+
+      const tagOk = activeTag === 'all' || tags.includes(activeTag);
+      const hostOk = host === 'all' || cardHost === host;
+      const yearOk = year === 'all' || cardYear === year;
+      const searchOk = !q || searchText.includes(q) || title.includes(q) || desc.includes(q);
+
+      if (tagOk && hostOk && yearOk && searchOk) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function onMobileFilter(val) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.dataset.filter === val));
+    applyFilters();
+    document.querySelector('.collection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function doSearch() {
+    applyFilters();
+    document.querySelector('.collection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function setSearch(term) {
+    document.getElementById('searchInput').value = term;
+    doSearch();
+  }
+
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+</script>
+</body>
+</html>
