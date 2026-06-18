@@ -262,6 +262,24 @@
       .footer { padding: 56px 0 0; }
     }
 
+    /* MODAL */
+    .ep-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.35s var(--ease); }
+    .ep-modal.open { opacity: 1; pointer-events: all; }
+    .ep-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(8px); }
+    .ep-modal-inner { position: relative; z-index: 1; width: 100%; max-width: 860px; background: var(--black); display: flex; flex-direction: column; transform: translateY(20px); transition: transform 0.4s var(--ease); }
+    .ep-modal.open .ep-modal-inner { transform: translateY(0); }
+    .ep-modal-video { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+    .ep-modal-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .ep-modal-info { padding: 22px 28px 26px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .ep-modal-text { flex: 1; min-width: 0; }
+    .ep-modal-tag { font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+    .ep-modal-title { font-family: var(--fh); font-size: clamp(14px, 2vw, 18px); font-weight: 800; color: var(--white); line-height: 1.3; margin-bottom: 4px; }
+    .ep-modal-meta { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .ep-modal-close { background: rgba(255,255,255,0.08); border: none; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: background 0.2s; margin-top: 2px; }
+    .ep-modal-close:hover { background: var(--orange); }
+    .ep-modal-close svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 2.5; }
+    @media (max-width: 768px) { .ep-modal { padding: 0; align-items: flex-end; } .ep-modal-inner { max-width: 100%; } .ep-modal-info { padding: 16px 20px 20px; } }
+
     /* SEARCH RESULTS */
     .no-results { text-align: center; padding: 64px 0; color: var(--mid); font-size: 15px; }
     .no-results strong { display: block; font-family: var(--fh); font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
@@ -414,7 +432,7 @@
       <div class="section-eyebrow">Editor's Pick</div>
       <h2 class="section-title">This Week's Featured Episode</h2>
     </div>
-    <div class="featured-card rv" id="featuredCard" data-id="bc7YdtVYf18">
+    <div class="featured-card rv" id="featuredCard" data-id="bc7YdtVYf18" onclick="openEp('bc7YdtVYf18')" style="cursor:pointer">
       <div class="featured-thumb">
         <img src="https://img.youtube.com/vi/bc7YdtVYf18/maxresdefault.jpg" alt="Youth Day Spotlight: From Idea to Impact" onerror="this.src='https://img.youtube.com/vi/bc7YdtVYf18/hqdefault.jpg'" loading="lazy" />
         <div class="featured-thumb-over"></div>
@@ -430,7 +448,7 @@
           <span class="featured-date">Jun 15, 2026</span>
           <span class="featured-host">Hosted by Mirha Sukraj</span>
         </div>
-        <a href="/good-news-check-in/youth-day-spotlight/" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <button onclick="openEp('bc7YdtVYf18')" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
@@ -446,7 +464,7 @@
     <div class="ep-grid" id="epGrid">
 
       <!-- EP 01: Youth Day — Jun 2026 -->
-      <a href="/good-news-check-in/youth-day-spotlight/" class="ep-card rv d1"
+      <div onclick="openEp('bc7YdtVYf18')" class="ep-card rv d1" style="cursor:pointer"
          data-tags="entrepreneurship,education-skills" data-host="mirha" data-year="2026"
          data-search="youth day koketso ramatlho angela care engen making of mirha sukraj entrepreneurship">
         <div class="ep-thumb">
@@ -463,10 +481,10 @@
           <h3 class="ep-title">Youth Day Spotlight: From Idea to Impact</h3>
           <p class="ep-desc">Koketso Ramatlho, founder of Angela Care and 2025 Engen The Making Of winner, shares her entrepreneurial journey and the resilience that shaped her path.</p>
         </div>
-      </a>
+      </div>
 
       <!-- EP 02: Themba Robin — May 2026 -->
-      <a href="/good-news-check-in/themba-robin/" class="ep-card rv d2"
+      <div onclick="openEp('TdXAspp7_X8')" class="ep-card rv d2" style="cursor:pointer"
          data-tags="creative-arts" data-host="jack" data-year="2026"
          data-search="themba robin comedy positivity jack devnarain south african comedian content creator childlike lens">
         <div class="ep-thumb">
@@ -483,10 +501,10 @@
           <h3 class="ep-title">Finding the Funny in the Everyday: Comedy &amp; Positivity</h3>
           <p class="ep-desc">Themba Robin shares his "childlike lens" philosophy — turning everyday frustrations into relatable, positive storytelling that ripples through communities.</p>
         </div>
-      </a>
+      </div>
 
       <!-- EP 03: Angela Yeung — Jan 2026 -->
-      <a href="/good-news-check-in/angela-yeung/" class="ep-card rv d3"
+      <div onclick="openEp('UQZZs1lxj4w')" class="ep-card rv d3" style="cursor:pointer"
          data-tags="community-advocacy" data-host="jack" data-year="2026"
          data-search="angela yeung mount everest ngo purpose resilience leadership jack devnarain climbing">
         <div class="ep-thumb">
@@ -503,7 +521,7 @@
           <h3 class="ep-title">Balancing Purpose and Extremes: NGOs &amp; Mount Everest</h3>
           <p class="ep-desc">Angela Yeung on running an NGO while climbing Mount Everest — a conversation about resilience, leadership, and what it means to lead with purpose under pressure.</p>
         </div>
-      </a>
+      </div>
 
     </div>
     <div class="no-results" id="noResults" style="display:none">
@@ -512,6 +530,26 @@
     </div>
   </div>
 </section>
+
+<!-- VIDEO MODAL -->
+<div class="ep-modal" id="epModal" role="dialog" aria-modal="true" aria-label="Watch episode">
+  <div class="ep-modal-backdrop" onclick="closeEp()"></div>
+  <div class="ep-modal-inner">
+    <div class="ep-modal-video">
+      <iframe id="epIframe" src="" title="Good News Check In episode" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="ep-modal-info">
+      <div class="ep-modal-text">
+        <div class="ep-modal-tag" id="epModalTag"></div>
+        <div class="ep-modal-title" id="epModalTitle"></div>
+        <div class="ep-modal-meta" id="epModalMeta"></div>
+      </div>
+      <button class="ep-modal-close" onclick="closeEp()" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer rv-f">
@@ -662,6 +700,32 @@
   document.getElementById('searchInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') doSearch();
   });
+
+  // Episode modal
+  const EP_DATA = {
+    'bc7YdtVYf18': { tag: 'Entrepreneurship', title: 'Youth Day Spotlight: From Idea to Impact', meta: 'Jun 15, 2026 · Hosted by Mirha Sukraj', start: '' },
+    'TdXAspp7_X8': { tag: 'Creative Arts', title: 'Finding the Funny in the Everyday: Comedy & Positivity', meta: 'May 6, 2026 · Hosted by Jack Devnarain', start: '?start=11' },
+    'UQZZs1lxj4w': { tag: 'Community Advocacy', title: 'Balancing Purpose and Extremes: NGOs & Mount Everest', meta: 'Jan 22, 2026 · Hosted by Jack Devnarain', start: '' }
+  };
+
+  function openEp(id) {
+    const ep = EP_DATA[id]; if (!ep) return;
+    document.getElementById('epModalTag').textContent = ep.tag;
+    document.getElementById('epModalTitle').textContent = ep.title;
+    document.getElementById('epModalMeta').textContent = ep.meta;
+    document.getElementById('epIframe').src = 'https://www.youtube.com/embed/' + id + ep.start + '?autoplay=1';
+    const modal = document.getElementById('epModal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEp() {
+    document.getElementById('epModal').classList.remove('open');
+    document.getElementById('epIframe').src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEp(); });
 </script>
 </body>
 </html>

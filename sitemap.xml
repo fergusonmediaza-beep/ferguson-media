@@ -58,30 +58,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Good News Check In — Youth Day Spotlight -->
-  <url>
-    <loc>https://fergusonmedia.co.za/good-news-check-in/youth-day-spotlight/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Good News Check In — Themba Robin -->
-  <url>
-    <loc>https://fergusonmedia.co.za/good-news-check-in/themba-robin/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Good News Check In — Angela Yeung -->
-  <url>
-    <loc>https://fergusonmedia.co.za/good-news-check-in/angela-yeung/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Contact -->
   <url>
     <loc>https://fergusonmedia.co.za/contact/</loc>
