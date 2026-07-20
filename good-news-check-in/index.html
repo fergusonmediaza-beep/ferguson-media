@@ -413,6 +413,8 @@
     <option value="community-advocacy">Community Advocacy</option>
     <option value="education-skills">Education &amp; Skills</option>
     <option value="sport-wellness">Sport &amp; Wellness</option>
+    <option value="sustainability">Sustainability</option>
+    <option value="tech-digital">Tech &amp; Digital</option>
   </select>
   <div class="filters-inner">
     <div class="filter-pills" id="filterPills">
@@ -422,6 +424,8 @@
       <button class="filter-pill" data-filter="community-advocacy">Community Advocacy</button>
       <button class="filter-pill" data-filter="education-skills">Education &amp; Skills</button>
       <button class="filter-pill" data-filter="sport-wellness">Sport &amp; Wellness</button>
+      <button class="filter-pill" data-filter="sustainability">Sustainability</button>
+      <button class="filter-pill" data-filter="tech-digital">Tech &amp; Digital</button>
     </div>
     <div class="filter-selects">
       <select class="filter-select" id="hostSelect" onchange="applyFilters()">
@@ -444,23 +448,23 @@
       <div class="section-eyebrow">Editor's Pick</div>
       <h2 class="section-title">This Week's Featured Episode</h2>
     </div>
-    <div class="featured-card rv" id="featuredCard" data-id="bc7YdtVYf18" onclick="openEp('bc7YdtVYf18')" style="cursor:pointer">
+    <div class="featured-card rv" id="featuredCard" data-id="Xti1_H5eljs" onclick="openEp('Xti1_H5eljs')" style="cursor:pointer">
       <div class="featured-thumb">
-        <img src="https://img.youtube.com/vi/bc7YdtVYf18/maxresdefault.jpg" alt="Youth Day Spotlight: From Idea to Impact" onerror="this.src='https://img.youtube.com/vi/bc7YdtVYf18/hqdefault.jpg'" loading="lazy" />
+        <img src="https://img.youtube.com/vi/Xti1_H5eljs/maxresdefault.jpg" alt="Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation" onerror="this.src='https://img.youtube.com/vi/Xti1_H5eljs/hqdefault.jpg'" loading="lazy" />
         <div class="featured-thumb-over"></div>
         <div class="featured-play">
           <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         </div>
       </div>
       <div class="featured-body">
-        <div class="featured-tag">Youth Day Special · Jun 15, 2026</div>
-        <h3 class="featured-title">Youth Day Spotlight: From Idea to Impact</h3>
-        <p class="featured-desc">Hosted by Mirha Sukraj, this episode features Koketso Ramatlho — founder of Angela Care and winner of the 2025 Engen The Making Of competition. She shares the entrepreneurial journey behind her success, the lessons learned, and how winning transformed her approach to innovation and sustainable business growth.</p>
+        <div class="featured-tag">Latest Episode · Jul 14, 2026</div>
+        <h3 class="featured-title">Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation</h3>
+        <p class="featured-desc">Hosted by Jack Devnarain, this episode features Robert from Eye Above — the non-profit behind the "Bush Ranger", a 3D-printed UAV built to give rangers a decisive edge against poachers. Discover how AI, additive manufacturing, and community empowerment are protecting South Africa's endangered species.</p>
         <div class="featured-meta">
-          <span class="featured-date">Jun 15, 2026</span>
-          <span class="featured-host">Hosted by Mirha Sukraj</span>
+          <span class="featured-date">Jul 14, 2026</span>
+          <span class="featured-host">Hosted by Jack Devnarain</span>
         </div>
-        <button onclick="openEp('bc7YdtVYf18')" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button onclick="openEp('Xti1_H5eljs')" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
@@ -474,6 +478,26 @@
       <h2 class="section-title">Browse the Episodes</h2>
     </div>
     <div class="ep-grid" id="epGrid">
+
+      <!-- EP 04: Eye Above — Jul 2026 -->
+      <div onclick="openEp('Xti1_H5eljs')" class="ep-card rv d1" style="cursor:pointer"
+         data-tags="sustainability,tech-digital,community-advocacy" data-host="jack" data-year="2026"
+         data-search="eye above robert bush ranger drone wildlife conservation poaching 3d printing hp anti-poaching rhino jack devnarain UAV additive manufacturing AI autonomous">
+        <div class="ep-thumb">
+          <img src="https://img.youtube.com/vi/Xti1_H5eljs/maxresdefault.jpg" alt="Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation" onerror="this.src='https://img.youtube.com/vi/Xti1_H5eljs/hqdefault.jpg'" loading="lazy" />
+          <div class="ep-thumb-over"></div>
+          <div class="ep-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-date">Jul 14, 2026</span>
+            <span class="ep-dot"></span>
+            <span class="ep-host-tag">Jack Devnarain</span>
+          </div>
+          <h3 class="ep-title">Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation</h3>
+          <p class="ep-desc">Robert from Eye Above reveals how the "Bush Ranger" — a modular, 3D-printed UAV with night vision and snare-detecting radar — is giving rangers a decisive edge against poachers in the South African bush.</p>
+        </div>
+      </div>
 
       <!-- EP 01: Youth Day — Jun 2026 -->
       <div onclick="openEp('bc7YdtVYf18')" class="ep-card rv d1" style="cursor:pointer"
@@ -715,6 +739,7 @@
 
   // Episode modal
   const EP_DATA = {
+    'Xti1_H5eljs': { tag: 'Sustainability · Tech & Digital', title: 'Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation', meta: 'Jul 14, 2026 · Hosted by Jack Devnarain', start: '' },
     'bc7YdtVYf18': { tag: 'Entrepreneurship', title: 'Youth Day Spotlight: From Idea to Impact', meta: 'Jun 15, 2026 · Hosted by Mirha Sukraj', start: '' },
     'TdXAspp7_X8': { tag: 'Creative Arts', title: 'Finding the Funny in the Everyday: Comedy & Positivity', meta: 'May 6, 2026 · Hosted by Jack Devnarain', start: '?start=11' },
     'UQZZs1lxj4w': { tag: 'Community Advocacy', title: 'Balancing Purpose and Extremes: NGOs & Mount Everest', meta: 'Jan 22, 2026 · Hosted by Jack Devnarain', start: '' }
