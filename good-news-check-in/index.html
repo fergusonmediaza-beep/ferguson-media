@@ -448,23 +448,23 @@
       <div class="section-eyebrow">Editor's Pick</div>
       <h2 class="section-title">This Week's Featured Episode</h2>
     </div>
-    <div class="featured-card rv" id="featuredCard" data-id="Xti1_H5eljs" onclick="openEp('Xti1_H5eljs')" style="cursor:pointer">
+    <div class="featured-card rv" id="featuredCard" data-id="SU8YJPTWwV8" onclick="openEp('SU8YJPTWwV8')" style="cursor:pointer">
       <div class="featured-thumb">
-        <img src="https://img.youtube.com/vi/Xti1_H5eljs/maxresdefault.jpg" alt="Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation" onload="ytThumb(this,'Xti1_H5eljs')" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/Xti1_H5eljs/mqdefault.jpg'" loading="lazy" />
+        <img src="https://img.youtube.com/vi/SU8YJPTWwV8/maxresdefault.jpg" alt="Faye Prinsloo: The Joburg Queer Chorus & The Power of Community" onload="ytThumb(this,'SU8YJPTWwV8')" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/SU8YJPTWwV8/mqdefault.jpg'" loading="lazy" />
         <div class="featured-thumb-over"></div>
         <div class="featured-play">
           <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         </div>
       </div>
       <div class="featured-body">
-        <div class="featured-tag">Latest Episode · Jul 14, 2026</div>
-        <h3 class="featured-title">Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation</h3>
-        <p class="featured-desc">Hosted by Jack Devnarain, this episode features Robert from Eye Above — the non-profit behind the "Bush Ranger", a 3D-printed UAV built to give rangers a decisive edge against poachers. Discover how AI, additive manufacturing, and community empowerment are protecting South Africa's endangered species.</p>
+        <div class="featured-tag">Latest Episode · Jul 27, 2026</div>
+        <h3 class="featured-title">Faye Prinsloo: The Joburg Queer Chorus & The Power of Community</h3>
+        <p class="featured-desc">Hosted by Jack Devnarain, this episode features Faye Prinsloo — Musical Director of the Joburg Queer Chorus. Born during the COVID-19 lockdown to fight loneliness, the JQC has grown into a vibrant nonprofit sanctuary where everyone from first-year students to CEOs connects and heals through music.</p>
         <div class="featured-meta">
-          <span class="featured-date">Jul 14, 2026</span>
+          <span class="featured-date">Jul 27, 2026</span>
           <span class="featured-host">Hosted by Jack Devnarain</span>
         </div>
-        <button onclick="openEp('Xti1_H5eljs')" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button onclick="openEp('SU8YJPTWwV8')" class="featured-cta">Watch Episode <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
@@ -478,6 +478,26 @@
       <h2 class="section-title">Browse the Episodes</h2>
     </div>
     <div class="ep-grid" id="epGrid">
+
+      <!-- EP 05: Faye Prinsloo / Joburg Queer Chorus — Jul 2026 -->
+      <div onclick="openEp('SU8YJPTWwV8')" class="ep-card rv d1" style="cursor:pointer"
+         data-tags="community-advocacy,creative-arts" data-host="jack" data-year="2026"
+         data-search="faye prinsloo joburg queer chorus JQC choir lgbtq community music jack devnarain lockdown nonprofit roodepoort theatre choral singing">
+        <div class="ep-thumb">
+          <img src="https://img.youtube.com/vi/SU8YJPTWwV8/maxresdefault.jpg" alt="Faye Prinsloo: The Joburg Queer Chorus & The Power of Community" onload="ytThumb(this,'SU8YJPTWwV8')" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/SU8YJPTWwV8/mqdefault.jpg'" loading="lazy" />
+          <div class="ep-thumb-over"></div>
+          <div class="ep-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-date">Jul 27, 2026</span>
+            <span class="ep-dot"></span>
+            <span class="ep-host-tag">Jack Devnarain</span>
+          </div>
+          <h3 class="ep-title">Faye Prinsloo: The Joburg Queer Chorus & The Power of Community</h3>
+          <p class="ep-desc">From a virtual lockdown experiment to a full nonprofit choir, Faye Prinsloo shares how the Joburg Queer Chorus became a safe, egalitarian space where music heals and community thrives.</p>
+        </div>
+      </div>
 
       <!-- EP 04: Eye Above — Jul 2026 -->
       <div onclick="openEp('Xti1_H5eljs')" class="ep-card rv d1" style="cursor:pointer"
@@ -750,6 +770,7 @@
 
   // Episode modal
   const EP_DATA = {
+    'SU8YJPTWwV8': { tag: 'Community Advocacy · Creative Arts', title: 'Faye Prinsloo: The Joburg Queer Chorus & The Power of Community', meta: 'Jul 27, 2026 · Hosted by Jack Devnarain', start: '' },
     'Xti1_H5eljs': { tag: 'Sustainability · Tech & Digital', title: 'Eye Above: The 3D-Printed Drone Revolutionizing Wildlife Conservation', meta: 'Jul 14, 2026 · Hosted by Jack Devnarain', start: '' },
     'bc7YdtVYf18': { tag: 'Entrepreneurship', title: 'Youth Day Spotlight: From Idea to Impact', meta: 'Jun 15, 2026 · Hosted by Mirha Sukraj', start: '' },
     'TdXAspp7_X8': { tag: 'Creative Arts', title: 'Finding the Funny in the Everyday: Comedy & Positivity', meta: 'May 6, 2026 · Hosted by Jack Devnarain', start: '?start=11' },
