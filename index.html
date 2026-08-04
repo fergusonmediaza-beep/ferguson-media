@@ -26,8 +26,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="48x48" href="https://fergusonmedia.co.za/images/favicon.png" />
-  
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
   :root {
       --orange: #FF7A00;
@@ -48,8 +46,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--page); }
-    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; opacity: 0; transition: opacity 0.5s var(--ease); }
-    body.fm-ready { opacity: 1; }
+    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
@@ -128,8 +125,6 @@
 .nav-di-title { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
 .nav-di-sub { font-size: 11px; color: var(--mid); }
 .nav-dropdown-wrap:hover .nav-dropdown-trigger svg { transform: rotate(180deg); }
-.sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
-
 /* SIDEBAR SECTION LABEL */
 .sb-section-label { font-family: var(--fh); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 16px 14px 6px; }
 
@@ -640,6 +635,12 @@
       .cookie-btn { flex: 1; text-align: center; }
     }
     @media(max-width:600px) { .p-grid { grid-template-columns: 1fr; } .ben-grid { grid-template-columns: 1fr; } }
+  
+    @keyframes wa-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.55), 0 4px 20px rgba(37,211,102,0.38), 0 2px 8px rgba(0,0,0,0.18); } 50% { box-shadow: 0 0 0 12px rgba(37,211,102,0), 0 4px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.18); } }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 3000; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: wa-pulse 2.4s ease-in-out infinite; transition: transform 0.3s var(--ease); }
+    .wa-float:hover { transform: scale(1.1) translateY(-3px); animation: none; box-shadow: 0 10px 36px rgba(37,211,102,0.55), 0 4px 16px rgba(0,0,0,0.22); }
+    .wa-float svg { width: 28px; height: 28px; fill: var(--white); }
+    @media(max-width:600px) { .wa-float { bottom: 20px; right: 20px; width: 50px; height: 50px; } .wa-float svg { width: 24px; height: 24px; } }
   </style>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPZXX9FXNK"></script>
@@ -664,7 +665,7 @@
 
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
-<img src="/images/logo-black.png" alt="Ferguson Media" />
+<img src="/images/logo-black.webp" alt="" width="500" height="500" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
 <ul class="nav-links">
@@ -744,7 +745,7 @@
  
       <div class="hero-ctas">
         <a href="/contact/" class="btn btn-or">Start a Conversation <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="/about/" class="btn btn-owh">Learn More</a>
+        <a href="/about/" class="btn btn-owh">About Ferguson Media</a>
       </div>
     </div>
 
@@ -987,16 +988,16 @@
   <div class="container">
     <div class="p-hd rv"><div><div class="p-hd-label">Who We Work With</div><h2 class="p-hd-title">Our Partners, Affiliates <span>&amp; Clients.</span></h2></div><div class="p-hd-count">10 Partners &amp; Affiliates</div></div>
     <div class="p-grid">
-      <a href="https://empirepartnerfoundation.org" target="_blank" rel="noopener" class="p-cell rv d1"><div class="p-cell-top"><div class="p-cell-name">Empire Partner Foundation</div></div><div class="p-cell-logo"><img src="images/epf.png" alt="Empire Partner Foundation" class="logo-white" /></div><div class="p-cell-num">01</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://www.nelsonmandela.org" target="_blank" rel="noopener" class="p-cell rv d2"><div class="p-cell-top"><div class="p-cell-name">Nelson Mandela Foundation</div></div><div class="p-cell-logo"><img src="images/nmf.png" alt="Nelson Mandela Foundation" /></div><div class="p-cell-num">02</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://www.mict.org.za" target="_blank" rel="noopener" class="p-cell rv d3"><div class="p-cell-top"><div class="p-cell-name">MICT SETA</div></div><div class="p-cell-logo"><img src="images/seta.png" alt="MICT SETA" /></div><div class="p-cell-num">03</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://919.co.za/" target="_blank" rel="noopener" class="p-cell rv d4"><div class="p-cell-top"><div class="p-cell-name">919 FM Sandton</div></div><div class="p-cell-logo"><img src="images/919.png" alt="919 FM Sandton" /></div><div class="p-cell-num">04</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://www.wits.ac.za" target="_blank" rel="noopener" class="p-cell rv d5"><div class="p-cell-top"><div class="p-cell-name">Wits Commercial Enterprise</div></div><div class="p-cell-logo"><img src="images/wits.png" alt="Wits Enterprise" class="logo-white" /></div><div class="p-cell-num">05</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://breathworkafrica.co.za" target="_blank" rel="noopener" class="p-cell rv d6"><div class="p-cell-top"><div class="p-cell-name">Breathwork Africa</div></div><div class="p-cell-logo"><img src="images/breathwork.png" alt="Breathwork Africa" /></div><div class="p-cell-num">06</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://probono.org.za/" target="_blank" rel="noopener" class="p-cell rv d1"><div class="p-cell-top"><div class="p-cell-name">Pro Bono</div></div><div class="p-cell-logo"><img src="images/proborno.png" alt="Pro Bono" /></div><div class="p-cell-num">07</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://tdmza.co.za" target="_blank" rel="noopener" class="p-cell rv d2"><div class="p-cell-top"><div class="p-cell-name">TDM</div></div><div class="p-cell-logo"><img src="images/tdm.png" alt="TDM" /></div><div class="p-cell-num">08</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://npiconsulting.co.za/" target="_blank" rel="noopener" class="p-cell rv d3"><div class="p-cell-top"><div class="p-cell-name">NPI</div></div><div class="p-cell-logo"><img src="images/npi.png" alt="NPI" /></div><div class="p-cell-num">09</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
-      <a href="https://www.hcipretoria.gov.in" target="_blank" rel="noopener" class="p-cell rv d4"><div class="p-cell-top"><div class="p-cell-name">Indian High Commission</div></div><div class="p-cell-logo"><img src="images/ihc.png" alt="Indian High Commission" /></div><div class="p-cell-num">10</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://empirepartnerfoundation.org" target="_blank" rel="noopener" class="p-cell rv d1"><div class="p-cell-top"><div class="p-cell-name">Empire Partner Foundation</div></div><div class="p-cell-logo"><img src="images/epf.webp" alt="Empire Partner Foundation" class="logo-white" width="500" height="500" /></div><div class="p-cell-num">01</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.nelsonmandela.org" target="_blank" rel="noopener" class="p-cell rv d2"><div class="p-cell-top"><div class="p-cell-name">Nelson Mandela Foundation</div></div><div class="p-cell-logo"><img src="images/nmf.webp" alt="Nelson Mandela Foundation" width="419" height="90" /></div><div class="p-cell-num">02</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.mict.org.za" target="_blank" rel="noopener" class="p-cell rv d3"><div class="p-cell-top"><div class="p-cell-name">MICT SETA</div></div><div class="p-cell-logo"><img src="images/seta.webp" alt="MICT SETA" width="400" height="400" /></div><div class="p-cell-num">03</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://919.co.za/" target="_blank" rel="noopener" class="p-cell rv d4"><div class="p-cell-top"><div class="p-cell-name">919 FM Sandton</div></div><div class="p-cell-logo"><img src="images/919.webp" alt="919 FM Sandton" width="300" height="300" /></div><div class="p-cell-num">04</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.wits.ac.za" target="_blank" rel="noopener" class="p-cell rv d5"><div class="p-cell-top"><div class="p-cell-name">Wits Commercial Enterprise</div></div><div class="p-cell-logo"><img src="images/wits.webp" alt="Wits Enterprise" class="logo-white" width="3480" height="1021" /></div><div class="p-cell-num">05</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://breathworkafrica.co.za" target="_blank" rel="noopener" class="p-cell rv d6"><div class="p-cell-top"><div class="p-cell-name">Breathwork Africa</div></div><div class="p-cell-logo"><img src="images/breathwork.webp" alt="Breathwork Africa" width="1172" height="1330" /></div><div class="p-cell-num">06</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://probono.org.za/" target="_blank" rel="noopener" class="p-cell rv d1"><div class="p-cell-top"><div class="p-cell-name">Pro Bono</div></div><div class="p-cell-logo"><img src="images/proborno.webp" alt="Pro Bono" width="225" height="225" /></div><div class="p-cell-num">07</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://tdmza.co.za" target="_blank" rel="noopener" class="p-cell rv d2"><div class="p-cell-top"><div class="p-cell-name">TDM</div></div><div class="p-cell-logo"><img src="images/tdm.webp" alt="TDM" width="126" height="89" /></div><div class="p-cell-num">08</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://npiconsulting.co.za/" target="_blank" rel="noopener" class="p-cell rv d3"><div class="p-cell-top"><div class="p-cell-name">NPI</div></div><div class="p-cell-logo"><img src="images/npi.webp" alt="NPI" width="220" height="229" /></div><div class="p-cell-num">09</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
+      <a href="https://www.hcipretoria.gov.in" target="_blank" rel="noopener" class="p-cell rv d4"><div class="p-cell-top"><div class="p-cell-name">Indian High Commission</div></div><div class="p-cell-logo"><img src="images/ihc.webp" alt="Indian High Commission" width="225" height="225" /></div><div class="p-cell-num">10</div><div class="p-cell-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div></a>
     </div>
   </div>
 </div>
@@ -1006,7 +1007,7 @@
   <div class="container">
     <div class="ft-top">
       <div>
-        <div class="ft-logo"><img src="images/logo-black.png" alt="Ferguson Media" onerror="this.src='images/logo-white.png';this.style.filter='brightness(0)'" /></div>
+        <div class="ft-logo"><img src="images/logo-black.webp" alt="Ferguson Media" onerror="this.src='images/logo-white.webp';this.style.filter='brightness(0)'" width="500" height="500" /></div>
         <!-- CHANGED: footer description updated to reflect full company scope, not just the Good News Portal -->
         <p class="ft-tag">A youth-driven media and technology company. We combine storytelling, digital innovation and community radio to document South Africa's progress — and help brands, government and development agencies share their impact.</p>
         <div class="ft-soc">
@@ -1017,10 +1018,10 @@
           <a class="ft-sl" href="https://www.tiktok.com/@35_media0" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
         </div>
       </div>
-<div><h4 class="ft-ct">Navigate</h4><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li><li><a href="/good-news-check-in/">Good News Check In</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/contact/">Contact</a></li></ul></div>
-<div><h4 class="ft-ct">Our Solutions</h4><ul class="ft-links"><li><a href="/good-news-story/">Good News Story</a></li><li><a href="/community-media-hub/">Community Media Hub</a></li><li><a href="/creative-hub/">Creative Hub</a></li></ul></div>
+<div><h3 class="ft-ct">Navigate</h3><ul class="ft-links"><li><a href="/">Home</a></li><li><a href="/news/">Good News Portal</a></li><li><a href="/good-news-check-in/">Good News Check In</a></li><li><a href="/about/">About Ferguson Media</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+<div><h3 class="ft-ct">Our Solutions</h3><ul class="ft-links"><li><a href="/good-news-story/">Good News Story</a></li><li><a href="/community-media-hub/">Community Media Hub</a></li><li><a href="/creative-hub/">Creative Hub</a></li></ul></div>
 
-      <div><h4 class="ft-ct">Get in Touch</h4>
+      <div><h3 class="ft-ct">Get in Touch</h3>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
         <!-- CHANGED: phone updated to deck number (+27 82 467 8925); email added — was missing from homepage footer -->
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27110841100">+27 82 467 8925</a></p></div>
@@ -1031,6 +1032,12 @@
   </div>
   <div class="footer-bar"></div>
 </footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/27672554475" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with Ferguson Media on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 
 <script>
 
@@ -1053,7 +1060,7 @@
   });
 })();
 const ldr=document.getElementById('pageLoader');
-function dismissLoader(){ldr.classList.add('gone');setTimeout(()=>document.body.classList.add('fm-ready'),80);}
+function dismissLoader(){ldr.classList.add('gone');}
 window.addEventListener('load',()=>setTimeout(dismissLoader,700));
 setTimeout(dismissLoader,3000);
 const navbar=document.getElementById('navbar');
@@ -1071,14 +1078,19 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 const SPACE='xjj6th2dvsr4',TOKEN='8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo',ENV='master',CT='goodNewsStory';
 const CAT={youthExcellence:'Youth Excellence',innovationSolutions:'Innovation',socialCohesion:'Social Cohesion',economicImpact:'Economic Impact'};
 function getImg(data,id){if(!data.includes||!data.includes.Asset)return null;const a=data.includes.Asset.find(x=>x.sys.id===id);return a?'https:'+a.fields.file.url:null;}
-function buildCard(s,data,i){const f=s.fields,imgId=f.heroImage&&f.heroImage.sys?f.heroImage.sys.id:null;const img=imgId?(getImg(data,imgId)||'images/placeholder.jpg'):'images/placeholder.jpg';const d=['d1','d2','d3'];return `<a href="/article/?slug=${f.slug||s.sys.id}" class="story-card rv ${d[i]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" loading="lazy"/><span class="sc-cat">${CAT[f.category]||'Good News'}</span></div><div class="sc-body"><h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`;}
-function placeholders(){return[{t:'Birthday Celebration Turns Into Book Launch',c:'Youth Excellence',e:'Young siblings Oyama and Prince launched their latest books on a milestone birthday.'},{t:'Free Bus Travel Helps Thousands of Jobseekers',c:'Economic Impact',e:'A Cape Town initiative removes transport barriers for job seekers across the city.'},{t:'Indoni Initiative Develops Skills of Young People',c:'Youth Excellence',e:'The Indoni initiative gives South African youth the skills they need to lead.'}].map((i,idx)=>`<a href="/news/" class="story-card rv d${idx+1}"><div class="sc-img"><img src="images/placeholder.jpg" alt="${i.t}" loading="lazy"/><span class="sc-cat">${i.c}</span></div><div class="sc-body"><h3 class="sc-title">${i.t}</h3><p class="sc-exc">${i.e}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`).join('');}
+function buildCard(s,data,i){const f=s.fields,imgId=f.heroImage&&f.heroImage.sys?f.heroImage.sys.id:null;const img=imgId?(getImg(data,imgId)||'images/placeholder.webp'):'images/placeholder.webp';const d=['d1','d2','d3'];return `<a href="/article/?slug=${f.slug||s.sys.id}" class="story-card rv ${d[i]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" width="800" height="600" loading="lazy"/><span class="sc-cat">${CAT[f.category]||'Good News'}</span></div><div class="sc-body"><h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`;}
+function placeholders(){return[{t:'Birthday Celebration Turns Into Book Launch',c:'Youth Excellence',e:'Young siblings Oyama and Prince launched their latest books on a milestone birthday.'},{t:'Free Bus Travel Helps Thousands of Jobseekers',c:'Economic Impact',e:'A Cape Town initiative removes transport barriers for job seekers across the city.'},{t:'Indoni Initiative Develops Skills of Young People',c:'Youth Excellence',e:'The Indoni initiative gives South African youth the skills they need to lead.'}].map((i,idx)=>`<a href="/news/" class="story-card rv d${idx+1}"><div class="sc-img"><img src="images/placeholder.webp" alt="${i.t}" width="800" height="450" loading="lazy"/><span class="sc-cat">${i.c}</span></div><div class="sc-body"><h3 class="sc-title">${i.t}</h3><p class="sc-exc">${i.e}</p><span class="sc-read">Read Full Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>`).join('');}
+function fetchWithTimeout(url, opts = {}, ms = 8000) {
+  const ctrl = new AbortController();
+  const id = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { ...opts, signal: ctrl.signal }).finally(() => clearTimeout(id));
+}
 async function initStories() {
   const grid = document.getElementById('storiesGrid');
   const loading = document.getElementById('storiesLoading');
   try {
     // First try to get featured/pinned stories
-    let data = await (await fetch(
+    let data = await (await fetchWithTimeout(
       `https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&fields.featured=true&order=-sys.createdAt&limit=3&include=1&access_token=${TOKEN}`
     )).json();
 
@@ -1086,7 +1098,7 @@ async function initStories() {
     if (!data.items || data.items.length < 3) {
       const needed = 3 - (data.items?.length || 0);
       const existingSlugs = (data.items || []).map(s => s.fields.slug);
-      const fallback = await (await fetch(
+      const fallback = await (await fetchWithTimeout(
         `https://cdn.contentful.com/spaces/${SPACE}/environments/${ENV}/entries?content_type=${CT}&order=-sys.createdAt&limit=${needed + existingSlugs.length}&include=1&access_token=${TOKEN}`
       )).json();
       const extras = (fallback.items || [])
@@ -1107,7 +1119,6 @@ async function initStories() {
   grid.querySelectorAll('.rv').forEach(el => ro.observe(el));
 }
 initStories();
-(function(){const svg=document.querySelector('.hero-path-svg');if(!svg)return;const p1=1,p2=-1;function makePaths(pos){return Array.from({length:36},(_,i)=>{const d=`M-${380-i*5*pos} -${189+i*6}C-${380-i*5*pos} -${189+i*6} -${312-i*5*pos} ${216-i*6} ${152-i*5*pos} ${343-i*6}C${616-i*5*pos} ${470-i*6} ${684-i*5*pos} ${875-i*6} ${684-i*5*pos} ${875-i*6}`;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',d);path.setAttribute('stroke','#FF7A00');path.setAttribute('stroke-width',0.5+i*0.03);path.setAttribute('stroke-opacity',0.1+i*0.03);path.setAttribute('fill','none');path.style.strokeDasharray='800';path.style.animation=`pathDraw ${20+(i*7%10)}s linear ${-(i*1.1)}s infinite`;return path;});}[...makePaths(p1),...makePaths(p2)].forEach(p=>svg.appendChild(p));})();
 </script>
 </body>
 </html>

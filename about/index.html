@@ -39,8 +39,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--page); }
-    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; opacity: 0; transition: opacity 0.5s var(--ease); }
-    body.fm-ready { opacity: 1; }
+    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
@@ -516,6 +515,12 @@
       .adv-grid { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
     }
+  
+    @keyframes wa-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.55), 0 4px 20px rgba(37,211,102,0.38), 0 2px 8px rgba(0,0,0,0.18); } 50% { box-shadow: 0 0 0 12px rgba(37,211,102,0), 0 4px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.18); } }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 3000; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: wa-pulse 2.4s ease-in-out infinite; transition: transform 0.3s var(--ease); }
+    .wa-float:hover { transform: scale(1.1) translateY(-3px); animation: none; box-shadow: 0 10px 36px rgba(37,211,102,0.55), 0 4px 16px rgba(0,0,0,0.22); }
+    .wa-float svg { width: 28px; height: 28px; fill: var(--white); }
+    @media(max-width:600px) { .wa-float { bottom: 20px; right: 20px; width: 50px; height: 50px; } .wa-float svg { width: 24px; height: 24px; } }
   </style>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPZXX9FXNK"></script>
@@ -553,7 +558,7 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
-    <img src="../images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <img src="../images/logo-white.webp" alt="" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" width="500" height="500" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
 <ul class="nav-links">
@@ -622,7 +627,7 @@
 ================================================================ -->
 <section class="hero">
   <div class="hero-media">
-    <img src="../images/about-hero.jpg" alt="Ferguson Media" onerror="this.src='../images/hero-bg.png'" />
+    <img src="../images/hero-bg.webp" alt="Ferguson Media" width="1366" height="768" />
   </div>
   <div class="hero-over"></div>
   <div class="hero-content">
@@ -758,7 +763,7 @@
     <div class="story-inner">
 
       <div class="rv-l">
-        <img src="../images/epf-house.jpeg" alt="35 Ferguson Road, Illovo" class="story-img" onerror="this.style.background='var(--surface)'" />
+        <img src="../images/epf-house.webp" alt="35 Ferguson Road, Illovo" class="story-img" onerror="this.style.background='var(--surface)'" width="600" height="400" />
         <p class="story-img-caption">35 Ferguson Road, Illovo, Johannesburg</p>
       </div>
 
@@ -848,18 +853,18 @@
     <!-- LEADERSHIP -->
     <div class="team-panel active" id="dept-leadership">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Jack Devnarain" data-dept="Leadership" data-img="/images/jack.jpg" data-bio="Jack is an accomplished South African actor, MC, and Chairman of the South African Guild of Actors. He manages his professional ventures as the proprietor of Dingo Dawg and a dedicated philanthropist. Through the Nelson Mandela Foundation, he uses his platform to drive meaningful and lasting social change." data-x="https://x.com/JackD157" data-facebook="https://www.facebook.com/jack.devnarain.39">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/jack.jpg" alt="Jack Devnarain" loading="lazy" /></div></div>
+        <div class="member-card rv d1" data-name="Jack Devnarain" data-dept="Leadership" data-img="/images/jack.webp" data-bio="Jack is an accomplished South African actor, MC, and Chairman of the South African Guild of Actors. He manages his professional ventures as the proprietor of Dingo Dawg and a dedicated philanthropist. Through the Nelson Mandela Foundation, he uses his platform to drive meaningful and lasting social change." data-x="https://x.com/JackD157" data-facebook="https://www.facebook.com/jack.devnarain.39">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/jack.webp" alt="Jack Devnarain" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Jack Devnarain</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Zakes Sithole" data-dept="Leadership" data-img="/images/zakes.jpg" data-bio="Zakes is a premier marketing specialist with expertise in digital strategy and campaign management. He integrates analytical data with creative copywriting to architect high-impact narratives that drive engagement. His approach focuses on building sophisticated digital ecosystems that foster meaningful connections and professional growth." data-linkedin="https://www.linkedin.com/in/zakes-sithole-b81263237/">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/zakes.jpg" alt="Zakes Sithole" loading="lazy" /></div></div>
+        <div class="member-card rv d2" data-name="Zakes Sithole" data-dept="Leadership" data-img="/images/zakes.webp" data-bio="Zakes is a premier marketing specialist with expertise in digital strategy and campaign management. He integrates analytical data with creative copywriting to architect high-impact narratives that drive engagement. His approach focuses on building sophisticated digital ecosystems that foster meaningful connections and professional growth." data-linkedin="https://www.linkedin.com/in/zakes-sithole-b81263237/">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/zakes.webp" alt="Zakes Sithole" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Zakes Sithole</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d3" data-name="Emile Mariemuthu" data-dept="Leadership" data-img="/images/emile.jpg" data-bio="Emile is a content creator specialist at Ferguson Media, specializing in high-end video production and 3D modeling. He utilizes a professional suite of tools, including DaVinci Resolve and Blender, to craft cinematic and visually stunning digital assets. His technical expertise in post-production ensures the delivery of premium content that drives significant brand engagement." data-linkedin="https://www.linkedin.com/in/emile-mariemuthu-0130392ab/">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/emile.jpg" alt="Emile Mariemuthu" loading="lazy" /></div></div>
+        <div class="member-card rv d3" data-name="Emile Mariemuthu" data-dept="Leadership" data-img="/images/emile.webp" data-bio="Emile is a content creator specialist at Ferguson Media, specializing in high-end video production and 3D modeling. He utilizes a professional suite of tools, including DaVinci Resolve and Blender, to craft cinematic and visually stunning digital assets. His technical expertise in post-production ensures the delivery of premium content that drives significant brand engagement." data-linkedin="https://www.linkedin.com/in/emile-mariemuthu-0130392ab/">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/emile.webp" alt="Emile Mariemuthu" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Emile Mariemuthu</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
@@ -869,23 +874,23 @@
     <!-- GOOD NEWS PORTAL -->
     <div class="team-panel" id="dept-portal">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Pamela Morare" data-dept="Good News Portal" data-img="/images/pamela.jpg" data-bio="Pamela is a self-driven journalist dedicated to the art of impactful storytelling. With a professional foundation built on practical training in print, multimedia, and broadcast environments, she brings a versatile perspective to every assignment. Having honed her skills through hands-on field experience and professional internships." data-linkedin="https://za.linkedin.com/in/pamela-morare-361b4b23b">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/pamela.jpg" alt="Pamela Morare" loading="lazy" /></div></div>
+        <div class="member-card rv d1" data-name="Pamela Morare" data-dept="Good News Portal" data-img="/images/pamela.webp" data-bio="Pamela is a self-driven journalist dedicated to the art of impactful storytelling. With a professional foundation built on practical training in print, multimedia, and broadcast environments, she brings a versatile perspective to every assignment. Having honed her skills through hands-on field experience and professional internships." data-linkedin="https://za.linkedin.com/in/pamela-morare-361b4b23b">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/pamela.webp" alt="Pamela Morare" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Pamela Morare</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Thobani Madlala" data-dept="Good News Portal" data-img="/images/thobani.jpg" data-intern="true" data-bio="A dedicated multimedia journalist with a focus on authentic storytelling and community engagement. Thobani holds an Advanced Diploma in Journalism from TUT and brings extensive practical experience in both print and broadcast media to the team. From conducting field interviews to digital news packaging." data-linkedin="https://www.linkedin.com/in/thobani-madlala-361338216">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thobani.jpg" alt="Thobani Madlala" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+        <div class="member-card rv d2" data-name="Thobani Madlala" data-dept="Good News Portal" data-img="/images/thobani.webp" data-intern="true" data-bio="A dedicated multimedia journalist with a focus on authentic storytelling and community engagement. Thobani holds an Advanced Diploma in Journalism from TUT and brings extensive practical experience in both print and broadcast media to the team. From conducting field interviews to digital news packaging." data-linkedin="https://www.linkedin.com/in/thobani-madlala-361338216">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thobani.webp" alt="Thobani Madlala" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Thobani Madlala</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d3" data-name="Sinethemba Zondi" data-dept="Good News Portal" data-img="/images/sinethemba.jpg" data-intern="true" data-bio="A fresh voice in the South African media landscape, Sinethemba is a Journalism student at TUT with a passion for multi-platform content creation. Specializing in reporting and editorial work, she brings a keen eye for detail and a modern approach to storytelling. Whether behind the camera as a photojournalist or crafting compelling articles." data-linkedin="https://www.linkedin.com/in/sinethembazondi01">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/sinethemba.jpg" alt="Sinethemba Zondi" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+        <div class="member-card rv d3" data-name="Sinethemba Zondi" data-dept="Good News Portal" data-img="/images/sinethemba.webp" data-intern="true" data-bio="A fresh voice in the South African media landscape, Sinethemba is a Journalism student at TUT with a passion for multi-platform content creation. Specializing in reporting and editorial work, she brings a keen eye for detail and a modern approach to storytelling. Whether behind the camera as a photojournalist or crafting compelling articles." data-linkedin="https://www.linkedin.com/in/sinethembazondi01">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/sinethemba.webp" alt="Sinethemba Zondi" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Sinethemba Zondi</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d4" data-name="Kelebogile Matlou" data-dept="Good News Portal" data-img="/images/kelebogile.jpeg" data-bio="Kelebogile is a passionate and dedicated media professional with a Diploma in Journalism and hands-on experience in content creation, editing, and digital publishing. She has worked as a freelance journalist at Med8media, where she reviewed articles, provided feedback to writers, and managed online platforms and social media. She brings strong communication skills, attention to detail, and a commitment to producing impactful, community-driven stories." data-linkedin="https://www.linkedin.com/in/kelebogile-matlou-b20574222/">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/kelebogile.jpeg" alt="Kelebogile Matlou" loading="lazy" /></div></div>
+        <div class="member-card rv d4" data-name="Kelebogile Matlou" data-dept="Good News Portal" data-img="/images/kelebogile.webp" data-bio="Kelebogile is a passionate and dedicated media professional with a Diploma in Journalism and hands-on experience in content creation, editing, and digital publishing. She has worked as a freelance journalist at Med8media, where she reviewed articles, provided feedback to writers, and managed online platforms and social media. She brings strong communication skills, attention to detail, and a commitment to producing impactful, community-driven stories." data-linkedin="https://www.linkedin.com/in/kelebogile-matlou-b20574222/">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/kelebogile.webp" alt="Kelebogile Matlou" loading="lazy" width="960" height="1280" /></div></div>
           <div class="member-name">Kelebogile Matlou</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
@@ -895,23 +900,23 @@
 <!-- COMMUNITY RADIO -->
 <div class="team-panel" id="dept-radio">
   <div class="team-grid">
-    <div class="member-card rv d1" data-name="Neptule Maidi" data-dept="Community Radio" data-img="/images/neptule.jpg" data-intern="true" data-bio="Neptule is a Communication and Media Studies graduate from the University of Limpopo. She is currently a news intern at Ferguson Media, specializing in editorial writing and content production. Driven by a passion for broadcasting, she focuses on delivering high-quality reporting with a commitment to professional excellence." data-linkedin="https://www.linkedin.com/in/neptule-maidi-mashabela-290789340/">
-      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/neptule.jpg" alt="Neptule Maidi" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+    <div class="member-card rv d1" data-name="Neptule Maidi" data-dept="Community Radio" data-img="/images/neptule.webp" data-intern="true" data-bio="Neptule is a Communication and Media Studies graduate from the University of Limpopo. She is currently a news intern at Ferguson Media, specializing in editorial writing and content production. Driven by a passion for broadcasting, she focuses on delivering high-quality reporting with a commitment to professional excellence." data-linkedin="https://www.linkedin.com/in/neptule-maidi-mashabela-290789340/">
+      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/neptule.webp" alt="Neptule Maidi" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
       <div class="member-name">Neptule Maidi</div>
       <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
     </div>
-    <div class="member-card rv d2" data-name="Zenande Khulungoane" data-dept="Community Radio" data-img="/images/zenande.jpg" data-intern="true" data-bio="Zenande is a Film and Television professional bringing creative storytelling expertise to community radio. With a background in visual media production, he contributes a dynamic perspective to broadcast content, combining technical skill with a passion for engaging audiences through compelling narratives." data-linkedin="https://www.linkedin.com/in/zenande-luxolo-136691406/">
-      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/zenande.jpg" alt="Zenande Khulungoane" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+    <div class="member-card rv d2" data-name="Zenande Khulungoane" data-dept="Community Radio" data-img="/images/zenande.webp" data-intern="true" data-bio="Zenande is a Film and Television professional bringing creative storytelling expertise to community radio. With a background in visual media production, he contributes a dynamic perspective to broadcast content, combining technical skill with a passion for engaging audiences through compelling narratives." data-linkedin="https://www.linkedin.com/in/zenande-luxolo-136691406/">
+      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/zenande.webp" alt="Zenande Khulungoane" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
       <div class="member-name">Zenande Khulungoane</div>
       <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
     </div>
-    <div class="member-card rv d3" data-name="Letago Mothwa" data-dept="Community Radio" data-img="/images/letago.jpg" data-intern="true" data-bio="Letago is a live performance graduate with a background in theatre and stage combat. She possesses a versatile skillset including media presenting, voice-over work, and professional dance choreography. She focuses on delivering compelling performances across film, stage, and various marketing platforms." data-linkedin="https://za.linkedin.com/in/letago-mothwa-201b312a7">
-      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/letago.jpg" alt="Letago Mothwa" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+    <div class="member-card rv d3" data-name="Letago Mothwa" data-dept="Community Radio" data-img="/images/letago.webp" data-intern="true" data-bio="Letago is a live performance graduate with a background in theatre and stage combat. She possesses a versatile skillset including media presenting, voice-over work, and professional dance choreography. She focuses on delivering compelling performances across film, stage, and various marketing platforms." data-linkedin="https://za.linkedin.com/in/letago-mothwa-201b312a7">
+      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/letago.webp" alt="Letago Mothwa" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
       <div class="member-name">Letago Mothwa</div>
       <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
     </div>
-    <div class="member-card rv d4" data-name="Silindile Tshabalala" data-dept="Community Radio" data-img="/images/slindile.jpg" data-intern="true" data-bio="Silindile is a Communication Science graduate with a strong interest in media and communication. She is passionate about learning, growing professionally, and contributing meaningfully to any work environment.">
-      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/slindile.jpg" alt="Silindile Tshabalala" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+    <div class="member-card rv d4" data-name="Silindile Tshabalala" data-dept="Community Radio" data-img="/images/silindile.webp" data-intern="true" data-bio="Silindile is a Communication Science graduate with a strong interest in media and communication. She is passionate about learning, growing professionally, and contributing meaningfully to any work environment.">
+      <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/silindile.webp" alt="Silindile Tshabalala" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
       <div class="member-name">Silindile Tshabalala</div>
       <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
     </div>
@@ -921,18 +926,18 @@
     <!-- CONTENT & WEBSITES -->
     <div class="team-panel" id="dept-content">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Mihle Nomandla" data-dept="Content &amp; Websites" data-img="/images/mihle.jpg" data-bio="Mihle is an award-winning communication specialist focusing on brand positioning and strategic media relations. She excels in crafting sophisticated digital narratives that foster deep audience engagement and professional growth. Her work consistently prioritizes impactful storytelling to drive both brand visibility and meaningful social transformation." data-linkedin="https://www.linkedin.com/in/mihle-nomandla-7a4b70266">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/mihle.jpg" alt="Mihle Nomandla" loading="lazy" /></div></div>
+        <div class="member-card rv d1" data-name="Mihle Nomandla" data-dept="Content &amp; Websites" data-img="/images/mihle.webp" data-bio="Mihle is an award-winning communication specialist focusing on brand positioning and strategic media relations. She excels in crafting sophisticated digital narratives that foster deep audience engagement and professional growth. Her work consistently prioritizes impactful storytelling to drive both brand visibility and meaningful social transformation." data-linkedin="https://www.linkedin.com/in/mihle-nomandla-7a4b70266">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/mihle.webp" alt="Mihle Nomandla" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Mihle Nomandla</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Asive Simoki" data-dept="Content &amp; Websites" data-img="/images/asive.jpg" data-bio="Asive is a versatile developer managing the digital lifecycle from premium design to publishing and SEO. He builds high-performance applications by pairing robust architecture with minimalist frontends. His focus is on delivering seamless, search-optimized solutions that solve complex infrastructure challenges." data-linkedin="https://www.linkedin.com/in/asive-daniel-simoki-6b91a9360/">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/asive.jpg" alt="Asive Simoki" loading="lazy" /></div></div>
+        <div class="member-card rv d2" data-name="Asive Simoki" data-dept="Content &amp; Websites" data-img="/images/asive.webp" data-bio="Asive is a versatile developer managing the digital lifecycle from premium design to publishing and SEO. He builds high-performance applications by pairing robust architecture with minimalist frontends. His focus is on delivering seamless, search-optimized solutions that solve complex infrastructure challenges." data-linkedin="https://www.linkedin.com/in/asive-daniel-simoki-6b91a9360/">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/asive.webp" alt="Asive Simoki" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Asive Simoki</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d3" data-name="Thembinkosi Dlamini" data-dept="Content &amp; Websites" data-img="/images/thembinkosi.jpg" data-intern="true" data-bio="Thembinkosi is a public relations professional with experience in radio content production and strategic communication. He specializes in storytelling to connect diverse audiences with impactful ideas through creative research and planning. His work focuses on delivering professional media projects that inform and engage effectively." data-linkedin="https://www.linkedin.com/in/thembinkosi-dlamini-605870210">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thembinkosi.jpg" alt="Thembinkosi Dlamini" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+        <div class="member-card rv d3" data-name="Thembinkosi Dlamini" data-dept="Content &amp; Websites" data-img="/images/thembinkosi.webp" data-intern="true" data-bio="Thembinkosi is a public relations professional with experience in radio content production and strategic communication. He specializes in storytelling to connect diverse audiences with impactful ideas through creative research and planning. His work focuses on delivering professional media projects that inform and engage effectively." data-linkedin="https://www.linkedin.com/in/thembinkosi-dlamini-605870210">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/thembinkosi.webp" alt="Thembinkosi Dlamini" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Thembinkosi Dlamini</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
@@ -942,13 +947,13 @@
     <!-- STUDIO -->
     <div class="team-panel" id="dept-studio">
       <div class="team-grid">
-        <div class="member-card rv d1" data-name="Karabo Mantlhakga" data-dept="Studio" data-img="/images/karabo.jpg" data-bio="Karabo is a skilled video editor specializing in high-impact post-production and digital storytelling. He brings a refined technical approach to the editing suite, ensuring every project meets professional standards. His work focuses on producing high-quality visuals that communicate compelling narratives to a wide audience." data-linkedin="https://www.linkedin.com/in/karabo-mantlhakga-266398342">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/karabo.jpg" alt="Karabo Mantlhakga" loading="lazy" /></div></div>
+        <div class="member-card rv d1" data-name="Karabo Mantlhakga" data-dept="Studio" data-img="/images/karabo.webp" data-bio="Karabo is a skilled video editor specializing in high-impact post-production and digital storytelling. He brings a refined technical approach to the editing suite, ensuring every project meets professional standards. His work focuses on producing high-quality visuals that communicate compelling narratives to a wide audience." data-linkedin="https://www.linkedin.com/in/karabo-mantlhakga-266398342">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/karabo.webp" alt="Karabo Mantlhakga" loading="lazy" width="300" height="300" /></div></div>
           <div class="member-name">Karabo Mantlhakga</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
-        <div class="member-card rv d2" data-name="Iminathi Nombembe" data-dept="Studio" data-img="/images/iminathi.jpg" data-intern="true" data-bio="Iminathi is a media professional focused on digital communications and newsroom operations. She specializes in refining content production and editorial research to support impactful storytelling. Her goal is to deliver clear narratives that effectively resonate with a modern and diverse audience." data-linkedin="https://za.linkedin.com/in/iminathi-nombembe-a4b2293ab">
-          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/iminathi.jpg" alt="Iminathi Nombembe" loading="lazy" /></div><span class="intern-badge">Intern</span></div>
+        <div class="member-card rv d2" data-name="Iminathi Nombembe" data-dept="Studio" data-img="/images/iminathi.webp" data-intern="true" data-bio="Iminathi is a media professional focused on digital communications and newsroom operations. She specializes in refining content production and editorial research to support impactful storytelling. Her goal is to deliver clear narratives that effectively resonate with a modern and diverse audience." data-linkedin="https://za.linkedin.com/in/iminathi-nombembe-a4b2293ab">
+          <div class="member-avatar-wrap"><div class="member-avatar"><img src="/images/iminathi.webp" alt="Iminathi Nombembe" loading="lazy" width="300" height="300" /></div><span class="intern-badge">Intern</span></div>
           <div class="member-name">Iminathi Nombembe</div>
           <button class="member-view" onclick="openModal(this.closest('.member-card'))">View Profile</button>
         </div>
@@ -964,7 +969,7 @@
   <div class="tm-modal" id="tmModal">
     <button class="tm-close" id="tmClose" aria-label="Close">&#215;</button>
     <div class="tm-top">
-      <img src="" alt="" class="tm-photo" id="tmPhoto" />
+      <img src="" alt="" class="tm-photo" id="tmPhoto" width="80" height="80" />
       <div class="tm-info">
         <div class="tm-name" id="tmName"></div>
         <div class="tm-dept" id="tmDept"></div>
@@ -1077,7 +1082,7 @@
     <div class="ft-top">
       <div>
         <div class="ft-logo">
-          <img src="/images/logo-black.png" alt="Ferguson Media" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" />
+          <img src="/images/logo-black.webp" alt="Ferguson Media" onerror="this.src='/images/logo-white.webp';this.style.filter='brightness(0)'" width="500" height="500" />
         </div>
         <p class="ft-tag">A youth-driven media and technology company combining storytelling, digital innovation and community radio to document South Africa's progress.</p>
         <div class="ft-soc">
@@ -1089,7 +1094,7 @@
         </div>
       </div>
       <div>
-        <h4 class="ft-ct">Navigate</h4>
+        <h3 class="ft-ct">Navigate</h3>
         <ul class="ft-links">
           <li><a href="/">Home</a></li>
           <li><a href="/news/">Good News Portal</a></li>
@@ -1099,7 +1104,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="ft-ct">Our Solutions</h4>
+        <h3 class="ft-ct">Our Solutions</h3>
         <ul class="ft-links">
           <li><a href="/good-news-story/">Good News Story</a></li>
           <li><a href="/community-media-hub/">Community Media Hub</a></li>
@@ -1107,7 +1112,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="ft-ct">Get in Touch</h4>
+        <h3 class="ft-ct">Get in Touch</h3>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27110841100">+27 82 467 8925</a></p></div>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p class="ft-cit"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p></div>
@@ -1120,10 +1125,16 @@
   </div>
   <div class="footer-bar"></div>
 </footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/27672554475" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with Ferguson Media on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script>
 /* Loader */
 const ldr=document.getElementById('pageLoader');
-function dismissLoader(){ldr.classList.add('gone');setTimeout(()=>document.body.classList.add('fm-ready'),80);}
+function dismissLoader(){ldr.classList.add('gone');}
 window.addEventListener('load',()=>setTimeout(dismissLoader,700));
 setTimeout(dismissLoader,3000);
 
@@ -1132,7 +1143,7 @@ const navbar=document.getElementById('navbar'),navImg=document.getElementById('n
 window.addEventListener('scroll',()=>{
   const s=window.scrollY>56;
   navbar.classList.toggle('scrolled',s);
-  if(navImg)navImg.src=s?'../images/logo-black.png':'../images/logo-white.png';
+  if(navImg)navImg.src=s?'../images/logo-black.webp':'../images/logo-white.webp';
 },{passive:true});
 
 /* Sidebar */
@@ -1250,8 +1261,11 @@ function closeModal(){
 
     // Send to Formspree silently
     try {
+      const ctrl = new AbortController();
+      const timeoutId = setTimeout(() => ctrl.abort(), 8000);
       await fetch(FORMSPREE, {
         method: 'POST',
+        signal: ctrl.signal,
         headers: {'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({
           email: email,
@@ -1259,6 +1273,7 @@ function closeModal(){
           _subject: 'New Profile Download \u2014 ' + email
         })
       });
+      clearTimeout(timeoutId);
     } catch(e){}
 
     document.getElementById('fm-form-wrap').style.display = 'none';

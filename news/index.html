@@ -52,8 +52,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; background: var(--page); }
-    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; opacity: 0; transition: opacity 0.5s var(--ease); }
-    body.fm-ready { opacity: 1; }
+    body { font-family: var(--fb); color: var(--black); background: var(--page); overflow-x: hidden; line-height: 1.6; }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 56px; width: 100%; }
@@ -432,6 +431,12 @@
       .view-list .story-card { grid-template-columns: 1fr; }
       .view-list .sc-img { height: 170px; }
     }
+  
+    @keyframes wa-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.55), 0 4px 20px rgba(37,211,102,0.38), 0 2px 8px rgba(0,0,0,0.18); } 50% { box-shadow: 0 0 0 12px rgba(37,211,102,0), 0 4px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.18); } }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 3000; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: wa-pulse 2.4s ease-in-out infinite; transition: transform 0.3s var(--ease); }
+    .wa-float:hover { transform: scale(1.1) translateY(-3px); animation: none; box-shadow: 0 10px 36px rgba(37,211,102,0.55), 0 4px 16px rgba(0,0,0,0.22); }
+    .wa-float svg { width: 28px; height: 28px; fill: var(--white); }
+    @media(max-width:600px) { .wa-float { bottom: 20px; right: 20px; width: 50px; height: 50px; } .wa-float svg { width: 24px; height: 24px; } }
   </style>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPZXX9FXNK"></script>
@@ -469,7 +474,7 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
-    <img src="/images/logo-white.png" alt="Ferguson Media" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+    <img src="/images/logo-white.webp" alt="" id="navLogoImg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" width="500" height="500" />
     <span class="nav-logo-text">FERGUSON <span>MEDIA</span></span>
   </a>
 <ul class="nav-links">
@@ -542,7 +547,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"><img src="/images/good-news.png" alt="" aria-hidden="true" /></div>
+  <div class="hero-bg"><img src="/images/good-news.webp" alt="" aria-hidden="true" width="1366" height="768" /></div>
   <div class="hero-grad"></div>
   <div class="hero-content">
     <div class="hero-kicker">
@@ -692,7 +697,7 @@
     <div class="ft-top">
       <div>
         <div class="ft-logo">
-          <img src="/images/logo-black.png" alt="Ferguson Media" onerror="this.src='/images/logo-white.png';this.style.filter='brightness(0)'" />
+          <img src="/images/logo-black.webp" alt="Ferguson Media" onerror="this.src='/images/logo-white.webp';this.style.filter='brightness(0)'" width="500" height="500" />
         </div>
         <p class="ft-tag">A youth-driven media and technology company combining storytelling, digital innovation and community radio to document South Africa's progress.</p>
         <div class="ft-soc">
@@ -704,7 +709,7 @@
         </div>
       </div>
       <div>
-        <h4 class="ft-ct">Navigate</h4>
+        <h3 class="ft-ct">Navigate</h3>
         <ul class="ft-links">
           <li><a href="/">Home</a></li>
           <li><a href="/news/">Good News Portal</a></li>
@@ -714,7 +719,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="ft-ct">Our Solutions</h4>
+        <h3 class="ft-ct">Our Solutions</h3>
         <ul class="ft-links">
           <li><a href="/good-news-story/">Good News Story</a></li>
           <li><a href="/community-media-hub/">Community Media Hub</a></li>
@@ -722,7 +727,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="ft-ct">Get in Touch</h4>
+        <h3 class="ft-ct">Get in Touch</h3>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><p class="ft-cit">35 Ferguson Road<br />Illovo, Sandton<br />Johannesburg, 2196</p></div>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p class="ft-cit"><a href="tel:+27110841100">+27 82 467 8925</a></p></div>
         <div class="ft-ci"><div class="ft-cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p class="ft-cit"><a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a></p></div>
@@ -736,10 +741,16 @@
   <div class="footer-bar"></div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/27672554475" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with Ferguson Media on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+
 <script>
 /* 1. Loader */
 const ldr=document.getElementById('pageLoader');
-function dismissLoader(){ldr.classList.add('gone');setTimeout(()=>document.body.classList.add('fm-ready'),80);}
+function dismissLoader(){ldr.classList.add('gone');}
 window.addEventListener('load',()=>setTimeout(dismissLoader,700));
 setTimeout(dismissLoader,3000);
 
@@ -748,7 +759,7 @@ const navbar=document.getElementById('navbar'),navImg=document.getElementById('n
 window.addEventListener('scroll',()=>{
   const s=window.scrollY>60;
   navbar.classList.toggle('scrolled',s);
-  if(navImg)navImg.src=s?'/images/logo-black.png':'/images/logo-white.png';
+  if(navImg)navImg.src=s?'/images/logo-black.webp':'/images/logo-white.webp';
 },{passive:true});
 
 /* 3. Sidebar */
@@ -789,13 +800,18 @@ let allStories=[],filtered=[],currentPage=1,activeFilter='all',activeSubCat='all
 /* 8. Utils */
 function fmtDate(iso){return new Date(iso).toLocaleDateString('en-ZA',{year:'numeric',month:'long',day:'numeric'});}
 function getImg(data,id){if(!data?.includes?.Asset)return null;const a=data.includes.Asset.find(x=>x.sys.id===id);return a?'https:'+a.fields.file.url:null;}
-function getStoryImg(story,data){const r=story.fields.heroImage;if(!r?.sys)return'/images/placeholder.jpg';return getImg(data,r.sys.id)||'/images/placeholder.jpg';}
+function getStoryImg(story,data){const r=story.fields.heroImage;if(!r?.sys)return'/images/placeholder.webp';return getImg(data,r.sys.id)||'/images/placeholder.webp';}
 function imgErr(el){el.onerror=null;el.src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23F4F2EE'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaa' font-size='20' font-family='sans-serif'%3EFerguson Media%3C/text%3E%3C/svg%3E";}
 
 /* 9. Fetch */
+function fetchWithTimeout(url, opts = {}, ms = 8000) {
+  const ctrl = new AbortController();
+  const id = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { ...opts, signal: ctrl.signal }).finally(() => clearTimeout(id));
+}
 async function fetchStories(){
   try{
-    const res=await fetch(`https://cdn.contentful.com/spaces/${SPACE_ID}/environments/${ENV}/entries?content_type=${CONTENT_TYPE}&include=1&limit=100&access_token=${ACCESS_TOKEN}`);
+    const res=await fetchWithTimeout(`https://cdn.contentful.com/spaces/${SPACE_ID}/environments/${ENV}/entries?content_type=${CONTENT_TYPE}&include=1&limit=100&access_token=${ACCESS_TOKEN}`);
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
     const data=await res.json();
     contentfulData=data;allStories=data.items||[];
@@ -873,17 +889,17 @@ document.getElementById('subCatBack').addEventListener('click',()=>{
 
 /* 11. Build cards */
 function buildHeroFeature(s){
-  const f=s.fields,img=usingPlaceholders?'/images/placeholder.jpg':getStoryImg(s,contentfulData),cat=CAT_LABELS[f.category]||'Good News',slug=f.slug||s.id||s.sys?.id,date=f.publishedDate?fmtDate(f.publishedDate):'';
-  return `<a href="/article/?slug=${slug}" class="hero-feature"><img src="${img}" alt="${f.title}" loading="eager" onerror="imgErr(this)"/><div class="hero-feature-overlay"></div><div class="hero-feature-accent"></div><div class="hero-feature-body"><span class="hero-feature-cat">${cat}</span><h2 class="hero-feature-title">${f.title}</h2><p class="hero-feature-exc">${f.excerpt||''}</p><div class="hero-feature-bottom"><div class="hero-feature-meta"><span class="hero-feature-author">${f.authorName||'Ferguson Media'}</span>${date?`<div class="hero-feature-sep"></div><span class="hero-feature-date">${date}</span>`:''}</div><span class="hero-feature-btn">Read Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div></a>`;}
+  const f=s.fields,img=usingPlaceholders?'/images/placeholder.webp':getStoryImg(s,contentfulData),cat=CAT_LABELS[f.category]||'Good News',slug=f.slug||s.id||s.sys?.id,date=f.publishedDate?fmtDate(f.publishedDate):'';
+  return `<a href="/article/?slug=${slug}" class="hero-feature"><img src="${img}" alt="${f.title}" width="1200" height="560" loading="eager" onerror="imgErr(this)"/><div class="hero-feature-overlay"></div><div class="hero-feature-accent"></div><div class="hero-feature-body"><span class="hero-feature-cat">${cat}</span><h2 class="hero-feature-title">${f.title}</h2><p class="hero-feature-exc">${f.excerpt||''}</p><div class="hero-feature-bottom"><div class="hero-feature-meta"><span class="hero-feature-author">${f.authorName||'Ferguson Media'}</span>${date?`<div class="hero-feature-sep"></div><span class="hero-feature-date">${date}</span>`:''}</div><span class="hero-feature-btn">Read Story <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div></a>`;}
 
 function buildSecCard(s){
-  const f=s.fields,img=usingPlaceholders?'/images/placeholder.jpg':getStoryImg(s,contentfulData),slug=f.slug||s.id||s.sys?.id;
-  return `<a href="/article/?slug=${slug}" class="sec-card"><img src="${img}" alt="${f.title}" loading="lazy" onerror="imgErr(this)"/><div class="sec-card-overlay"></div><div class="sec-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="sec-card-body"><span class="sec-card-cat">${CAT_LABELS[f.category]||'Good News'}</span><div class="sec-card-title">${f.title}</div><p class="sec-card-exc">${f.excerpt||''}</p></div></a>`;}
+  const f=s.fields,img=usingPlaceholders?'/images/placeholder.webp':getStoryImg(s,contentfulData),slug=f.slug||s.id||s.sys?.id;
+  return `<a href="/article/?slug=${slug}" class="sec-card"><img src="${img}" alt="${f.title}" width="400" height="300" loading="lazy" onerror="imgErr(this)"/><div class="sec-card-overlay"></div><div class="sec-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="sec-card-body"><span class="sec-card-cat">${CAT_LABELS[f.category]||'Good News'}</span><div class="sec-card-title">${f.title}</div><p class="sec-card-exc">${f.excerpt||''}</p></div></a>`;}
 
 function buildCard(s,i){
-  const f=s.fields,img=usingPlaceholders?'/images/placeholder.jpg':getStoryImg(s,contentfulData),slug=f.slug||s.id||s.sys?.id,d=['d1','d2','d3','d4','d5','d6'];
+  const f=s.fields,img=usingPlaceholders?'/images/placeholder.webp':getStoryImg(s,contentfulData),slug=f.slug||s.id||s.sys?.id,d=['d1','d2','d3','d4','d5','d6'];
   const fmtBadge=FMT_LABELS[f.contentFormat]?`<span class="sc-fmt">${FMT_LABELS[f.contentFormat]}</span>`:'';
-  return `<a href="/article/?slug=${slug}" class="story-card rv ${d[i%6]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" loading="lazy" onerror="imgErr(this)"/><span class="sc-cat">${CAT_LABELS[f.category]||'Good News'}</span></div><div class="sc-body">${fmtBadge}<h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><div class="sc-meta"><span class="sc-author">${f.authorName||'Ferguson Media'}</span><div class="sc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div></a>`;}
+  return `<a href="/article/?slug=${slug}" class="story-card rv ${d[i%6]||''}"><div class="sc-img"><img src="${img}" alt="${f.title}" width="800" height="500" loading="lazy" onerror="imgErr(this)"/><span class="sc-cat">${CAT_LABELS[f.category]||'Good News'}</span></div><div class="sc-body">${fmtBadge}<h3 class="sc-title">${f.title}</h3><p class="sc-exc">${f.excerpt||''}</p><div class="sc-meta"><span class="sc-author">${f.authorName||'Ferguson Media'}</span><div class="sc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div></a>`;}
 
 /* 12. Render */
 function render(){
