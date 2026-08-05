@@ -767,7 +767,8 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  margin-top: 4px;
+  margin-top: auto;
+  padding-top: 4px;
   transition: gap 0.25s;
 }
 
