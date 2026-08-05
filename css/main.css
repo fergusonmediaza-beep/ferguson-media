@@ -269,17 +269,48 @@
   height: 64px;
 }
 
+/*
+  .navbar-fade defaults to the dark-hero case (white text/hamburger
+  over the hero image, switching to dark once .scrolled adds the
+  light background) since that's the majority of pages using this
+  variant. index.html's hero has no image behind it and needs a
+  permanently-dark-text override — add a .navbar-fade-light-hero
+  modifier for that page when it's migrated, rather than assuming
+  this default suits it too.
+*/
+
 .navbar-fade .nav-logo-text {
+  color: var(--white);
+}
+
+.navbar-fade.scrolled .nav-logo-text {
   color: var(--black);
 }
 
 .navbar-fade .nav-links a {
-  color: #00000080;
+  color: #ffffff8c;
 }
 
 .navbar-fade .nav-links a:hover,
 .navbar-fade .nav-links a.active {
+  color: var(--white);
+}
+
+.navbar-fade.scrolled .nav-links a {
+  color: #00000080;
+}
+
+.navbar-fade.scrolled .nav-links a:hover,
+.navbar-fade.scrolled .nav-links a.active {
   color: var(--black);
+}
+
+.navbar-fade .nav-ham span {
+  background: var(--white);
+}
+
+.navbar-fade.scrolled .nav-ham span {
+  background: var(--black);
 }
 
 .navbar-solid {
@@ -303,6 +334,10 @@
 .navbar-solid .nav-links a:hover,
 .navbar-solid .nav-links a.active {
   color: var(--white);
+}
+
+.navbar-solid .nav-ham span {
+  background: var(--white);
 }
 
 .nav-logo {
@@ -420,7 +455,6 @@
   display: block;
   width: 22px;
   height: 1.5px;
-  background: var(--black);
   transition: all 0.3s var(--ease);
 }
 
