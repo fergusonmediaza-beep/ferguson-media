@@ -106,7 +106,7 @@ const initOffcanvasAriaExpanded = () => {
   });
 };
 
-const showToast = (message) => {
+const showToast = (message, isError = false) => {
   const toast = document.getElementById('toast');
 
   if (!toast) {
@@ -114,6 +114,7 @@ const showToast = (message) => {
   }
 
   toast.textContent = message;
+  toast.classList.toggle('error', isError);
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 4200);
 };

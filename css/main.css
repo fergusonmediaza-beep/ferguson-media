@@ -33,6 +33,7 @@
   --bs-body-color: var(--black);
   --bs-body-bg: var(--page);
   --bs-body-font-family: var(--fb);
+  --bs-body-line-height: 1.6;
   --bs-font-sans-serif: var(--fh);
   --bs-link-color: var(--black);
   --bs-link-hover-color: var(--orange);
@@ -69,6 +70,24 @@
   margin: 0 auto;
   padding: 0 56px;
   width: 100%;
+}
+
+/*
+  Every component below sets its own spacing explicitly (matching the
+  original design, which reset all margins to 0 and opted back in per
+  class). Bootstrap's Reboot gives headings and paragraphs a nonzero
+  default margin-bottom, which would otherwise leak into every heading
+  and paragraph that doesn't already carry an explicit margin rule.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 /* ── Reveal-on-scroll (no Bootstrap equivalent) ── */
@@ -220,6 +239,10 @@
 .toast-fm.show {
   transform: translateY(0);
   opacity: 1;
+}
+
+.toast-fm.error {
+  border-left-color: #e53935;
 }
 
 /* ── Navbar ── */

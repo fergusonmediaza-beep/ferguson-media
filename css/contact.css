@@ -1,0 +1,963 @@
+/*
+  Page-specific styles for /contact/. Shared chrome (navbar, offcanvas
+  sidebar, page loader, cookie bar, footer, buttons, wa-float) lives in
+  main.css. The "VALUE SECTION" rules that existed in the original
+  inline stylesheet (.value, .value-grid, .val-card, etc.) styled a
+  section that has no matching markup anywhere on this page — genuinely
+  dead CSS — so they have been dropped rather than migrated, per the
+  "no dead code / no unused selectors" rule. The redundant 900px
+  .inquiry-grid override (grid-template-columns: 1fr 1fr, identical to
+  the base repeat(2, 1fr)) was dropped for the same reason.
+*/
+
+/* HERO */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--black);
+  overflow: hidden;
+  padding-top: 76px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #000000cc 0%, #00000059 55%, #000000b3 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 56px 100px;
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: hf-in 0.7s var(--ease) 0.5s forwards;
+}
+
+.hk-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  animation: hk-pulse 2.2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes hk-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(0.5);
+  }
+}
+
+.hk-sep {
+  width: 1px;
+  height: 26px;
+  background: #ffffff26;
+}
+
+.hk-txt {
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff80;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero-h1 {
+  font-family: var(--fh);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: hf-in 0.95s var(--ease) 0.75s forwards;
+}
+
+.hero-h1 .line-1 {
+  display: block;
+  font-size: clamp(56px, 8vw, 120px);
+  color: var(--white);
+}
+
+.hero-h1 .line-2 {
+  display: block;
+  font-size: clamp(56px, 8vw, 120px);
+  color: var(--orange);
+}
+
+.hero-h1 .line-3 {
+  display: block;
+  font-size: clamp(56px, 8vw, 120px);
+  color: #ffffff1f;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: #ffffff8c;
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: hf-in 0.85s var(--ease) 1s forwards;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: hf-in 0.85s var(--ease) 1.2s forwards;
+}
+
+@keyframes hf-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TICKER */
+
+.ticker-bar {
+  background: var(--orange);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 28s linear infinite;
+}
+
+.ticker-inner:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 18px 0;
+}
+
+.ticker-text {
+  font-family: var(--fh);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  padding: 0 32px;
+  letter-spacing: 0.3px;
+}
+
+.ticker-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffff80;
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* CONTACT SECTION */
+
+.contact-section {
+  background: var(--page);
+  position: relative;
+}
+
+.contact-top-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange) 0%, #ff7a0026 60%, transparent 100%);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+}
+
+/* Left panel */
+
+.contact-left {
+  background: var(--surface);
+  padding: 72px 48px;
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: fit-content;
+}
+
+.cl-tag {
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cl-tag::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--orange);
+}
+
+.cl-title {
+  font-family: var(--fh);
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.cl-title span {
+  color: var(--orange);
+}
+
+.cl-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 36px;
+}
+
+.cl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.3s var(--ease);
+}
+
+.cl-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.cl-item:hover {
+  padding-left: 5px;
+}
+
+.cl-ic {
+  width: 34px;
+  height: 34px;
+  background: #ff7a0014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s;
+}
+
+.cl-item:hover .cl-ic {
+  background: #ff7a0026;
+}
+
+.cl-ic svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+}
+
+.cl-lbl {
+  font-family: var(--fh);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 3px;
+}
+
+.cl-val {
+  font-size: 13px;
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.cl-val a {
+  color: var(--black);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cl-val a:hover {
+  color: var(--orange);
+}
+
+.cl-promise {
+  background: #ff7a000f;
+  border-left: 3px solid var(--orange);
+  padding: 18px 22px;
+}
+
+.cl-promise-title {
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.cl-promise p {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* Right panel */
+
+.contact-right {
+  padding: 72px 64px;
+  background: var(--page);
+}
+
+.iq-label {
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 14px;
+}
+
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-bottom: 40px;
+  background: var(--border);
+}
+
+.iq-btn {
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  padding: 18px 18px 16px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.iq-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.iq-btn:hover {
+  background: #ff7a000a;
+}
+
+.iq-btn.active {
+  background: #ff7a000f;
+}
+
+.iq-btn.active::after {
+  transform: scaleX(1);
+}
+
+.iq-icon {
+  width: 30px;
+  height: 30px;
+  background: #ff7a0014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: background 0.3s;
+}
+
+.iq-icon svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--mid);
+  fill: none;
+  stroke-width: 1.8;
+  transition: stroke 0.3s;
+}
+
+.iq-btn.active .iq-icon,
+.iq-btn:hover .iq-icon {
+  background: #ff7a0024;
+}
+
+.iq-btn.active .iq-icon svg,
+.iq-btn:hover .iq-icon svg {
+  stroke: var(--orange);
+}
+
+.iq-num {
+  font-family: var(--fh);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--mid);
+  margin-bottom: 3px;
+  transition: color 0.3s;
+}
+
+.iq-btn.active .iq-num {
+  color: var(--orange);
+}
+
+.iq-name {
+  font-family: var(--fh);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mid);
+  line-height: 1.2;
+  margin-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.iq-btn.active .iq-name {
+  color: var(--black);
+}
+
+.iq-desc {
+  font-size: 11px;
+  color: #0000004d;
+  line-height: 1.5;
+}
+
+.iq-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.25s var(--ease);
+}
+
+.iq-check svg {
+  width: 8px;
+  height: 8px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.iq-btn.active .iq-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.form-context-bar {
+  background: #ff7a000f;
+  border-left: 3px solid var(--orange);
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.form-context-bar p {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+.form-context-bar p em {
+  font-style: normal;
+  color: var(--black);
+  font-weight: 600;
+}
+
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.form-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.form-divider-lbl {
+  font-family: var(--fh);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.req-hint {
+  font-size: 11px;
+  color: var(--mid);
+  margin-bottom: 20px;
+}
+
+.req-hint span {
+  color: var(--orange);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.field-group {
+  position: relative;
+  margin-bottom: 2px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.field-row .field-group {
+  margin-bottom: 0;
+}
+
+.field-group input,
+.field-group textarea {
+  width: 100%;
+  background: var(--white);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 28px 18px 12px;
+  font-family: var(--fb);
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--black);
+  outline: none;
+  transition: all 0.3s var(--ease);
+  resize: none;
+}
+
+.field-group input::placeholder,
+.field-group textarea::placeholder {
+  opacity: 0;
+}
+
+.field-group input:focus,
+.field-group textarea:focus {
+  background: #ff7a0008;
+  border-bottom-color: var(--orange);
+}
+
+.field-group textarea {
+  min-height: 130px;
+}
+
+.field-label {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0000004d;
+  transition: all 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.field-group input:focus ~ .field-label,
+.field-group input:not(:placeholder-shown) ~ .field-label,
+.field-group textarea:focus ~ .field-label,
+.field-group textarea:not(:placeholder-shown) ~ .field-label,
+.field-group.has-value .field-label {
+  top: 9px;
+  font-size: 9px;
+  color: var(--orange);
+  letter-spacing: 3px;
+}
+
+.field-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--orange);
+  width: 0;
+  transition: width 0.4s var(--ease);
+}
+
+.field-group input:focus ~ .field-line,
+.field-group textarea:focus ~ .field-line {
+  width: 100%;
+}
+
+.form-submit-row {
+  padding: 28px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.recaptcha-notice {
+  font-size: 11px;
+  color: #0000004d;
+  line-height: 1.6;
+}
+
+.recaptcha-notice a {
+  color: #ff7a0099;
+  transition: color 0.2s;
+}
+
+.recaptcha-notice a:hover {
+  color: var(--orange);
+}
+
+.submit-btn {
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--fh);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s var(--ease);
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: var(--orange-dk);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px #ff7a0047;
+}
+
+/*
+  No !important needed: :hover:not(:disabled) above already excludes
+  the disabled state, so nothing else can apply a transform here.
+*/
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  transition: transform 0.3s;
+}
+
+.submit-btn:hover:not(:disabled) svg {
+  transform: translateX(4px);
+}
+
+/* REACH SECTION */
+
+.reach {
+  padding: 88px 0;
+  background: var(--page);
+  border-top: 1px solid var(--border);
+}
+
+.reach .section-intro p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.reach-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border);
+}
+
+.reach-card {
+  background: var(--white);
+  padding: 40px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+}
+
+.reach-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px #00000017;
+  z-index: 2;
+}
+
+.reach-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.reach-card:hover::after {
+  transform: scaleX(1);
+}
+
+.rc-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.rc-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+}
+
+.reach-card:hover .rc-icon {
+  border-color: var(--orange);
+  background: #ff7a000f;
+}
+
+.rc-label {
+  font-family: var(--fh);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.rc-title {
+  font-family: var(--fh);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.rc-body {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.rc-body a {
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.rc-body a:hover {
+  color: var(--orange);
+}
+
+.rc-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 16px;
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  text-decoration: none;
+  transition: gap 0.3s var(--ease);
+}
+
+.rc-action:hover {
+  gap: 12px;
+}
+
+.rc-action svg {
+  width: 11px;
+  height: 11px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2.5;
+}
+
+/*
+  justified: Google's reCAPTCHA script sets these badge positions via
+  an inline style attribute it injects itself, which only an
+  !important rule can override without JS. Not authored duplication of
+  a Bootstrap utility.
+*/
+.grecaptcha-badge {
+  bottom: 96px !important;
+}
+
+/* RESPONSIVE */
+
+@media (width < 1100px) {
+
+  .contact-left {
+    padding: 56px 32px;
+  }
+
+  .contact-right {
+    padding: 56px 40px;
+  }
+
+  .reach-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (width < 900px) {
+
+  .hero-content {
+    padding: 56px 24px 72px;
+  }
+
+  .hero-h1 .line-1,
+  .hero-h1 .line-2,
+  .hero-h1 .line-3 {
+    font-size: clamp(44px, 11vw, 80px);
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-left {
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px;
+  }
+
+  .contact-right {
+    padding: 44px 24px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reach-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grecaptcha-badge {
+    bottom: 82px !important;
+  }
+}
+
+@media (width < 600px) {
+
+  .inquiry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-submit-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .reach-grid {
+    grid-template-columns: 1fr;
+  }
+}
