@@ -133,6 +133,8 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  margin: 0;
+  padding-left: 0;
 }
 
 .toc-list li a {
