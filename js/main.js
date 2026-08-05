@@ -59,13 +59,20 @@ const initCookieBar = () => {
 
 const initNavbarScroll = () => {
   const navbar = document.getElementById('navbar');
+  const logoImg = document.getElementById('nav_logo_img');
 
   if (!navbar) {
     return;
   }
 
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 56);
+    const scrolled = window.scrollY > 56;
+
+    navbar.classList.toggle('scrolled', scrolled);
+
+    if (logoImg) {
+      logoImg.src = scrolled ? '/images/logo-black.webp' : '/images/logo-white.webp';
+    }
   }, { passive: true });
 };
 
