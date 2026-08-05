@@ -768,6 +768,18 @@ p {
   transform: translateY(-2px);
 }
 
+.btn-fm-white {
+  --bs-btn-bg: var(--white);
+  --bs-btn-color: var(--black);
+  --bs-btn-hover-bg: #f0f0f0;
+  --bs-btn-hover-color: var(--black);
+}
+
+.btn-fm-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px #00000026;
+}
+
 .eyebrow {
   font-family: var(--fh);
   font-size: 10px;
