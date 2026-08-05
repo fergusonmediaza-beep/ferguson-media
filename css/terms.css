@@ -141,6 +141,7 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--mid);
+  text-decoration: none;
   padding: 10px 0;
   border-bottom: 1px solid var(--border-dk);
   transition: color 0.2s;
@@ -178,6 +179,7 @@
   font-family: var(--fh);
   font-size: 11px;
   font-weight: 700;
+  text-decoration: none;
   padding: 10px 18px;
   letter-spacing: 0.5px;
   transition: background 0.2s;
@@ -197,6 +199,7 @@
   font-size: 11px;
   font-weight: 600;
   color: #ffffff66;
+  text-decoration: none;
   padding: 10px 18px;
   border: 1px solid var(--border);
   text-align: center;
@@ -311,6 +314,7 @@
 
 .policy-section a {
   color: var(--orange);
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 

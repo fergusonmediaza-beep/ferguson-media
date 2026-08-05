@@ -310,6 +310,7 @@
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 
@@ -353,6 +354,7 @@
   font-weight: 600;
   padding: 8px 15px;
   position: relative;
+  text-decoration: none;
   transition: color 0.25s;
 }
 
@@ -382,6 +384,7 @@
   font-weight: 700;
   padding: 11px 22px;
   letter-spacing: 0.5px;
+  text-decoration: none;
   transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
   white-space: nowrap;
 }
@@ -474,6 +477,7 @@
   font-weight: 600;
   color: #ffffff7a;
   padding: 13px 14px;
+  text-decoration: none;
   transition: color 0.2s, padding-left 0.3s;
   display: block;
 }
@@ -492,6 +496,7 @@
   font-weight: 700;
   padding: 15px;
   text-align: center;
+  text-decoration: none;
   transition: background 0.25s;
   display: block;
 }
@@ -519,6 +524,8 @@
 .nav-dropdown-trigger {
   display: flex;
   align-items: center;
+  color: inherit;
+  text-decoration: none;
 }
 
 .nav-dropdown-wrap::after {
@@ -576,6 +583,8 @@
   align-items: flex-start;
   gap: 14px;
   padding: 16px 20px;
+  color: inherit;
+  text-decoration: none;
   transition: background 0.2s;
   border-bottom: 1px solid var(--border);
 }
@@ -810,6 +819,7 @@
 .ft-links a {
   font-size: 13px;
   color: var(--mid);
+  text-decoration: none;
   transition: color 0.2s, padding-left 0.25s;
 }
 
@@ -847,6 +857,7 @@
 
 .ft-cit a {
   color: var(--mid);
+  text-decoration: none;
   transition: color 0.2s;
 }
 
@@ -877,6 +888,7 @@
 .ft-bl a {
   font-size: 12px;
   color: #00000059;
+  text-decoration: none;
   transition: color 0.2s;
 }
 
