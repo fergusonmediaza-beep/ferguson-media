@@ -84,6 +84,21 @@ const initRevealOnScroll = () => {
   return observer;
 };
 
+const initOffcanvasAriaExpanded = () => {
+  document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach((trigger) => {
+    const targetSelector = trigger.getAttribute('data-bs-target');
+    const target = targetSelector ? document.querySelector(targetSelector) : null;
+
+    if (!target) {
+      return;
+    }
+
+    trigger.setAttribute('aria-expanded', 'false');
+    target.addEventListener('shown.bs.offcanvas', () => trigger.setAttribute('aria-expanded', 'true'));
+    target.addEventListener('hidden.bs.offcanvas', () => trigger.setAttribute('aria-expanded', 'false'));
+  });
+};
+
 const showToast = (message) => {
   const toast = document.getElementById('toast');
 
@@ -101,6 +116,7 @@ window.fmRevealObserver = null;
 document.addEventListener('DOMContentLoaded', () => {
   initCookieBar();
   initNavbarScroll();
+  initOffcanvasAriaExpanded();
   window.fmRevealObserver = initRevealOnScroll();
 });
 

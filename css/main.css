@@ -45,6 +45,8 @@
   --bs-modal-border-radius: 0;
   --bs-offcanvas-bg: var(--black);
   --bs-offcanvas-color: var(--white);
+  --bs-offcanvas-width: 280px;
+  --bs-offcanvas-border-width: 0;
   --bs-modal-zindex: 8500;
   --bs-modal-backdrop-zindex: 8450;
   --bs-offcanvas-zindex: 8400;
@@ -53,6 +55,20 @@
 
 .html-root {
   scroll-behavior: smooth;
+}
+
+/*
+  Brand container: overrides Bootstrap's own .container (different
+  max-width breakpoints and 0.75rem padding) since this site uses one
+  fixed max-width and a wider fixed side padding at every breakpoint
+  except mobile, handled below.
+*/
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 56px;
+  width: 100%;
 }
 
 /* ── Reveal-on-scroll (no Bootstrap equivalent) ── */
@@ -232,12 +248,61 @@
   }
 }
 
-.navbar.scrolled {
+/*
+  Two navbar colour treatments are used across the site: "fade" starts
+  transparent over a hero and turns light+blurred on scroll (index,
+  about, news, creative-hub, community-media-hub, good-news-story,
+  good-news-check-in); "solid" is permanently dark, no scroll change
+  (terms, privacy). A third/fourth variant (contact, article) will be
+  reconciled when those pages are migrated.
+*/
+
+.navbar-fade {
+  background: transparent;
+}
+
+.navbar-fade.scrolled {
   background: #fafaf7f5;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 24px #0000000f;
   height: 64px;
+}
+
+.navbar-fade .nav-logo-text {
+  color: var(--black);
+}
+
+.navbar-fade .nav-links a {
+  color: #00000080;
+}
+
+.navbar-fade .nav-links a:hover,
+.navbar-fade .nav-links a.active {
+  color: var(--black);
+}
+
+.navbar-solid {
+  background: #0a0a0af7;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #ffffff14;
+}
+
+.navbar-solid.scrolled {
+  box-shadow: 0 4px 32px #00000080;
+}
+
+.navbar-solid .nav-logo-text {
+  color: var(--white);
+}
+
+.navbar-solid .nav-links a {
+  color: #ffffff8c;
+}
+
+.navbar-solid .nav-links a:hover,
+.navbar-solid .nav-links a.active {
+  color: var(--white);
 }
 
 .nav-logo {
@@ -267,7 +332,6 @@
   font-family: var(--fh);
   font-size: 15px;
   font-weight: 900;
-  color: var(--black);
   letter-spacing: 1px;
   transition: color 0.4s;
 }
@@ -287,7 +351,6 @@
   font-family: var(--fh);
   font-size: 13px;
   font-weight: 600;
-  color: #00000080;
   padding: 8px 15px;
   position: relative;
   transition: color 0.25s;
@@ -306,17 +369,9 @@
   transition: transform 0.3s var(--ease);
 }
 
-.nav-links a:hover {
-  color: var(--black);
-}
-
 .nav-links a:hover::after,
 .nav-links a.active::after {
   transform: scaleX(1);
-}
-
-.nav-links a.active {
-  color: var(--black);
 }
 
 .nav-cta-btn {
@@ -955,6 +1010,22 @@
   fill: var(--white);
 }
 
+@media (width < 900px) {
+
+  .nav-links,
+  .nav-cta-btn {
+    display: none;
+  }
+
+  .nav-ham {
+    display: flex;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+}
+
 @media (width < 600px) {
 
   .navbar,
@@ -992,4 +1063,39 @@
     grid-template-columns: 1fr 1fr;
     gap: 36px;
   }
+}
+
+/* ── Small shared utilities (no Bootstrap equivalent at this exact value) ── */
+
+.nav-chevron {
+  width: 10px;
+  height: 10px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  margin-left: 4px;
+  transition: transform 0.3s;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nav-di-svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+}
+
+.gap-nav {
+  gap: 12px;
+}
+
+.sb-nav-sub {
+  padding-left: 28px;
+  font-size: 13px;
+}
+
+.ft-bl a.active {
+  color: var(--orange);
 }
