@@ -1,0 +1,377 @@
+/*
+  Page-specific styles for /privacy/. Shared chrome (navbar, offcanvas
+  menu, footer, cookie bar, page loader, WhatsApp float) lives in
+  main.css. Bootstrap's grid/utilities are used for the two-column
+  layout; the hero, table-of-contents panel, and policy content
+  typography have no Bootstrap equivalent so stay custom here.
+*/
+
+:root {
+
+  --off: #f6f4f1;
+  --mid: #5a5a5a;
+  --border: #ffffff14;
+  --border-dk: #00000014;
+  --bs-body-bg: var(--white);
+}
+
+.policy-hero {
+  background: var(--black);
+  padding-top: 76px;
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-hero::before {
+  content: 'PRIVACY';
+  position: absolute;
+  bottom: -30px;
+  right: -20px;
+  font-family: var(--fh);
+  font-size: clamp(100px, 14vw, 200px);
+  font-weight: 900;
+  color: #ffffff06;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -8px;
+  white-space: nowrap;
+}
+
+.policy-hero-inner {
+  padding: 80px 0 72px;
+  position: relative;
+  z-index: 1;
+}
+
+.policy-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.policy-eyebrow-line {
+  width: 28px;
+  height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.policy-eyebrow span {
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.policy-title {
+  font-family: var(--fh);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.policy-meta {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.policy-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff59;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.policy-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.policy-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), #ff7a0033 60%, transparent);
+}
+
+.policy-layout {
+  background: var(--off);
+  padding: 80px 0 100px;
+}
+
+.toc {
+  position: sticky;
+  top: 96px;
+}
+
+.toc-label {
+  font-family: var(--fh);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+
+.toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+
+.toc-list li a {
+  display: block;
+  font-family: var(--fh);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-dk);
+  transition: color 0.2s;
+  line-height: 1.4;
+}
+
+.toc-list li a:hover,
+.toc-list li a.active {
+  color: var(--orange);
+}
+
+.toc-list li:last-child a {
+  border-bottom: none;
+}
+
+.toc-contact-box {
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--black);
+}
+
+.toc-contact-box p {
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff80;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.toc-contact-box a {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--fh);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 10px 18px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.toc-contact-box a:hover {
+  background: var(--orange-dk);
+}
+
+.policy-content {
+  background: var(--white);
+  padding: 56px 64px;
+}
+
+.policy-intro {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.85;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border-dk);
+  margin-bottom: 48px;
+}
+
+.policy-intro strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.policy-section {
+  margin-bottom: 52px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid var(--border-dk);
+}
+
+.policy-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.policy-section-num {
+  font-family: var(--fh);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.policy-section h2 {
+  font-family: var(--fh);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+.policy-section p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.policy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section ul,
+.policy-section ol {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.policy-section li {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.75;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.policy-section li::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.policy-section a {
+  color: var(--orange);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.policy-section a:hover {
+  opacity: 0.75;
+}
+
+.highlight-box {
+  background: #ff7a000f;
+  border-left: 3px solid var(--orange);
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.highlight-box p {
+  font-family: var(--fh);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 13px;
+}
+
+.policy-table th {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--fh);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.policy-table td {
+  padding: 14px 16px;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border-dk);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.policy-table tr:last-child td {
+  border-bottom: none;
+}
+
+.policy-table tr:nth-child(even) td {
+  background: var(--off);
+}
+
+@media (width < 900px) {
+
+  .policy-content {
+    padding: 36px 28px;
+  }
+
+  .toc {
+    position: static;
+    margin-bottom: 32px;
+  }
+}
+
+@media (width < 600px) {
+
+  .policy-hero-inner {
+    padding: 60px 0 52px;
+  }
+}
+
+/*
+  This page's footer collapses to 2 columns below 900px, not the
+  1100px used by most other pages (main.css default) — restore the
+  4-column layout for the 900-1100px range this page's original
+  design kept full-width in.
+*/
+
+@media (width >= 900px) {
+
+  .ft-top {
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 48px;
+  }
+}
