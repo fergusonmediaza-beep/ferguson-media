@@ -372,3 +372,18 @@
     padding: 60px 0 52px;
   }
 }
+
+/*
+  This page's footer collapses to 2 columns below 900px, not the
+  1100px used by most other pages (main.css default) — restore the
+  4-column layout for the 900-1100px range this page's original
+  design kept full-width in.
+*/
+
+@media (width >= 900px) {
+
+  .ft-top {
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 48px;
+  }
+}
