@@ -36,7 +36,9 @@
   --bs-body-line-height: 1.6;
   --bs-font-sans-serif: var(--fh);
   --bs-link-color: var(--black);
+  --bs-link-color-rgb: 10, 10, 10;
   --bs-link-hover-color: var(--orange);
+  --bs-link-hover-color-rgb: 255, 122, 0;
   --bs-border-color: var(--border);
   --bs-border-radius: 0;
   --bs-border-radius-lg: 0;
@@ -88,6 +90,21 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+/*
+  Bootstrap's Reboot hardcodes text-decoration: underline on the base
+  a{} rule with no CSS variable controlling it (unlike its color,
+  which reads --bs-link-color-rgb, already themed above). Every page
+  on this site defaults links to no underline and opts back in per
+  component (e.g. .cookie-bar__text a), matching the original design's
+  own blanket a{text-decoration:none} reset — so this is themed the
+  same way as the h1-h6/p margin reset above, not a stray tag-selector
+  hack.
+*/
+
+a {
+  text-decoration: none;
 }
 
 /* ── Reveal-on-scroll (no Bootstrap equivalent) ── */
