@@ -289,12 +289,12 @@ a {
 }
 
 /*
-  Two navbar colour treatments are used across the site: "fade" starts
+  Three navbar colour treatments are used across the site: "fade" starts
   transparent over a hero and turns light+blurred on scroll (index,
   about, news, creative-hub, community-media-hub, good-news-story,
-  good-news-check-in); "solid" is permanently dark, no scroll change
-  (terms, privacy). A third/fourth variant (contact, article) will be
-  reconciled when those pages are migrated.
+  good-news-check-in, contact); "solid" is permanently dark, no scroll
+  change (terms, privacy); "light" is permanently light with dark text,
+  only height changes on scroll — no hero image to fade over (article).
 */
 
 .navbar-fade {
@@ -378,6 +378,34 @@ a {
 
 .navbar-solid .nav-ham span {
   background: var(--white);
+}
+
+.navbar-light {
+  background: #fafaf7f5;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 24px #0000000f;
+}
+
+.navbar-light.scrolled {
+  height: 64px;
+}
+
+.navbar-light .nav-logo-text {
+  color: var(--black);
+}
+
+.navbar-light .nav-links a {
+  color: #00000080;
+}
+
+.navbar-light .nav-links a:hover,
+.navbar-light .nav-links a.active {
+  color: var(--black);
+}
+
+.navbar-light .nav-ham span {
+  background: var(--black);
 }
 
 .nav-logo {
