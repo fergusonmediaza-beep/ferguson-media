@@ -959,6 +959,15 @@
   max-width: 260px;
 }
 
+.eq-privacy a {
+  color: #ff7a0099;
+  transition: color 0.2s;
+}
+
+.eq-privacy a:hover {
+  color: var(--orange);
+}
+
 .eq-submit {
   --bs-btn-padding-x: 24px;
   --bs-btn-padding-y: 14px;
@@ -1057,12 +1066,14 @@
 }
 
 /*
-  justified: Google's reCAPTCHA script sets this badge position via an
-  inline style attribute it injects itself, which only an !important
-  rule can override without JS.
+  justified: Google's reCAPTCHA terms allow hiding this badge as long
+  as the required attribution text appears in the UI instead — see
+  .eq-privacy in the enquiry modal, which carries that notice. The
+  !important is required to override the inline style Google's script
+  sets on this element itself.
 */
 .grecaptcha-badge {
-  bottom: 96px !important;
+  visibility: hidden !important;
 }
 
 /* RESPONSIVE */
@@ -1124,9 +1135,5 @@
 
   .pkg-unsure {
     flex-direction: column;
-  }
-
-  .grecaptcha-badge {
-    bottom: 82px !important;
   }
 }
