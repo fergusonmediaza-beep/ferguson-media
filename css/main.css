@@ -353,6 +353,30 @@ a {
   background: var(--black);
 }
 
+/*
+  Modifier for .navbar-fade pages whose hero has no dark image behind
+  it (index): text/logo/hamburger stay dark from the start instead of
+  the default white-fading-to-dark. The background/height fade-on-scroll
+  transition from .navbar-fade is unchanged.
+*/
+
+.navbar-fade-light-hero .nav-logo-text {
+  color: var(--black);
+}
+
+.navbar-fade-light-hero .nav-links a {
+  color: #00000080;
+}
+
+.navbar-fade-light-hero .nav-links a:hover,
+.navbar-fade-light-hero .nav-links a.active {
+  color: var(--black);
+}
+
+.navbar-fade-light-hero .nav-ham span {
+  background: var(--black);
+}
+
 .navbar-solid {
   background: #0a0a0af7;
   backdrop-filter: blur(20px);
