@@ -17,7 +17,7 @@ const FACEBOOK_SVG = '<svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.6
 
 const switchDept = (dept, label) => {
   document.querySelectorAll('.team-panel').forEach((p) => p.classList.remove('active'));
-  const panel = document.getElementById(`dept-${dept}`);
+  const panel = document.getElementById(`dept_${dept}`);
 
   if (panel) {
     panel.classList.add('active');
