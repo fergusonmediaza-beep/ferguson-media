@@ -4,6 +4,14 @@
   any element on this page) is the same dead style already found and
   dropped on about.html — not migrated here either. Likewise
   ".ft-copy a" has no matching <a> inside .ft-copy on this page.
+
+  A "SUBMIT CTA" block (.submit-cta/.submit-inner/.submit-label/
+  .submit-title/.submit-body/.submit-bullets/.submit-btn/.submit-stats
+  and their responsive overrides — a "Submit Your Story" callout with
+  a headline, bullet list, button, and stat sidebar) existed in the
+  original inline stylesheet with no matching markup anywhere on this
+  page. Found during a later audit and dropped per the same
+  no-dead-code rule that already applied to the items above.
 */
 
 /* SIDEBAR SOCIAL ROW (unique to this page's offcanvas) */
@@ -1929,251 +1937,6 @@
   text-decoration: underline;
 }
 
-/* SUBMIT CTA */
-
-.submit-cta {
-
-  background: var(--orange);
-
-  padding: 88px 0;
-}
-
-.submit-inner {
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 72px;
-
-  align-items: center;
-
-  max-width: var(--max);
-
-  margin: 0 auto;
-
-  padding: 0 56px;
-}
-
-.submit-label {
-
-  font-family: var(--fh);
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 4px;
-
-  text-transform: uppercase;
-
-  color: #ffffffb3;
-
-  margin-bottom: 16px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-}
-
-.submit-label::before {
-
-  content: '';
-
-  display: block;
-
-  width: 22px;
-
-  height: 2px;
-
-  background: #fff9;
-}
-
-.submit-title {
-
-  font-family: var(--fh);
-
-  font-size: clamp(26px, 3.2vw, 42px);
-
-  font-weight: 900;
-
-  color: var(--white);
-
-  line-height: 1.1;
-
-  margin-bottom: 16px;
-}
-
-.submit-title span {
-
-  color: #ffffffbf;
-}
-
-.submit-body {
-
-  font-size: 14px;
-
-  color: #ffffffbf;
-
-  line-height: 1.75;
-
-  margin-bottom: 28px;
-}
-
-.submit-bullets {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-
-  margin-bottom: 28px;
-}
-
-.submit-bullets li {
-
-  display: flex;
-
-  align-items: flex-start;
-
-  gap: 10px;
-
-  font-size: 14px;
-
-  color: #ffffffd1;
-
-  font-family: var(--fb);
-}
-
-.submit-bullets li::before {
-
-  content: '→';
-
-  color: #fff9;
-
-  font-family: var(--fh);
-
-  font-size: 13px;
-
-  flex-shrink: 0;
-}
-
-.submit-btn {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 15px 32px;
-
-  background: var(--white);
-
-  color: var(--orange);
-
-  font-family: var(--fh);
-
-  font-size: 13px;
-
-  font-weight: 700;
-
-  transition: all 0.3s var(--ease);
-
-  letter-spacing: 0.3px;
-}
-
-.submit-btn:hover {
-
-  background: var(--black);
-
-  color: var(--white);
-
-  transform: translateY(-2px);
-
-  box-shadow: 0 14px 36px #0003;
-}
-
-.submit-btn svg {
-
-  width: 14px;
-
-  height: 14px;
-
-  stroke: currentColor;
-
-  fill: none;
-
-  stroke-width: 2.5;
-
-  transition: transform 0.3s;
-}
-
-.submit-btn:hover svg {
-
-  transform: translateX(4px);
-}
-
-.submit-stats {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 14px;
-}
-
-.submit-stat {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 18px;
-
-  padding: 16px 20px;
-
-  background: #ffffff1f;
-
-  border-left: 2px solid #ffffff80;
-
-  transition: background 0.3s;
-}
-
-.submit-stat:hover {
-
-  background: #ffffff2e;
-}
-
-.submit-stat-n {
-
-  font-family: var(--fh);
-
-  font-size: 26px;
-
-  font-weight: 900;
-
-  color: var(--white);
-
-  line-height: 1;
-
-  flex-shrink: 0;
-
-  min-width: 60px;
-}
-
-.submit-stat-l {
-
-  font-size: 13px;
-
-  color: #ffffffc7;
-
-  line-height: 1.45;
-}
-
 /* RESPONSIVE */
 
 @media (width < 1100px) {
@@ -2187,21 +1950,13 @@
 
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .submit-inner {
-
-    grid-template-columns: 1fr;
-
-    gap: 44px;
-  }
 }
 
 @media (width < 900px) {
 
   .hero-content,
   .portal-inner,
-  .story-count-bar,
-  .submit-inner {
+  .story-count-bar {
 
     padding-left: 24px;
 
