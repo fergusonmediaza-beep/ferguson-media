@@ -1,4 +1,4 @@
-/* global bootstrap, emailjs, grecaptcha */
+/* global emailjs, grecaptcha */
 
 /*
   Page-specific behaviour for /good-news-story/: the pillar-card
@@ -38,7 +38,6 @@ const RECAPTCHA_SITE_KEY = '6LflDpEsAAAAALBXSCZgacLALDANwZKxv6l8ZBPn';
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
 const enquiryModalEl = document.getElementById('enquiry_modal');
-const enquiryModal = bootstrap.Modal.getOrCreateInstance(enquiryModalEl);
 const enquiryForm = document.getElementById('enquiry_form');
 const enquirySuccess = document.getElementById('enquiry_success');
 const enquiryError = document.getElementById('enquiry_error');
