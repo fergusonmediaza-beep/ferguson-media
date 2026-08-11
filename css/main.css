@@ -80,15 +80,17 @@
   class). Bootstrap's Reboot gives headings and paragraphs a nonzero
   default margin-bottom, which would otherwise leak into every heading
   and paragraph that doesn't already carry an explicit margin rule.
+  Scoped under .html-root (present on every page's <html>) rather than
+  a bare tag selector, per the no-direct-tag-selector rule.
 */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+.html-root h1,
+.html-root h2,
+.html-root h3,
+.html-root h4,
+.html-root h5,
+.html-root h6,
+.html-root p {
   margin: 0;
 }
 
@@ -100,10 +102,10 @@ p {
   component (e.g. .cookie-bar__text a), matching the original design's
   own blanket a{text-decoration:none} reset — so this is themed the
   same way as the h1-h6/p margin reset above, not a stray tag-selector
-  hack.
+  hack. Scoped under .html-root for the same reason as above.
 */
 
-a {
+.html-root a {
   text-decoration: none;
 }
 
@@ -943,7 +945,7 @@ a {
 .ft-sl svg {
   width: 13px;
   height: 13px;
-  fill: #00000066;
+  fill: #0006;
   transition: fill 0.25s;
 }
 

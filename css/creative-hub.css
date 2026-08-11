@@ -47,7 +47,7 @@
 }
 
 .hero-eyebrow {
-  color: #ffffff99;
+  color: #fff9;
   margin-bottom: 20px;
   opacity: 0;
   animation: hf 0.7s var(--ease) 0.4s forwards;

@@ -1,4 +1,4 @@
-/* global emailjs, grecaptcha */
+/* global emailjs, grecaptcha, showToast */
 
 /*
   Page-specific behaviour for /contact/: EmailJS + reCAPTCHA v3 form

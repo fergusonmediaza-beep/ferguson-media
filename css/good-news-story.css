@@ -36,7 +36,7 @@
 .hero-over {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, #000000cc 0%, #0000004d 55%, #0000001a 100%);
+  background: linear-gradient(to top, #000c 0%, #0000004d 55%, #0000001a 100%);
 }
 
 .hero-content {
@@ -49,7 +49,7 @@
 }
 
 .hero-eyebrow {
-  color: #ffffff99;
+  color: #fff9;
   margin-bottom: 20px;
   opacity: 0;
   animation: hf 0.7s var(--ease) 0.4s forwards;
@@ -275,7 +275,7 @@
 .pillar-arr svg {
   width: 13px;
   height: 13px;
-  stroke: #ffffff66;
+  stroke: #fff6;
   fill: none;
   stroke-width: 2;
   transition: all 0.3s;
@@ -344,7 +344,7 @@
   font-size: 13px;
   font-weight: 700;
   color: var(--white);
-  border: 1px solid #ffffff33;
+  border: 1px solid #fff3;
   padding: 12px 18px;
   transition: background 0.25s, border-color 0.25s, transform 0.25s;
   display: block;
@@ -360,7 +360,7 @@
   font-family: var(--fh);
   font-size: 11px;
   font-weight: 600;
-  color: #ffffff66;
+  color: #fff6;
   transition: color 0.25s;
   display: inline-block;
   margin-top: 4px;

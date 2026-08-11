@@ -27,7 +27,7 @@
       path.setAttribute('stroke-opacity', 0.1 + i * 0.03);
       path.setAttribute('fill', 'none');
       path.style.strokeDasharray = '800';
-      path.style.animation = `pathDraw ${20 + ((i * 7) % 10)}s linear ${-(i * 1.1)}s infinite`;
+      path.style.animation = `path-draw ${20 + ((i * 7) % 10)}s linear ${-(i * 1.1)}s infinite`;
       svg.appendChild(path);
     });
   });

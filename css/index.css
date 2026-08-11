@@ -45,12 +45,17 @@
 }
 
 .hero-path-svg path {
-  animation: pathDraw 20s linear infinite;
+  animation: path-draw 20s linear infinite;
 }
 
-@keyframes pathDraw {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -800; }
+@keyframes path-draw {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -800;
+  }
 }
 
 .hero-split-wrap {
@@ -88,15 +93,23 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.55); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(0.55);
+  }
 }
 
 .hk-txt {
   font-family: var(--fh);
   font-size: 11px;
   font-weight: 700;
-  color: #00000066;
+  color: #0006;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
@@ -175,15 +188,35 @@
 }
 
 @keyframes sb {
-  0% { top: -40%; opacity: 0; }
-  30% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { top: 140%; opacity: 0; }
+  0% {
+    top: -40%;
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 140%;
+    opacity: 0;
+  }
 }
 
 @keyframes hf {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Solution cards, right column of split hero ── */
@@ -232,13 +265,28 @@
   transform: translateX(40px);
 }
 
-.hsr-card--1 { animation: slideInR 0.7s var(--ease-out) 1.2s forwards; }
-.hsr-card--2 { animation: slideInR 0.7s var(--ease-out) 1.35s forwards; }
-.hsr-card--3 { animation: slideInR 0.7s var(--ease-out) 1.5s forwards; }
+.hsr-card--1 {
+  animation: slide-in-r 0.7s var(--ease-out) 1.2s forwards;
+}
 
-@keyframes slideInR {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+.hsr-card--2 {
+  animation: slide-in-r 0.7s var(--ease-out) 1.35s forwards;
+}
+
+.hsr-card--3 {
+  animation: slide-in-r 0.7s var(--ease-out) 1.5s forwards;
+}
+
+@keyframes slide-in-r {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hsr-card:hover {
@@ -1157,7 +1205,7 @@
   align-items: flex-start;
   gap: 16px;
   padding: 18px 20px;
-  border: 1px solid #ffffff33;
+  border: 1px solid #fff3;
   margin-bottom: -1px;
   background: #ffffff14;
   transition: background 0.3s, border-color 0.3s, transform 0.3s;
@@ -1433,27 +1481,27 @@
 
 /* ── Responsive ── */
 
-@media (max-width: 1100px) {
+@media (width < 1100px) {
   .cta-strip-inner {
     grid-template-columns: 1fr;
     gap: 48px;
   }
 }
 
-@media (max-width: 1024px) {
+@media (width < 1024px) {
   .hero-split-wrap {
     grid-template-columns: 1fr 360px;
     gap: 40px;
   }
 }
 
-@media (max-width: 1000px) {
+@media (width < 1000px) {
   .p-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 900px) {
+@media (width < 900px) {
   .b2b-top,
   .why-inner {
     grid-template-columns: 1fr;
@@ -1510,7 +1558,7 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (width < 860px) {
   .hero-split-wrap {
     grid-template-columns: 1fr;
     padding-top: 100px;
@@ -1529,7 +1577,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (width < 600px) {
   .p-grid {
     grid-template-columns: 1fr;
   }

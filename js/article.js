@@ -1,4 +1,4 @@
-/* global fetchWithTimeout */
+/* global fetchWithTimeout, dismissLoader */
 
 /*
   Good News Story article page, driven entirely by a `?slug=` query
