@@ -205,7 +205,7 @@ function renderArticle(story, includes) {
   els.article_hero_image.src = imgUrl;
   els.article_hero_image.alt = f.title;
   els.article_hero_image.onerror = () => imgFallback(els.article_hero_image);
-  els.article_hero_caption.textContent = `Ferguson Media — ${cat}`;
+  els.article_hero_caption.textContent = f.imageCredits || `Ferguson Media — ${cat}`;
   els.article_hero_img.classList.remove('d-none');
 
   els.article_body.innerHTML = bodyHtml;
