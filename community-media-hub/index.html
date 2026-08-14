@@ -29,38 +29,6 @@
 
     gtag('config', 'G-QPZXX9FXNK');
   </script>
-  <script>
-    /*
-      Forces the Mailchimp popup to re-evaluate every visitor as "new"
-      on every visit, per explicit approval (2026-08). Mailchimp's own
-      script remembers "seen/dismissed/subscribed" client-side; this
-      wipes anything it stores under a Mailchimp-identifying key before
-      its script (right below) gets a chance to read it, so it always
-      behaves as if this is the visitor's first time. Must stay inline
-      and ahead of the mcjs tag below -- a deferred external file would
-      run too late, after the head has already been parsed.
-    */
-    (function () {
-      var patterns = ['chimp', 'mailchimp', '254736855', 'b52287d5115cea764975ab959'];
-      var matches = function (key) {
-        var lower = key.toLowerCase();
-        return patterns.some(function (p) { return lower.indexOf(p) !== -1; });
-      };
-
-      try {
-        Object.keys(localStorage).filter(matches).forEach(function (key) { localStorage.removeItem(key); });
-        Object.keys(sessionStorage).filter(matches).forEach(function (key) { sessionStorage.removeItem(key); });
-      } catch (e) { /* storage unavailable, e.g. private browsing */ }
-
-      document.cookie.split(';').forEach(function (cookie) {
-        var name = cookie.split('=')[0].trim();
-        if (name && matches(name)) {
-          document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-        }
-      });
-    })();
-  </script>
-  <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/18ac740ec0af20711b24dcede/b52287d5115cea764975ab959.js");</script>
 </head>
 <body>
 
