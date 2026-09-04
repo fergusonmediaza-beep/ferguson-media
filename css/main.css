@@ -1308,7 +1308,37 @@
 
   padding: 0;
 
-  border-top: 1px solid var(--border);
+  border-top: none;
+}
+
+.ft-nl-band {
+
+  background: var(--black);
+
+  padding: 80px 0 160px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.ft-nl-band::after {
+
+  content: '';
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 120px;
+
+  background: var(--surface);
+
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
 
 .ft-top {
@@ -1319,7 +1349,7 @@
 
   gap: 48px;
 
-  padding: 64px 0 60px;
+  padding: 72px 0 60px;
 
   border-bottom: 1px solid var(--border);
 }
@@ -1578,14 +1608,19 @@
 
   gap: 80px;
 
-  padding: 80px 0 72px;
+  position: relative;
 
-  border-bottom: 1px solid var(--border);
+  z-index: 1;
 }
 
 .ft-nl-left {
 
   flex: 0 0 320px;
+}
+
+.ft-nl-left .ft-ct {
+
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .ft-nl-headline {
@@ -1600,7 +1635,7 @@
 
   letter-spacing: -0.03em;
 
-  color: var(--black);
+  color: #fff;
 
   margin: 12px 0 16px;
 }
@@ -1609,7 +1644,7 @@
 
   font-size: 13px;
 
-  color: var(--mid);
+  color: rgba(255, 255, 255, 0.6);
 
   line-height: 1.65;
 
@@ -1644,29 +1679,31 @@
 
   padding: 0 16px;
 
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.07);
 
   font-family: var(--fb);
 
   font-size: 13px;
 
-  color: var(--black);
+  color: #fff;
 
   outline: none;
 
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .ft-nl-input::placeholder {
 
-  color: #0004;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .ft-nl-input:focus {
 
   border-color: var(--orange);
+
+  background: rgba(255, 255, 255, 0.11);
 }
 
 .ft-nl-btn {
@@ -1721,14 +1758,14 @@
 
 .ft-nl-msg.ok {
 
-  color: #2a7d4f;
+  color: #5dbd85;
 
   display: block;
 }
 
 .ft-nl-msg.err {
 
-  color: #c0392b;
+  color: #f08080;
 
   display: block;
 }
@@ -1955,13 +1992,16 @@
     gap: 28px;
   }
 
+  .ft-nl-band {
+
+    padding: 56px 0 120px;
+  }
+
   .ft-nl {
 
     flex-direction: column;
 
     gap: 32px;
-
-    padding: 56px 0 48px;
   }
 
   .ft-nl-left {
@@ -1971,7 +2011,7 @@
 
   .ft-nl-headline {
 
-    font-size: 38px;
+    font-size: 36px;
   }
 
   .ft-nl-row {
