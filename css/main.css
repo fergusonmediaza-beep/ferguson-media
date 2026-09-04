@@ -1724,15 +1724,11 @@
 .ft-nl-msg.ok {
 
   color: #5dbd85;
-
-  display: block;
 }
 
 .ft-nl-msg.err {
 
   color: #f08080;
-
-  display: block;
 }
 
 /* ── Cookie bar (no Bootstrap equivalent) ── */
