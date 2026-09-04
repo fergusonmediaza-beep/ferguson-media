@@ -1316,6 +1316,8 @@
   background: var(--black);
 
   padding: 72px 0;
+
+  overflow: hidden;
 }
 
 .ft-top {
@@ -1972,9 +1974,19 @@
     flex: 0 0 auto;
   }
 
+  .ft-nl-form {
+
+    width: 100%;
+  }
+
   .ft-nl-fields {
 
     gap: 8px;
+  }
+
+  .ft-nl-input {
+
+    min-width: 0;
   }
 
   .ft-nl-action {
