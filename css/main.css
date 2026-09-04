@@ -1712,24 +1712,6 @@
   transform: translateY(0);
 }
 
-.ft-nl-msg {
-
-  font-size: 12px;
-
-  margin-top: 8px;
-
-  display: none;
-}
-
-.ft-nl-msg.ok {
-
-  color: #5dbd85;
-}
-
-.ft-nl-msg.err {
-
-  color: #f08080;
-}
 
 /* ── Cookie bar (no Bootstrap equivalent) ── */
 
