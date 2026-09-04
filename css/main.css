@@ -1306,9 +1306,16 @@
 
   background: var(--surface);
 
-  padding: 80px 0 0;
+  padding: 0;
 
-  border-top: 1px solid var(--border);
+  border-top: none;
+}
+
+.ft-nl-band {
+
+  background: var(--black);
+
+  padding: 72px 0;
 }
 
 .ft-top {
@@ -1319,7 +1326,7 @@
 
   gap: 48px;
 
-  padding-bottom: 60px;
+  padding: 72px 0 60px;
 
   border-bottom: 1px solid var(--border);
 }
@@ -1568,31 +1575,32 @@
   background: linear-gradient(90deg, var(--orange) 0%, #ff7a0026 60%, transparent 100%);
 }
 
-/* ── Footer newsletter strip ── */
+/* ── Footer newsletter band ── */
 
 .ft-nl {
 
   display: flex;
 
-  align-items: flex-start;
+  align-items: center;
 
-  gap: 48px;
-
-  padding: 48px 0;
-
-  border-bottom: 1px solid var(--border);
+  gap: 64px;
 }
 
 .ft-nl-left {
 
-  flex: 0 0 300px;
+  flex: 0 0 280px;
+}
+
+.ft-nl-left .ft-ct {
+
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .ft-nl-lead {
 
-  font-size: 13px;
+  font-size: 14px;
 
-  color: var(--mid);
+  color: rgba(255, 255, 255, 0.85);
 
   line-height: 1.65;
 
@@ -1623,40 +1631,42 @@
 
   min-width: 140px;
 
-  height: 42px;
+  height: 46px;
 
-  padding: 0 14px;
+  padding: 0 16px;
 
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.07);
 
   font-family: var(--fb);
 
   font-size: 13px;
 
-  color: var(--black);
+  color: #fff;
 
   outline: none;
 
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .ft-nl-input::placeholder {
 
-  color: #0005;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .ft-nl-input:focus {
 
   border-color: var(--orange);
+
+  background: rgba(255, 255, 255, 0.11);
 }
 
 .ft-nl-btn {
 
-  height: 42px;
+  height: 46px;
 
-  padding: 0 28px;
+  padding: 0 32px;
 
   background: var(--orange);
 
@@ -1702,14 +1712,14 @@
 
 .ft-nl-msg.ok {
 
-  color: #2a7d4f;
+  color: #5dbd85;
 
   display: block;
 }
 
 .ft-nl-msg.err {
 
-  color: #c0392b;
+  color: #f08080;
 
   display: block;
 }
@@ -1936,13 +1946,16 @@
     gap: 28px;
   }
 
+  .ft-nl-band {
+
+    padding: 48px 0;
+  }
+
   .ft-nl {
 
     flex-direction: column;
 
-    gap: 24px;
-
-    padding: 36px 0;
+    gap: 28px;
   }
 
   .ft-nl-left {
