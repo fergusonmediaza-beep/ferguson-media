@@ -1620,9 +1620,16 @@
 
   gap: 10px;
 
-  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
 
-  margin-bottom: 12px;
+.ft-nl-action {
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: stretch;
 }
 
 .ft-nl-input {
@@ -1968,6 +1975,11 @@
   .ft-nl-fields {
 
     gap: 8px;
+  }
+
+  .ft-nl-action {
+
+    flex-direction: column;
   }
 
   .ft-nl-btn {
