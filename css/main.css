@@ -1568,6 +1568,152 @@
   background: linear-gradient(90deg, var(--orange) 0%, #ff7a0026 60%, transparent 100%);
 }
 
+/* ── Footer newsletter strip ── */
+
+.ft-nl {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 48px;
+
+  padding: 48px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.ft-nl-left {
+
+  flex: 0 0 300px;
+}
+
+.ft-nl-lead {
+
+  font-size: 13px;
+
+  color: var(--mid);
+
+  line-height: 1.65;
+
+  margin: 8px 0 0;
+}
+
+.ft-nl-form {
+
+  flex: 1;
+
+  position: relative;
+}
+
+.ft-nl-fields {
+
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 12px;
+}
+
+.ft-nl-input {
+
+  flex: 1;
+
+  min-width: 140px;
+
+  height: 42px;
+
+  padding: 0 14px;
+
+  border: 1px solid var(--border);
+
+  background: var(--white);
+
+  font-family: var(--fb);
+
+  font-size: 13px;
+
+  color: var(--black);
+
+  outline: none;
+
+  transition: border-color 0.2s;
+}
+
+.ft-nl-input::placeholder {
+
+  color: #0005;
+}
+
+.ft-nl-input:focus {
+
+  border-color: var(--orange);
+}
+
+.ft-nl-btn {
+
+  height: 42px;
+
+  padding: 0 28px;
+
+  background: var(--orange);
+
+  color: #fff;
+
+  border: none;
+
+  font-family: var(--fh);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ft-nl-btn:hover {
+
+  background: #e06500;
+
+  transform: translateY(-1px);
+}
+
+.ft-nl-btn:active {
+
+  transform: translateY(0);
+}
+
+.ft-nl-msg {
+
+  font-size: 12px;
+
+  margin-top: 6px;
+
+  display: none;
+}
+
+.ft-nl-msg.ok {
+
+  color: #2a7d4f;
+
+  display: block;
+}
+
+.ft-nl-msg.err {
+
+  color: #c0392b;
+
+  display: block;
+}
+
 /* ── Cookie bar (no Bootstrap equivalent) ── */
 
 .cookie-bar {
@@ -1788,6 +1934,30 @@
     grid-template-columns: 1fr;
 
     gap: 28px;
+  }
+
+  .ft-nl {
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    padding: 36px 0;
+  }
+
+  .ft-nl-left {
+
+    flex: 0 0 auto;
+  }
+
+  .ft-nl-fields {
+
+    gap: 8px;
+  }
+
+  .ft-nl-btn {
+
+    width: 100%;
   }
 
   .ft-bot {
