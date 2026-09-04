@@ -1315,30 +1315,7 @@
 
   background: var(--black);
 
-  padding: 80px 0 160px;
-
-  position: relative;
-
-  overflow: hidden;
-}
-
-.ft-nl-band::after {
-
-  content: '';
-
-  position: absolute;
-
-  bottom: 0;
-
-  left: 0;
-
-  right: 0;
-
-  height: 120px;
-
-  background: var(--surface);
-
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  padding: 72px 0;
 }
 
 .ft-top {
@@ -1604,18 +1581,14 @@
 
   display: flex;
 
-  align-items: center;
+  align-items: flex-start;
 
-  gap: 80px;
-
-  position: relative;
-
-  z-index: 1;
+  gap: 64px;
 }
 
 .ft-nl-left {
 
-  flex: 0 0 320px;
+  flex: 0 0 300px;
 }
 
 .ft-nl-left .ft-ct {
@@ -1623,32 +1596,15 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
-.ft-nl-headline {
-
-  font-family: var(--fh);
-
-  font-size: 52px;
-
-  font-weight: 800;
-
-  line-height: 1.0;
-
-  letter-spacing: -0.03em;
-
-  color: #fff;
-
-  margin: 12px 0 16px;
-}
-
 .ft-nl-lead {
 
-  font-size: 13px;
+  font-size: 14px;
 
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75);
 
   line-height: 1.65;
 
-  margin: 0;
+  margin: 8px 0 0;
 }
 
 .ft-nl-form {
@@ -1658,15 +1614,15 @@
   position: relative;
 }
 
-.ft-nl-row {
+.ft-nl-fields {
 
   display: flex;
 
   gap: 10px;
 
-  align-items: stretch;
-
   flex-wrap: wrap;
+
+  margin-bottom: 12px;
 }
 
 .ft-nl-input {
@@ -1994,14 +1950,14 @@
 
   .ft-nl-band {
 
-    padding: 56px 0 120px;
+    padding: 48px 0;
   }
 
   .ft-nl {
 
     flex-direction: column;
 
-    gap: 32px;
+    gap: 28px;
   }
 
   .ft-nl-left {
@@ -2009,12 +1965,7 @@
     flex: 0 0 auto;
   }
 
-  .ft-nl-headline {
-
-    font-size: 36px;
-  }
-
-  .ft-nl-row {
+  .ft-nl-fields {
 
     gap: 8px;
   }
