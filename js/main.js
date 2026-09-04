@@ -119,12 +119,81 @@ const showToast = (message, isError = false) => {
   setTimeout(() => toast.classList.remove('show'), 4200);
 };
 
+const initNewsletterForm = () => {
+  const form = document.getElementById('mc-embedded-subscribe-form');
+
+  if (!form) {
+    return;
+  }
+
+  const emailInput = form.querySelector('#mce-EMAIL');
+  const errorDiv  = form.querySelector('#mce-error-response');
+  const successDiv = form.querySelector('#mce-success-response');
+  const btn = form.querySelector('#mc-embedded-subscribe');
+
+  const showMsg = (el, text) => {
+    errorDiv.textContent  = '';
+    successDiv.textContent = '';
+    errorDiv.style.display   = 'none';
+    successDiv.style.display = 'none';
+    el.textContent = text;
+    el.style.display = 'block';
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = (emailInput.value || '').trim();
+
+    if (!email) {
+      showMsg(errorDiv, 'Please enter your email address.');
+      emailInput.focus();
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showMsg(errorDiv, 'Please enter a valid email address — e.g. name@example.com');
+      emailInput.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const endpoint = form.action.replace('/post?', '/post-json?');
+    const params = new URLSearchParams(new FormData(form));
+    const cb = '_fmnl_' + Date.now();
+
+    window[cb] = (res) => {
+      delete window[cb];
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+
+      if (res.result === 'success') {
+        window.location.reload();
+      } else {
+        const msg = (res.msg || 'Something went wrong — please try again.')
+          .replace(/<[^>]+>/g, '')
+          .replace(/^\d+ - /, '');
+        showMsg(errorDiv, msg);
+      }
+    };
+
+    params.set('c', cb);
+
+    const script = document.createElement('script');
+    script.src = endpoint + '&' + params.toString();
+    document.head.appendChild(script);
+  });
+};
+
 window.fmRevealObserver = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCookieBar();
   initNavbarScroll();
   initOffcanvasAriaExpanded();
+  initNewsletterForm();
   window.fmRevealObserver = initRevealOnScroll();
 });
 
