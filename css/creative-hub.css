@@ -1634,77 +1634,6 @@
   color: var(--orange);
 }
 
-.eq-wa-alt {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-
-  padding: 18px 36px;
-
-  border-top: 1px solid #ffffff12;
-
-  background: #ffffff05;
-}
-
-.eq-wa-alt span {
-
-  font-size: 13px;
-
-  color: #ffffff61;
-
-  flex-shrink: 0;
-}
-
-@keyframes wa-btn-glow {
-
-  0%,
-  100% {
-
-    box-shadow: 0 0 0 0 #25d36666;
-  }
-
-  50% {
-
-    box-shadow: 0 0 0 5px #25d36600;
-  }
-}
-
-.eq-wa-btn {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  font-family: var(--fh);
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-  color: #25d366;
-
-  padding: 9px 16px;
-
-  border: 1px solid #25d36638;
-
-  background: #25d36612;
-
-  transition: background 0.25s, border-color 0.25s;
-
-  animation: wa-btn-glow 2.4s ease-in-out infinite;
-}
-
-.eq-wa-btn:hover {
-
-  background: #25d36624;
-
-  border-color: #25d3666b;
-}
 
 /*
   justified: Google's reCAPTCHA terms allow hiding this badge as long
@@ -1820,18 +1749,7 @@
     margin-right: 22px;
   }
 
-  .eq-wa-alt {
 
-    padding-left: 22px;
-
-    padding-right: 22px;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 10px;
-  }
 
   .eq-success {
 

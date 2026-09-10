@@ -1,6 +1,6 @@
 /*
   Page-specific styles for /privacy/. Shared chrome (navbar, offcanvas
-  menu, footer, cookie bar, page loader, WhatsApp float) lives in
+  menu, footer, cookie bar, page loader) lives in
   main.css. Bootstrap's grid/utilities are used for the two-column
   layout; the hero, table-of-contents panel, and policy content
   typography have no Bootstrap equivalent so stay custom here.

@@ -1,6 +1,6 @@
 /*
   Page-specific styles for /contact/. Shared chrome (navbar, offcanvas
-  sidebar, page loader, cookie bar, footer, buttons, wa-float) lives in
+  sidebar, page loader, cookie bar, footer, buttons) lives in
   main.css. The "VALUE SECTION" rules that existed in the original
   inline stylesheet (.value, .value-grid, .val-card, etc.) styled a
   section that has no matching markup anywhere on this page — genuinely

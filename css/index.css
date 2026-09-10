@@ -1,7 +1,7 @@
 /*
   Page-specific styles for the homepage. Shared chrome (navbar, mobile
   offcanvas, buttons, eyebrow, footer, cookie bar, page loader, toast,
-  reveal-on-scroll, WhatsApp float) lives in main.css. This page uses
+  reveal-on-scroll) lives in main.css. This page uses
   .navbar-fade-light-hero because, unlike every other .navbar-fade
   page, its hero has no dark image behind it — nav text/logo need to
   stay dark from the very start instead of fading from white on scroll.

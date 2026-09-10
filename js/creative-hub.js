@@ -95,7 +95,7 @@ enquiryForm.addEventListener('submit', (e) => {
       console.error(err);
       enquirySubmit.disabled = false;
       enquirySubmitText.textContent = 'Send Enquiry';
-      enquiryError.innerHTML = 'Something went wrong. Email us at <a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a> or <a href="https://wa.me/27672554475" target="_blank" rel="noopener">WhatsApp us</a>.';
+      enquiryError.innerHTML = 'Something went wrong. Email us at <a href="mailto:info@fergusonmedia.co.za">info@fergusonmedia.co.za</a>.';
       enquiryError.style.display = 'block';
     });
   });
