@@ -1881,6 +1881,17 @@
   line-height: 1.5;
 }
 
+.stat-source {
+
+  font-size: 10px;
+
+  color: var(--border);
+
+  margin-top: 6px;
+
+  letter-spacing: 0.02em;
+}
+
 .cta-offerings {
 
   list-style: none;
