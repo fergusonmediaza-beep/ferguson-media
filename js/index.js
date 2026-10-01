@@ -34,7 +34,7 @@
 })();
 
 const SPACE_ID = 'xjj6th2dvsr4';
-const ACCESS_TOKEN = '8rJjUik38woui3raQ_eZ_wbWhlMG3io69cYUn-lqKKo';
+const ACCESS_TOKEN = 'NBNt7hRNApZl2NHeUXELHWA_P34CKKv2zzU7UAS_IMk';
 const ENV = 'master';
 const CONTENT_TYPE = 'goodNewsStory';
 
