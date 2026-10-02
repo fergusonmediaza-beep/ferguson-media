@@ -78,26 +78,29 @@
 
   --bs-modal-border-radius: 0;
 
-  --bs-offcanvas-bg: var(--black);
-
-  --bs-offcanvas-color: var(--white);
-
-  --bs-offcanvas-width: 280px;
-
-  --bs-offcanvas-border-width: 0;
-
   --bs-modal-zindex: 8500;
 
   --bs-modal-backdrop-zindex: 8450;
 
-  --bs-offcanvas-zindex: 8400;
-
-  --bs-backdrop-zindex: 8350;
 }
 
 .html-root {
 
   scroll-behavior: smooth;
+}
+
+/*
+  The .rv-l/.rv-r reveal states start 36px off to the side, so anything
+  near the edge pokes past the viewport until it scrolls in. Without a
+  horizontal clip that widened the whole page on mobile and pushed the
+  navbar's hamburger half off-screen until the user scrolled. clip (not
+  hidden) so it doesn't create a scroll container and break sticky.
+*/
+
+.html-root,
+.html-root body {
+
+  overflow-x: clip;
 }
 
 /*
@@ -803,6 +806,33 @@
 
 /* ── Mobile menu: Bootstrap Offcanvas, themed to the brand ── */
 
+/*
+  Bootstrap 5.3 re-declares the --bs-offcanvas-* vars on .offcanvas
+  itself, so setting them on :root never reaches the panel (it fell
+  back to the light body bg, leaving the white links invisible, and
+  to z-index 1045, leaving the bottom half under the cookie bar at
+  8000). They have to live on the element.
+*/
+
+.offcanvas-fm {
+
+  --bs-offcanvas-bg: var(--black);
+
+  --bs-offcanvas-color: var(--white);
+
+  --bs-offcanvas-width: 280px;
+
+  --bs-offcanvas-border-width: 0;
+
+  --bs-offcanvas-zindex: 8400;
+
+  z-index: 8400;
+
+  background-color: var(--black);
+
+  color: var(--white);
+}
+
 .offcanvas-fm .offcanvas-header {
 
   padding: 0 22px;
@@ -810,6 +840,13 @@
   height: 76px;
 
   border-bottom: 1px solid #ffffff0f;
+}
+
+/* Bootstrap hardcodes the backdrop at 1040; lift it with the panel. */
+
+.offcanvas-backdrop {
+
+  z-index: 8350;
 }
 
 .sb-logo {
