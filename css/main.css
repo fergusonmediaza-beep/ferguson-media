@@ -104,6 +104,19 @@
 }
 
 /*
+  With html carrying its own overflow, body's no longer propagates to
+  the viewport, so Bootstrap's offcanvas scroll lock (inline
+  overflow:hidden on body) stops reaching the page. Lock html directly
+  while the mobile menu is opening or open.
+*/
+
+.html-root:has(.offcanvas-fm.showing),
+.html-root:has(.offcanvas-fm.show) {
+
+  overflow: hidden;
+}
+
+/*
   Brand container: overrides Bootstrap's own .container (different
   max-width breakpoints and 0.75rem padding) since this site uses one
   fixed max-width and a wider fixed side padding at every breakpoint
