@@ -141,16 +141,20 @@
   default margin-bottom, which would otherwise leak into every heading
   and paragraph that doesn't already carry an explicit margin rule.
   Scoped under .html-root (present on every page's <html>) rather than
-  a bare tag selector, per the no-direct-tag-selector rule.
+  a bare tag selector, per the no-direct-tag-selector rule. Wrapped in
+  :where() so it carries only tag specificity: it still beats Reboot's
+  h1/p rules (same weight, loaded later) but loses to every component
+  class. Unwrapped (0,1,1) it silently zeroed every .x-title/.x-body
+  margin on the site.
 */
 
-.html-root h1,
-.html-root h2,
-.html-root h3,
-.html-root h4,
-.html-root h5,
-.html-root h6,
-.html-root p {
+:where(.html-root) h1,
+:where(.html-root) h2,
+:where(.html-root) h3,
+:where(.html-root) h4,
+:where(.html-root) h5,
+:where(.html-root) h6,
+:where(.html-root) p {
 
   margin: 0;
 }
