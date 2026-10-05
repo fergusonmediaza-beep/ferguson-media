@@ -2449,9 +2449,7 @@
 
   .hero-ctas {
 
-    flex-direction: column;
-
-    align-items: flex-start;
+    flex-wrap: nowrap;
   }
 
   .hero-scroll-ind {
@@ -2503,6 +2501,24 @@
   .ben-grid {
 
     grid-template-columns: 1fr;
+  }
+
+  /* Hero buttons stay side by side: split the row evenly, tighten padding */
+  .hero-ctas .btn-fm {
+
+    --bs-btn-padding-x: 14px;
+
+    --bs-btn-font-size: 12px;
+
+    flex: 1 1 0;
+
+    min-width: 0;
+
+    justify-content: center;
+
+    text-align: center;
+
+    white-space: normal;
   }
 }
 
