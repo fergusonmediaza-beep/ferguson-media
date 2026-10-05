@@ -836,7 +836,7 @@
   background: var(--orange-pale);
 }
 
-@media (width < 768px) {
+@media (width < 1024px) {
 
   .team-tabs-bar {
 
