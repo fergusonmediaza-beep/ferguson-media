@@ -1343,3 +1343,18 @@
     padding: 16px 20px 20px;
   }
 }
+
+/*
+  The "Try:" suggestion chips are bare text (padding: 0); give them a
+  taller hit area on phones without moving them.
+*/
+
+@media (width < 600px) {
+
+  .hero-try-chip {
+
+    padding-block: 8px;
+
+    margin-block: -8px;
+  }
+}

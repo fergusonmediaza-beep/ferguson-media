@@ -1763,3 +1763,18 @@
     flex-direction: column;
   }
 }
+
+/*
+  Uppercase micro-labels drop to 8-9px on desktop; on phones that's
+  below comfortable reading size, so floor them at 10px there.
+*/
+
+@media (width < 600px) {
+
+  .ch-vision-label,
+  .pkg-badge,
+  .eq-modal-label {
+
+    font-size: 10px;
+  }
+}

@@ -2098,3 +2098,16 @@
 
   background: var(--orange-pale);
 }
+
+/*
+  Uppercase micro-labels drop to 8-9px on desktop; on phones that's
+  below comfortable reading size, so floor them at 10px there.
+*/
+
+@media (width < 600px) {
+
+  .sb-section-label {
+
+    font-size: 10px;
+  }
+}

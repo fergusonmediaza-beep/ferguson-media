@@ -1467,3 +1467,42 @@
     grid-template-columns: 1fr;
   }
 }
+
+/*
+  Uppercase micro-labels drop to 8-9px on desktop; on phones that's
+  below comfortable reading size, so floor them at 10px there.
+*/
+
+@media (width < 600px) {
+
+  .cl-lbl,
+  .iq-num,
+  .form-divider-lbl,
+  .field-group input:focus ~ .field-label,
+  .field-group input:not(:placeholder-shown) ~ .field-label,
+  .field-group textarea:focus ~ .field-label,
+  .field-group textarea:not(:placeholder-shown) ~ .field-label,
+  .field-group.has-value .field-label,
+  .rc-label {
+
+    font-size: 10px;
+  }
+
+  /* Taller hit areas for the email/phone links; layout unchanged */
+  .cl-val a,
+  .rc-body a {
+
+    display: inline-block;
+
+    padding-block: 12px;
+
+    margin-block: -12px;
+  }
+
+  .rc-action {
+
+    padding-block: 12px;
+
+    margin-block: 4px -12px;
+  }
+}
