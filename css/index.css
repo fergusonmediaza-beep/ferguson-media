@@ -2503,6 +2503,15 @@
     grid-template-columns: 1fr;
   }
 
+  .why-more-btn {
+
+    display: flex;
+
+    width: fit-content;
+
+    margin-inline: auto;
+  }
+
   /* Hero buttons stay side by side: split the row evenly, tighten padding */
   .hero-ctas .btn-fm {
 
