@@ -1770,4 +1770,13 @@
 
     font-size: 10px;
   }
+
+  .ch-intro .btn-fm {
+
+    display: flex;
+
+    width: fit-content;
+
+    margin-inline: auto;
+  }
 }
