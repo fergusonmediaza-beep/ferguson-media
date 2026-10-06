@@ -1397,13 +1397,6 @@
     font-size: clamp(44px, 11vw, 80px);
   }
 
-  .hero-ctas {
-
-    flex-direction: column;
-
-    align-items: flex-start;
-  }
-
   .contact-layout {
 
     grid-template-columns: 1fr;

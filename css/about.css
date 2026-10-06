@@ -1953,13 +1953,6 @@
     padding: 72px 24px 60px;
   }
 
-  .hero-ctas {
-
-    flex-direction: column;
-
-    align-items: flex-start;
-  }
-
   .mission-inner {
 
     grid-template-columns: 1fr;

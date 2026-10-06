@@ -2447,11 +2447,6 @@
     transform: none;
   }
 
-  .hero-ctas {
-
-    flex-wrap: nowrap;
-  }
-
   .hero-scroll-ind {
 
     display: none;
@@ -2512,23 +2507,6 @@
     margin-inline: auto;
   }
 
-  /* Hero buttons stay side by side: split the row evenly, tighten padding */
-  .hero-ctas .btn-fm {
-
-    --bs-btn-padding-x: 14px;
-
-    --bs-btn-font-size: 12px;
-
-    flex: 1 1 0;
-
-    min-width: 0;
-
-    justify-content: center;
-
-    text-align: center;
-
-    white-space: normal;
-  }
 }
 
 /*

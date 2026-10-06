@@ -2111,3 +2111,43 @@
     font-size: 10px;
   }
 }
+
+/*
+  Paired CTA buttons (hero, home CTA strip, solution-page final CTA)
+  stay side by side on every page instead of stacking. On phones the
+  pair splits the row evenly with tighter padding, and long labels wrap
+  inside the button rather than pushing it onto a new line. Prefixed
+  with .html-root so it outranks each page stylesheet's own rules.
+*/
+
+@media (width < 900px) {
+
+  .html-root :is(.hero-ctas, .cta-strip-btns, .final-cta-btns) {
+
+    flex-direction: row;
+
+    flex-wrap: nowrap;
+
+    align-items: stretch;
+  }
+}
+
+@media (width < 600px) {
+
+  .html-root :is(.hero-ctas, .cta-strip-btns, .final-cta-btns) > .btn-fm {
+
+    --bs-btn-padding-x: 14px;
+
+    --bs-btn-font-size: 12px;
+
+    flex: 1 1 0;
+
+    min-width: 0;
+
+    justify-content: center;
+
+    text-align: center;
+
+    white-space: normal;
+  }
+}
