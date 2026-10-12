@@ -58,6 +58,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Newsroom -->
+  <url>
+    <loc>https://fergusonmedia.co.za/newsroom/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Contact -->
   <url>
     <loc>https://fergusonmedia.co.za/contact/</loc>

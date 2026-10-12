@@ -1890,7 +1890,12 @@
 }
 
 
-@media (width < 900px) {
+/*
+  The desktop nav (5 links + Contact button) needs ~960px; switch to the
+  hamburger below 1024px so it never collides with the Contact button.
+*/
+
+@media (width < 1024px) {
 
   .nav-links,
   .nav-cta-btn {
@@ -1902,6 +1907,9 @@
 
     display: flex;
   }
+}
+
+@media (width < 900px) {
 
   .container {
 

@@ -1,0 +1,441 @@
+/*
+  Page-specific styles for /newsroom/ and /newsroom/release/. Shared
+  chrome (navbar, offcanvas, buttons, eyebrow, footer, cookie bar, page
+  loader) lives in main.css; the release page also loads article.css
+  for its hero, body and sidebar, so only Newsroom-specific pieces are
+  defined here.
+*/
+
+/* ── Listing hero ── */
+
+.nr-hero {
+
+  background: var(--page);
+
+  padding: 140px 0 48px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.nr-title {
+
+  font-family: var(--fh);
+
+  font-size: clamp(40px, 6vw, 72px);
+
+  font-weight: 900;
+
+  color: var(--black);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.03em;
+
+  margin: 14px 0 18px;
+}
+
+.nr-lead {
+
+  font-size: 16px;
+
+  color: var(--mid);
+
+  line-height: 1.75;
+
+  max-width: 640px;
+}
+
+.nr-lead a {
+
+  color: var(--orange-dk);
+
+  text-decoration: underline;
+
+  text-underline-offset: 2px;
+}
+
+/* ── Release list ── */
+
+.nr-main {
+
+  background: var(--page);
+
+  padding: 56px 0 96px;
+}
+
+.nr-list {
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.nr-item {
+
+  display: block;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid var(--border);
+
+  text-decoration: none;
+
+  color: inherit;
+}
+
+.nr-item:first-child {
+
+  padding-top: 0;
+}
+
+.nr-item-meta {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px 14px;
+
+  margin-bottom: 10px;
+}
+
+.nr-item-issuer {
+
+  font-family: var(--fh);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  color: var(--orange-dk);
+}
+
+.nr-item-date {
+
+  font-size: 13px;
+
+  color: var(--mid);
+}
+
+.nr-item-title {
+
+  font-family: var(--fh);
+
+  font-size: clamp(19px, 2.2vw, 24px);
+
+  font-weight: 800;
+
+  color: var(--black);
+
+  line-height: 1.25;
+
+  letter-spacing: -0.01em;
+
+  margin-bottom: 8px;
+
+  transition: color 0.25s;
+}
+
+.nr-item-summary {
+
+  font-size: 15px;
+
+  color: var(--mid);
+
+  line-height: 1.7;
+
+  margin-bottom: 12px;
+}
+
+.nr-item-more {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-family: var(--fh);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: var(--black);
+}
+
+.nr-item-more svg {
+
+  width: 14px;
+
+  height: 14px;
+
+  stroke: currentColor;
+
+  fill: none;
+
+  stroke-width: 2;
+
+  transition: transform 0.3s var(--ease);
+}
+
+.nr-item:hover .nr-item-title,
+.nr-item:focus-visible .nr-item-title {
+
+  color: var(--orange-dk);
+}
+
+.nr-item:hover .nr-item-more svg {
+
+  transform: translateX(4px);
+}
+
+.nr-item:focus-visible {
+
+  outline: 2px solid var(--orange);
+
+  outline-offset: 4px;
+}
+
+.nr-item:active .nr-item-title {
+
+  color: var(--orange);
+}
+
+.nr-skel {
+
+  height: 120px;
+
+  margin-bottom: 20px;
+
+  background: linear-gradient(90deg, var(--surface) 0%, #ebe8e2 50%, var(--surface) 100%);
+
+  background-size: 200% 100%;
+
+  animation: nr-shimmer 1.4s linear infinite;
+}
+
+@keyframes nr-shimmer {
+
+  to {
+
+    background-position: -200% 0;
+  }
+}
+
+/* ── Empty / error state ── */
+
+.nr-empty {
+
+  padding: 48px 40px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+}
+
+.nr-empty-title {
+
+  font-family: var(--fh);
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  color: var(--black);
+
+  margin-bottom: 10px;
+}
+
+.nr-empty-body {
+
+  font-size: 15px;
+
+  color: var(--mid);
+
+  line-height: 1.7;
+
+  max-width: 460px;
+
+  margin-bottom: 24px;
+}
+
+/* ── Sidebar cards (listing + release page) ── */
+
+.nr-aside {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+
+  position: sticky;
+
+  top: 96px;
+}
+
+.nr-aside-card {
+
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  padding: 24px;
+}
+
+.nr-aside-card-dark {
+
+  background: var(--black);
+
+  border-color: var(--black);
+}
+
+.nr-aside-label {
+
+  font-family: var(--fh);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  color: var(--orange);
+
+  margin-bottom: 10px;
+}
+
+.nr-aside-body {
+
+  font-size: 14px;
+
+  color: var(--mid);
+
+  line-height: 1.7;
+
+  margin-bottom: 14px;
+}
+
+.nr-aside-card-dark .nr-aside-body {
+
+  color: #ffffffa6;
+}
+
+.nr-aside-link {
+
+  font-family: var(--fh);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: var(--black);
+
+  text-decoration: underline;
+
+  text-underline-offset: 3px;
+
+  word-break: break-word;
+}
+
+.nr-aside-card-dark .nr-aside-link {
+
+  color: var(--white);
+}
+
+.nr-aside-link:hover {
+
+  color: var(--orange);
+}
+
+.nr-aside-link:focus-visible {
+
+  outline: 2px solid var(--orange);
+
+  outline-offset: 2px;
+}
+
+.nr-aside-link:active {
+
+  color: var(--orange-dk);
+}
+
+/* ── Release page additions ── */
+
+.nr-disclosure {
+
+  font-size: 14px;
+
+  color: var(--mid);
+
+  line-height: 1.6;
+
+  padding: 14px 18px;
+
+  background: var(--surface);
+
+  border-left: 3px solid var(--orange);
+
+  margin-bottom: 28px;
+}
+
+.nr-contact {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  font-size: 14px;
+
+  color: var(--black);
+
+  line-height: 1.5;
+}
+
+.nr-contact a {
+
+  color: var(--orange-dk);
+
+  text-decoration: underline;
+
+  text-underline-offset: 2px;
+
+  word-break: break-word;
+}
+
+@media (width < 992px) {
+
+  .nr-aside {
+
+    position: static;
+  }
+}
+
+@media (width < 600px) {
+
+  .nr-hero {
+
+    padding: 112px 0 36px;
+  }
+
+  .nr-main {
+
+    padding: 40px 0 72px;
+  }
+
+  .nr-empty {
+
+    padding: 32px 24px;
+  }
+}
