@@ -3,7 +3,7 @@
 /*
   Newsroom listing (/newsroom/). Fetches `pressRelease` entries from
   Contentful, newest first. Releases are organisations' own media
-  releases, published as received and credited to the issuer — the
+  releases, always credited to the issuing organisation — the
   Good News Portal (/news/) is reserved for stories written by the
   Ferguson Media team.
 

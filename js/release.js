@@ -5,7 +5,8 @@
   article.js: the <h1> and every other element already exist in the
   static HTML, and this script only fills text/attributes and toggles
   `d-none`. Every release carries a disclosure line naming the issuing
-  organisation, since the text is theirs, published as received.
+  organisation, since the text is theirs. Wording stays neutral about how
+  the release reached us (sent in or found online), so it is true either way.
 */
 
 const SPACE_ID = 'xjj6th2dvsr4';
@@ -159,11 +160,11 @@ function renderRelease(entry, includes) {
   if (imgUrl) {
     $('release_hero_image').src = imgUrl;
     $('release_hero_image').alt = f.title;
-    $('release_hero_caption').textContent = f.imageCredits || `Image supplied by ${issuer}`;
+    $('release_hero_caption').textContent = f.imageCredits || `Image: ${issuer}`;
     show('release_hero_img');
   }
 
-  $('release_disclosure').textContent = `This media release was issued by ${issuer} and is published as received. It was not written by Ferguson Media.`;
+  $('release_disclosure').textContent = `This media release was issued by ${issuer} and is republished here with full credit. It was not written by Ferguson Media.`;
   show('release_disclosure');
 
   let bodyHtml = '';
