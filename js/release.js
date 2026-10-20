@@ -164,7 +164,7 @@ function renderRelease(entry, includes) {
     show('release_hero_img');
   }
 
-  $('release_disclosure').textContent = `This media release was issued by ${issuer} and is republished here with full credit. It was not written by Ferguson Media.`;
+  $('release_disclosure').textContent = `This media release was issued by ${issuer}. It was not written by Ferguson Media.`;
   show('release_disclosure');
 
   let bodyHtml = '';
