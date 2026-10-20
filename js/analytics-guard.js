@@ -25,11 +25,17 @@
 
   if (isLikelyBot()) return;
 
-  function initAnalytics() {
+  function initGA() {
     if (typeof gtag === 'function') {
       gtag('config', 'G-QPZXX9FXNK');
     }
+  }
 
+  let clarityLoaded = false;
+
+  function initClarity() {
+    if (clarityLoaded) return;
+    clarityLoaded = true;
     window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
     const clarityScript = document.createElement('script');
     clarityScript.async = true;
@@ -38,11 +44,11 @@
   }
 
   /*
-    POPIA: nothing loads until the visitor has accepted cookies. A
-    returning visitor who already accepted starts on the usual
-    interaction/grace-period trigger; a visitor who clicks Accept in the
-    cookie bar starts immediately (main.js dispatches the event below).
-    Declined or undecided visitors are never tracked.
+    GA4 runs for every real visitor once they interact (or after the
+    grace period). Clarity records sessions, so it only loads once the
+    visitor has accepted cookies: either on an earlier visit, or the
+    moment they click Accept in the cookie bar (main.js dispatches
+    fm:consent-accepted). Declined or undecided visitors never load it.
   */
   function hasConsent() {
     try {
@@ -54,21 +60,20 @@
 
   const interactionEvents = ['scroll', 'mousemove', 'keydown', 'touchstart', 'click'];
   let started = false;
-  let fallbackTimer = null;
 
   function start() {
     if (started) return;
     started = true;
     interactionEvents.forEach((evt) => document.removeEventListener(evt, start));
     clearTimeout(fallbackTimer);
-    initAnalytics();
+    initGA();
+
+    if (hasConsent()) {
+      initClarity();
+    }
   }
 
-  if (!hasConsent()) {
-    window.addEventListener('fm:consent-accepted', start, { once: true });
-    return;
-  }
-
+  window.addEventListener('fm:consent-accepted', initClarity, { once: true });
   interactionEvents.forEach((evt) => document.addEventListener(evt, start, { passive: true }));
-  fallbackTimer = setTimeout(start, 4000);
+  const fallbackTimer = setTimeout(start, 4000);
 })();
