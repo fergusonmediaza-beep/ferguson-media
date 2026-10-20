@@ -4,5 +4,8 @@ Allow: /
 # Block article template (dynamic, slug-based — not useful to crawl directly)
 Disallow: /article/
 
+# Block media release template (dynamic, slug-based, same as /article/)
+Disallow: /newsroom/release/
+
 # Sitemap location
 Sitemap: https://fergusonmedia.co.za/sitemap.xml
