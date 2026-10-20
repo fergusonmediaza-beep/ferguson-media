@@ -5,3 +5,6 @@
 
 # Claude Code local settings (may contain API keys)
 .claude/settings.local.json
+
+# Codacy CLI local scanner (tool, config and logs; not part of the site)
+.codacy/

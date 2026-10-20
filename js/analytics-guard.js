@@ -37,8 +37,24 @@
     document.head.appendChild(clarityScript);
   }
 
+  /*
+    POPIA: nothing loads until the visitor has accepted cookies. A
+    returning visitor who already accepted starts on the usual
+    interaction/grace-period trigger; a visitor who clicks Accept in the
+    cookie bar starts immediately (main.js dispatches the event below).
+    Declined or undecided visitors are never tracked.
+  */
+  function hasConsent() {
+    try {
+      return localStorage.getItem('fm_cookie_consent') === 'accepted';
+    } catch (e) {
+      return false;
+    }
+  }
+
   const interactionEvents = ['scroll', 'mousemove', 'keydown', 'touchstart', 'click'];
   let started = false;
+  let fallbackTimer = null;
 
   function start() {
     if (started) return;
@@ -48,6 +64,11 @@
     initAnalytics();
   }
 
+  if (!hasConsent()) {
+    window.addEventListener('fm:consent-accepted', start, { once: true });
+    return;
+  }
+
   interactionEvents.forEach((evt) => document.addEventListener(evt, start, { passive: true }));
-  const fallbackTimer = setTimeout(start, 4000);
+  fallbackTimer = setTimeout(start, 4000);
 })();

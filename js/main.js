@@ -49,6 +49,8 @@ const initCookieBar = () => {
   acceptBtn.addEventListener('click', () => {
     localStorage.setItem(consentKey, 'accepted');
     bar.classList.remove('visible');
+    // analytics-guard.js waits for this before loading GA4/Clarity
+    window.dispatchEvent(new Event('fm:consent-accepted'));
   });
 
   declineBtn.addEventListener('click', () => {
