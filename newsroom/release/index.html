@@ -122,35 +122,34 @@
 </nav>
 
 <!--
-  "Design 3": the standard media-release layout (Design B) carrying
-  Ferguson Media branding: an orange brand bar along the top of the
-  sheet, a framed Ferguson Media Newsroom logo panel, and a "Published
-  by" sign-off at the foot. The issuing organisation (with its logo
-  from the heroImage field) is named under "Issued by". As on the
+  Letterhead layout ("Design 3"): Ferguson Media's details and framed
+  logo head the sheet under an orange brand bar, with a Ferguson Media
+  sign-off at the foot
+  (we publish the Newsroom); the issuing organisation is named, with
+  its logo from the heroImage field, on the "Issued by" line. As on the
   article page, every element is static and release.js only fills
   text/attributes and toggles d-none.
 -->
 <section class="rp-stage">
   <article class="rp-sheet">
-    <div class="rp-label">Media Release</div>
-    <div class="rp-top">
+    <header class="rp-head">
       <div>
-        <div class="rp-k">Issued By</div>
-        <div class="rp-issuer d-none" id="release_issued">
-          <img class="rp-issuer-logo d-none" id="release_issuer_logo" src="" alt="" width="160" height="160" />
-          <strong id="release_issuer"></strong>
-        </div>
-        <div class="rp-k">Release Date</div>
-        <div class="rp-v" id="release_date"></div>
-        <div class="d-none" id="release_contact_wrap">
-          <div class="rp-k">Media Contact</div>
-          <div class="rp-v" id="release_contact"></div>
+        <div class="rp-org-name">Ferguson <span>Media</span> Newsroom</div>
+        <div class="rp-org-cols">
+          <div><span>35 Ferguson Road, Illovo</span><span>Sandton, Johannesburg, 2196</span><span>fergusonmedia.co.za</span></div>
+          <div><span>+27 82 467 8925</span><span>info@fergusonmedia.co.za</span></div>
         </div>
       </div>
       <div class="rp-brand">
         <img src="/images/logo-black.webp" alt="Ferguson Media" width="500" height="500" />
         <span>Ferguson Media Newsroom</span>
       </div>
+    </header>
+    <hr class="rp-rule" />
+    <div class="rp-kicker">Media Release</div>
+    <div class="rp-issued d-none" id="release_issued">
+      <img class="rp-issuer-logo d-none" id="release_issuer_logo" src="" alt="" width="160" height="160" />
+      <span>Issued by <strong id="release_issuer"></strong> &middot; <span id="release_date"></span></span>
     </div>
     <h1 class="rp-title" id="release_title">Loading release…</h1>
     <p class="rp-summary d-none" id="release_summary"></p>
@@ -159,10 +158,9 @@
       <div class="skel"></div>
       <div class="skel"></div>
     </div>
-    <div class="rp-source-wrap d-none" id="release_source_wrap">
-      <a class="rp-source" id="release_source" href="#" target="_blank" rel="noopener">View the original release</a>
-    </div>
-    <div class="rp-end">###</div>
+    <div class="rp-contact d-none" id="release_contact"></div>
+    <a class="rp-source d-none" id="release_source" href="#" target="_blank" rel="noopener">View the original release &rarr;</a>
+    <div class="rp-date" id="release_date_end"></div>
     <footer class="rp-foot">
       <img src="/images/logo-black.webp" alt="" width="500" height="500" />
       <span>Published by <strong>Ferguson <em>Media</em> Newsroom</strong></span>
