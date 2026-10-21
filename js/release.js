@@ -126,8 +126,8 @@ function renderContact(f) {
   }
 
   if (parts.length) {
-    $('release_contact').innerHTML = `<span class="rp-contact-k">Media enquiries</span> ${parts.join(' &middot; ')}`;
-    show('release_contact');
+    $('release_contact').innerHTML = parts.join('<br>');
+    show('release_contact_wrap');
   }
 }
 
@@ -147,7 +147,6 @@ function renderRelease(entry, includes) {
   $('breadcrumb_current').textContent = f.title.length > 50 ? `${f.title.substring(0, 50)}…` : f.title;
   $('release_issuer').textContent = issuer;
   $('release_date').textContent = date;
-  $('release_date_end').textContent = date;
   show('release_issued');
   $('release_title').textContent = f.title;
 
@@ -180,7 +179,7 @@ function renderRelease(entry, includes) {
 
   if (f.originalUrl) {
     $('release_source').href = f.originalUrl;
-    show('release_source');
+    show('release_source_wrap');
   }
 
   renderContact(f);
