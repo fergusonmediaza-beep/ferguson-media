@@ -111,23 +111,23 @@ function show(id) {
 }
 
 function renderContact(f) {
-  const lines = [];
+  const parts = [];
 
   if (f.mediaContactName) {
-    lines.push(`<span>${escapeHtml(f.mediaContactName)}</span>`);
+    parts.push(escapeHtml(f.mediaContactName));
   }
 
   if (f.mediaContactEmail) {
-    lines.push(`<a href="mailto:${escapeHtml(f.mediaContactEmail)}">${escapeHtml(f.mediaContactEmail)}</a>`);
+    parts.push(`<a href="mailto:${escapeHtml(f.mediaContactEmail)}">${escapeHtml(f.mediaContactEmail)}</a>`);
   }
 
   if (f.mediaContactPhone) {
-    lines.push(`<a href="tel:${escapeHtml(f.mediaContactPhone.replace(/\s+/g, ''))}">${escapeHtml(f.mediaContactPhone)}</a>`);
+    parts.push(`<a href="tel:${escapeHtml(f.mediaContactPhone.replace(/\s+/g, ''))}">${escapeHtml(f.mediaContactPhone)}</a>`);
   }
 
-  if (lines.length) {
-    $('release_contact').innerHTML = lines.join('');
-    show('release_contact_card');
+  if (parts.length) {
+    $('release_contact').innerHTML = `<span class="rp-contact-k">Media enquiries</span> ${parts.join(' &middot; ')}`;
+    show('release_contact');
   }
 }
 
@@ -145,9 +145,10 @@ function renderRelease(entry, includes) {
   }
 
   $('breadcrumb_current').textContent = f.title.length > 50 ? `${f.title.substring(0, 50)}…` : f.title;
+  $('release_issuer').textContent = issuer;
   $('release_date').textContent = date;
-  $('release_issuer_chip').textContent = `Issued by ${issuer}`;
-  show('release_meta_top');
+  $('release_date_end').textContent = date;
+  show('release_issued');
   $('release_title').textContent = f.title;
 
   if (f.summary) {
@@ -155,13 +156,13 @@ function renderRelease(entry, includes) {
     show('release_summary');
   }
 
-  const imgUrl = getAssetUrl(includes, f.heroImage?.sys?.id, 1400, 788, 'fill');
+  // The image field holds the issuing organisation's logo
+  const logoUrl = getAssetUrl(includes, f.heroImage?.sys?.id, 240, null, 'scale');
 
-  if (imgUrl) {
-    $('release_hero_image').src = imgUrl;
-    $('release_hero_image').alt = f.title;
-    $('release_hero_caption').textContent = f.imageCredits || `Image: ${issuer}`;
-    show('release_hero_img');
+  if (logoUrl) {
+    $('release_issuer_logo').src = logoUrl;
+    $('release_issuer_logo').alt = `${issuer} logo`;
+    show('release_issuer_logo');
   }
 
   $('release_disclosure').textContent = `This media release was issued by ${issuer}. It was not written by Ferguson Media.`;
@@ -177,12 +178,9 @@ function renderRelease(entry, includes) {
 
   $('release_body').innerHTML = bodyHtml || `<p>${escapeHtml(f.summary || '')}</p>`;
 
-  $('release_info_issuer').textContent = issuer;
-  $('release_info_date').textContent = date;
-
   if (f.originalUrl) {
-    $('release_info_original').href = f.originalUrl;
-    show('release_info_original_row');
+    $('release_source').href = f.originalUrl;
+    show('release_source');
   }
 
   renderContact(f);
@@ -204,7 +202,7 @@ function initShareButtons(title) {
 
   copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
-      copyBtn.textContent = '✓ Link Copied!';
+      copyBtn.textContent = 'Link copied';
     });
   });
 }
@@ -213,7 +211,7 @@ function renderError(msg) {
   document.title = 'Release Not Found — Ferguson Media Newsroom';
   $('release_title').textContent = 'Release Not Found';
   $('breadcrumb_current').textContent = 'Not Found';
-  $('release_sidebar').classList.add('d-none');
+  $('release_after').classList.add('d-none');
   $('release_body').innerHTML = `<div class="article-error"><div class="article-error-title">Release Not Found</div><p class="article-error-body">${escapeHtml(msg)}</p><a href="/newsroom/" class="article-error-btn">Back to Newsroom</a></div>`;
 }
 

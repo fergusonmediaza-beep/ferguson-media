@@ -121,67 +121,57 @@
   </div>
 </nav>
 
-<section class="article-hero">
-  <div class="container">
-    <div class="article-hero-inner">
-      <div class="article-meta-top d-none" id="release_meta_top">
-        <span class="article-cat-badge">Media Release</span>
-        <span class="article-date" id="release_date"></span>
-        <div class="article-author-chip"><div class="article-author-dot"></div><span class="article-author-name" id="release_issuer_chip"></span></div>
+<!--
+  Letterhead layout: Ferguson Media's details and logo head the sheet
+  (we publish the Newsroom); the issuing organisation is named, with
+  its logo from the heroImage field, on the "Issued by" line. As on the
+  article page, every element is static and release.js only fills
+  text/attributes and toggles d-none.
+-->
+<section class="rp-stage">
+  <article class="rp-sheet">
+    <header class="rp-head">
+      <div>
+        <div class="rp-org-name">Ferguson <span>Media</span> Newsroom</div>
+        <div class="rp-org-cols">
+          <div><span>35 Ferguson Road, Illovo</span><span>Sandton, Johannesburg, 2196</span><span>fergusonmedia.co.za</span></div>
+          <div><span>+27 82 467 8925</span><span>info@fergusonmedia.co.za</span></div>
+        </div>
       </div>
-      <h1 class="article-title" id="release_title">Loading release…</h1>
-      <p class="article-excerpt d-none" id="release_summary"></p>
+      <img class="rp-logo" src="/images/logo-black.webp" alt="Ferguson Media" width="500" height="500" />
+    </header>
+    <hr class="rp-rule" />
+    <div class="rp-kicker">Media Release</div>
+    <div class="rp-issued d-none" id="release_issued">
+      <img class="rp-issuer-logo d-none" id="release_issuer_logo" src="" alt="" width="160" height="160" />
+      <span>Issued by <strong id="release_issuer"></strong> &middot; <span id="release_date"></span></span>
     </div>
-  </div>
-  <div class="article-hero-img d-none" id="release_hero_img">
-    <img id="release_hero_image" src="" alt="" width="1400" height="788" />
-    <div class="article-hero-img-caption" id="release_hero_caption"></div>
+    <h1 class="rp-title" id="release_title">Loading release…</h1>
+    <p class="rp-summary d-none" id="release_summary"></p>
+    <div class="rp-body" id="release_body">
+      <div class="skel"></div>
+      <div class="skel"></div>
+      <div class="skel"></div>
+    </div>
+    <div class="rp-contact d-none" id="release_contact"></div>
+    <a class="rp-source d-none" id="release_source" href="#" target="_blank" rel="noopener">View the original release &rarr;</a>
+    <div class="rp-date" id="release_date_end"></div>
+  </article>
+
+  <div class="rp-after" id="release_after">
+    <p class="rp-note d-none" id="release_disclosure"></p>
+    <div class="rp-after-row">
+      <a href="/newsroom/" class="rp-back">&larr; Back to Newsroom</a>
+      <div class="rp-share">
+        <span>Share</span>
+        <button type="button" data-share="linkedin">LinkedIn</button>
+        <button type="button" data-share="x">X</button>
+        <button type="button" id="copy_link_btn">Copy link</button>
+      </div>
+    </div>
+    <a href="/good-news-story/" class="rp-upsell"><span class="rp-upsell-k">Want the full story?</span> Our team can report and tell your story on the Good News Portal &rarr;</a>
   </div>
 </section>
-
-<div class="article-layout">
-  <div class="container">
-    <div class="row g-5">
-      <article class="article-body col-lg-9" id="release_body_wrap">
-        <p class="nr-disclosure d-none" id="release_disclosure"></p>
-        <div id="release_body">
-          <div class="skel"></div>
-          <div class="skel"></div>
-          <div class="skel"></div>
-        </div>
-      </article>
-      <aside class="article-sidebar col-lg-3" id="release_sidebar">
-        <a href="/newsroom/" class="back-to-portal">
-          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Back to Newsroom
-        </a>
-        <div class="sidebar-card">
-          <div class="sidebar-card-label">Release Details</div>
-          <div class="story-info-item"><span class="story-info-label">Issued by</span><span class="story-info-value" id="release_info_issuer">—</span></div>
-          <div class="story-info-item"><span class="story-info-label">Release date</span><span class="story-info-value" id="release_info_date">—</span></div>
-          <div class="story-info-item d-none" id="release_info_original_row"><span class="story-info-label">Source</span><a class="story-info-value" id="release_info_original" href="#" target="_blank" rel="noopener">View original release</a></div>
-        </div>
-        <div class="sidebar-card d-none" id="release_contact_card">
-          <div class="sidebar-card-label">Media Contact</div>
-          <div class="nr-contact" id="release_contact"></div>
-        </div>
-        <div class="sidebar-card">
-          <div class="sidebar-card-label">Share This Release</div>
-          <div class="share-btns">
-            <button type="button" class="share-btn" data-share="linkedin"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>Share on LinkedIn</button>
-            <button type="button" class="share-btn" data-share="x"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>Share on X</button>
-            <button type="button" class="share-btn" id="copy_link_btn"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Copy Link</button>
-          </div>
-        </div>
-        <div class="sidebar-card nr-aside-card-dark">
-          <div class="sidebar-card-label">Want the Full Story?</div>
-          <p class="nr-aside-body">Our team can report and tell your story properly on the Good News Portal.</p>
-          <a href="/good-news-story/" class="nr-aside-link">See Good News Story packages &rarr;</a>
-        </div>
-      </aside>
-    </div>
-  </div>
-</div>
 
 </main>
 <footer class="footer">
