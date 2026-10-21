@@ -122,7 +122,9 @@
 </nav>
 
 <!--
-  Letterhead layout: Ferguson Media's details and logo head the sheet
+  Letterhead layout ("Design 3"): Ferguson Media's details and framed
+  logo head the sheet under an orange brand bar, with a Ferguson Media
+  sign-off at the foot
   (we publish the Newsroom); the issuing organisation is named, with
   its logo from the heroImage field, on the "Issued by" line. As on the
   article page, every element is static and release.js only fills
@@ -138,7 +140,10 @@
           <div><span>+27 82 467 8925</span><span>info@fergusonmedia.co.za</span></div>
         </div>
       </div>
-      <img class="rp-logo" src="/images/logo-black.webp" alt="Ferguson Media" width="500" height="500" />
+      <div class="rp-brand">
+        <img src="/images/logo-black.webp" alt="Ferguson Media" width="500" height="500" />
+        <span>Ferguson Media Newsroom</span>
+      </div>
     </header>
     <hr class="rp-rule" />
     <div class="rp-kicker">Media Release</div>
@@ -156,6 +161,11 @@
     <div class="rp-contact d-none" id="release_contact"></div>
     <a class="rp-source d-none" id="release_source" href="#" target="_blank" rel="noopener">View the original release &rarr;</a>
     <div class="rp-date" id="release_date_end"></div>
+    <footer class="rp-foot">
+      <img src="/images/logo-black.webp" alt="" width="500" height="500" />
+      <span>Published by <strong>Ferguson <em>Media</em> Newsroom</strong></span>
+      <a href="/">fergusonmedia.co.za</a>
+    </footer>
   </article>
 
   <div class="rp-after" id="release_after">
