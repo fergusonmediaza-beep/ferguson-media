@@ -68,24 +68,41 @@
   display: flex;
 
   flex-direction: column;
+
+  gap: 16px;
 }
 
+/* Each release is a card, matching the sidebar cards beside it */
 .nr-item {
 
   display: block;
 
-  padding: 28px 0;
+  padding: 28px 32px;
 
-  border-bottom: 1px solid var(--border);
+  background: var(--white);
+
+  border: 1px solid #ddd8cf;
+
+  border-left: 3px solid var(--orange);
+
+  box-shadow: 0 1px 2px #1a12080d, 0 6px 18px #1a12080a;
 
   text-decoration: none;
 
   color: inherit;
+
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.25s;
 }
 
-.nr-item:first-child {
+.nr-item:hover {
 
-  padding-top: 0;
+  transform: translateY(-2px);
+
+  border-color: #ff7a0066;
+
+  border-left-color: var(--orange);
+
+  box-shadow: 0 2px 4px #1a12080f, 0 14px 32px #ff7a0014;
 }
 
 .nr-item-meta {
@@ -203,6 +220,11 @@
   outline-offset: 4px;
 }
 
+.nr-item:active {
+
+  transform: translateY(0);
+}
+
 .nr-item:active .nr-item-title {
 
   color: var(--orange);
@@ -285,7 +307,7 @@
 
   background: var(--white);
 
-  border: 1px solid var(--border);
+  border: 1px solid #ddd8cf;
 
   padding: 24px;
 }
@@ -963,6 +985,11 @@
   .nr-empty {
 
     padding: 32px 24px;
+  }
+
+  .nr-item {
+
+    padding: 22px 20px;
   }
   .rp-stage {
 
