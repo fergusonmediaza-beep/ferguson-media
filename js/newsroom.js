@@ -54,26 +54,127 @@ function renderItem(entry) {
   </a>`;
 }
 
+const PAGE_SIZE = 10;
+
+// Plain text of a rich-text body, so search can match words inside a release
+const richTextToText = (node) => {
+  if (!node) {
+    return '';
+  }
+
+  if (node.nodeType === 'text') {
+    return node.value || '';
+  }
+
+  return (node.content || []).map(richTextToText).join(' ');
+};
+
+const state = { all: [], query: '', org: '', shown: PAGE_SIZE };
+
+const els = {};
+
+function matches(entry) {
+  const f = entry.fields;
+
+  if (state.org && f.issuedBy !== state.org) {
+    return false;
+  }
+
+  if (!state.query) {
+    return true;
+  }
+
+  return entry.searchText.includes(state.query);
+}
+
+function render() {
+  const filtered = state.all.filter(matches);
+  const filtering = Boolean(state.query || state.org);
+  const visible = filtered.slice(0, state.shown);
+
+  els.list.innerHTML = visible.map(renderItem).join('');
+  els.list.classList.toggle('d-none', filtered.length === 0);
+  els.nomatch.classList.toggle('d-none', filtered.length > 0);
+  els.more.classList.toggle('d-none', filtered.length <= state.shown);
+
+  const total = state.all.length;
+  const noun = total === 1 ? 'release' : 'releases';
+
+  els.count.textContent = filtering
+    ? `Showing ${filtered.length} of ${total} ${noun}`
+    : `${total} ${noun}`;
+}
+
+function buildOrgFilter() {
+  const orgs = [...new Set(state.all.map((e) => e.fields.issuedBy).filter(Boolean))]
+    .sort((x, y) => x.localeCompare(y));
+
+  els.org.insertAdjacentHTML('beforeend', orgs.map((o) => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join(''));
+}
+
+function initControls() {
+  let timer = null;
+
+  els.search.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      state.query = els.search.value.trim().toLowerCase();
+      state.shown = PAGE_SIZE;
+      render();
+    }, 150);
+  });
+
+  els.org.addEventListener('change', () => {
+    state.org = els.org.value;
+    state.shown = PAGE_SIZE;
+    render();
+  });
+
+  els.more.addEventListener('click', () => {
+    state.shown += PAGE_SIZE;
+    render();
+  });
+
+  els.clear.addEventListener('click', () => {
+    els.search.value = '';
+    els.org.value = '';
+    state.query = '';
+    state.org = '';
+    state.shown = PAGE_SIZE;
+    render();
+    els.search.focus();
+  });
+}
+
 async function init() {
-  const list = document.getElementById('nr_list');
-  const empty = document.getElementById('nr_empty');
-  const error = document.getElementById('nr_error');
+  ['list', 'empty', 'error', 'tools', 'search', 'org', 'count', 'more', 'nomatch', 'clear']
+    .forEach((k) => { els[k] = document.getElementById(`nr_${k}`); });
 
   try {
     const data = await fetchReleases();
     const items = data.items || [];
 
     if (items.length === 0) {
-      list.classList.add('d-none');
-      empty.classList.remove('d-none');
+      els.list.classList.add('d-none');
+      els.empty.classList.remove('d-none');
       return;
     }
 
-    list.innerHTML = items.map(renderItem).join('');
+    state.all = items.map((entry) => {
+      const f = entry.fields;
+      entry.searchText = [f.title, f.issuedBy, f.summary, richTextToText(f.body)].join(' ').toLowerCase();
+      return entry;
+    });
+
+    buildOrgFilter();
+    initControls();
+    els.tools.classList.remove('d-none');
+    els.count.classList.remove('d-none');
+    render();
   } catch (err) {
     console.error('Newsroom fetch error:', err);
-    list.classList.add('d-none');
-    error.classList.remove('d-none');
+    els.list.classList.add('d-none');
+    els.error.classList.remove('d-none');
   } finally {
     dismissLoader();
   }

@@ -123,10 +123,26 @@
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-8">
-        <div class="nr-list" id="nr_list" aria-live="polite">
+        <div class="nr-tools d-none" id="nr_tools">
+          <label class="nr-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="search" id="nr_search" placeholder="Search by title, organisation or topic" autocomplete="off" aria-label="Search media releases" />
+          </label>
+          <select class="nr-org" id="nr_org" aria-label="Filter by organisation">
+            <option value="">All organisations</option>
+          </select>
+        </div>
+        <p class="nr-count d-none" id="nr_count" aria-live="polite"></p>
+        <div class="nr-list" id="nr_list">
           <div class="nr-skel"></div>
           <div class="nr-skel"></div>
           <div class="nr-skel"></div>
+        </div>
+        <button type="button" class="btn btn-fm btn-fm-dark nr-more d-none" id="nr_more">Load more releases</button>
+        <div class="nr-empty d-none" id="nr_nomatch">
+          <div class="nr-empty-title">No releases match your search</div>
+          <p class="nr-empty-body">Try a different word, or show all organisations.</p>
+          <button type="button" class="btn btn-fm btn-fm-orange" id="nr_clear">Clear search</button>
         </div>
         <div class="nr-empty d-none" id="nr_empty">
           <div class="nr-empty-title">No releases yet</div>

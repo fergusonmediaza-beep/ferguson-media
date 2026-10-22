@@ -251,6 +251,149 @@
   }
 }
 
+/* ── Search, organisation filter, count, load more ── */
+
+.nr-tools {
+
+  display: flex;
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.nr-search {
+
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 16px;
+
+  height: 50px;
+
+  background: var(--white);
+
+  border: 1px solid #ddd8cf;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.nr-search:focus-within {
+
+  border-color: var(--orange);
+
+  box-shadow: 0 0 0 3px #ff7a0026;
+}
+
+.nr-search svg {
+
+  width: 18px;
+
+  height: 18px;
+
+  flex-shrink: 0;
+
+  fill: none;
+
+  stroke: var(--mid);
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+}
+
+.nr-search input {
+
+  flex: 1;
+
+  min-width: 0;
+
+  height: 100%;
+
+  border: 0;
+
+  outline: 0;
+
+  background: transparent;
+
+  font-family: var(--fb);
+
+  font-size: 15px;
+
+  color: var(--black);
+}
+
+.nr-search input::placeholder {
+
+  color: #8a857e;
+}
+
+.nr-org {
+
+  flex: 0 0 220px;
+
+  height: 50px;
+
+  padding: 0 40px 0 14px;
+
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 14px;
+
+  border: 1px solid #ddd8cf;
+
+  border-radius: 0;
+
+  appearance: none;
+
+  font-family: var(--fh);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: var(--black);
+
+  cursor: pointer;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.nr-org:hover {
+
+  border-color: #c9c3b8;
+}
+
+.nr-org:focus-visible {
+
+  outline: 0;
+
+  border-color: var(--orange);
+
+  box-shadow: 0 0 0 3px #ff7a0026;
+}
+
+.nr-count {
+
+  font-size: 13px;
+
+  color: var(--mid);
+
+  margin-bottom: 16px;
+}
+
+.nr-more {
+
+  display: block;
+
+  margin: 28px auto 0;
+}
+
 /* ── Empty / error state ── */
 
 .nr-empty {
@@ -990,6 +1133,18 @@
   .nr-item {
 
     padding: 22px 20px;
+  }
+
+  .nr-tools {
+
+    flex-direction: column;
+  }
+
+  .nr-org {
+
+    flex-basis: auto;
+
+    width: 100%;
   }
   .rp-stage {
 
