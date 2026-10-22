@@ -1274,6 +1274,12 @@
     object-position: 82% 30%;
   }
 
+  /* objects sit behind the text on narrow screens; darken slightly */
+  .hero-over {
+
+    background: linear-gradient(to top, #000000e6 0%, #00000099 55%, #00000066 100%);
+  }
+
   .nr-org {
 
     flex-basis: auto;
