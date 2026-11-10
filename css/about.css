@@ -602,7 +602,7 @@
 /*
   TEAM: "Behind Every Story". Editorial-magazine lead (oversized type,
   asymmetric layout, portraits at sizes the 300px source photos support),
-  newsroom details (on-air marker, desk index, numbered profiles) and
+  newsroom details (on-air marker, numbered profiles) and
   studio-style interaction. Portraits sit in monochrome and fade to
   team portraits (cards, cover collage and profile sheet) are black and
   white on every screen size; hover/focus adds a gentle zoom only. Profiles are buttons
@@ -807,86 +807,6 @@
 
   border: 6px solid var(--page);
 }
-
-.tm-desks {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 16px 28px;
-
-  flex-wrap: wrap;
-
-  padding: 18px 0;
-
-  border-top: 2px solid var(--black);
-
-  border-bottom: 1px solid #ddd8cf;
-
-  margin-bottom: 56px;
-}
-
-.tm-desks-label {
-
-  font-family: var(--fh);
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  color: var(--orange);
-}
-
-.tm-desks-list {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 8px 28px;
-
-  list-style: none;
-
-  margin: 0;
-
-  padding: 0;
-}
-
-.tm-desks-list li {
-
-  display: flex;
-
-  align-items: baseline;
-
-  gap: 8px;
-
-  font-family: var(--fh);
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  color: var(--black);
-}
-
-.tm-desks-list span {
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  letter-spacing: 1px;
-
-  color: var(--mid);
-
-  font-variant-numeric: tabular-nums;
-}
-
 .tp-grid {
 
   display: grid;
@@ -1087,22 +1007,6 @@
 
   font-variant-numeric: tabular-nums;
 }
-
-.tp-desk {
-
-  font-family: var(--fh);
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-  letter-spacing: 2px;
-
-  text-transform: uppercase;
-
-  color: var(--mid);
-}
-
 .tp-name {
 
   font-family: var(--fh);
@@ -1565,24 +1469,6 @@
 
   padding: 44px 44px 40px;
 }
-
-.tm-desk {
-
-  margin-bottom: 14px;
-
-  font-family: var(--fh);
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  color: var(--orange);
-}
-
 .tm-name {
 
   margin-bottom: 8px;
@@ -1856,17 +1742,6 @@
 
     border-width: 4px;
   }
-
-  .tm-desks {
-
-    margin-bottom: 32px;
-  }
-
-  .tm-desks-list {
-
-    gap: 6px 18px;
-  }
-
   .tp-grid {
 
     gap: 14px;

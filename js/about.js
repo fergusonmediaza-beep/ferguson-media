@@ -39,7 +39,6 @@ teamModalEl.addEventListener('show.bs.modal', (event) => {
     initials.hidden = false;
   }
 
-  document.getElementById('team_modal_desk').textContent = d.desk || '';
   document.getElementById('team_modal_name').textContent = d.name || '';
   document.getElementById('team_modal_role').textContent = d.role || '';
   document.getElementById('team_modal_bio').textContent = d.bio || '';
