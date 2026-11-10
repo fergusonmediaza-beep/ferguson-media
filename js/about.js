@@ -15,7 +15,7 @@ const FACEBOOK_SVG = '<svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.6
 const teamModalEl = document.getElementById('team_modal');
 
 teamModalEl.addEventListener('show.bs.modal', (event) => {
-  const card = event.relatedTarget?.closest('.member-card');
+  const card = event.relatedTarget?.closest('.tp');
 
   if (!card) {
     return;
@@ -23,10 +23,25 @@ teamModalEl.addEventListener('show.bs.modal', (event) => {
 
   const d = card.dataset;
   const photo = document.getElementById('team_modal_photo');
-  photo.src = d.img || '';
-  photo.alt = d.name ? `Portrait of ${d.name}` : '';
-  document.getElementById('team_modal_name').textContent = d.name || '';
+  const initials = document.getElementById('team_modal_initials');
 
+  // Profiles without a photo yet (placeholders) show their initials instead
+  if (d.img) {
+    photo.src = d.img;
+    photo.alt = d.name ? `Portrait of ${d.name}` : '';
+    photo.hidden = false;
+    initials.hidden = true;
+  } else {
+    photo.removeAttribute('src');
+    photo.alt = '';
+    photo.hidden = true;
+    initials.textContent = d.initials || '';
+    initials.hidden = false;
+  }
+
+  document.getElementById('team_modal_desk').textContent = d.desk || '';
+  document.getElementById('team_modal_name').textContent = d.name || '';
+  document.getElementById('team_modal_role').textContent = d.role || '';
   document.getElementById('team_modal_bio').textContent = d.bio || '';
 
   const links = document.getElementById('team_modal_links');
