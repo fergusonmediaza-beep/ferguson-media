@@ -233,7 +233,11 @@
 </div>
 
 <div class="story-count-bar">
-  <p class="story-count-txt" id="story_count_bar">Loading stories…</p>
+  <p class="story-count-txt" id="story_count_bar" aria-live="polite">Loading stories…</p>
+  <label class="portal-search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input type="search" id="portal_search" placeholder="Search stories, people or places" autocomplete="off" aria-label="Search Good News Portal stories" />
+  </label>
 </div>
 
 <section class="portal-main">

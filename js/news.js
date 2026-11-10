@@ -75,10 +75,40 @@ let activeSubCat = 'all';
 let activeFormat = 'all';
 let activeSort = 'newest';
 let isListView = false;
+let searchQuery = '';
 let usingPlaceholders = false;
 let contentfulData = null;
 
 /* Utils */
+const escapeHtml = (str) => String(str)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;');
+
+// Plain text of a rich-text body, so search can match words inside a story
+const richTextToText = (node) => {
+  if (!node) {
+    return '';
+  }
+
+  if (node.nodeType === 'text') {
+    return node.value || '';
+  }
+
+  return (node.content || []).map(richTextToText).join(' ');
+};
+
+// One lower-case string per story: title, excerpt, author, category, topic and body
+const indexStories = (stories) => stories.forEach((s) => {
+  const f = s.fields;
+  s.searchText = [
+    f.title, f.excerpt, f.authorName,
+    CAT_LABELS[f.category], SUB_LABELS[f.subCategory], FMT_LABELS[f.contentFormat],
+    typeof f.body === 'string' ? f.body : richTextToText(f.body),
+  ].filter(Boolean).join(' ').toLowerCase();
+});
+
 const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-ZA', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const getImg = (data, id) => {
@@ -125,6 +155,8 @@ async function fetchStories() {
     contentfulData = { items: PLACEHOLDER_STORIES, includes: { Asset: [] } };
     allStories = PLACEHOLDER_STORIES;
   }
+
+  indexStories(allStories);
 }
 
 /* Filter + sort */
@@ -141,6 +173,11 @@ function applyFilterSort() {
 
   if (activeFormat !== 'all') {
     result = result.filter((s) => s.fields.contentFormat === activeFormat);
+  }
+
+  if (searchQuery) {
+    const words = searchQuery.split(/\s+/);
+    result = result.filter((s) => words.every((w) => s.searchText.includes(w)));
   }
 
   result.sort((a, b) => {
@@ -256,12 +293,16 @@ function render() {
 
   const total = filtered.length;
   const catName = activeFilter === 'all' ? 'All Stories' : (CAT_LABELS[activeFilter] || activeFilter);
-  countBar.innerHTML = `Showing <span>${total}</span> ${total === 1 ? 'story' : 'stories'} in <span>${catName}</span>`;
+  const matching = searchQuery ? ` matching <span>&ldquo;${escapeHtml(searchQuery)}&rdquo;</span>` : '';
+  countBar.innerHTML = `Showing <span>${total}</span> ${total === 1 ? 'story' : 'stories'}${matching} in <span>${catName}</span>`;
 
   if (total === 0) {
     featured.innerHTML = '';
     secondary.innerHTML = '';
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="empty-title">No stories found</div><p class="empty-body">Try a different category or check back soon.</p></div>';
+    const emptyBody = searchQuery
+      ? `<p class="empty-body">Try a different word, or search all categories.</p><button type="button" class="btn btn-fm btn-fm-orange empty-clear" id="clear_search">Clear search</button>`
+      : '<p class="empty-body">Try a different category or check back soon.</p>';
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="empty-title">${searchQuery ? `No stories match &ldquo;${escapeHtml(searchQuery)}&rdquo;` : 'No stories found'}</div>${emptyBody}</div>`;
     loadMoreWrap.style.display = 'none';
     document.getElementById('grid_label_slot').innerHTML = '';
     return;
@@ -303,6 +344,14 @@ async function init() {
 
   const params = new URLSearchParams(window.location.search);
   const category = params.get('category');
+  const q = (params.get('q') || '').trim();
+
+  if (q) {
+    document.getElementById('portal_search').value = q;
+    searchQuery = q.toLowerCase();
+    applyFilterSort();
+    render();
+  }
   const subCategory = params.get('subCategory');
 
   if (category && CAT_LABELS[category]) {
@@ -409,6 +458,40 @@ document.getElementById('view_list').addEventListener('click', () => {
   document.getElementById('view_list').classList.add('active');
   document.getElementById('view_grid').classList.remove('active');
   document.getElementById('stories_grid').classList.add('view-list');
+});
+
+/* Search: filters as you type, on top of the active category/topic/format.
+   The query is mirrored to ?q= so a search can be shared or bookmarked. */
+const searchInput = document.getElementById('portal_search');
+let searchTimer = null;
+
+const runSearch = () => {
+  searchQuery = searchInput.value.trim().toLowerCase();
+
+  const url = new URL(window.location.href);
+
+  if (searchQuery) {
+    url.searchParams.set('q', searchInput.value.trim());
+  } else {
+    url.searchParams.delete('q');
+  }
+
+  window.history.replaceState(null, '', url);
+  applyFilterSort();
+  render();
+};
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(runSearch, 200);
+});
+
+document.getElementById('stories_grid').addEventListener('click', (e) => {
+  if (e.target.closest('#clear_search')) {
+    searchInput.value = '';
+    runSearch();
+    searchInput.focus();
+  }
 });
 
 document.getElementById('load_more_btn').addEventListener('click', () => {
